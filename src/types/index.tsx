@@ -116,18 +116,14 @@ declare global {
             header5?: TypograpghyVariantType;
             header6?: TypograpghyVariantType;
             header7?: TypograpghyVariantType;
-            header8?: TypograpghyVariantType;
-            header9?: TypograpghyVariantType;
             body?: TypograpghyVariantType;
+            body2?: TypograpghyVariantType;
             caption?: TypograpghyVariantType;
-            buttonSmall?: TypograpghyVariantType;
-            buttonMedium?: TypograpghyVariantType;
-            buttonLarge?: TypograpghyVariantType;
-            overline?: TypograpghyVariantType;
         }
 
         interface ColorsType {
             primary: string;
+            secondary: string;
             body: string;
             constrastBody: string;
             layer1: string;
@@ -135,13 +131,35 @@ declare global {
             layer3: string;
             panel: string;
             warning: string;
+            warning50: string;
+            error: string;
+            error50: string;
             danger: string;
             success: string;
+            success50: string;
             accent: string;
             attention: string;
             info: string;
             seperator: string;
             hideBody: string;
+            black: string;
+            white: string;
+            backgroundDark: string;
+            backgroundLight: string;
+            stroke: string;
+            textDark: string;
+            textSecondary: string;
+            textGrey: string;
+            textWhite: string;
+            black50: string;
+            black100: string;
+            black200: string;
+            grey25: string;
+            grey50: string;
+            grey100: string;
+            grey200: string;
+            greyBase: string;
+            grey700: string;
             gray0: string;
             gray10: string;
             gray20: string;

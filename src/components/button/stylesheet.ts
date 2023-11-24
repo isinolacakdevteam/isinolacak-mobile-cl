@@ -11,9 +11,6 @@ import {
     ViewStyle 
 } from "react-native";
 import {
-    SIZE_TO_STYLE_MAPPING
-} from "./constants";
-import {
     IIOCoreIconPropsType 
 } from "../../types";
 
@@ -49,7 +46,8 @@ const buttonStyler = ({
     let container: ViewStyle = {
         backgroundColor: variant === "filled" ? colors[color] : "transparent",
         borderColor: variant !== "ghost" ? colors[color] : "transparent",
-        ...SIZE_TO_STYLE_MAPPING[size].container,
+        paddingHorizontal: 20,
+        paddingVertical: 8,
         borderWidth: borders.indicator,
         borderRadius: radiuses.half
     };
@@ -58,7 +56,7 @@ const buttonStyler = ({
 
     let titleProps: TitleProps = {
         color: titleColor,
-        variant: SIZE_TO_STYLE_MAPPING[size].title.size
+        variant: "body2"
     };
 
     if(loading) {
@@ -88,12 +86,12 @@ const buttonStyler = ({
     }
 
     let iconProps: IIOCoreIconPropsType = {
-        size: SIZE_TO_STYLE_MAPPING[size].icon.size,
+        size: 18,
         color: iconColor ? colors[iconColor] : colors[titleColor]
     };
 
     let loadingProps: LoadingProps = {
-        containerSize: SIZE_TO_STYLE_MAPPING[size].loading.containerSize,
+        containerSize: "body2",
         color: colors[titleColor],
         size: "small"
     };

@@ -14,10 +14,6 @@ import {
 import stylesheet from "./stylesheet";
 
 const variants: Array<keyof IOCore.TypographyType> = [
-    "buttonMedium",
-    "buttonLarge",
-    "buttonSmall",
-    "overline",
     "header1",
     "header2",
     "header3",
@@ -25,23 +21,38 @@ const variants: Array<keyof IOCore.TypographyType> = [
     "header5",
     "header6",
     "header7",
-    "header8",
-    "header9",
     "caption",
-    "body"
+    "body",
+    "body2"
 ];
 
 const colorList: Array<keyof IOCore.ColorsType> = [
-    "constrastBody",
-    "attention",
-    "hideBody",
     "primary",
+    "secondary",
+    "black",
+    "white",
+    "backgroundDark",
+    "backgroundLight",
+    "textDark",
+    "textSecondary",
+    "textGrey",
+    "textWhite",
+    "black50",
+    "black100",
+    "black200",
+    "grey25",
+    "grey50",
+    "grey100",
+    "grey200",
+    "greyBase",
+    "grey700",
+    "stroke",
     "success",
+    "success50",
+    "error",
+    "error50",
     "warning",
-    "accent",
-    "danger",
-    "body",
-    "info"
+    "warning50"
 ];
 
 const Text = () => {
