@@ -25,6 +25,7 @@ export type {
 export {
     PageContainer,
     BottomSheet,
+    TextInput,
     Dialog,
     Button,
     Text

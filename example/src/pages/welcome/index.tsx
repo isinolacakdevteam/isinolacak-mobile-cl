@@ -8,6 +8,7 @@ import {
     PageContainer,
     IOCoreLocale,
     IOCoreTheme,
+    TextInput,
     Button,
     Text
 } from "isinolacak-cl";
@@ -149,6 +150,9 @@ const Welcome = () => {
             onPress={() => {
                 IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
             }}
+        />
+        <TextInput
+            
         />
     </PageContainer>;
 };
