@@ -26,6 +26,7 @@ const Button: FC<IButtonProps> = ({
     color = "primary",
     disabled = false,
     size = "medium",
+    iconDirection= "left",
     titleStyle,
     textColor,
     iconColor,
@@ -51,7 +52,9 @@ const Button: FC<IButtonProps> = ({
     } = buttonStyler({
         disabledStyle: designTokensDisabled,
         displayBehaviourWhileLoading,
+        icon: IconComponentProp,
         spreadBehaviour,
+        iconDirection,
         iconColor,
         textColor,
         disabled,
@@ -60,7 +63,9 @@ const Button: FC<IButtonProps> = ({
         borders,
         variant,
         colors,
+        spaces,
         color,
+        title,
         size
     });
 
@@ -90,7 +95,11 @@ const Button: FC<IButtonProps> = ({
         </View>;
     };
 
-    const renderIcon = () => {
+    const renderIcon = (direction: "left" | "right") => {
+        if(direction !== iconDirection) {
+            return null;
+        }
+
         if(loading) {
             return null;
         }
@@ -121,6 +130,7 @@ const Button: FC<IButtonProps> = ({
             color={titleProps.color}
             style={[
                 titleStyle,
+                titleProps.style,
                 textStyle,
             ]}
         >
@@ -138,8 +148,9 @@ const Button: FC<IButtonProps> = ({
         ]}
     >
         {renderLoading()}
-        {renderIcon()}
+        {renderIcon("left")}
         {renderTitle()}
+        {renderIcon("right")}
     </TouchableOpacity>;
 };
 export default Button;

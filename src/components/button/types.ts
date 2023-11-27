@@ -26,6 +26,7 @@ export interface IButtonProps {
     iconColor?: keyof IOCore.ColorsType;
     textColor?: keyof IOCore.ColorsType;
     titleStyle?: StyleProp<TextStyle>;
+    iconDirection?: "left" | "right";
     style?: ViewStyle | ViewStyle[];
     color?: keyof IOCore.ColorsType;
     variant?: ButtonVariant;
@@ -44,18 +45,23 @@ export type ButtonStylerParams = {
     textColor?: keyof IOCore.ColorsType;
     iconColor?: keyof IOCore.ColorsType;
     borders: IOCore.BordersTokensType;
+    iconDirection?: "left" | "right";
+    spaces: IOCore.SpacesTokensType;
     color: keyof IOCore.ColorsType;
     disabledStyle: ViewStyle;
     colors: IOCore.ColorsType;
     variant: ButtonVariant;
+    icon?: IOCoreIconType;
     disabled: boolean;
     loading?: boolean;
     size: ButtonSize;
+    title?: string;
 };
 
 export type TitleProps = {
     variant: keyof IOCore.TypographyType;
     color: keyof IOCore.ColorsType;
+    style: TextStyle;
 };
 
 export type LoadingProps = ActivityIndicatorProps & {
@@ -71,15 +77,6 @@ export type ButtonStylerResult = {
 
 export type ButtonStyle = {
     container: ViewStyle;
-    title: {
-        size: keyof IOCore.TypographyType;
-    };
-    loading: {
-        containerSize: keyof IOCore.TypographyType;
-    },
-    icon: {
-        size: number;
-    };
 };
 
 export type ButtonStyleMappingType = {

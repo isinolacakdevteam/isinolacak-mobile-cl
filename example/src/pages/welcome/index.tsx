@@ -16,6 +16,7 @@ import {
     CompositeScreenProps,
     useNavigation
 } from "@react-navigation/native";
+import BackCamera from "../../../assets/svg/camera/index.js"
 
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
@@ -79,7 +80,7 @@ const Welcome = () => {
         >
             <Button
                 spreadBehaviour="free"
-                color={activeTheme === "dark" ? "constrastBody" : "body"}
+                // color={activeTheme === "dark" ? "constrastBody" : "body"}
                 textColor={activeTheme === "dark" ? "body" : "constrastBody"}
                 title={`${localize("active-theme")}: ${activeTheme.charAt(0).toLocaleUpperCase()}${activeTheme.slice(1)}`}
                 style={[
@@ -90,6 +91,7 @@ const Welcome = () => {
                         marginRight: spaces.content / 2
                     }
                 ]}
+                size="small"
                 onPress={() => {
                     IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
                 }}

@@ -13,6 +13,9 @@ import {
 import {
     IIOCoreIconPropsType 
 } from "../../types";
+import {
+    SIZE_TO_STYLE_MAPPING
+} from "./constants";
 
 export const stylesheet = StyleSheet.create({
     container: {
@@ -32,6 +35,7 @@ const buttonStyler = ({
     displayBehaviourWhileLoading,
     spreadBehaviour,
     disabledStyle,
+    iconDirection,
     iconColor,
     textColor,
     radiuses,
@@ -40,14 +44,16 @@ const buttonStyler = ({
     borders,
     variant,
     colors,
+    spaces,
+    title,
     color,
+    icon,
     size
 }: ButtonStylerParams): ButtonStylerResult => {
     let container: ViewStyle = {
         backgroundColor: variant === "filled" ? colors[color] : "transparent",
         borderColor: variant !== "ghost" ? colors[color] : "transparent",
-        paddingHorizontal: 20,
-        paddingVertical: 8,
+        ...SIZE_TO_STYLE_MAPPING[size].container,
         borderWidth: borders.indicator,
         borderRadius: radiuses.half
     };
@@ -56,7 +62,9 @@ const buttonStyler = ({
 
     let titleProps: TitleProps = {
         color: titleColor,
-        variant: "body2"
+        variant: "body2",
+        style: {
+        }
     };
 
     if(loading) {
@@ -83,6 +91,20 @@ const buttonStyler = ({
             ...container,
             ...disabledStyle
         };
+    }
+
+    if(icon && title) {
+        if(iconDirection === "left") {
+            titleProps.style = {
+                ...titleProps.style,
+                marginLeft: spaces.inline
+            };
+        } else {
+            titleProps.style = {
+                ...titleProps.style,
+                marginRight: spaces.inline
+            };
+        }
     }
 
     let iconProps: IIOCoreIconPropsType = {
