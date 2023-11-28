@@ -4,17 +4,14 @@ import {
     TextStyle
 } from "react-native";
 import {
-    HintTextProps,
-    TextInputStylerParams,
     TextInputStylerResult,
+    TextInputStylerParams,
+    HintTextProps,
     TitleProps
 } from "./types";
 import {
     SIZE_TO_STYLE_MAPPING
 } from "./constants";
-import {
-    IIOCoreIconPropsType 
-} from "../../types";
 
 export const stylesheet = StyleSheet.create({
     container: {
@@ -39,6 +36,9 @@ export const stylesheet = StyleSheet.create({
     },
     title: {
         lineHeight: 16
+    },
+    hintContainer: {
+        flexDirection: "row"
     },
     hintText: {
         lineHeight: 16
@@ -67,13 +67,15 @@ export const textInputStyler = ({
     value,
     size
 }: TextInputStylerParams): TextInputStylerResult => {
+    const sizeToStyleMapping = SIZE_TO_STYLE_MAPPING(spaces)[size];
+
     let container: ViewStyle = {
-        ...SIZE_TO_STYLE_MAPPING[size].container
+        ...sizeToStyleMapping.container
     };
 
     let contentContainer: ViewStyle = {
-        ...SIZE_TO_STYLE_MAPPING[size].contentContainer,
         borderColor: isError ? colors.error : isFocused ? colors.primary : colors.stroke,
+        ...sizeToStyleMapping.contentContainer,
         backgroundColor: colors.panel,
         borderRadius: radiuses.half,
         borderWidth: borders.line
@@ -85,7 +87,7 @@ export const textInputStyler = ({
         }
     };
 
-    let hintTextProp: HintTextProps = { 
+    let hintTextProps: HintTextProps = { 
         color: value?.length || isFocused ? "primary" : "gray50",
         style: {
         }
@@ -100,24 +102,15 @@ export const textInputStyler = ({
     };
 
     let optionalStyle: ViewStyle = {
-        marginRight: spaces.inline
+        marginHorizontal: spaces.inline
     };
 
     let hintContainerStyle: ViewStyle = {
-        flexDirection: "row",
         marginTop: spaces.content
     };
 
     let hintIconStyle: ViewStyle = {
         marginRight: spaces.inline
-    };
-
-    let hintIconProps: IIOCoreIconPropsType = {
-
-    };
-
-    let iconProps: IIOCoreIconPropsType = {
-
     };
 
     if(disabled) {
@@ -131,16 +124,19 @@ export const textInputStyler = ({
         titleProps.style.marginBottom = spaces.inline;
     }
 
+    if(size !== "small" && !isFocused && !value.length) {
+        input.marginBottom = 0;
+        input.height = 0;
+    }
+
     return {
         hintContainerStyle,
         contentContainer,
         optionalStyle,
         hintIconStyle,
-        hintIconProps,
-        hintTextProp,
+        hintTextProps,
         titleProps,
         container,
-        iconProps,
         input
     };
 };

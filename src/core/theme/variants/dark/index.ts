@@ -60,70 +60,70 @@ export const typography: Required<IOCore.TypographyType> = {
         fontFamily: "Inter-SemiBold",
         fontWeight: "600",
         lineHeight: 58.09,
-        fontSize: 48
+        fontSize: 50
     },
     header2: {
         fontFamily: "Inter-Bold",
         fontWeight: "700",
         lineHeight: 47.2,
-        fontSize: 39
+        fontSize: 41
     },
     header3: {
         fontFamily: "Inter-SemiBold",
         fontWeight: "600",
         lineHeight: 37.52,
-        fontSize: 31
+        fontSize: 33
     },
     header4: {
         fontFamily: "Inter-Medium",
         fontWeight: "500",
         lineHeight: 30.26,
-        fontSize: 25
+        fontSize: 27
     },
     header5: {
         fontFamily: "Inter-Medium",
         fontWeight: "500",
         lineHeight: 24.2,
-        fontSize: 20
+        fontSize: 22
     },
     header6: {
         fontFamily: "Inter-SemiBold",
         fontWeight: "600",
         lineHeight: 19.36,
-        fontSize: 16
+        fontSize: 18
     },
     header7: {
         fontFamily: "Inter-Bold",
         fontWeight: "700",
         lineHeight: 16.94,
-        fontSize: 14
+        fontSize: 16
     },
     body: {
         fontFamily: "Inter-Regular",
         fontWeight: "400",
         lineHeight: 14.52,
-        fontSize: 12
+        fontSize: 14
     },
     body2: {
         fontFamily: "Inter-Bold",
         fontWeight: "700",
         lineHeight: 12.1,
-        fontSize: 10
+        fontSize: 12
     },
     caption: {
         fontFamily: "Inter-Medium",
         fontWeight: "500",
         lineHeight: 12,
-        fontSize: 8
+        fontSize: 10
     }
 };
 
 export const designTokens: Required<IOCore.DesignTokensType> = {
     spaces: {
-        container: 20,
+        container: 16,
         content: 8,
         inline: 4,
-        item: 20
+        item: 16
     },
     borders: {
         indicator: 2,

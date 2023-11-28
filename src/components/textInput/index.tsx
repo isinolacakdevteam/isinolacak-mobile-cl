@@ -64,18 +64,14 @@ const TextInput: FC<ITextInputProps> = ({
     const {
         hintContainerStyle,
         contentContainer,
-        hintIconProps,
         optionalStyle,
         hintIconStyle,
-        hintTextProp,
+        hintTextProps,
         titleProps,
         container,
-        iconProps,
         input
     } = textInputStyler({
         disabledStyle: designTokensDisabled,
-        icon: IconComponentProp,
-        iconDirection,
         typography,
         isFocused,
         disabled,
@@ -101,7 +97,7 @@ const TextInput: FC<ITextInputProps> = ({
     const renderNativeInput = () => {
         return <NativeTextInput
             {...props}
-            placeholder={size === "small" ? props.placeholder : undefined}
+            placeholder={size === "small" ? title : undefined}
             value={value}
             multiline={false}
             onChangeText={e => {
@@ -117,14 +113,7 @@ const TextInput: FC<ITextInputProps> = ({
             placeholderTextColor={colors.hideBody}
             style={[
                 stylesheet.input,
-                input,
-                size !== "small" && !isFocused && !value.length ?
-                    {
-                        height: 0,
-                        marginBottom: 0
-                    }
-                    :
-                    null
+                input
             ]}
         />;
     };
@@ -171,13 +160,14 @@ const TextInput: FC<ITextInputProps> = ({
 
         return <View
             style={[
+                stylesheet.hintContainer,
                 hintContainerStyle
             ]}
         >
             {
-                HintIconProp ? <HintIconProp
-                    {...hintIconProps}
-                /> 
+                HintIconProp
+                    ?
+                    <HintIconProp/> 
                     :
                     <InfoIcon
                         size={15}
@@ -191,10 +181,10 @@ const TextInput: FC<ITextInputProps> = ({
             <Text
                 variant="body"
                 numberOfLines={1}
-                color={isError ? "error" : titleProps.color}
+                color={isError ? "error" : hintTextProps.color}
                 style={[
                     stylesheet.hintText,
-                    hintTextProp.style
+                    hintTextProps.style
                 ]}
             >
                 {hintText}
@@ -206,13 +196,12 @@ const TextInput: FC<ITextInputProps> = ({
         if(direction !== iconDirection) {
             return null;
         }
+
         if(!IconComponentProp) {
             return null;
         }
 
-        return <IconComponentProp
-            {...iconProps}
-        />;
+        return <IconComponentProp/>;
     };
 
     return <TouchableOpacity

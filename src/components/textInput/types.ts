@@ -4,26 +4,26 @@ import {
     TextStyle
 } from "react-native";
 import {
-    IIOCoreIconPropsType,
-    IOCoreIconType 
+    IOCoreIconType
 } from "../../types";
-type TextInputSizes = "small" | "medium" | "large";
+
+export type TextInputSizes = "small" | "medium" | "large";
 
 interface ITextInputProps extends Omit<TextInputProps, "value" | "onChangeText" | "onFocus" | "onBlur" | "multiline"> {
     onChangeText?: (value: string) => void;
     iconDirection?: "left" | "right";
     hintIcon?: IOCoreIconType;
     clearEnabled?: boolean;
-    size?: TextInputSizes;
     icon?: IOCoreIconType;
+    size?: TextInputSizes;
     initialValue?: string;
     isRequired?: boolean;
+    isOptional?: boolean;
     onFocus?: () => void;
     onBlur?: () => void;
     disabled?: boolean;
     style?: ViewStyle;
     hintText?: string;
-    isOptional?: boolean;
     isError?: boolean;
     title?: string;
 };
@@ -32,16 +32,13 @@ export type TextInputStylerParams = {
     radiuses: IOCore.RadiusesTokensType;
     borders: IOCore.BordersTokensType;
     typography: IOCore.TypographyType;
-    iconDirection?: "left" | "right";
     spaces: IOCore.SpacesTokensType;
-    hintICon?: IOCoreIconType;
     colors: IOCore.ColorsType;
     disabledStyle: ViewStyle;
-    icon?: IOCoreIconType;
     size: TextInputSizes;
-    isError?: boolean;
     isFocused: boolean;
     disabled?: boolean;
+    isError?: boolean;
     value: string;
 };
 
@@ -55,18 +52,15 @@ export type HintTextProps = {
     style: TextStyle;
 };
 
-
 export type TextInputStylerResult = {
+    hintContainerStyle: ViewStyle;
+    hintTextProps: HintTextProps;
     contentContainer: ViewStyle;
     optionalStyle: ViewStyle;
     hintIconStyle: ViewStyle;
-    hintContainerStyle: ViewStyle;
     titleProps: TitleProps;
-    hintTextProp: HintTextProps;
     container: ViewStyle;
     input: TextStyle;
-    iconProps: IIOCoreIconPropsType;
-    hintIconProps: IIOCoreIconPropsType;
 };
 
 export type TextInputStyle = {

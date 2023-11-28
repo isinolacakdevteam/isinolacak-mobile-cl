@@ -154,6 +154,8 @@ const Welcome = () => {
             }}
         />
         <TextInput
+            title="Hi Cnm"
+            size="small"
         />
     </PageContainer>;
 };

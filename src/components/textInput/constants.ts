@@ -1,27 +1,35 @@
 import {
-    TextInputStyleMappingType 
+    TextInputStyleMappingType
 } from "./types";
 
-export const SIZE_TO_STYLE_MAPPING: TextInputStyleMappingType = {
+export const SIZE_TO_STYLE_MAPPING: (
+    spaces: IOCore.SpacesTokensType
+) => TextInputStyleMappingType = (spaces) => ({
     "small": {
         contentContainer: {
-            minHeight: 45
+            paddingVertical: spaces.container / 8,
+            paddingHorizontal: spaces.container,
+            height: 45
         },
         container: {
         }
     },
     "medium": {
         contentContainer: {
-            minHeight: 65
+            paddingVertical: spaces.container / 4,
+            paddingHorizontal: spaces.container,
+            height: 60
         },
         container: {
         }
     },
     "large": {
         contentContainer: {
-            minHeight: 75
+            paddingVertical: spaces.container / 2,
+            paddingHorizontal: spaces.container,
+            height: 65
         },
         container: {
         }
     }
-};
+});
