@@ -12,6 +12,9 @@ import {
 import {
     SIZE_TO_STYLE_MAPPING
 } from "./constants";
+import {
+    IIOCoreIconPropsType 
+} from "../../types";
 
 export const stylesheet = StyleSheet.create({
     container: {
@@ -108,7 +111,15 @@ export const textInputStyler = ({
     let hintIconStyle: ViewStyle = {
         marginRight: spaces.inline
     };
-    
+
+    let hintIconProps: IIOCoreIconPropsType = {
+
+    };
+
+    let iconProps: IIOCoreIconPropsType = {
+
+    };
+
     if(disabled) {
         container = {
             ...container,
@@ -125,9 +136,11 @@ export const textInputStyler = ({
         contentContainer,
         optionalStyle,
         hintIconStyle,
+        hintIconProps,
         hintTextProp,
         titleProps,
         container,
+        iconProps,
         input
     };
 };
