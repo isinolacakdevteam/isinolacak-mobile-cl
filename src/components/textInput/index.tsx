@@ -24,8 +24,8 @@ import {
 const TextInput: FC<ITextInputProps> = ({
     icon: IconComponentProp,
     iconDirection = "left",
+    hintIcon: HintIconProp,
     clearEnabled = false,
-    optional= "Optional",
     onFocus: onFocusProp,
     onBlur: onBlurProp,
     isRequired = false,
@@ -35,8 +35,9 @@ const TextInput: FC<ITextInputProps> = ({
     isError= false,
     onChangeText,
     initialValue,
+    hintText,
+    optional,
     style,
-    hint,
     ...props
 }) => {
     const {
@@ -57,6 +58,7 @@ const TextInput: FC<ITextInputProps> = ({
 
     const {
         contentContainer,
+        hintIconProps,
         titleProps,
         container,
         iconProps,
@@ -156,21 +158,27 @@ const TextInput: FC<ITextInputProps> = ({
     };
 
     const renderHint = () => {
-        if(!hint) {
+        if(!hintText) {
             return null;
         }
         return <View
             style={stylesheet.hintContainer}
         >
-            <InfoIcon
-                size={15}
-                color={isError ? colors.error : colors.greyBase}
-                style={[
-                    {
-                        marginRight: spaces.inline
-                    }
-                ]}
-            />
+            {
+                HintIconProp ? <HintIconProp
+                    {...hintIconProps}
+                /> :
+                    <InfoIcon
+                        size={15}
+                        color={isError ? colors.error : colors.greyBase}
+                        style={[
+                            {
+                                marginRight: spaces.inline
+                            }
+                        ]}
+                    />
+            }
+            
             <Text
                 variant="body"
                 numberOfLines={1}
@@ -180,7 +188,7 @@ const TextInput: FC<ITextInputProps> = ({
                     titleProps.style
                 ]}
             >
-                {hint}
+                {hintText}
             </Text>
         </View>;
     };
@@ -213,7 +221,7 @@ const TextInput: FC<ITextInputProps> = ({
                 stylesheet.contentContainer,
                 contentContainer,
                 {
-                    marginBottom: hint ? spaces.content / 2 : undefined
+                    marginBottom: hintText ? spaces.content / 2 : undefined
                 }
             ]}
         >

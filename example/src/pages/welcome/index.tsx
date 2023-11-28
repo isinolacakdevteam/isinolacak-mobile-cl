@@ -152,9 +152,7 @@ const Welcome = () => {
             }}
         />
         <TextInput
-            iconDirection="right"
-            icon={() => <InfoIcon size={30} color={colors.black} />}
-            isError={true}
+            hintText="asfasfas"
         />
     </PageContainer>;
 };

@@ -12,6 +12,7 @@ type TextInputSizes = "small" | "medium" | "large";
 interface ITextInputProps extends Omit<TextInputProps, "value" | "onChangeText" | "onFocus" | "onBlur" | "multiline"> {
     onChangeText?: (value: string) => void;
     iconDirection?: "left" | "right";
+    hintIcon?: IOCoreIconType;
     clearEnabled?: boolean;
     size?: TextInputSizes;
     icon?: IOCoreIconType;
@@ -21,10 +22,10 @@ interface ITextInputProps extends Omit<TextInputProps, "value" | "onChangeText" 
     onBlur?: () => void;
     disabled?: boolean;
     style?: ViewStyle;
+    hintText?: string;
     optional?: string;
     isError?: boolean;
     title?: string;
-    hint?: string;
 };
 
 export type TextInputStylerParams = {
@@ -33,6 +34,7 @@ export type TextInputStylerParams = {
     typography: IOCore.TypographyType;
     iconDirection?: "left" | "right";
     spaces: IOCore.SpacesTokensType;
+    hintICon?: IOCoreIconType;
     colors: IOCore.ColorsType;
     disabledStyle: ViewStyle;
     icon?: IOCoreIconType;
@@ -54,6 +56,7 @@ export type TextInputStylerResult = {
     container: ViewStyle;
     input: TextStyle;
     iconProps: IIOCoreIconPropsType;
+    hintIconProps: IIOCoreIconPropsType;
 };
 
 export type TextInputStyle = {
