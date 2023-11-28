@@ -1,0 +1,156 @@
+import React, {
+    FC
+} from "react";
+import {
+    ActivityIndicator,
+    TouchableOpacity,
+    TextStyle,
+    View
+} from "react-native";
+import Text from "../text";
+import {
+    IOCoreTheme 
+} from "../../core";
+import {
+    IButtonProps 
+} from "./types";
+import buttonStyler, {
+    stylesheet
+} from "./stylesheet";
+
+const Button: FC<IButtonProps> = ({
+    displayBehaviourWhileLoading = "disabled",
+    spreadBehaviour = "baseline",
+    icon: IconComponentProp,
+    variant = "filled",
+    color = "primary",
+    disabled = false,
+    size = "medium",
+    iconDirection= "left",
+    titleStyle,
+    textColor,
+    iconColor,
+    loading,
+    onPress,
+    title,
+    style
+}) => {
+    const {
+        disabled: designTokensDisabled,
+        typography,
+        radiuses,
+        borders,
+        spaces,
+        colors
+    } = IOCoreTheme.useContext();
+
+    const {
+        loadingProps,
+        titleProps,
+        container,
+        iconProps
+    } = buttonStyler({
+        disabledStyle: designTokensDisabled,
+        displayBehaviourWhileLoading,
+        icon: IconComponentProp,
+        spreadBehaviour,
+        iconDirection,
+        iconColor,
+        textColor,
+        disabled,
+        radiuses,
+        loading,
+        borders,
+        variant,
+        colors,
+        spaces,
+        color,
+        title,
+        size
+    });
+
+    const renderLoading = () => {
+        if(!loading) {
+            return null;
+        }
+
+        const loadingSize = typography[loadingProps.containerSize]?.fontSize || 16;
+
+        return <View
+            style={[
+                stylesheet.loadingContainer,
+                {
+                    height: loadingSize,
+                    width: loadingSize
+                }
+            ]}
+        >
+            <ActivityIndicator
+                color={loadingProps.color}
+                size={loadingProps.size}
+                style={[
+                    stylesheet.loading
+                ]}
+            />
+        </View>;
+    };
+
+    const renderIcon = (direction: "left" | "right") => {
+        if(direction !== iconDirection) {
+            return null;
+        }
+
+        if(loading) {
+            return null;
+        }
+
+        if(!IconComponentProp) {
+            return null;
+        }
+
+        return <IconComponentProp
+            {...iconProps}
+        />;
+    };
+
+    const renderTitle = () => {
+        if(!title) {
+            return null;
+        }
+
+        let textStyle: TextStyle = {
+        };
+
+        if(IconComponentProp || loading) {
+            textStyle.marginLeft = spaces.content;
+        }
+
+        return <Text
+            variant={titleProps.variant}
+            color={titleProps.color}
+            style={[
+                titleStyle,
+                titleProps.style,
+                textStyle,
+            ]}
+        >
+            {title}
+        </Text>;
+    };
+
+    return <TouchableOpacity
+        onPress={disabled || loading ? undefined : onPress}
+        disabled={disabled || loading}
+        style={[
+            stylesheet.container,
+            style,
+            container
+        ]}
+    >
+        {renderLoading()}
+        {renderIcon("left")}
+        {renderTitle()}
+        {renderIcon("right")}
+    </TouchableOpacity>;
+};
+export default Button;
