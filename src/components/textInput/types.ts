@@ -23,7 +23,7 @@ interface ITextInputProps extends Omit<TextInputProps, "value" | "onChangeText" 
     disabled?: boolean;
     style?: ViewStyle;
     hintText?: string;
-    optional?: string;
+    isOptional?: boolean;
     isError?: boolean;
     title?: string;
 };
@@ -50,9 +50,19 @@ export type TitleProps = {
     style: TextStyle;
 };
 
+export type HintTextProps = {
+    color: keyof IOCore.ColorsType;
+    style: TextStyle;
+};
+
+
 export type TextInputStylerResult = {
     contentContainer: ViewStyle;
+    optionalStyle: ViewStyle;
+    hintIconStyle: ViewStyle;
+    hintContainerStyle: ViewStyle;
     titleProps: TitleProps;
+    hintTextProp: HintTextProps;
     container: ViewStyle;
     input: TextStyle;
     iconProps: IIOCoreIconPropsType;

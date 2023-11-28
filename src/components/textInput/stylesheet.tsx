@@ -4,6 +4,7 @@ import {
     TextStyle
 } from "react-native";
 import {
+    HintTextProps,
     TextInputStylerParams,
     TextInputStylerResult,
     TitleProps
@@ -36,6 +37,9 @@ export const stylesheet = StyleSheet.create({
     title: {
         lineHeight: 16
     },
+    hintText: {
+        lineHeight: 16
+    },
     input: {
         borderColor: "transparent",
         lineHeight: 16,
@@ -44,9 +48,6 @@ export const stylesheet = StyleSheet.create({
     },
     clearButton: {
         alignSelf: "center"
-    },
-    hintContainer: {
-        flexDirection: "row"
     }
 });
 
@@ -81,6 +82,12 @@ export const textInputStyler = ({
         }
     };
 
+    let hintTextProp: HintTextProps = { 
+        color: value?.length || isFocused ? "primary" : "gray50",
+        style: {
+        }
+    };
+
     let input: TextStyle = {
         opacity: value ? 1 : 0.5,
         color: colors.body,
@@ -89,6 +96,19 @@ export const textInputStyler = ({
         height: 18
     };
 
+    let optionalStyle: ViewStyle = {
+        marginRight: spaces.inline
+    };
+
+    let hintContainerStyle: ViewStyle = {
+        flexDirection: "row",
+        marginTop: spaces.content
+    };
+
+    let hintIconStyle: ViewStyle = {
+        marginRight: spaces.inline
+    };
+    
     if(disabled) {
         container = {
             ...container,
@@ -101,7 +121,11 @@ export const textInputStyler = ({
     }
 
     return {
+        hintContainerStyle,
         contentContainer,
+        optionalStyle,
+        hintIconStyle,
+        hintTextProp,
         titleProps,
         container,
         input

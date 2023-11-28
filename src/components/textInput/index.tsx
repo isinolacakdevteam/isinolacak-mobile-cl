@@ -14,7 +14,8 @@ import {
 } from "./stylesheet";
 import Text from "../text";
 import {
-    IOCoreTheme
+    IOCoreTheme,
+    IOCoreLocale
 } from "../../core";
 import ITextInputProps from "./types";
 import {
@@ -32,11 +33,11 @@ const TextInput: FC<ITextInputProps> = ({
     disabled = false,
     size = "medium",
     title = "Title",
-    isError= false,
+    isError = false,
     onChangeText,
     initialValue,
+    isOptional,
     hintText,
-    optional,
     style,
     ...props
 }) => {
@@ -49,6 +50,10 @@ const TextInput: FC<ITextInputProps> = ({
         colors
     } = IOCoreTheme.useContext();
 
+    const  {
+        localize
+    } = IOCoreLocale.useContext();
+
     const [isFocused, setIsFocused] = useState(false);
     const [value, setValue] = useState(initialValue ? initialValue : "");
 
@@ -57,8 +62,12 @@ const TextInput: FC<ITextInputProps> = ({
     const finalTitle = isRequired ? "* " + title : title;
 
     const {
+        hintContainerStyle,
         contentContainer,
         hintIconProps,
+        optionalStyle,
+        hintIconStyle,
+        hintTextProp,
         titleProps,
         container,
         iconProps,
@@ -139,7 +148,7 @@ const TextInput: FC<ITextInputProps> = ({
     };
 
     const renderOptional = () => {
-        if(!optional) {
+        if(!isOptional) {
             return null;
         }
 
@@ -148,12 +157,10 @@ const TextInput: FC<ITextInputProps> = ({
             numberOfLines={1}
             color="textGrey"
             style={[
-                {
-                    marginRight: spaces.inline
-                }
+                optionalStyle
             ]}
         >
-            {optional}
+            {localize("optional")}
         </Text>;
     };
 
@@ -161,20 +168,22 @@ const TextInput: FC<ITextInputProps> = ({
         if(!hintText) {
             return null;
         }
+
         return <View
-            style={stylesheet.hintContainer}
+            style={[
+                hintContainerStyle
+            ]}
         >
             {
                 HintIconProp ? <HintIconProp
                     {...hintIconProps}
-                /> :
+                /> 
+                    :
                     <InfoIcon
                         size={15}
                         color={isError ? colors.error : colors.greyBase}
                         style={[
-                            {
-                                marginRight: spaces.inline
-                            }
+                            hintIconStyle
                         ]}
                     />
             }
@@ -184,8 +193,8 @@ const TextInput: FC<ITextInputProps> = ({
                 numberOfLines={1}
                 color={isError ? "error" : titleProps.color}
                 style={[
-                    stylesheet.title,
-                    titleProps.style
+                    stylesheet.hintText,
+                    hintTextProp.style
                 ]}
             >
                 {hintText}
@@ -219,10 +228,7 @@ const TextInput: FC<ITextInputProps> = ({
         <View
             style={[
                 stylesheet.contentContainer,
-                contentContainer,
-                {
-                    marginBottom: hintText ? spaces.content / 2 : undefined
-                }
+                contentContainer
             ]}
         >
             {renderIcon("left")}

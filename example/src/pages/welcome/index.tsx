@@ -17,7 +17,9 @@ import {
     CompositeScreenProps,
     useNavigation
 } from "@react-navigation/native";
-import { InfoIcon } from "../../../../src/assets/svg";
+import {
+    InfoIcon 
+} from "../../../../src/assets/svg";
 
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
@@ -152,7 +154,6 @@ const Welcome = () => {
             }}
         />
         <TextInput
-            hintText="asfasfas"
         />
     </PageContainer>;
 };

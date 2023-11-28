@@ -17,7 +17,8 @@ const en: {
         "active-theme": "Theme",
         "active-language": "Language",
         "isinolacak-cl": "IOCore Mobile",
-        "welcome-description": "Welcome to IOCore Design System Component Library"
+        "welcome-description": "Welcome to IOCore Design System Component Library",
+        "optional": "Optional"
     }
 };
 export default en;
