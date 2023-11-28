@@ -24,8 +24,8 @@ const Text: FC<ITextProps> = ({
         style={[
             style,
             {
-                ...typography[variant],
-                color: color ? colors[color] : colors.body
+                color: color ? colors[color] : colors.body,
+                ...typography[variant]
             }
         ]}
     >

@@ -229,6 +229,7 @@ declare global {
             "active-language": string;
             "isinolacak-cl": string;
             "welcome-description": string;
+            "optional": string;
         }
     }
 }
