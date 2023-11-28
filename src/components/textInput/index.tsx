@@ -23,6 +23,7 @@ import {
 
 const TextInput: FC<ITextInputProps> = ({
     icon: IconComponentProp,
+    iconDirection = "left",
     clearEnabled = false,
     onFocus: onFocusProp,
     onBlur: onBlurProp,
@@ -30,7 +31,7 @@ const TextInput: FC<ITextInputProps> = ({
     disabled = false,
     size = "medium",
     title = "Title",
-    iconDirection = "left",
+    isError= false,
     onChangeText,
     initialValue,
     style,
@@ -67,6 +68,7 @@ const TextInput: FC<ITextInputProps> = ({
         isFocused,
         disabled,
         radiuses,
+        isError,
         borders,
         colors,
         spaces,
@@ -123,7 +125,7 @@ const TextInput: FC<ITextInputProps> = ({
         return <Text
             variant="header7"
             numberOfLines={1}
-            color={titleProps.color}
+            color={isError ? "error" : titleProps.color}
             style={[
                 stylesheet.title,
                 titleProps.style
@@ -142,7 +144,7 @@ const TextInput: FC<ITextInputProps> = ({
         >
             <InfoIcon
                 size={15}
-                color={colors.greyBase}
+                color={isError ? colors.error : colors.greyBase}
                 style={[
                     {
                         marginRight: spaces.inline
@@ -152,7 +154,7 @@ const TextInput: FC<ITextInputProps> = ({
             <Text
                 variant="body"
                 numberOfLines={1}
-                color={titleProps.color}
+                color={isError ? "error" : titleProps.color}
                 style={[
                     stylesheet.title,
                     titleProps.style

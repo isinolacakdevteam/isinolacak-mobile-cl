@@ -56,6 +56,7 @@ export const textInputStyler = ({
     isFocused,
     disabled,
     radiuses,
+    isError,
     borders,
     colors,
     spaces,
@@ -68,7 +69,7 @@ export const textInputStyler = ({
 
     let contentContainer: ViewStyle = {
         ...SIZE_TO_STYLE_MAPPING[size].contentContainer,
-        borderColor: isFocused ? colors.primary : colors.panel,
+        borderColor: isError ? colors.error : isFocused ? colors.primary : colors.stroke,
         backgroundColor: colors.panel,
         borderRadius: radiuses.half,
         borderWidth: borders.line

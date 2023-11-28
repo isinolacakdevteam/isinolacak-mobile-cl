@@ -21,6 +21,7 @@ interface ITextInputProps extends Omit<TextInputProps, "value" | "onChangeText" 
     onBlur?: () => void;
     disabled?: boolean;
     style?: ViewStyle;
+    isError?: boolean;
     title?: string;
     hint?: string;
 };
@@ -31,10 +32,11 @@ export type TextInputStylerParams = {
     typography: IOCore.TypographyType;
     iconDirection?: "left" | "right";
     spaces: IOCore.SpacesTokensType;
-    icon?: IOCoreIconType;
-    disabledStyle: ViewStyle;
     colors: IOCore.ColorsType;
+    disabledStyle: ViewStyle;
+    icon?: IOCoreIconType;
     size: TextInputSizes;
+    isError?: boolean;
     isFocused: boolean;
     disabled?: boolean;
     value: string;
