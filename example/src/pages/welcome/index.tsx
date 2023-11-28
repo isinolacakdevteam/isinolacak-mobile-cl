@@ -155,7 +155,6 @@ const Welcome = () => {
             iconDirection="right"
             icon={() => <InfoIcon size={30} color={colors.black} />}
             isError={true}
-            hint="Rakiplerini yenmek için canlarını 0 ın altına indirmeyi dene"
         />
     </PageContainer>;
 };

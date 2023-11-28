@@ -21,6 +21,7 @@ interface ITextInputProps extends Omit<TextInputProps, "value" | "onChangeText" 
     onBlur?: () => void;
     disabled?: boolean;
     style?: ViewStyle;
+    optional?: string;
     isError?: boolean;
     title?: string;
     hint?: string;

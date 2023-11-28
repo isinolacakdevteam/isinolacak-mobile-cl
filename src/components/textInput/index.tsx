@@ -25,6 +25,7 @@ const TextInput: FC<ITextInputProps> = ({
     icon: IconComponentProp,
     iconDirection = "left",
     clearEnabled = false,
+    optional= "Optional",
     onFocus: onFocusProp,
     onBlur: onBlurProp,
     isRequired = false,
@@ -135,6 +136,25 @@ const TextInput: FC<ITextInputProps> = ({
         </Text>;
     };
 
+    const renderOptional = () => {
+        if(!optional) {
+            return null;
+        }
+
+        return <Text
+            variant="body"
+            numberOfLines={1}
+            color="textGrey"
+            style={[
+                {
+                    marginRight: spaces.inline
+                }
+            ]}
+        >
+            {optional}
+        </Text>;
+    };
+
     const renderHint = () => {
         if(!hint) {
             return null;
@@ -204,6 +224,7 @@ const TextInput: FC<ITextInputProps> = ({
                 {renderTitle()}
                 {renderNativeInput()}
             </View>
+            {renderOptional()}
             {renderIcon("right")}
         </View>
         {renderHint()}
