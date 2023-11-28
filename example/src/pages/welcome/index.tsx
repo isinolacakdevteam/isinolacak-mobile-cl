@@ -152,7 +152,6 @@ const Welcome = () => {
             }}
         />
         <TextInput
-            
         />
     </PageContainer>;
 };

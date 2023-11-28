@@ -17,6 +17,9 @@ import {
     IOCoreTheme
 } from "../../core";
 import ITextInputProps from "./types";
+import {
+    InfoIcon 
+} from "../../assets/svg";
 
 const TextInput: FC<ITextInputProps> = ({
     clearEnabled = false,
@@ -29,6 +32,7 @@ const TextInput: FC<ITextInputProps> = ({
     onChangeText,
     initialValue,
     style,
+    hint,
     ...props
 }) => {
     const {
@@ -124,6 +128,36 @@ const TextInput: FC<ITextInputProps> = ({
         </Text>;
     };
 
+    const renderHint = () => {
+        if(!hint) {
+            return null;
+        }
+        return <View
+            style={stylesheet.hintContainer}
+        >
+            <InfoIcon
+                size={15}
+                color={colors.greyBase}
+                style={[
+                    {
+                        marginRight: spaces.inline
+                    }
+                ]}
+            />
+            <Text
+                variant="body"
+                numberOfLines={1}
+                color={titleProps.color}
+                style={[
+                    stylesheet.title,
+                    titleProps.style
+                ]}
+            >
+                {hint}
+            </Text>
+        </View>;
+    };
+
     return <TouchableOpacity
         onPress={() => inputRef.current?.focus()}
         disabled={disabled}
@@ -137,7 +171,10 @@ const TextInput: FC<ITextInputProps> = ({
         <View
             style={[
                 stylesheet.contentContainer,
-                contentContainer
+                contentContainer,
+                {
+                    marginBottom: hint ? spaces.content / 2 : undefined
+                }
             ]}
         >
             <View
@@ -147,7 +184,7 @@ const TextInput: FC<ITextInputProps> = ({
                 {renderNativeInput()}
             </View>
         </View>
-        <Text>dfgsgsd</Text>
+        {renderHint()}
     </TouchableOpacity>;
 };
 export default TextInput;

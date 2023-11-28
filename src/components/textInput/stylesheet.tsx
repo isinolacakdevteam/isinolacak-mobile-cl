@@ -42,6 +42,9 @@ export const stylesheet = StyleSheet.create({
     },
     clearButton: {
         alignSelf: "center"
+    },
+    hintContainer: {
+        flexDirection: "row"
     }
 });
 

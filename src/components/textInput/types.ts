@@ -17,6 +17,7 @@ interface ITextInputProps extends Omit<TextInputProps, "value" | "onChangeText" 
     disabled?: boolean;
     style?: ViewStyle;
     title?: string;
+    hint?: string;
 };
 
 export type TextInputStylerParams = {
