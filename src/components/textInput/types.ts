@@ -3,13 +3,18 @@ import {
     ViewStyle,
     TextStyle
 } from "react-native";
-
+import {
+    IIOCoreIconPropsType,
+    IOCoreIconType 
+} from "../../types";
 type TextInputSizes = "small" | "medium" | "large";
 
 interface ITextInputProps extends Omit<TextInputProps, "value" | "onChangeText" | "onFocus" | "onBlur" | "multiline"> {
     onChangeText?: (value: string) => void;
+    iconDirection?: "left" | "right";
     clearEnabled?: boolean;
     size?: TextInputSizes;
+    icon?: IOCoreIconType;
     initialValue?: string;
     isRequired?: boolean;
     onFocus?: () => void;
@@ -24,7 +29,9 @@ export type TextInputStylerParams = {
     radiuses: IOCore.RadiusesTokensType;
     borders: IOCore.BordersTokensType;
     typography: IOCore.TypographyType;
+    iconDirection?: "left" | "right";
     spaces: IOCore.SpacesTokensType;
+    icon?: IOCoreIconType;
     disabledStyle: ViewStyle;
     colors: IOCore.ColorsType;
     size: TextInputSizes;
@@ -43,6 +50,7 @@ export type TextInputStylerResult = {
     titleProps: TitleProps;
     container: ViewStyle;
     input: TextStyle;
+    iconProps: IIOCoreIconPropsType;
 };
 
 export type TextInputStyle = {

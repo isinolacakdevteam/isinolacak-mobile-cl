@@ -22,6 +22,7 @@ import {
 } from "../../assets/svg";
 
 const TextInput: FC<ITextInputProps> = ({
+    icon: IconComponentProp,
     clearEnabled = false,
     onFocus: onFocusProp,
     onBlur: onBlurProp,
@@ -29,6 +30,7 @@ const TextInput: FC<ITextInputProps> = ({
     disabled = false,
     size = "medium",
     title = "Title",
+    iconDirection = "left",
     onChangeText,
     initialValue,
     style,
@@ -55,9 +57,12 @@ const TextInput: FC<ITextInputProps> = ({
         contentContainer,
         titleProps,
         container,
+        iconProps,
         input
     } = textInputStyler({
         disabledStyle: designTokensDisabled,
+        icon: IconComponentProp,
+        iconDirection,
         typography,
         isFocused,
         disabled,
@@ -158,6 +163,19 @@ const TextInput: FC<ITextInputProps> = ({
         </View>;
     };
 
+    const renderIcon = (direction: "left" | "right") => {
+        if(direction !== iconDirection) {
+            return null;
+        }
+        if(!IconComponentProp) {
+            return null;
+        }
+
+        return <IconComponentProp
+            {...iconProps}
+        />;
+    };
+
     return <TouchableOpacity
         onPress={() => inputRef.current?.focus()}
         disabled={disabled}
@@ -177,12 +195,14 @@ const TextInput: FC<ITextInputProps> = ({
                 }
             ]}
         >
+            {renderIcon("left")}
             <View
                 style={stylesheet.content}
-            >
+            >          
                 {renderTitle()}
                 {renderNativeInput()}
             </View>
+            {renderIcon("right")}
         </View>
         {renderHint()}
     </TouchableOpacity>;

@@ -17,7 +17,7 @@ import {
     CompositeScreenProps,
     useNavigation
 } from "@react-navigation/native";
-import BackCamera from "../../../assets/svg/camera/index.js"
+import { InfoIcon } from "../../../../src/assets/svg";
 
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
@@ -152,6 +152,8 @@ const Welcome = () => {
             }}
         />
         <TextInput
+            iconDirection="right"
+            icon={() => <InfoIcon size={30} color="red"/>}
         />
     </PageContainer>;
 };
