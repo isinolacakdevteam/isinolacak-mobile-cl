@@ -3,7 +3,8 @@ import {
 } from "react-native";
 import {
     RadioButtonStylerParams, 
-    RadioButtonStylerResult 
+    RadioButtonStylerResult, 
+    TitleProps
 } from "./types";
 import {
     ViewStyle 
@@ -13,33 +14,51 @@ export const stylesheet = StyleSheet.create({
     container: {
         flexDirection: "row",
         alignItems: "center"
+    },
+    radioContainer: {
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 13,
+        height: 26,
+        width: 26
+    },
+    radioIndicator: {
+        borderRadius: 8,
+        height: 16,
+        width: 16
+    },
+    title: {
+        textAlignVertical: "center",
+        flex: 1
     }
 });
 
 const radioButtonStyler = ({
     spreadBehaviour,
     disabledStyle,
+    titleStyle,
     disabled,
-    colors
+    colors,
+    spaces
 }: RadioButtonStylerParams): RadioButtonStylerResult => {
-
     let container: ViewStyle = {
-    };
-
-    let checkedRadio: ViewStyle = {
-        height: 15,
-        width: 15,
-        backgroundColor: disabled ?  colors.textGrey : colors.backgroundLight,
-        borderRadius: 15
+        paddingVertical: spaces.container / 2
     };
 
     let radioContainer: ViewStyle = {
-        height: 25,
-        width: 25,
-        backgroundColor: disabled ?  colors.black50 : colors.backgroundLight,
-        borderRadius: 25,
-        justifyContent: "center",
-        alignItems: "center"
+        backgroundColor: colors.backgroundLight
+    };
+
+    let radioIndicator: ViewStyle = {
+        backgroundColor: colors.primary
+    };
+
+    let titleProps: TitleProps = {
+        color: "body",
+        style: {
+            marginLeft: spaces.content,
+            ...titleStyle
+        }
     };
 
     if(disabled) {
@@ -47,6 +66,7 @@ const radioButtonStyler = ({
             ...container,
             ...disabledStyle
         };
+        radioIndicator.backgroundColor = colors.textGrey;
     }
 
     if(spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
@@ -54,10 +74,10 @@ const radioButtonStyler = ({
     }
 
     return {
-        container,
-        checkedRadio,
-        radioContainer
+        radioContainer,
+        radioIndicator,
+        titleProps,
+        container
     };
 };
-
 export default radioButtonStyler;

@@ -1,36 +1,39 @@
 import {
-    ViewStyle
+    ViewStyle,
+    TextStyle
 } from "react-native";
-import {
-    IOCoreColorsType,
-    IOCoreDisabledTokensType,
-    IOCoreIconType,
-    IOCoreTypographyType
-} from "../../types";
 
 export type RadioButtonSpreadBehaviour = "baseline" | "stretch" | "free";
 
 export interface IRadioButtonProps {
     spreadBehaviour?: RadioButtonSpreadBehaviour;
-    onChange?: (selected: boolean) => void;
-    titleType?: keyof IOCoreTypographyType;
-    uncheckedIcon?: IOCoreIconType;
-    checkedIcon?: IOCoreIconType;
+    onChange?: (isSelected: boolean) => void;
+    titleType?: keyof IOCore.TypographyType;
+    titleStyle?: TextStyle;
+    isSelected?: boolean;
     disabled?: boolean;
-    selected?: boolean;
     style?: ViewStyle;
     title?: string;
 };
 
 export type RadioButtonStylerParams = {
     spreadBehaviour: RadioButtonSpreadBehaviour;
-    disabledStyle: IOCoreDisabledTokensType;
-    colors: IOCoreColorsType;
+    disabledStyle: IOCore.DisabledTokensType;
+    spaces: IOCore.SpacesTokensType;
+    colors: IOCore.ColorsType;
+    titleStyle?: TextStyle;
+    isSelected?: boolean;
     disabled?: boolean;
 };
 
+export type TitleProps = {
+    color: keyof IOCore.ColorsType;
+    style: TextStyle;
+};
+
 export type RadioButtonStylerResult = {
-    container: ViewStyle;
-    checkedRadio: ViewStyle;
     radioContainer: ViewStyle;
+    radioIndicator: ViewStyle;
+    titleProps: TitleProps;
+    container: ViewStyle;
 };

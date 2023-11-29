@@ -3,6 +3,7 @@ import React, {
 } from "react";
 import {
     TouchableOpacity,
+    View
 } from "react-native";
 import radioButtonStyler, {
     stylesheet
@@ -11,19 +12,17 @@ import {
     IOCoreTheme
 } from "../../core";
 import Text from "../text";
-import { 
+import {
     IRadioButtonProps
 } from "./types";
-import {
-    View 
-} from "react-native";
 
 const RadioButton: FC<IRadioButtonProps> = ({
     spreadBehaviour = "baseline",
     onChange: onChangeProp,
+    isSelected = false,
     titleType = "body",
     disabled = false,
-    selected = true,
+    titleStyle,
     title,
     style
 }) => {
@@ -35,64 +34,75 @@ const RadioButton: FC<IRadioButtonProps> = ({
 
     const {
         radioContainer,
-        checkedRadio,
+        radioIndicator,
+        titleProps,
         container
     } = radioButtonStyler({
         disabledStyle: designTokensDisabled,
         spreadBehaviour,
+        titleStyle,
+        isSelected,
         disabled,
-        colors
+        colors,
+        spaces
     });
 
-    const renderChecked = () => {
-        return <View 
-            style={[
-                radioContainer
-            ]}
-        >
-            <View
-                style={[
-                    checkedRadio
-                ]}
-            > 
-            </View>
-        </View>;
-    };
-
-    const renderUnchecked = () => {
-        return <View 
-            style={[
-                radioContainer
-            ]}
-        >
-        </View>;
-    };
-
     const onChange = () => {
-        if(onChangeProp) onChangeProp(selected);
+        if(onChangeProp) onChangeProp(isSelected);
+    };
+
+    const renderRadioContainer = () => {
+        return <View
+            style={[
+                stylesheet.radioContainer,
+                radioContainer
+            ]}
+        >
+            {renderIndicator()}
+        </View>;
+    };
+
+    const renderIndicator = () => {
+        if(!isSelected) {
+            return null;
+        }
+
+        return <View
+            style={[
+                stylesheet.radioIndicator,
+                radioIndicator
+            ]}
+        />;
+    };
+
+    const renderTitle = () => {
+        if(!title) {
+            return null;
+        }
+
+        return <Text
+            color={titleProps.color}
+            variant={titleType}
+            style={[
+                stylesheet.title,
+                titleProps.style
+            ]}
+        >
+            {title}
+        </Text>;
     };
 
     return <TouchableOpacity
         style={[
-            stylesheet.container,
             style,
+            stylesheet.container,
             container
         ]}
         disabled={disabled}
         onPress={onChange}
     >
-        {selected ? renderChecked() : renderUnchecked()}
-        {
-            title && <Text
-                color={selected ? "primary" : "body"}
-                variant={titleType}
-                style={{
-                    marginLeft: spaces.content
-                }}
-            >
-                {title}
-            </Text>
-        }
+        {renderRadioContainer()}
+        {renderTitle()}
     </TouchableOpacity>;
 };
 export default RadioButton;

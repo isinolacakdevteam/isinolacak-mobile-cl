@@ -158,7 +158,11 @@ const Welcome = () => {
                 IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
             }}
         />
-        <RadioButton selected={true} disabled={true} onChange={() => setIsSelected(!isSelected)} />
+        <RadioButton
+            isSelected={isSelected}
+            onChange={() => setIsSelected(!isSelected)}
+            title="Deneme mesajı 123 afakslflksd jglksdfj glsjkdfh glkjsdfg kjdfshg kjdshfg kjldsfhg"
+        />
         <TextInput
             title="Hi Cnm"
             size="small"
