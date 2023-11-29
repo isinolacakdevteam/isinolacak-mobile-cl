@@ -1,4 +1,6 @@
-import React from "react";
+import React, {
+    useState 
+} from "react";
 import {
     StatusBar,
     Image,
@@ -7,6 +9,7 @@ import {
 import {
     PageContainer,
     IOCoreLocale,
+    RadioButton,
     IOCoreTheme,
     TextInput,
     Button,
@@ -37,6 +40,8 @@ const Welcome = () => {
     } = IOCoreLocale.useContext();
 
     const navigation = useNavigation<CompositeScreenProps<any, any>["navigation"]>();
+
+    const [isSelected, setIsSelected] = useState(false);
 
     return <PageContainer
         contentContainerStyle={stylesheet.contentContainer}
@@ -153,6 +158,7 @@ const Welcome = () => {
                 IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
             }}
         />
+        <RadioButton selected={true} disabled={true} onChange={() => setIsSelected(!isSelected)} />
         <TextInput
             title="Hi Cnm"
             size="small"
