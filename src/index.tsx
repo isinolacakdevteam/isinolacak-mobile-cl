@@ -28,6 +28,7 @@ export {
     RadioButton,
     TextInput,
     Dialog,
+    Switch,
     Button,
     Text
 } from "./components";
