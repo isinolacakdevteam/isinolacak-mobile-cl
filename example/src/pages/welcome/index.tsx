@@ -12,6 +12,7 @@ import {
     RadioButton,
     IOCoreTheme,
     TextInput,
+    Switch,
     Button,
     Text
 } from "isinolacak-cl";
@@ -156,6 +157,12 @@ const Welcome = () => {
             }}
             onPress={() => {
                 IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
+            }}
+        />
+        <Switch
+            isActive={isSelected}
+            onPress={() => {
+                setIsSelected(!isSelected);
             }}
         />
         <RadioButton
