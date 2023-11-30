@@ -18,7 +18,9 @@ const tr: {
         "active-language": "Dil",
         "isinolacak-cl": "IOCore Mobil",
         "welcome-description": "IOCore Design Sistem ve Bileşen Kütüphanesi'ne hoş geldiniz.",
-        "optional": "Opsiyonel"
+        "optional": "Opsiyonel",
+        "selectionCount": "Seçim",
+        "noSelected": "Seçim Yapılmadı"
     }
 };
 export default tr;

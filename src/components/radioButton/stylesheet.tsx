@@ -13,7 +13,7 @@ import {
 export const stylesheet = StyleSheet.create({
     container: {
         flexDirection: "row",
-        alignItems: "center"
+        alignItems: "center",
     },
     radioContainer: {
         justifyContent: "center",

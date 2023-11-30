@@ -27,6 +27,7 @@ export {
     BottomSheet,
     RadioButton,
     TextInput,
+    SelectBox,
     Dialog,
     Switch,
     Button,

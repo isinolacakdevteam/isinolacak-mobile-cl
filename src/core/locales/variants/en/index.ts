@@ -18,7 +18,9 @@ const en: {
         "active-language": "Language",
         "isinolacak-cl": "IOCore Mobile",
         "welcome-description": "Welcome to IOCore Design System Component Library",
-        "optional": "Optional"
+        "optional": "Optional",
+        "selectionCount": "Selections",
+        "noSelected": "Seçim Yapılmadı"
     }
 };
 export default en;

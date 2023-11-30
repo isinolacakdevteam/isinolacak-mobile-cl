@@ -12,6 +12,7 @@ import {
     RadioButton,
     IOCoreTheme,
     TextInput,
+    SelectBox,
     Switch,
     Button,
     Text
@@ -158,6 +159,11 @@ const Welcome = () => {
             onPress={() => {
                 IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
             }}
+        />
+        <SelectBox
+            title="Mesleğiniz"
+            isSelected={true}
+            selectionName="Deneme"
         />
         <Switch
             isActive={isSelected}

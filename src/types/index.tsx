@@ -230,6 +230,8 @@ declare global {
             "isinolacak-cl": string;
             "welcome-description": string;
             "optional": string;
+            "selectionCount": string;
+            "noSelected": string;
         }
     }
 }
