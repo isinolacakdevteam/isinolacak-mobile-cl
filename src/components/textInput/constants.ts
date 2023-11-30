@@ -9,7 +9,8 @@ export const SIZE_TO_STYLE_MAPPING: (
         contentContainer: {
             paddingVertical: spaces.container / 8,
             paddingHorizontal: spaces.container,
-            height: 45
+            minHeight: 45,
+            height: 45,
         },
         container: {
         }
@@ -18,6 +19,7 @@ export const SIZE_TO_STYLE_MAPPING: (
         contentContainer: {
             paddingVertical: spaces.container / 4,
             paddingHorizontal: spaces.container,
+            minHeight: 60,
             height: 60
         },
         container: {
@@ -27,6 +29,7 @@ export const SIZE_TO_STYLE_MAPPING: (
         contentContainer: {
             paddingVertical: spaces.container / 2,
             paddingHorizontal: spaces.container,
+            minHeight: 65,
             height: 65
         },
         container: {
