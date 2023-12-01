@@ -12,7 +12,7 @@ import {
     RadioButton,
     IOCoreTheme,
     TextInput,
-    SelectBox,
+    CheckBox,
     Switch,
     Button,
     Text
@@ -160,10 +160,9 @@ const Welcome = () => {
                 IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
             }}
         />
-        <SelectBox
-            title="Mesleğiniz"
-            selectionName="hjhjhj"
-            multiSelect={false}
+        <CheckBox
+            title="Chec"
+            isSelected={true}
         />
         <Switch
             isActive={isSelected}

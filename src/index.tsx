@@ -28,6 +28,7 @@ export {
     RadioButton,
     TextInput,
     SelectBox,
+    CheckBox,
     Dialog,
     Switch,
     Button,
