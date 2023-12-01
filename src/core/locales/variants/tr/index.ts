@@ -14,13 +14,14 @@ const tr: {
         "IOCoreSelectBoxMaxSelectionReachedText": "Daha fazla seçemezsin.",
         "IOCoreSelectBoxSelectAll": "Tümünü Seç",
         "IOCoreSelectBoxClearAll": "Tümünü Temizle",
+        "iocore-select-box-no-selection": "Seçim Yapılmadı",
+        "iocore-select-box-n-selected": "{0} Seçim",
         "active-theme": "Tema",
         "active-language": "Dil",
         "isinolacak-cl": "IOCore Mobil",
         "welcome-description": "IOCore Design Sistem ve Bileşen Kütüphanesi'ne hoş geldiniz.",
         "optional": "Opsiyonel",
-        "selectionCount": "Seçim",
-        "noSelected": "Seçim Yapılmadı"
+        "selectionCount": "Seçim"
     }
 };
 export default tr;

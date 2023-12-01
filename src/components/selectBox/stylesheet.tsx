@@ -1,23 +1,24 @@
 import {
-    StyleSheet
+    StyleSheet,
+    ViewStyle
 } from "react-native";
 import {
-    SelectBoxStylerParams, SelectBoxStylerResult 
+    SelectBoxStylerParams,
+    SelectBoxStylerResult,
+    ContentProps,
+    TitleProps
 } from "./types";
-import {
-    ViewStyle 
-} from "react-native";
 
 export const stylesheet = StyleSheet.create({
     container: {
         justifyContent: "space-between",
+        paddingHorizontal: 20,
         flexDirection: "row",
         alignItems: "center",
         alignSelf: "stretch",
-        paddingHorizontal: 20,
         paddingVertical: 12,
-        minHeight: 48,
-        height: 48,
+        minHeight: 60,
+        height: 60,
     },
     content: {
         justifyContent: "center",
@@ -35,15 +36,36 @@ export const stylesheet = StyleSheet.create({
 
 const selectBoxStyler = ({
     radiuses,
-    colors
-}: SelectBoxStylerParams ): SelectBoxStylerResult => {
-
+    disabled,
+    colors,
+    spaces
+}: SelectBoxStylerParams): SelectBoxStylerResult => {
     let container: ViewStyle = {
         backgroundColor: colors.white,
-        borderRadius: radiuses.half
+        borderColor: colors.grey25,
+        borderRadius: radiuses.half,
+        borderWidth: 1
     };
 
+    let titleProps: TitleProps = {
+        color: "primary"
+    };
+
+    let contentProps: ContentProps = {
+        color: "secondary",
+        style: {
+            marginTop: spaces.content / 2
+        }
+    };
+
+    if(disabled) {
+        contentProps.color = "textGrey";
+        titleProps.color = "textGrey";
+    }
+
     return {
+        contentProps,
+        titleProps,
         container
     };
 };

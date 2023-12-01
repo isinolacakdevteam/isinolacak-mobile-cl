@@ -162,8 +162,8 @@ const Welcome = () => {
         />
         <SelectBox
             title="Mesleğiniz"
-            isSelected={true}
-            selectionName="Deneme"
+            selectionName="hjhjhj"
+            multiSelect={false}
         />
         <Switch
             isActive={isSelected}

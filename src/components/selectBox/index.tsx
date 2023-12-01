@@ -1,49 +1,48 @@
 import React, {
-    FC 
+    useState,
+    FC
 } from "react";
 import {
-    ISelectBoxProps 
+    ISelectBoxProps,
+    SelectedItem
 } from "./types";
 import {
-    TouchableOpacity 
+    TouchableOpacity,
+    View
 } from "react-native";
 import {
     IOCoreLocale,
-    IOCoreTheme 
+    IOCoreTheme
 } from "../../core";
 import Text from "../text";
-import selectBoxStyler , {
+import selectBoxStyler, {
     stylesheet
 } from "./stylesheet";
 import {
-    View 
-} from "react-native";
-import {
-    ChevronDownIcon 
+    ChevronDownIcon
 } from "../../assets/svg";
 
-
-const SelectBox: FC<ISelectBoxProps> = ({
+const SelectBox = <T extends {}>({
     multiSelect = false,
-    isSelected = false,
     disabled = false,
-    selectionLength,
-    selectionName,
-    title
-}) => {
-
+    onChange,
+    onPress,
+    title,
+    data
+}: ISelectBoxProps<T>) => {
     const {
         radiuses,
-        borders,
         spaces,
         colors
     } = IOCoreTheme.useContext();
 
     const {
+        contentProps,
+        titleProps,
         container
     } = selectBoxStyler({
         radiuses,
-        borders,
+        disabled,
         spaces,
         colors
     });
@@ -52,53 +51,51 @@ const SelectBox: FC<ISelectBoxProps> = ({
         localize
     } = IOCoreLocale.useContext();
 
+    const [
+        selectedItems,
+        setSelectedItems
+    ] = useState<Array<SelectedItem> | []>([]);
+
     const renderTitle = () => {
         return <Text
-            color="primary"
             variant="body"
-            style={[]}
+            color={titleProps.color}
+            style={[
+            ]} 
         >
             {title}
         </Text>;
     };
 
-    const renderSelection = () => {
+    const renderContent = () => {
+        let content = localize("iocore-select-box-no-selection");
 
-        if(!isSelected) {
+        if(selectedItems.length) {
+            content = localize("iocore-select-box-n-selected", [
+                selectedItems.length.toString()
+            ]);
 
-            return <Text
-                color="secondary"
-                variant="body2"
-                style={[]}
-            >
-                {localize("noSelected")}
-            </Text>;
-        }
-
-        if(isSelected && multiSelect) {
-            return <Text
-                color="secondary"
-                variant="body2"
-                style={[]}
-            >
-                {selectionLength} {localize("selectionCount")}
-            </Text>;
+            if(selectedItems.length === 1) {
+                //@ts-ignore
+                content = selectedItems[0].title;
+            }
         }
 
         return <Text
-            color="secondary"
+            color= {contentProps.color}
             variant="body"
-            style={[]}
+            style={[
+                contentProps.style
+            ]}
         >
-            {selectionName}
+            {content}
         </Text>;
     };
 
     const renderIcon = () => {
-
         return <ChevronDownIcon
-            size={20}
             color={colors.gray40}
+            size={16}
         />;
     };
 
@@ -107,14 +104,26 @@ const SelectBox: FC<ISelectBoxProps> = ({
             stylesheet.container,
             container
         ]}
+        onPress={() => {
+            if(disabled) {
+                return;
+            }
+
+            if(onPress) {
+                onPress(selectedItems);
+            }
+        }}
         disabled={disabled}
     >
-        <View>
+        <View
+            style={[
+                stylesheet.content
+            ]}
+        >
             {renderTitle()}
-            {renderSelection()}
+            {renderContent()}
         </View>
         {renderIcon()}
     </TouchableOpacity>;
 };
-
 export default SelectBox;
