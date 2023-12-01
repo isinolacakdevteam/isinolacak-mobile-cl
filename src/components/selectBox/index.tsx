@@ -1,6 +1,6 @@
 import React, {
     useState,
-    FC
+    useRef
 } from "react";
 import {
     ISelectBoxProps,
@@ -21,6 +21,16 @@ import selectBoxStyler, {
 import {
     ChevronDownIcon
 } from "../../assets/svg";
+import SelectSheet from "../selectSheet";
+import {
+    BottomSheetRef
+} from "../bottomSheet/types";
+import {
+    windowHeight 
+} from "../../utils";
+import {
+    SafeAreaView 
+} from "react-native";
 
 const SelectBox = <T extends {}>({
     multiSelect = false,
@@ -30,6 +40,8 @@ const SelectBox = <T extends {}>({
     title,
     data
 }: ISelectBoxProps<T>) => {
+    const selectSheetRef = useRef<BottomSheetRef>(null);
+
     const {
         radiuses,
         spaces,
@@ -99,6 +111,15 @@ const SelectBox = <T extends {}>({
         />;
     };
 
+    const renderBottomSheet = () => {
+        return <SelectSheet
+            ref={selectSheetRef}
+            fullScreen={false}
+            withHandle={false}
+            snapPoint={0}
+        />;
+    };
+
     return <TouchableOpacity
         style={[
             stylesheet.container,
@@ -109,9 +130,12 @@ const SelectBox = <T extends {}>({
                 return;
             }
 
-            if(onPress) {
-                onPress(selectedItems);
+            if(!onPress) {
+                selectSheetRef.current?.open();
+                return;
             }
+
+            onPress(selectedItems);
         }}
         disabled={disabled}
     >
@@ -124,6 +148,7 @@ const SelectBox = <T extends {}>({
             {renderContent()}
         </View>
         {renderIcon()}
+        {renderBottomSheet()}
     </TouchableOpacity>;
 };
 export default SelectBox;

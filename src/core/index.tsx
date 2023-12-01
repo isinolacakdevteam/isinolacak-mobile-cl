@@ -6,6 +6,9 @@ import {
     GestureHandlerRootView
 } from "react-native-gesture-handler";
 import Context from "./context";
+import {
+    Host
+} from "react-native-portalize";
 
 class IOCoreInheritance {
     IOCoreContext;
@@ -31,7 +34,9 @@ class IOCoreInheritance {
                 }
             ]}
         >
-            {children}
+            <Host>
+                {children}
+            </Host>
         </GestureHandlerRootView>;
     };
 

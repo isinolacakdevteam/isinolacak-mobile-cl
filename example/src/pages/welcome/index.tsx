@@ -15,7 +15,8 @@ import {
     CheckBox,
     Switch,
     Button,
-    Text
+    Text,
+    SelectBox
 } from "isinolacak-cl";
 import stylesheet from "./stylesheet";
 import {
@@ -160,9 +161,13 @@ const Welcome = () => {
                 IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
             }}
         />
+        <SelectBox
+            title="Meslek"
+        />
         <CheckBox
             title="Chec"
-            isSelected={true}
+            isSelected={isSelected}
+            onChange={() => setIsSelected(!isSelected)}
         />
         <Switch
             isActive={isSelected}
