@@ -9,7 +9,7 @@ import {
     ViewStyle
 } from "react-native";
 
-const stylesheet = StyleSheet.create({
+export const stylesheet = StyleSheet.create({
     modalStyle: {
         borderTopRightRadius: 50,
         borderTopLeftRadius: 50
@@ -24,6 +24,17 @@ const stylesheet = StyleSheet.create({
         borderTopLeftRadius: 50
     },
     contentContainerStyle: {
+        flex: 1
+    },
+    buttonContainerStyle: {
+        flexDirection: "row"
+    },
+    okButtonStyle: {
+        flex: 1
+    },
+    inputStyle: {
+    },
+    selectItemContainer: {
         flex: 1
     }
 });
@@ -55,6 +66,7 @@ const selectSheetStyler = ({
     };
 
     const modalStyle = {
+        backgroundColor: "transparent",
         ...stylesheet.modalStyle,
         ...modalStyleProp
     };
@@ -62,6 +74,30 @@ const selectSheetStyler = ({
     const rootStyle = {
         ...stylesheet.rootStyle,
         ...rootStyleProp
+    };
+
+    let searchContainerProps: ViewStyle = {
+        marginBottom: spaces.content,
+        ...stylesheet.inputStyle
+    };
+
+    let buttonsContainerProps: ViewStyle = {
+        marginBottom: spaces.content,
+        ...stylesheet.buttonContainerStyle
+        
+    };
+
+    let clearButtonProps: ViewStyle = {
+        marginRight: spaces.inline
+    };
+
+    let okButtonProps: ViewStyle = {
+        ...stylesheet.okButtonStyle
+    };
+
+    let inputIconProps: ViewStyle = {
+        marginRight: spaces.inline,
+        ...stylesheet.inputStyle
     };
 
     if(autoHeight) {
@@ -85,8 +121,13 @@ const selectSheetStyler = ({
 
     return {
         contentContainerStyle,
+        buttonsContainerProps,
+        searchContainerProps,
         pageContainerStyle,
+        clearButtonProps,
+        inputIconProps,
         childrenStyle,
+        okButtonProps,
         modalStyle,
         rootStyle
     };

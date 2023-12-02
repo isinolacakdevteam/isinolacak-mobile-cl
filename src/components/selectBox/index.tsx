@@ -1,4 +1,5 @@
 import React, {
+    useEffect,
     useState,
     useRef
 } from "react";
@@ -26,21 +27,27 @@ import {
     BottomSheetRef
 } from "../bottomSheet/types";
 import {
-    windowHeight 
+    uuid 
 } from "../../utils";
-import {
-    SafeAreaView 
-} from "react-native";
 
 const SelectBox = <T extends {}>({
     multiSelect = false,
+    data: initialData,
     disabled = false,
+    titleExtractor,
+    keyExtractor,
+    inputTitle,
     onChange,
     onPress,
-    title,
-    data
+    title
 }: ISelectBoxProps<T>) => {
     const selectSheetRef = useRef<BottomSheetRef>(null);
+
+    const [data, setData] = useState<Array<T & {
+        __key: string;
+        __title: string;
+        __originalIndex: number;
+    }>>([]);
 
     const {
         radiuses,
@@ -68,6 +75,31 @@ const SelectBox = <T extends {}>({
         setSelectedItems
     ] = useState<Array<SelectedItem> | []>([]);
 
+    useEffect(() => {
+        if(!initialData || !initialData.length) {
+            return;
+        }
+
+        setData(JSON.parse(JSON.stringify(initialData)).map((item: T, index: number) => {
+            return {
+                ...item,
+                __key: keyExtractor ? keyExtractor(item, index) : uuid(),
+                __title: titleExtractor(item, index),
+                __originalIndex: index
+            };
+        }));
+    }, [initialData]);
+
+    const cleanData = () => {
+        let _data = JSON.parse(JSON.stringify(data));
+
+        delete _data.__key;
+        delete _data.__originalIndex;
+        delete _data.__title;
+
+        return _data;
+    };
+
     const renderTitle = () => {
         return <Text
             variant="body"
@@ -84,7 +116,7 @@ const SelectBox = <T extends {}>({
 
         if(selectedItems.length) {
             content = localize("iocore-select-box-n-selected", [
-                selectedItems.length.toString()
+                selectedItems.length
             ]);
 
             if(selectedItems.length === 1) {
@@ -113,10 +145,16 @@ const SelectBox = <T extends {}>({
 
     const renderBottomSheet = () => {
         return <SelectSheet
+            setSelectedItems={setSelectedItems}
+            selectedItems={selectedItems}
+            multiSelect={multiSelect}
             ref={selectSheetRef}
+            onChange={onChange}
             fullScreen={false}
+            inputTitle={inputTitle}
             withHandle={false}
             snapPoint={0}
+            data={data}
         />;
     };
 
@@ -135,7 +173,7 @@ const SelectBox = <T extends {}>({
                 return;
             }
 
-            onPress(selectedItems);
+            onPress(selectedItems, cleanData());
         }}
         disabled={disabled}
     >

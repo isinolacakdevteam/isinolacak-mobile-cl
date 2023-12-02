@@ -26,6 +26,9 @@ import {
 import {
     InfoIcon 
 } from "../../../../src/assets/svg";
+import {
+    uuid 
+} from "../../../../src/utils";
 
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
@@ -163,6 +166,27 @@ const Welcome = () => {
         />
         <SelectBox
             title="Meslek"
+            titleExtractor={(item) => item.val}
+            multiSelect={true}
+            data={[
+                {
+                    val: "anam"
+                },
+                {
+                    val: "babam"
+                },
+                {
+                    val: "bee"
+                },
+                {
+                    val: "!!!"
+                }
+            ]}
+            inputTitle="Mesleğiniz"
+        />
+        <TextInput
+            disabled={false}
+            size="medium"
         />
         <CheckBox
             title="Chec"
@@ -182,7 +206,7 @@ const Welcome = () => {
         />
         <TextInput
             title="Hi Cnm"
-            size="small"
+            size="medium"
         />
     </PageContainer>;
 };

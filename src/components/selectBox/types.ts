@@ -7,11 +7,20 @@ export type SelectedItem = {
     key: string;
 };
 
+export type SelectBoxInitialData = {
+    __originalIndex: number;
+    __title: string;
+    __key: string;
+};
+
 export interface ISelectBoxProps<T> {
-    onChange?: (selectedItems: Array<SelectedItem>) => void;
-    onPress?: (selectedItems: Array<SelectedItem>) => void;
+    onChange?: (selectedItems: Array<SelectedItem>, data: Array<T | SelectBoxInitialData>) => void;
+    onPress?: (selectedItems: Array<SelectedItem>, data: Array<T | SelectBoxInitialData>) => void;
+    titleExtractor: (item: T, index: number) => string;
+    keyExtractor?: (item: T, index: number) => string;
     multiSelect?: boolean;
     disabled?: boolean;
+    inputTitle: string;
     data: Array<T>;
     title: string;
 };

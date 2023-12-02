@@ -9,3 +9,7 @@ export {
 export {
     default as CheckIcon
 } from "./checkIcon";
+
+export {
+    default as SearchIcon
+} from "./searcIcon";

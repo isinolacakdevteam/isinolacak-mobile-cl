@@ -225,7 +225,9 @@ declare global {
             IOCoreSelectBoxMaxSelectionReachedText: string;
             IOCoreSelectBoxSelectAll: string;
             IOCoreSelectBoxClearAll: string;
+            "iocore-select-sheet-clear-button": string;
             "iocore-select-box-no-selection": string;
+            "iocore-select-sheet-ok-button": string;
             "iocore-select-box-n-selected": string;
             "active-theme": string;
             "active-language": string;
