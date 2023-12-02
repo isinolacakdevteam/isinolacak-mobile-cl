@@ -50,6 +50,7 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
         modalStyle: modalStyleProp,
         rootStyle: rootStyleProp,
         pageContainerProps,
+        isLoadingOKButton,
         setSelectedItems,
         snapPoint = 300,
         selectedItems,
@@ -57,10 +58,13 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
         autoHeight,
         inputTitle,
         fullScreen,
+        maxChoice,
+        minChoice,
         children,
         onChange,
         onPress,
         data,
+        onOk,
         ...props
     } = properties;
 
@@ -124,11 +128,27 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
 
         if(isExistsInSelectedData !== -1) {
             if(multiSelect) {
+                if(
+                    minChoice !== undefined &&
+                    selectedItems.length <= minChoice
+                ) {
+                    // Must push toast.
+                    return;
+                }
+
                 _selectedItems.splice(isExistsInSelectedData, 1);
                 setSelectedItems(_selectedItems);
             }
         } else {
             if(multiSelect) {
+                if(
+                    maxChoice !== undefined &&
+                    selectedItems.length >= maxChoice
+                ) {
+                    // Must push toast.
+                    return;
+                }
+
                 _selectedItems.push({
                     ...item,
                     key: item.__key,
@@ -164,19 +184,40 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
         </View>; 
     };
 
+    const renderClear = () => {
+        if(isLoadingOKButton || !multiSelect) {
+            return null;
+        }
+
+        return <Button
+            title={localize("iocore-select-sheet-clear-button")}
+            onPress={() => {
+                setSelectedItems([]);
+            }}
+            variant="outline"
+            style={clearButtonProps}
+        />;
+    };
+
     const renderActions = () => {
         return <View
             style={buttonsContainerProps}
         >
-            <Button
-                title={localize("iocore-select-sheet-clear-button")}
-                onPress={() => {}}
-                variant="outline"
-                style={clearButtonProps}
-            />
+            {renderClear()}
             <Button
                 title={localize("iocore-select-sheet-ok-button")}
-                onPress={() => {}}
+                onPress={() => {
+                    if(onOk) {
+                        onOk(
+                            selectedItems,
+                            () => bottomSheetRef.current?.close(),
+                            data
+                        );
+                    } else {
+                        // will be code for virtual edit system.
+                    }
+                }}
+                loading={isLoadingOKButton}
                 size="medium"
                 variant="filled"
                 style={okButtonProps}

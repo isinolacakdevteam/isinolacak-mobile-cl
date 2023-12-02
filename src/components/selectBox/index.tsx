@@ -32,14 +32,18 @@ import {
 
 const SelectBox = <T extends {}>({
     multiSelect = false,
+    isLoadingOKButton,
     data: initialData,
     disabled = false,
     titleExtractor,
     keyExtractor,
     inputTitle,
+    maxChoice,
+    minChoice,
     onChange,
     onPress,
-    title
+    title,
+    onOk
 }: ISelectBoxProps<T>) => {
     const selectSheetRef = useRef<BottomSheetRef>(null);
 
@@ -143,7 +147,7 @@ const SelectBox = <T extends {}>({
         />;
     };
 
-    const renderBottomSheet = () => {
+    const renderSelectSheet = () => {
         return <SelectSheet
             setSelectedItems={setSelectedItems}
             selectedItems={selectedItems}
@@ -186,7 +190,7 @@ const SelectBox = <T extends {}>({
             {renderContent()}
         </View>
         {renderIcon()}
-        {renderBottomSheet()}
+        {renderSelectSheet()}
     </TouchableOpacity>;
 };
 export default SelectBox;

@@ -16,9 +16,17 @@ export type SelectBoxInitialData = {
 export interface ISelectBoxProps<T> {
     onChange?: (selectedItems: Array<SelectedItem>, data: Array<T | SelectBoxInitialData>) => void;
     onPress?: (selectedItems: Array<SelectedItem>, data: Array<T | SelectBoxInitialData>) => void;
+    onOk?: (
+        selectedItems: Array<SelectedItem>,
+        closeSheet: () => void,
+        data: Array<T | SelectBoxInitialData>
+    ) => void;
     titleExtractor: (item: T, index: number) => string;
     keyExtractor?: (item: T, index: number) => string;
+    isLoadingOKButton?: boolean;
     multiSelect?: boolean;
+    maxChoice?: number;
+    minChoice?: number;
     disabled?: boolean;
     inputTitle: string;
     data: Array<T>;
