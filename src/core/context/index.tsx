@@ -3,9 +3,6 @@ import React, {
 } from "react";
 import ThemeContextInheritance from "./theme";
 import LocaleContextInheritance from "./locale";
-import {
-    Host
-} from "react-native-portalize";
 import ModalContextInheritance from "./modal";
 import light from "../theme/variants/light";
 import {
@@ -65,11 +62,9 @@ class Context {
 
         return <ThemeContext.Provider>
             <LocaleContext.Provider>
-                <Host>
-                    <ModalContext.Render>
-                        {children}
-                    </ModalContext.Render>
-                </Host>
+                <ModalContext.Render>
+                    {children}
+                </ModalContext.Render>
             </LocaleContext.Provider>
         </ThemeContext.Provider>;
     };

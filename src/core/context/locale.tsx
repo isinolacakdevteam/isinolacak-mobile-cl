@@ -43,16 +43,36 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
             activeLocale: localeCode,
             isRTL: selectedLanguageData.isRTL,
             translations: translations,
-            localize: (translationKey: keyof IOCore.TranslationType) => translations[translationKey]
+            localize: (translationKey: keyof IOCore.TranslationType, parameters: Array<any>) => {
+                let resp = translations[translationKey];
+
+                if(parameters && parameters.length) {
+                    parameters.forEach((item, index) => {
+                        resp = resp.replace(`{{${index}}}`, item);
+                    });
+                }
+
+                return resp;
+            }
         };
 
         this.state = newState;
         this.setState(newState);
     };
 
-    localize = (localeCode: keyof IOCore.TranslationType) => {
+    localize = (localeCode: keyof IOCore.TranslationType, parameters: Array<any>) => {
         if(!this.state) {
             return "";
+        }
+
+        if(parameters && parameters.length) {
+            let newResp = this.state.translations[localeCode];
+
+            parameters.forEach((item, index) => {
+                newResp.replace(`{{${index}}}`, item);
+            });
+
+            return newResp;
         }
 
         return this.state.translations[localeCode];

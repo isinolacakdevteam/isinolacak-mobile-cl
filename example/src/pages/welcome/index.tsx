@@ -12,6 +12,8 @@ import {
     RadioButton,
     IOCoreTheme,
     TextInput,
+    SelectBox,
+    CheckBox,
     Switch,
     Button,
     Text
@@ -24,7 +26,6 @@ import {
 import {
     InfoIcon 
 } from "../../../../src/assets/svg";
-
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
 
@@ -159,6 +160,42 @@ const Welcome = () => {
                 IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
             }}
         />
+        <SelectBox
+            title="Meslek"
+            titleExtractor={(item) => item.val}
+            disabled={false}
+            multiSelect={true}
+            maxChoice={2}
+            isNeedConfirm={true}
+            onOk={(_, closeSheet, save) => {
+                closeSheet();
+                save();
+            }}
+            data={[
+                {
+                    val: "anam"
+                },
+                {
+                    val: "babam"
+                },
+                {
+                    val: "bee"
+                },
+                {
+                    val: "!!!"
+                }
+            ]}
+            inputTitle="Mesleğiniz"
+        />
+        <TextInput
+            disabled={false}
+            size="medium"
+        />
+        <CheckBox
+            title="Chec"
+            isSelected={isSelected}
+            onChange={() => setIsSelected(!isSelected)}
+        />
         <Switch
             isActive={isSelected}
             onPress={() => {
@@ -172,7 +209,7 @@ const Welcome = () => {
         />
         <TextInput
             title="Hi Cnm"
-            size="small"
+            size="medium"
         />
     </PageContainer>;
 };

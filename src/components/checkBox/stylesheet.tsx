@@ -2,8 +2,8 @@ import {
     StyleSheet
 } from "react-native";
 import {
-    RadioButtonStylerParams, 
-    RadioButtonStylerResult, 
+    CheckBoxStylerParams, 
+    CheckBoxStylerResult, 
     TitleProps
 } from "./types";
 import {
@@ -15,17 +15,19 @@ export const stylesheet = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
     },
-    radioContainer: {
+    checkContainer: {
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: 13,
-        height: 26,
-        width: 26
+        borderRadius: 4,
+        height: 24,
+        width: 24
     },
-    radioIndicator: {
-        borderRadius: 8,
-        height: 16,
-        width: 16
+    checkIndicator: {
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 4,
+        height: 24,
+        width: 24
     },
     title: {
         textAlignVertical: "center",
@@ -33,23 +35,23 @@ export const stylesheet = StyleSheet.create({
     }
 });
 
-const radioButtonStyler = ({
+const checkBoxStyler = ({
     spreadBehaviour,
     disabledStyle,
     titleStyle,
     disabled,
     colors,
     spaces
-}: RadioButtonStylerParams): RadioButtonStylerResult => {
+}: CheckBoxStylerParams): CheckBoxStylerResult => {
     let container: ViewStyle = {
         paddingVertical: spaces.container / 2
     };
 
-    let radioContainer: ViewStyle = {
+    let checkContainer: ViewStyle = {
         backgroundColor: colors.backgroundLight
     };
 
-    let radioIndicator: ViewStyle = {
+    let checkIndicator: ViewStyle = {
         backgroundColor: colors.primary
     };
 
@@ -66,7 +68,7 @@ const radioButtonStyler = ({
             ...container,
             ...disabledStyle
         };
-        radioIndicator.backgroundColor = colors.textGrey;
+        checkIndicator.backgroundColor = colors.textGrey;
     }
 
     if(spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
@@ -74,10 +76,10 @@ const radioButtonStyler = ({
     }
 
     return {
-        radioContainer,
-        radioIndicator,
+        checkContainer,
+        checkIndicator,
         titleProps,
         container
     };
 };
-export default radioButtonStyler;
+export default checkBoxStyler;
