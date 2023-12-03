@@ -35,7 +35,7 @@ export type LanguageType = {
 };
 
 export type LocaleContextType = {
-    localize: (translationKey: keyof IOCore.TranslationType) => string;
+    localize: (translationKey: keyof IOCore.TranslationType, parameters?: Array<any>) => string;
     translations: Record<keyof IOCore.TranslationType, string>;
     activeLocale: string;
     isRTL: boolean;
@@ -225,11 +225,18 @@ declare global {
             IOCoreSelectBoxMaxSelectionReachedText: string;
             IOCoreSelectBoxSelectAll: string;
             IOCoreSelectBoxClearAll: string;
+            "iocore-select-sheet-clear-button": string;
+            "iocore-select-box-no-selection": string;
+            "iocore-select-sheet-max-choice": string;
+            "iocore-select-sheet-min-choice": string;
+            "iocore-select-sheet-ok-button": string;
+            "iocore-select-box-n-selected": string;
             "active-theme": string;
             "active-language": string;
             "isinolacak-cl": string;
             "welcome-description": string;
             "optional": string;
+            "selectionCount": string;
         }
     }
 }

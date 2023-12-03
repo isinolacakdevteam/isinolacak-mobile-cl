@@ -126,7 +126,8 @@ export const textInputStyler = ({
 
     if(size !== "small" && !isFocused && !value.length) {
         input.marginBottom = 0;
-        input.height = 0;
+        input.height = 0.35;
+        input.opacity = 0;
     }
 
     return {
