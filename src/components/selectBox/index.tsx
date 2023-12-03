@@ -41,6 +41,7 @@ const SelectBox = <T extends {}>({
     inputTitle,
     maxChoice,
     minChoice,
+    onSearch,
     onChange,
     onPress,
     title,
@@ -159,6 +160,7 @@ const SelectBox = <T extends {}>({
             maxChoice={maxChoice}
             minChoice={minChoice}
             ref={selectSheetRef}
+            onSearch={onSearch}
             onChange={onChange}
             fullScreen={false}
             withHandle={false}

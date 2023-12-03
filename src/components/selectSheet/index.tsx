@@ -65,6 +65,7 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
         maxChoice,
         minChoice,
         children,
+        onSearch,
         onChange,
         onPress,
         data,
@@ -94,10 +95,16 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
             let newData = JSON.parse(JSON.stringify(data));
             newData = newData.filter((item: T) => item.__title.match(new RegExp(searchText, "gi")));
             setRenderData(newData);
-        } else if(!searchText && data.length) {
+        } else {
             setRenderData(data);
         }
     }, [searchText, data]);
+
+    useEffect(() => {
+        if(onSearch) {
+            onSearch(searchText);
+        }
+    }, [searchText]);
 
     useEffect(() => {
         if(!isNeedConfirm) {

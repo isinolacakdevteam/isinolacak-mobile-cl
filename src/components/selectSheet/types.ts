@@ -60,6 +60,7 @@ interface ISelectSheetProps<T> extends Omit<ModalizeProps, "adjustToContentHeigh
         data: Array<T>
     ) => void;
     pageContainerProps?: IPageContainerProps;
+    onSearch?: (searchText: string) => void;
     selectedItems: Array<SelectedItem>;
     pageContainerStyle?: ViewStyle;
     isLoadingOKButton?: boolean;
