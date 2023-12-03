@@ -36,6 +36,7 @@ const SelectBox = <T extends {}>({
     data: initialData,
     disabled = false,
     titleExtractor,
+    isNeedConfirm,
     keyExtractor,
     inputTitle,
     maxChoice,
@@ -149,16 +150,21 @@ const SelectBox = <T extends {}>({
 
     const renderSelectSheet = () => {
         return <SelectSheet
+            isLoadingOKButton={isLoadingOKButton}
             setSelectedItems={setSelectedItems}
+            isNeedConfirm={isNeedConfirm}
             selectedItems={selectedItems}
             multiSelect={multiSelect}
+            inputTitle={inputTitle}
+            maxChoice={maxChoice}
+            minChoice={minChoice}
             ref={selectSheetRef}
             onChange={onChange}
             fullScreen={false}
-            inputTitle={inputTitle}
             withHandle={false}
             snapPoint={0}
             data={data}
+            onOk={onOk}
         />;
     };
 

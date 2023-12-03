@@ -18,6 +18,8 @@ const tr: {
         "iocore-select-sheet-clear-button": "Temizle",
         "iocore-select-sheet-ok-button": "Tamam",
         "iocore-select-box-n-selected": "{{0}} Seçim",
+        "iocore-select-sheet-max-choice": "En fazla {{0}} tane seçilebilir.",
+        "iocore-select-sheet-min-choice": "En az {{0}} adet seçmelisiniz.",
         "active-theme": "Tema",
         "active-language": "Dil",
         "isinolacak-cl": "IOCore Mobil",

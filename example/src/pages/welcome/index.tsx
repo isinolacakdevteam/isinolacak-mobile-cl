@@ -12,11 +12,11 @@ import {
     RadioButton,
     IOCoreTheme,
     TextInput,
+    SelectBox,
     CheckBox,
     Switch,
     Button,
-    Text,
-    SelectBox
+    Text
 } from "isinolacak-cl";
 import stylesheet from "./stylesheet";
 import {
@@ -26,10 +26,6 @@ import {
 import {
     InfoIcon 
 } from "../../../../src/assets/svg";
-import {
-    uuid 
-} from "../../../../src/utils";
-
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
 
@@ -167,7 +163,14 @@ const Welcome = () => {
         <SelectBox
             title="Meslek"
             titleExtractor={(item) => item.val}
+            disabled={false}
             multiSelect={true}
+            maxChoice={2}
+            isNeedConfirm={true}
+            onOk={(_, closeSheet, save) => {
+                closeSheet();
+                save();
+            }}
             data={[
                 {
                     val: "anam"

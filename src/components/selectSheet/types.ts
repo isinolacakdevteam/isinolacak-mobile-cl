@@ -56,6 +56,7 @@ interface ISelectSheetProps<T> extends Omit<ModalizeProps, "adjustToContentHeigh
     onOk?: (
         selectedItems: Array<SelectedItem>,
         closeSheet: () => void,
+        onSuccess: () => void,
         data: Array<T>
     ) => void;
     pageContainerProps?: IPageContainerProps;
@@ -63,6 +64,7 @@ interface ISelectSheetProps<T> extends Omit<ModalizeProps, "adjustToContentHeigh
     pageContainerStyle?: ViewStyle;
     isLoadingOKButton?: boolean;
     childrenStyle?: ViewStyle;
+    isNeedConfirm?: boolean;
     modalStyle?: ViewStyle;
     multiSelect?: boolean;
     rootStyle?: ViewStyle;

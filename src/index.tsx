@@ -26,6 +26,7 @@ export {
     PageContainer,
     BottomSheet,
     RadioButton,
+    SelectSheet,
     TextInput,
     SelectBox,
     CheckBox,

@@ -18,6 +18,8 @@ const en: {
         "iocore-select-sheet-clear-button": "Clear",
         "iocore-select-sheet-ok-button": "OK",
         "iocore-select-box-n-selected": "{{0}} Choice",
+        "iocore-select-sheet-max-choice": "Maximum {{0}} can be selected.",
+        "iocore-select-sheet-min-choice": "You must choose at least {{0}}.",
         "active-theme": "Theme",
         "active-language": "Language",
         "isinolacak-cl": "IOCore Mobile",

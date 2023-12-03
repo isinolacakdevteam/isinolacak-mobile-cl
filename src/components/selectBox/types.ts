@@ -19,11 +19,13 @@ export interface ISelectBoxProps<T> {
     onOk?: (
         selectedItems: Array<SelectedItem>,
         closeSheet: () => void,
+        onSuccess: () => void,
         data: Array<T | SelectBoxInitialData>
     ) => void;
     titleExtractor: (item: T, index: number) => string;
     keyExtractor?: (item: T, index: number) => string;
     isLoadingOKButton?: boolean;
+    isNeedConfirm?: boolean;
     multiSelect?: boolean;
     maxChoice?: number;
     minChoice?: number;

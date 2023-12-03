@@ -39,6 +39,9 @@ import RadioButton from "../radioButton";
 import {
     SearchIcon 
 } from "../../assets/svg";
+import {
+    useToast
+} from "react-native-toast-notifications";
 
 const SelecetSheet = <T extends SelectSheetInitialData> (
     properties: ISelectSheetProps<T>,
@@ -53,6 +56,7 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
         isLoadingOKButton,
         setSelectedItems,
         snapPoint = 300,
+        isNeedConfirm,
         selectedItems,
         multiSelect,
         autoHeight,
@@ -70,6 +74,7 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
 
     const [searchText, setSearchText] = useState("");
     const [renderData, setRenderData] = useState(data);
+    const [tempSelectedItems, setTempSelectedItems] = useState(selectedItems);
 
     const {
         radiuses,
@@ -79,6 +84,8 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
     const {
         localize
     } = IOCoreLocale.useContext();
+
+    const Toast = useToast();
 
     const bottomSheetRef: RefObject<SelectSheetRef> = useRef(null);
 
@@ -91,6 +98,12 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
             setRenderData(data);
         }
     }, [searchText, data]);
+
+    useEffect(() => {
+        if(!isNeedConfirm) {
+            setSelectedItems(tempSelectedItems);
+        }
+    }, [tempSelectedItems]);
 
     const open = () => {
         bottomSheetRef.current?.open();
@@ -122,30 +135,38 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
     };
 
     const _onChange = (item: T) => {
-        let _selectedItems = JSON.parse(JSON.stringify(selectedItems));
+        let _selectedItems = JSON.parse(JSON.stringify(tempSelectedItems));
 
-        const isExistsInSelectedData = selectedItems.findIndex(e => e.key === item.__key);
+        const isExistsInSelectedData = tempSelectedItems.findIndex(e => e.key === item.__key);
 
         if(isExistsInSelectedData !== -1) {
             if(multiSelect) {
                 if(
                     minChoice !== undefined &&
-                    selectedItems.length <= minChoice
+                    tempSelectedItems.length <= minChoice
                 ) {
-                    // Must push toast.
+                    Toast.show(localize("iocore-select-sheet-min-choice", [
+                        minChoice
+                    ]), {
+                        duration: 4000
+                    });
                     return;
                 }
 
                 _selectedItems.splice(isExistsInSelectedData, 1);
-                setSelectedItems(_selectedItems);
+                setTempSelectedItems(_selectedItems);
             }
         } else {
             if(multiSelect) {
                 if(
                     maxChoice !== undefined &&
-                    selectedItems.length >= maxChoice
+                    tempSelectedItems.length >= maxChoice
                 ) {
-                    // Must push toast.
+                    Toast.show(localize("iocore-select-sheet-max-choice", [
+                        maxChoice
+                    ]), {
+                        duration: 4000
+                    });
                     return;
                 }
 
@@ -154,9 +175,9 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
                     key: item.__key,
                     title: item.__title
                 });
-                setSelectedItems(_selectedItems);
+                setTempSelectedItems(_selectedItems);
             } else {
-                setSelectedItems([
+                setTempSelectedItems([
                     {
                         ...item,
                         key: item.__key,
@@ -189,13 +210,49 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
             return null;
         }
 
+        if(!tempSelectedItems.length) {
+            return null;
+        }
+
         return <Button
             title={localize("iocore-select-sheet-clear-button")}
             onPress={() => {
-                setSelectedItems([]);
+                setTempSelectedItems([]);
             }}
             variant="outline"
-            style={clearButtonProps}
+            style={{
+                ...clearButtonProps,
+                flex: isNeedConfirm ? undefined : 1
+            }}
+            spreadBehaviour={isNeedConfirm ? "baseline" : "stretch"}
+        />;
+    };
+
+    const renderConfirm = () => {
+        if(!isNeedConfirm) {
+            return null;
+        }
+
+        return <Button
+            title={localize("iocore-select-sheet-ok-button")}
+            onPress={() => {
+                if(onOk) {
+                    onOk(
+                        tempSelectedItems,
+                        () => bottomSheetRef.current?.close(),
+                        () => {
+                            setSelectedItems(tempSelectedItems);
+                        },
+                        data
+                    );
+                } else {
+                    setSelectedItems(tempSelectedItems);
+                }
+            }}
+            loading={isLoadingOKButton}
+            size="medium"
+            variant="filled"
+            style={okButtonProps}
         />;
     };
 
@@ -204,24 +261,7 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
             style={buttonsContainerProps}
         >
             {renderClear()}
-            <Button
-                title={localize("iocore-select-sheet-ok-button")}
-                onPress={() => {
-                    if(onOk) {
-                        onOk(
-                            selectedItems,
-                            () => bottomSheetRef.current?.close(),
-                            data
-                        );
-                    } else {
-                        // will be code for virtual edit system.
-                    }
-                }}
-                loading={isLoadingOKButton}
-                size="medium"
-                variant="filled"
-                style={okButtonProps}
-            />
+            {renderConfirm()}
         </View>;
     };
 
@@ -232,7 +272,7 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
         item: T,
         index: number;
     }) => {
-        const isSelected = selectedItems.findIndex((c_item) => c_item.key === item.__key) !== -1;
+        const isSelected = tempSelectedItems.findIndex((c_item) => c_item.key === item.__key) !== -1;
 
         if(multiSelect) {
             return <CheckBox
@@ -288,21 +328,27 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
 
     return <Portal>
         <Modalize
-            panGestureEnabled={true}
-            tapGestureEnabled={true}
-            {...props}
-            ref={bottomSheetRef}
             adjustToContentHeight={autoHeight ? true : false}
+            modalTopOffset={fullScreen ? 0 : undefined}
             closeSnapPointStraightEnabled={true}
             snapPoint={createSnapPoint()}
-            closeOnOverlayTap={true}
             childrenStyle={childrenStyle}
-            modalTopOffset={fullScreen ? 0 : undefined}
+            panGestureEnabled={true}
+            tapGestureEnabled={true}
+            closeOnOverlayTap={true}
             modalStyle={modalStyle}
             rootStyle={rootStyle}
+            ref={bottomSheetRef}
+            onClose={() => {
+                if(searchText && searchText.length) {
+                    setSearchText("");
+                    setRenderData(data);
+                }
+            }}
             scrollViewProps={{
                 contentContainerStyle: contentContainerStyle
             }}
+            {...props}
         >
             <PageContainer
                 {...pageContainerProps}

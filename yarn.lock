@@ -10399,8 +10399,8 @@ __metadata:
     react-native-portalize: 1.0.7
     react-native-safe-area-context: 4.6.3
     react-native-screens: ~3.22.0
-    react-native-simple-toast: 3.0.1
     react-native-svg: 13.14.0
+    react-native-toast-notifications: ^3.4.0
     react-native-web: ~0.19.6
   languageName: unknown
   linkType: soft
@@ -10427,8 +10427,8 @@ __metadata:
     react-native-gesture-handler: 2.13.1
     react-native-modalize: 2.1.1
     react-native-portalize: 1.0.7
-    react-native-simple-toast: 3.0.1
     react-native-svg: 13.14.0
+    react-native-toast-notifications: ^3.4.0
     release-it: 15.0.0
     typescript: 5.0.2
   peerDependencies:
@@ -10438,8 +10438,8 @@ __metadata:
     react-native-gesture-handler: ">= 2.13.1"
     react-native-modalize: ">= 2.1.1"
     react-native-portalize: ">= 1.0.7"
-    react-native-simple-toast: ">= 3.0.1"
     react-native-svg: ">= 13.14.0"
+    react-native-toast-notifications: ">= 3.4.0"
   languageName: unknown
   linkType: soft
 
@@ -14620,16 +14620,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-simple-toast@npm:3.0.1":
-  version: 3.0.1
-  resolution: "react-native-simple-toast@npm:3.0.1"
-  peerDependencies:
-    react: "*"
-    react-native: ">=0.71.0"
-  checksum: 703071268216a3274d76ec3e08467563a9a95ee0a046ec46a55de65a901beac48793996274e2f6ab1aa0b4604d1ded8766a249961d05fa6bfd9277226be64ac7
-  languageName: node
-  linkType: hard
-
 "react-native-svg@npm:13.14.0":
   version: 13.14.0
   resolution: "react-native-svg@npm:13.14.0"
@@ -14640,6 +14630,16 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 4668028563ae0ca669003cc29ff5f03fd5b13a61d53273f294f04a496cbc0af6003277025793d01fb9c3a53af4515839185578d59e9eecb072587178b751c234
+  languageName: node
+  linkType: hard
+
+"react-native-toast-notifications@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "react-native-toast-notifications@npm:3.4.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 734a54111e3657859d3cca9505a197bc6eb486e473e655d8aa087157de8f5e8b819083963f28e5e9155110be9a17774296bbfd721749f670c5f4e093557bd88f
   languageName: node
   linkType: hard
 
