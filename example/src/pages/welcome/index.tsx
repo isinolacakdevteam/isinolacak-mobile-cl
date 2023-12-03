@@ -1,4 +1,6 @@
-import React from "react";
+import React, {
+    useState 
+} from "react";
 import {
     StatusBar,
     Image,
@@ -7,8 +9,12 @@ import {
 import {
     PageContainer,
     IOCoreLocale,
+    RadioButton,
     IOCoreTheme,
     TextInput,
+    SelectBox,
+    CheckBox,
+    Switch,
     Button,
     Text
 } from "isinolacak-cl";
@@ -20,7 +26,6 @@ import {
 import {
     InfoIcon 
 } from "../../../../src/assets/svg";
-
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
 
@@ -37,6 +42,8 @@ const Welcome = () => {
     } = IOCoreLocale.useContext();
 
     const navigation = useNavigation<CompositeScreenProps<any, any>["navigation"]>();
+
+    const [isSelected, setIsSelected] = useState(false);
 
     return <PageContainer
         contentContainerStyle={stylesheet.contentContainer}
@@ -153,9 +160,56 @@ const Welcome = () => {
                 IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
             }}
         />
+        <SelectBox
+            title="Meslek"
+            titleExtractor={(item) => item.val}
+            disabled={false}
+            multiSelect={true}
+            maxChoice={2}
+            isNeedConfirm={true}
+            onOk={(_, closeSheet, save) => {
+                closeSheet();
+                save();
+            }}
+            data={[
+                {
+                    val: "anam"
+                },
+                {
+                    val: "babam"
+                },
+                {
+                    val: "bee"
+                },
+                {
+                    val: "!!!"
+                }
+            ]}
+            inputTitle="Mesleğiniz"
+        />
+        <TextInput
+            disabled={false}
+            size="medium"
+        />
+        <CheckBox
+            title="Chec"
+            isSelected={isSelected}
+            onChange={() => setIsSelected(!isSelected)}
+        />
+        <Switch
+            isActive={isSelected}
+            onPress={() => {
+                setIsSelected(!isSelected);
+            }}
+        />
+        <RadioButton
+            isSelected={isSelected}
+            onChange={() => setIsSelected(!isSelected)}
+            title="Deneme mesajı 123 afakslflksd jglksdfj glsjkdfh glkjsdfg kjdfshg kjdshfg kjldsfhg"
+        />
         <TextInput
             title="Hi Cnm"
-            size="small"
+            size="medium"
         />
     </PageContainer>;
 };

@@ -6,6 +6,12 @@ import {
     GestureHandlerRootView
 } from "react-native-gesture-handler";
 import Context from "./context";
+import {
+    Host
+} from "react-native-portalize";
+import {
+    ToastProvider
+} from 'react-native-toast-notifications';
 
 class IOCoreInheritance {
     IOCoreContext;
@@ -31,7 +37,11 @@ class IOCoreInheritance {
                 }
             ]}
         >
-            {children}
+            <ToastProvider>
+                <Host>
+                    {children}
+                </Host>
+            </ToastProvider>
         </GestureHandlerRootView>;
     };
 

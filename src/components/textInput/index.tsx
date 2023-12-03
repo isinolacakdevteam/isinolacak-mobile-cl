@@ -205,7 +205,7 @@ const TextInput: FC<ITextInputProps> = ({
     };
 
     return <TouchableOpacity
-        onPress={() => inputRef.current?.focus()}
+        onPress={() =>  inputRef.current?.focus()}
         disabled={disabled}
         activeOpacity={1}
         style={[

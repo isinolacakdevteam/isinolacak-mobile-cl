@@ -1,6 +1,6 @@
 {
   "name": "isinolacak-cl",
-  "version": "1.0.0-pre-alpha.2",
+  "version": "1.0.0-pre-alpha.3",
   "description": "İşinolacak Component Library",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -77,16 +77,16 @@
     "react-native-gesture-handler": ">= 2.13.1",
     "react-native-modalize": ">= 2.1.1",
     "react-native-portalize": ">= 1.0.7",
-    "react-native-simple-toast": ">= 3.0.1",
-    "react-native-svg": ">= 13.14.0"
+    "react-native-svg": ">= 13.14.0",
+    "react-native-toast-notifications": ">= 3.4.0"
   },
   "dependencies": {
     "ncore-context": "0.1.0-pre-alpha.6",
     "react-native-gesture-handler": "2.13.1",
     "react-native-modalize": "2.1.1",
     "react-native-portalize": "1.0.7",
-    "react-native-simple-toast": "3.0.1",
-    "react-native-svg": "13.14.0"
+    "react-native-svg": "13.14.0",
+    "react-native-toast-notifications": "^3.4.0"
   },
   "workspaces": [
     "example"

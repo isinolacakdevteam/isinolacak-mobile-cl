@@ -13,6 +13,7 @@ import {
     Inter_400Regular,
     Inter_500Medium,
     Inter_300Light,
+    Inter_700Bold,
     useFonts
 } from "@expo-google-fonts/inter";
 import Navigation from "./navigation";
@@ -26,7 +27,8 @@ const ContextAPI = () => {
         "Inter-SemiBold": Inter_600SemiBold,
         "Inter-Regular": Inter_400Regular,
         "Inter-Medium": Inter_500Medium,
-        "Inter-Light": Inter_300Light
+        "Inter-Light": Inter_300Light,
+        "Inter-Bold": Inter_700Bold
     });
 
     if(!fontsLoaded && !fontError) {
