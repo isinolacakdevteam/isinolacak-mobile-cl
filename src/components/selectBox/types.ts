@@ -24,6 +24,7 @@ export interface ISelectBoxProps<T> {
     ) => void;
     titleExtractor: (item: T, index: number) => string;
     keyExtractor?: (item: T, index: number) => string;
+    onSearch?: (searchText: string) => void;
     isLoadingOKButton?: boolean;
     isNeedConfirm?: boolean;
     multiSelect?: boolean;
