@@ -21,6 +21,7 @@ import {
 } from "./types";
 
 const Switch: FC<ISwitchProps> = ({
+    renderTitle: renderTitleProp,
     spreadBehaviour = "stretch",
     isActive = false,
     disabled = false,
@@ -60,8 +61,20 @@ const Switch: FC<ISwitchProps> = ({
     });
 
     const renderTitle = () => {
-        if(!title) {
+        if(!title && !renderTitleProp) {
             return null;
+        }
+
+        if(renderTitleProp) {
+            return renderTitleProp({
+                spreadBehaviour: spreadBehaviour,
+                titleVariant: titleProps.variant,
+                color: titleProps.color,
+                isActive: isActive,
+                titleStyle: [
+                    titleProps.style
+                ]
+            });
         }
 
         return <Text

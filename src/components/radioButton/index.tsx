@@ -28,6 +28,7 @@ const RadioButton: FC<IRadioButtonProps> = ({
 }) => {
     const {
         disabled: designTokensDisabled,
+        borders,
         spaces,
         colors
     } = IOCoreTheme.useContext();
@@ -43,6 +44,7 @@ const RadioButton: FC<IRadioButtonProps> = ({
         titleStyle,
         isSelected,
         disabled,
+        borders,
         colors,
         spaces
     });

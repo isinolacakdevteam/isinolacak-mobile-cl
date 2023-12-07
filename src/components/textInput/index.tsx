@@ -124,7 +124,7 @@ const TextInput: FC<ITextInputProps> = ({
         }
 
         return <Text
-            variant="body3"
+            variant={titleProps.titleVariant}
             numberOfLines={1}
             color={isError ? "error" : titleProps.color}
             style={[

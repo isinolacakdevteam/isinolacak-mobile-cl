@@ -31,6 +31,7 @@ const CheckBox: FC<ICheckBoxProps> = ({
 }) => {
     const {
         disabled: designTokensDisabled,
+        borders,
         spaces,
         colors
     } = IOCoreTheme.useContext();
@@ -46,6 +47,7 @@ const CheckBox: FC<ICheckBoxProps> = ({
         titleStyle,
         isSelected,
         disabled,
+        borders,
         colors,
         spaces
     });

@@ -1,6 +1,7 @@
 import {
     TextStyle,
-    ViewStyle 
+    ViewStyle,
+    StyleProp
 } from "react-native";
 
 export type SwitchSpreadBehaviour = "baseline" | "stretch" | "free";
@@ -10,6 +11,13 @@ export interface ISwitchProps {
     onPress?: () => void;
     isActive?: boolean;
     disabled?: boolean;
+    renderTitle?: (props: {
+        titleVariant: keyof IOCore.TypographyType;
+        spreadBehaviour?: SwitchSpreadBehaviour;
+        titleStyle?: StyleProp<TextStyle>;
+        color: keyof IOCore.ColorsType;
+        isActive?: boolean;
+    }) => JSX.Element;
     style?: ViewStyle;
     title?: string;
 };
@@ -25,6 +33,7 @@ export type SwitchStylerParams = {
 };
 
 export type TitleProps = {
+    variant: keyof IOCore.TypographyType;
     color: keyof IOCore.ColorsType;
     style: TextStyle;
 };

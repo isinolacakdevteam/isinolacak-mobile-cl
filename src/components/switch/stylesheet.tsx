@@ -46,7 +46,8 @@ const switchStyler = ({
         style: {
             marginRight: spaces.content
         },
-        color: "body"
+        variant: "body3",
+        color: "textGrey"
     };
 
     let switchContainer: ViewStyle = {

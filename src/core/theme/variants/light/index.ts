@@ -106,6 +106,11 @@ export const typography: Required<IOCore.TypographyType> = {
         fontWeight: "400",
         fontSize: 12
     },
+    button: {
+        fontFamily: "Inter-Medium",
+        fontWeight: "500",
+        fontSize: 14
+    },
     caption: {
         fontFamily: "Inter-Medium",
         fontWeight: "500",
