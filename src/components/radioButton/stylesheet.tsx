@@ -38,6 +38,7 @@ const radioButtonStyler = ({
     disabledStyle,
     titleStyle,
     disabled,
+    borders,
     colors,
     spaces
 }: RadioButtonStylerParams): RadioButtonStylerResult => {
@@ -46,7 +47,9 @@ const radioButtonStyler = ({
     };
 
     let radioContainer: ViewStyle = {
-        backgroundColor: colors.backgroundLight
+        backgroundColor: colors.backgroundLight,
+        borderWidth: borders.line,
+        borderColor: colors.stroke
     };
 
     let radioIndicator: ViewStyle = {

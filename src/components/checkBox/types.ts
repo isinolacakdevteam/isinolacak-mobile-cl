@@ -19,6 +19,7 @@ export interface ICheckBoxProps {
 export type CheckBoxStylerParams = {
     spreadBehaviour: CheckBoxSpreadBehaviour;
     disabledStyle: IOCore.DisabledTokensType;
+    borders: IOCore.BordersTokensType;
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;
     titleStyle?: TextStyle;

@@ -31,6 +31,7 @@ const CheckBox: FC<ICheckBoxProps> = ({
 }) => {
     const {
         disabled: designTokensDisabled,
+        borders,
         spaces,
         colors
     } = IOCoreTheme.useContext();
@@ -46,6 +47,7 @@ const CheckBox: FC<ICheckBoxProps> = ({
         titleStyle,
         isSelected,
         disabled,
+        borders,
         colors,
         spaces
     });
@@ -101,9 +103,9 @@ const CheckBox: FC<ICheckBoxProps> = ({
 
     return <TouchableOpacity
         style={[
-            style,
             stylesheet.container,
-            container
+            container,
+            style
         ]}
         disabled={disabled}
         onPress={onChange}

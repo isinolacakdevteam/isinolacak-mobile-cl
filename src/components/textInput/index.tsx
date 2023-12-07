@@ -124,7 +124,7 @@ const TextInput: FC<ITextInputProps> = ({
         }
 
         return <Text
-            variant="header7"
+            variant={titleProps.titleVariant}
             numberOfLines={1}
             color={isError ? "error" : titleProps.color}
             style={[
@@ -142,7 +142,7 @@ const TextInput: FC<ITextInputProps> = ({
         }
 
         return <Text
-            variant="body"
+            variant="body3"
             numberOfLines={1}
             color="textGrey"
             style={[
@@ -179,7 +179,7 @@ const TextInput: FC<ITextInputProps> = ({
             }
             
             <Text
-                variant="body"
+                variant="body3"
                 numberOfLines={1}
                 color={isError ? "error" : hintTextProps.color}
                 style={[
@@ -209,9 +209,9 @@ const TextInput: FC<ITextInputProps> = ({
         disabled={disabled}
         activeOpacity={1}
         style={[
-            style,
             stylesheet.container,
-            container
+            container,
+            style
         ]}
     >
         <View

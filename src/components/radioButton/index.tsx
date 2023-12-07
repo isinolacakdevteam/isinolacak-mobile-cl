@@ -28,6 +28,7 @@ const RadioButton: FC<IRadioButtonProps> = ({
 }) => {
     const {
         disabled: designTokensDisabled,
+        borders,
         spaces,
         colors
     } = IOCoreTheme.useContext();
@@ -43,6 +44,7 @@ const RadioButton: FC<IRadioButtonProps> = ({
         titleStyle,
         isSelected,
         disabled,
+        borders,
         colors,
         spaces
     });
@@ -94,9 +96,9 @@ const RadioButton: FC<IRadioButtonProps> = ({
 
     return <TouchableOpacity
         style={[
-            style,
             stylesheet.container,
-            container
+            container,
+            style
         ]}
         disabled={disabled}
         onPress={onChange}

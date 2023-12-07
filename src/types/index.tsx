@@ -118,6 +118,8 @@ declare global {
             header7?: TypograpghyVariantType;
             body?: TypograpghyVariantType;
             body2?: TypograpghyVariantType;
+            body3?: TypograpghyVariantType;
+            button?: TypograpghyVariantType;
             caption?: TypograpghyVariantType;
         }
 

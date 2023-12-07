@@ -25,8 +25,8 @@ export const colors: Required<IOCore.ColorsType> = {
     "backgroundDark":   "#0A0A0C",
     "backgroundLight":  "#FFFFFF",
     "textDark":         "#191919",
-    "textSecondary":    "#9AA6BB",
-    "textGrey":         "#A1A1A1",
+    "textSecondary":    "#9AA6B8",
+    "textGrey":         "#8C8C8C",
     "textWhite":        "#FFFFFF",
     "black50":          "#F6F6F6",
     "black100":         "#E2E2E2",
@@ -100,6 +100,16 @@ export const typography: Required<IOCore.TypographyType> = {
         fontFamily: "Inter-Bold",
         fontWeight: "700",
         fontSize: 12
+    },
+    body3: {
+        fontFamily: "Inter-Bold",
+        fontWeight: "400",
+        fontSize: 12
+    },
+    button: {
+        fontFamily: "Inter-Medium",
+        fontWeight: "500",
+        fontSize: 14
     },
     caption: {
         fontFamily: "Inter-Medium",
