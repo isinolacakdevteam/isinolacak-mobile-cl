@@ -37,14 +37,15 @@ export const stylesheet = StyleSheet.create({
 const selectBoxStyler = ({
     radiuses,
     disabled,
+    borders,
     colors,
     spaces
 }: SelectBoxStylerParams): SelectBoxStylerResult => {
     let container: ViewStyle = {
         backgroundColor: colors.white,
-        borderColor: colors.grey25,
+        borderColor: colors.black100,
         borderRadius: radiuses.half,
-        borderWidth: 1
+        borderWidth: borders.line
     };
 
     let titleProps: TitleProps = {

@@ -44,6 +44,7 @@ const SelectBox = <T extends {}>({
     onSearch,
     onChange,
     onPress,
+    style,
     title,
     onOk
 }: ISelectBoxProps<T>) => {
@@ -57,6 +58,7 @@ const SelectBox = <T extends {}>({
 
     const {
         radiuses,
+        borders,
         spaces,
         colors
     } = IOCoreTheme.useContext();
@@ -68,6 +70,7 @@ const SelectBox = <T extends {}>({
     } = selectBoxStyler({
         radiuses,
         disabled,
+        borders,
         spaces,
         colors
     });
@@ -173,7 +176,8 @@ const SelectBox = <T extends {}>({
     return <TouchableOpacity
         style={[
             stylesheet.container,
-            container
+            container,
+            style
         ]}
         onPress={() => {
             if(disabled) {

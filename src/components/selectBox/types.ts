@@ -32,12 +32,14 @@ export interface ISelectBoxProps<T> {
     minChoice?: number;
     disabled?: boolean;
     inputTitle: string;
+    style?: ViewStyle;
     data: Array<T>;
     title: string;
 };
 
 export type SelectBoxStylerParams = {
     radiuses: IOCore.RadiusesTokensType;
+    borders: IOCore.BordersTokensType;
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;
     disabled?: boolean;
