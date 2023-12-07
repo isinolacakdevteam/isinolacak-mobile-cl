@@ -94,9 +94,9 @@ const RadioButton: FC<IRadioButtonProps> = ({
 
     return <TouchableOpacity
         style={[
-            style,
             stylesheet.container,
-            container
+            container,
+            style
         ]}
         disabled={disabled}
         onPress={onChange}
