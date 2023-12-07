@@ -46,7 +46,8 @@ const switchStyler = ({
         style: {
             marginRight: spaces.content
         },
-        color: "body"
+        variant: "body3",
+        color: "textGrey"
     };
 
     let switchContainer: ViewStyle = {
@@ -54,7 +55,7 @@ const switchStyler = ({
     };
 
     let indicator: ViewStyle = {
-        backgroundColor: colors.panel
+        backgroundColor: colors.white
     };
 
     if(isActive) {

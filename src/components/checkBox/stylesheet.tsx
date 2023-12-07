@@ -40,6 +40,7 @@ const checkBoxStyler = ({
     disabledStyle,
     titleStyle,
     disabled,
+    borders,
     colors,
     spaces
 }: CheckBoxStylerParams): CheckBoxStylerResult => {
@@ -48,7 +49,9 @@ const checkBoxStyler = ({
     };
 
     let checkContainer: ViewStyle = {
-        backgroundColor: colors.backgroundLight
+        backgroundColor: colors.backgroundLight,
+        borderWidth: borders.line,
+        borderColor: colors.stroke
     };
 
     let checkIndicator: ViewStyle = {

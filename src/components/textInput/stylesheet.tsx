@@ -74,28 +74,29 @@ export const textInputStyler = ({
     };
 
     let contentContainer: ViewStyle = {
-        borderColor: isError ? colors.error : isFocused ? colors.primary : colors.stroke,
+        borderColor: isError ? colors.error : isFocused ? colors.primary : colors.black100,
         ...sizeToStyleMapping.contentContainer,
-        backgroundColor: colors.panel,
+        backgroundColor: colors.white,
         borderRadius: radiuses.half,
         borderWidth: borders.line
     };
 
     let titleProps: TitleProps = {
-        color: value?.length || isFocused ? "primary" : "gray50",
+        titleVariant: value?.length || isFocused ? "body3" : "body",
+        color: value?.length || isFocused ? "primary" : "textSecondary",
         style: {
         }
     };
 
     let hintTextProps: HintTextProps = { 
-        color: value?.length || isFocused ? "primary" : "gray50",
+        color: value?.length || isFocused ? "primary" : "textSecondary",
         style: {
         }
     };
 
     let input: TextStyle = {
         opacity: value ? 1 : 0.5,
-        color: colors.body,
+        color: colors.textDark,
         ...typography.body,
         lineHeight: undefined,
         height: 18

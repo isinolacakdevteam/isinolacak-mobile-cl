@@ -19,6 +19,7 @@ export interface IRadioButtonProps {
 export type RadioButtonStylerParams = {
     spreadBehaviour: RadioButtonSpreadBehaviour;
     disabledStyle: IOCore.DisabledTokensType;
+    borders: IOCore.BordersTokensType;
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;
     titleStyle?: TextStyle;

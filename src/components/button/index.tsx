@@ -21,6 +21,7 @@ import buttonStyler, {
 const Button: FC<IButtonProps> = ({
     displayBehaviourWhileLoading = "disabled",
     spreadBehaviour = "baseline",
+    renderTitle: renderTitleProp,
     icon: IconComponentProp,
     variant = "filled",
     color = "primary",
@@ -114,7 +115,7 @@ const Button: FC<IButtonProps> = ({
     };
 
     const renderTitle = () => {
-        if(!title) {
+        if(!title && !renderTitleProp) {
             return null;
         }
 
@@ -123,6 +124,21 @@ const Button: FC<IButtonProps> = ({
 
         if(IconComponentProp || loading) {
             textStyle.marginLeft = spaces.content;
+        }
+
+        if(renderTitleProp) {
+            return renderTitleProp({
+                spreadBehaviour: spreadBehaviour,
+                variant: titleProps.variant,
+                color: titleProps.color,
+                titleStyle: [
+                    titleStyle,
+                    titleProps.style,
+                    textStyle,
+                ],
+                loading: loading,
+                size: size
+            });
         }
 
         return <Text
@@ -143,8 +159,8 @@ const Button: FC<IButtonProps> = ({
         disabled={disabled || loading}
         style={[
             stylesheet.container,
-            style,
-            container
+            container,
+            style
         ]}
     >
         {renderLoading()}

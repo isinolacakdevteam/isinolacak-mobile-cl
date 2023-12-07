@@ -8,8 +8,9 @@ import React, {
     useRef
 } from "react";
 import {
-    View,
-    FlatList
+    SafeAreaView,
+    FlatList,
+    View
 } from "react-native";
 import selectSheetStyler,{
     stylesheet
@@ -357,6 +358,7 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
             }}
             {...props}
         >
+            <SafeAreaView/>
             <PageContainer
                 {...pageContainerProps}
                 style={pageContainerStyle}

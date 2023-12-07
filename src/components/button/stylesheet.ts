@@ -62,7 +62,7 @@ const buttonStyler = ({
 
     let titleProps: TitleProps = {
         color: titleColor,
-        variant: "body2",
+        variant: "button",
         style: {
         }
     };

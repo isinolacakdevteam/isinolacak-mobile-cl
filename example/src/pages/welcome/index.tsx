@@ -23,9 +23,6 @@ import {
     CompositeScreenProps,
     useNavigation
 } from "@react-navigation/native";
-import {
-    InfoIcon 
-} from "../../../../src/assets/svg";
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
 
@@ -47,6 +44,9 @@ const Welcome = () => {
 
     return <PageContainer
         contentContainerStyle={stylesheet.contentContainer}
+        style={{
+            backgroundColor: colors.white
+        }}
     >
         <StatusBar
             barStyle={activeTheme === "dark" ? "light-content" : "dark-content"}

@@ -29,6 +29,14 @@ export interface IButtonProps {
     iconDirection?: "left" | "right";
     style?: ViewStyle | ViewStyle[];
     color?: keyof IOCore.ColorsType;
+    renderTitle?: (props: {
+        spreadBehaviour?: ButtonSpreadBehaviour;
+        variant: keyof IOCore.TypographyType;
+        titleStyle?: StyleProp<TextStyle>;
+        color: keyof IOCore.ColorsType;
+        loading?: boolean;
+        size: ButtonSize;
+    }) => JSX.Element;
     variant?: ButtonVariant;
     icon?: IOCoreIconType;
     onPress: () => void;
