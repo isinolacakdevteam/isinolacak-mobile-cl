@@ -10,6 +10,7 @@ export interface ISwitchProps {
     onPress?: () => void;
     isActive?: boolean;
     disabled?: boolean;
+    style?: ViewStyle;
     title?: string;
 };
 

@@ -25,6 +25,7 @@ const Switch: FC<ISwitchProps> = ({
     isActive = false,
     disabled = false,
     onPress,
+    style,
     title
 }) => {
     const {
@@ -100,7 +101,8 @@ const Switch: FC<ISwitchProps> = ({
     return <TouchableOpacity
         style={[
             stylesheet.container,
-            container
+            container,
+            style
         ]}
         disabled={disabled}
         onPress={disabled ? undefined : onPress}
