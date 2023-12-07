@@ -82,20 +82,20 @@ export const textInputStyler = ({
     };
 
     let titleProps: TitleProps = {
-        color: value?.length || isFocused ? "primary" : "gray50",
+        color: value?.length || isFocused ? "primary" : "textSecondary",
         style: {
         }
     };
 
     let hintTextProps: HintTextProps = { 
-        color: value?.length || isFocused ? "primary" : "gray50",
+        color: value?.length || isFocused ? "primary" : "textSecondary",
         style: {
         }
     };
 
     let input: TextStyle = {
         opacity: value ? 1 : 0.5,
-        color: colors.body,
+        color: colors.textDark,
         ...typography.body,
         lineHeight: undefined,
         height: 18
