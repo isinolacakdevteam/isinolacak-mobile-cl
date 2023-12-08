@@ -80,6 +80,7 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
 
     const {
         radiuses,
+        colors,
         spaces
     } = IOCoreTheme.useContext();
 
@@ -331,6 +332,7 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
         fullScreen,
         autoHeight,
         radiuses,
+        colors,
         spaces
     });
 

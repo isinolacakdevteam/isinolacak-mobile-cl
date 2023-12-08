@@ -47,6 +47,7 @@ const selectSheetStyler = ({
     fullScreen,
     autoHeight,
     radiuses,
+    colors,
     spaces
 }: SelectSheetStylerParams): SelectSheetStylerResult => {
     const contentContainerStyle: ViewStyle = {
@@ -57,6 +58,7 @@ const selectSheetStyler = ({
         borderTopRightRadius: radiuses.hard,
         borderTopLeftRadius: radiuses.hard,
         paddingVertical: spaces.container,
+        backgroundColor: colors.white,
         ...pageContainerStyleProp
     };
 

@@ -8,6 +8,8 @@ export type SwitchSpreadBehaviour = "baseline" | "stretch" | "free";
 
 export interface ISwitchProps {
     spreadBehaviour?: SwitchSpreadBehaviour;
+    indicatorStyle?: ViewStyle;
+    titleStyle?: TextStyle;
     onPress?: () => void;
     isActive?: boolean;
     disabled?: boolean;

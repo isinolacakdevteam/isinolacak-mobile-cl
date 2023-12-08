@@ -16,7 +16,7 @@ export const stylesheet = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         alignSelf: "stretch",
-        paddingVertical: 12,
+        paddingVertical: 10,
         minHeight: 60,
         height: 60,
     },
@@ -24,13 +24,6 @@ export const stylesheet = StyleSheet.create({
         justifyContent: "center",
         flexDirection: "column",
         flex: 1
-    },
-    checkContainer: {
-        justifyContent: "center",
-        alignItems: "center",
-        alignSelf: "center",
-        height: 30,
-        width: 30
     }
 });
 
