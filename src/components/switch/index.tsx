@@ -25,6 +25,8 @@ const Switch: FC<ISwitchProps> = ({
     spreadBehaviour = "stretch",
     isActive = false,
     disabled = false,
+    indicatorStyle,
+    titleStyle,
     onPress,
     style,
     title
@@ -80,7 +82,8 @@ const Switch: FC<ISwitchProps> = ({
         return <Text
             color={titleProps.color}
             style={[
-                titleProps.style
+                titleProps.style,
+                titleStyle
             ]}
         >
             {title}
@@ -91,7 +94,8 @@ const Switch: FC<ISwitchProps> = ({
         return <View
             style={[
                 stylesheet.switchContainer,
-                switchContainer
+                switchContainer,
+                indicatorStyle
             ]}
         >
             <Animated.View
