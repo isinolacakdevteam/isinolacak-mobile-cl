@@ -4,7 +4,7 @@ import React, {
 import {
     TouchableOpacity
 } from "react-native";
-import chipStyler ,{
+import chipStyler, {
     styles
 } from "./stylesheet";
 import {
@@ -17,7 +17,6 @@ import {
 import {
     IChipProps 
 } from "./types";
-
 
 const Chip: FC<IChipProps> = ({
     icon: IconComponentProp,
@@ -32,6 +31,7 @@ const Chip: FC<IChipProps> = ({
     style
 }) => {
     const {
+        disabled: designTokensDisabled,
         radiuses,
         borders,
         colors,
@@ -47,6 +47,7 @@ const Chip: FC<IChipProps> = ({
         titleColor,
         selected,
         disabled,
+        disabledStyle: designTokensDisabled,
         radiuses,
         borders,
         spaces,
@@ -99,14 +100,10 @@ const Chip: FC<IChipProps> = ({
     return <TouchableOpacity
         style={[
             styles.container,
-            container,
-            {
-                paddingHorizontal: spaces.container,
-                paddingVertical: spaces.content
-            }
+            container
         ]}
         disabled={!onPress || disabled}
-        onPress={!onPress || disabled ? undefined : onPress}
+        onPress={onPress}
     >
         {renderIcon()}
         {renderTitle()}

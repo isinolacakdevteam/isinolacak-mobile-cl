@@ -29,6 +29,7 @@ export type ChipStylerParams = {
     spaces: IOCore.SpacesTokensType;
     color: keyof IOCore.ColorsType;
     colors: IOCore.ColorsType;
+    disabledStyle: ViewStyle;
     size: ChipSizetype;
     selected: boolean;
     style?: ViewStyle;

@@ -165,7 +165,6 @@ const Welcome = () => {
         />
         <Chip
             onPress={() => {}}
-            disabled={false}
         />
         <SelectBox
             title="Meslek"

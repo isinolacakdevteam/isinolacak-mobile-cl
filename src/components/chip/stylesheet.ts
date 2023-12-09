@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
 });
 
 const chipStyler = ({
+    disabledStyle,
     titleColor,
     disabled,
     borders,
@@ -55,20 +56,13 @@ const chipStyler = ({
         size: 14
     };
 
-    if(selected) {
-        closeIconProps.color = colors.constrastBody;
-        container.backgroundColor = colors[color];
-        iconProps.color = colors.constrastBody;
-        titleProps.color = "constrastBody";
-    }
-
     if(titleColor) {
         iconProps.color = colors[titleColor];
         iconProps.color = colors[titleColor];
         titleProps.color = titleColor;
     }
 
-    if(disabled) {
+    if(selected) {
         container = {
             ...container,
             backgroundColor: colors.white,
@@ -78,6 +72,13 @@ const chipStyler = ({
         titleProps = {
             ...titleProps,
             color: "textDark"
+        };
+    }
+
+    if(disabled) {
+        container = {
+            ...container,
+            ...disabledStyle
         };
     }
 
