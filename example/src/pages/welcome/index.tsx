@@ -16,7 +16,8 @@ import {
     CheckBox,
     Switch,
     Button,
-    Text
+    Text,
+    Sticker
 } from "isinolacak-cl";
 import stylesheet from "./stylesheet";
 import {
@@ -25,6 +26,7 @@ import {
 } from "@react-navigation/native";
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
+import Info from "../../../../src/assets/svg/info";
 
 const Welcome = () => {
     const {
@@ -187,12 +189,18 @@ const Welcome = () => {
             ]}
             inputTitle="Mesleğiniz"
         />
+        <Sticker
+            icon={({
+                color
+            }) => <Info size={12} color={color}/>}
+            title="test"
+        />
         <TextInput
             disabled={false}
             size="medium"
         />
         <CheckBox
-            title="Chec"
+            title="Check"
             isSelected={isSelected}
             onChange={() => setIsSelected(!isSelected)}
         />
