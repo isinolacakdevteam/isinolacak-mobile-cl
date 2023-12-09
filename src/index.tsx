@@ -34,6 +34,7 @@ export {
     Dialog,
     Switch,
     Button,
+    Chip,
     Text
 } from "./components";
 

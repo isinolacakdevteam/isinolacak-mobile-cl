@@ -15,9 +15,10 @@ import {
     SelectBox,
     CheckBox,
     Switch,
+    Sticker,
     Button,
-    Text,
-    Sticker
+    Chip,
+    Text
 } from "isinolacak-cl";
 import stylesheet from "./stylesheet";
 import {
@@ -161,6 +162,10 @@ const Welcome = () => {
             onPress={() => {
                 IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
             }}
+        />
+        <Chip
+            onPress={() => {}}
+            disabled={false}
         />
         <SelectBox
             title="Meslek"
