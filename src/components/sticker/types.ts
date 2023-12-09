@@ -7,22 +7,29 @@ import {
     IOCoreIconType
 } from "../../types";
 
+export type StickerSpreadBehaviour = "baseline" | "stretch" | "free";
+export type Stickertype = "filled" | "outline" | "ghost";
+
 export interface IStickerProps {
+    spreadBehaviour?: StickerSpreadBehaviour;
     titleColor?: keyof IOCore.ColorsType;
     color?: keyof IOCore.ColorsType;
+    type?: Stickertype;
+    icon?: IOCoreIconType;
     onPress?: () => void;
     disabled?: boolean;
     style?: ViewStyle;
-    icon?: IOCoreIconType;
     title?: string;
 };
 
 export type StickerStylerParams = {
+    spreadBehaviour?: StickerSpreadBehaviour;
     titleColor?: keyof IOCore.ColorsType;
     radiuses: IOCore.RadiusesTokensType;
     spaces: IOCore.SpacesTokensType;
     color: keyof IOCore.ColorsType;
     colors: IOCore.ColorsType;
+    type: Stickertype;
     style?: ViewStyle;
 };
 

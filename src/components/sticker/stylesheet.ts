@@ -13,25 +13,30 @@ import {
 
 export const styles = StyleSheet.create({
     container: {
-        alignSelf: "baseline",
+        justifyContent: "center",
         flexDirection: "row",
-        alignItems: "center"
+        alignItems: "center",
     }
 });
 
 const stickerStyler = ({
+    spreadBehaviour,
     titleColor,
     radiuses,
     spaces,
     colors,
-    style
+    color,
+    style,
+    type
 }: StickerStylerParams): StickerStylerResult => {
     let container: ViewStyle = {
         ...style,
+        backgroundColor: type === "filled" ? colors[color] : "transparent",
+        borderColor: type !== "ghost" ? colors[color] : "transparent",
+        borderWidth: type === "outline" ? 1 : 0,
         paddingHorizontal: spaces.inline * 1.5,
-        paddingVertical: spaces.inline,
-        backgroundColor: colors.primary,
-        borderRadius: radiuses.quarter -1 
+        borderRadius: radiuses.quarter -1,
+        paddingVertical: spaces.inline
     };
 
     let titleProps: TitleProps = {
@@ -45,12 +50,20 @@ const stickerStyler = ({
     };
 
     let iconProps: IIOCoreIconPropsType = {
-        color: colors.body,
-        size: 14
+        color: colors[titleProps.color],
+        size: 12
     };
 
+    if(spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
+        container.alignSelf = spreadBehaviour;
+    }
+
+    if(type !== "filled") {
+        iconProps.color = colors[color];
+        titleProps.color = color;
+    }
+
     if(titleColor) {
-        iconProps.color = colors[titleColor];
         iconProps.color = colors[titleColor];
         titleProps.color = titleColor;
     }
@@ -62,5 +75,4 @@ const stickerStyler = ({
         iconProps
     };
 };
-
 export default stickerStyler;

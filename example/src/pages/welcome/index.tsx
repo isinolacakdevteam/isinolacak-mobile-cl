@@ -190,8 +190,9 @@ const Welcome = () => {
             inputTitle="Mesleğiniz"
         />
         <Sticker
-            titleColor="error"
-            icon={() => <Info size={14} color={colors.white}/>}
+            icon={({
+                color
+            }) => <Info size={12} color={color}/>}
             title="test"
         />
         <TextInput
@@ -199,7 +200,7 @@ const Welcome = () => {
             size="medium"
         />
         <CheckBox
-            title="Chec"
+            title="Check"
             isSelected={isSelected}
             onChange={() => setIsSelected(!isSelected)}
         />

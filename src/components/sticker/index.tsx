@@ -2,7 +2,8 @@ import React, {
     FC 
 } from "react";
 import {
-    TouchableOpacity
+    TouchableOpacity,
+    View
 } from "react-native";
 import {
     IOCoreTheme 
@@ -14,17 +15,16 @@ import {
 import stickerStyler,{
     styles
 } from "./stylesheet";
-import {
-    View 
-} from "react-native";
 
 const Sticker: FC<IStickerProps> = ({
-    title = "Sticker",
     icon: IconComponentProp,
+    spreadBehaviour = "baseline",
     color = "primary",
     disabled = true,
+    type = "filled",
     titleColor,
     onPress,
+    title,
     style
 }) => {
     const {
@@ -39,18 +39,20 @@ const Sticker: FC<IStickerProps> = ({
         container,
         iconProps
     } = stickerStyler({
+        spreadBehaviour,
         titleColor,
         radiuses,
         spaces,
         colors,
         color,
-        style
+        style,
+        type
     });
 
     const renderTitle = () => {
         return <Text
             color={titleProps.color}
-            variant="body"
+            variant="caption"
             style={[
                 titleProps.style
             ]}
@@ -75,18 +77,13 @@ const Sticker: FC<IStickerProps> = ({
         </View>;
     };
 
-
     return <TouchableOpacity
         style={[
             styles.container,
-            container,
-            {
-                paddingHorizontal: spaces.container,
-                paddingVertical: spaces.content
-            }
+            container
         ]}
         disabled={!onPress || disabled}
-        onPress={!onPress || disabled ? undefined : onPress}
+        onPress={onPress ? onPress : undefined}
     >
         {renderIcon()}
         {renderTitle()}
