@@ -41,3 +41,7 @@ export {
 export {
     default as SelectSheet
 } from "./selectSheet";
+
+export {
+    default as Sticker
+} from "./sticker";

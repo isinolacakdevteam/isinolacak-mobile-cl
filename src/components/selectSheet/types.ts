@@ -21,6 +21,7 @@ export type SelectSheetStylerParams = {
     childrenStyleProp?: ViewStyle;
     modalStyleProp?: ViewStyle;
     rootStyleProp?: ViewStyle;
+    colors: IOCore.ColorsType;
     autoHeight?: boolean;
     fullScreen?: boolean;
 };
