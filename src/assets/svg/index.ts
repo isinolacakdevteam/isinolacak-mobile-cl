@@ -13,3 +13,7 @@ export {
 export {
     default as SearchIcon
 } from "./searcIcon";
+
+export {
+    default as NotificationIcon
+} from "./notificationIcon";

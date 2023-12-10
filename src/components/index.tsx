@@ -49,3 +49,7 @@ export {
 export {
     default as Chip
 } from "./chip";
+
+export {
+    default as StateCard
+} from "./stateCard";

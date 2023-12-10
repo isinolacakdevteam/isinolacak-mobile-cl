@@ -74,9 +74,9 @@ export const textInputStyler = ({
     };
 
     let contentContainer: ViewStyle = {
-        borderColor: isError ? colors.error : isFocused ? colors.primary : colors.black100,
+        borderColor: isError ? colors.error : isFocused ? colors.primary : colors.stroke,
         ...sizeToStyleMapping.contentContainer,
-        backgroundColor: colors.white,
+        backgroundColor: colors.layer2,
         borderRadius: radiuses.half,
         borderWidth: borders.line
     };

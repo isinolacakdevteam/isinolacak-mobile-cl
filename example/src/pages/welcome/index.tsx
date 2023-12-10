@@ -12,10 +12,11 @@ import {
     RadioButton,
     IOCoreTheme,
     TextInput,
+    StateCard,
     SelectBox,
     CheckBox,
-    Switch,
     Sticker,
+    Switch,
     Button,
     Chip,
     Text
@@ -28,6 +29,24 @@ import {
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
 import Info from "../../../../src/assets/svg/info";
+import {
+    InfoIcon 
+} from "../../../../src/assets/svg";
+
+const MOCK_DATA_FOR_SELECT_BOX = [
+    {
+        val: "anam"
+    },
+    {
+        val: "babam"
+    },
+    {
+        val: "bee"
+    },
+    {
+        val: "!!!"
+    }
+];
 
 const Welcome = () => {
     const {
@@ -47,9 +66,6 @@ const Welcome = () => {
 
     return <PageContainer
         contentContainerStyle={stylesheet.contentContainer}
-        style={{
-            backgroundColor: colors.white
-        }}
     >
         <StatusBar
             barStyle={activeTheme === "dark" ? "light-content" : "dark-content"}
@@ -169,6 +185,28 @@ const Welcome = () => {
             }}
             selected={isSelected}
         />
+        <StateCard
+            title="Deneme"
+            content="SADASDSA DSAD"
+            titleColor="accent"
+            action={{
+                onPress: () => {
+
+                },
+                spreadBehaviour: "free",
+                title: "Hi Cnm",
+                size: "small"
+            }}
+            icon={({
+                color,
+                size
+            }) => {
+                return <InfoIcon
+                    color={color}
+                    size={size}
+                />;
+            }}
+        />
         <SelectBox
             title="Meslek"
             titleExtractor={(item) => item.val}
@@ -180,20 +218,7 @@ const Welcome = () => {
                 closeSheet();
                 save();
             }}
-            data={[
-                {
-                    val: "anam"
-                },
-                {
-                    val: "babam"
-                },
-                {
-                    val: "bee"
-                },
-                {
-                    val: "!!!"
-                }
-            ]}
+            data={MOCK_DATA_FOR_SELECT_BOX}
             inputTitle="Mesleğiniz"
         />
         <Sticker

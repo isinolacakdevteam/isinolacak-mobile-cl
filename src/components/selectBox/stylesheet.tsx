@@ -35,9 +35,9 @@ const selectBoxStyler = ({
     spaces
 }: SelectBoxStylerParams): SelectBoxStylerResult => {
     let container: ViewStyle = {
-        backgroundColor: colors.white,
-        borderColor: colors.black100,
+        backgroundColor: colors.layer2,
         borderRadius: radiuses.half,
+        borderColor: colors.stroke,
         borderWidth: borders.line
     };
 
@@ -46,7 +46,7 @@ const selectBoxStyler = ({
     };
 
     let contentProps: ContentProps = {
-        color: "secondary",
+        color: "body",
         style: {
             marginTop: spaces.content / 2
         }
