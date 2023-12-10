@@ -9,19 +9,19 @@ import {
     View
 } from "react-native";
 import {
-    stylesheet,
-    textInputStyler
+    textInputStyler,
+    stylesheet
 } from "./stylesheet";
 import Text from "../text";
 import {
-    IOCoreTheme,
-    IOCoreLocale
+    IOCoreLocale,
+    IOCoreTheme
 } from "../../core";
 import ITextInputProps from "./types";
 import {
-    InfoIcon,
+    EyeOpenedIcon,
     EyeClosedIcon,
-    EyeOpenedIcon
+    InfoIcon
 } from "../../assets/svg";
 
 const TextInput: FC<ITextInputProps> = ({
@@ -37,8 +37,8 @@ const TextInput: FC<ITextInputProps> = ({
     size = "medium",
     title = "Title",
     isError = false,
-    onChangeText,
     initialValue,
+    onChangeText,
     isOptional,
     hintText,
     style,
@@ -212,19 +212,8 @@ const TextInput: FC<ITextInputProps> = ({
     };
 
     const renderSecureIcon = () => {
-
-        if(!isShowable) {
+        if(!isShowable || !secureTextEntry) {
             return null;
-        }
-
-        if(isShowingPassword && secureTextEntry) {
-            return <TouchableOpacity
-                onPress={() => {
-                    setIsShowingPassword(!isShowingPassword);
-                }}
-            >
-                <EyeClosedIcon/>
-            </TouchableOpacity>;
         }
 
         if(!isShowingPassword) {
@@ -235,7 +224,15 @@ const TextInput: FC<ITextInputProps> = ({
             >
                 <EyeOpenedIcon/>
             </TouchableOpacity>;
-        }
+        };
+
+        return <TouchableOpacity
+            onPress={() => {
+                setIsShowingPassword(!isShowingPassword);
+            }}
+        >
+            <EyeClosedIcon/>
+        </TouchableOpacity>;
     };
  
     return <TouchableOpacity
