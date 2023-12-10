@@ -29,6 +29,7 @@ export {
     SelectSheet,
     TextInput,
     SelectBox,
+    StateCard,
     CheckBox,
     Sticker,
     Dialog,

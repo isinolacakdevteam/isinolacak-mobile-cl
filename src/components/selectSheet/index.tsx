@@ -349,11 +349,16 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
             modalStyle={modalStyle}
             rootStyle={rootStyle}
             ref={bottomSheetRef}
+            onOpen={() => {
+                setTempSelectedItems(selectedItems);
+            }}
             onClose={() => {
                 if(searchText && searchText.length) {
                     setSearchText("");
                     setRenderData(data);
                 }
+
+                setTempSelectedItems([]);
             }}
             scrollViewProps={{
                 contentContainerStyle: contentContainerStyle

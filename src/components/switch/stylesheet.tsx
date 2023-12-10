@@ -55,7 +55,7 @@ const switchStyler = ({
     };
 
     let indicator: ViewStyle = {
-        backgroundColor: colors.white
+        backgroundColor: colors.backgroundLight
     };
 
     if(isActive) {

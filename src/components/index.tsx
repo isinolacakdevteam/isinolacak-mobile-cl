@@ -46,3 +46,6 @@ export {
     default as Sticker
 } from "./sticker";
 
+export {
+    default as StateCard
+} from "./stateCard";
