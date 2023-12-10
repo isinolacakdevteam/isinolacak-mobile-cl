@@ -20,13 +20,13 @@ import {
 
 const Chip: FC<IChipProps> = ({
     icon: IconComponentProp,
-    titleColor = "textWhite",
     color = "primary",
     selected = false,
     closable = false,
     disabled = false,
     title = "Chip",
     size= "small",
+    titleColor,
     onPress,
     style
 }) => {

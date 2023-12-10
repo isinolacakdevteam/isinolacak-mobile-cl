@@ -164,7 +164,10 @@ const Welcome = () => {
             }}
         />
         <Chip
-            onPress={() => {}}
+            onPress={() => {
+                setIsSelected(!isSelected);
+            }}
+            selected={isSelected}
         />
         <SelectBox
             title="Meslek"

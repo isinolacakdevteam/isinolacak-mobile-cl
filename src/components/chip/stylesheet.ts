@@ -37,11 +37,13 @@ const chipStyler = ({
         paddingHorizontal: size === "small" ? spaces.container : spaces.container * 1.5,
         paddingVertical: spaces.content * 1.5,
         borderRadius: radiuses.half + 2,
-        backgroundColor: colors[color]
+        backgroundColor: colors.white,
+        borderColor: colors.stroke,
+        borderWidth: borders.line
     };
 
     let titleProps: TitleProps = {
-        color: "body",
+        color: "textDark",
         style: {
         }
     };
@@ -56,23 +58,23 @@ const chipStyler = ({
         size: 14
     };
 
-    if(titleColor) {
-        iconProps.color = colors[titleColor];
-        iconProps.color = colors[titleColor];
-        titleProps.color = titleColor;
+    if(selected) {
+        if(color) {
+            container.backgroundColor = colors[color];
+            container.borderColor = colors[color];
+            titleProps.color = "white";
+        } else {
+            container.backgroundColor = colors.primary;
+            container.borderColor = colors.primary;
+            titleProps.color = "white";
+        }
+    } else if(color) {
+        titleProps.color = color;
     }
 
-    if(selected) {
-        container = {
-            ...container,
-            backgroundColor: colors.white,
-            borderWidth: borders.line,
-            borderColor: colors.stroke
-        };
-        titleProps = {
-            ...titleProps,
-            color: "textDark"
-        };
+    if(titleColor) {
+        iconProps.color = colors[titleColor];
+        titleProps.color = titleColor;
     }
 
     if(disabled) {
@@ -89,5 +91,4 @@ const chipStyler = ({
         iconProps
     };
 };
-
 export default chipStyler;
