@@ -37,7 +37,7 @@ const chipStyler = ({
         paddingHorizontal: size === "small" ? spaces.container : spaces.container * 1.5,
         paddingVertical: spaces.content * 1.5,
         borderRadius: radiuses.half + 2,
-        backgroundColor: colors.white,
+        backgroundColor: colors.layer2,
         borderColor: colors.stroke,
         borderWidth: borders.line
     };

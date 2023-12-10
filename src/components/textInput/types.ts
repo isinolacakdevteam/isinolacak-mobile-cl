@@ -17,6 +17,7 @@ interface ITextInputProps extends Omit<TextInputProps, "value" | "onChangeText" 
     icon?: IOCoreIconType;
     size?: TextInputSizes;
     initialValue?: string;
+    isShowable?: boolean;
     isRequired?: boolean;
     isOptional?: boolean;
     onFocus?: () => void;

@@ -24,7 +24,7 @@ export const colors: Required<IOCore.ColorsType> = {
     "white":            "#ffffff",
     "backgroundDark":   "#0A0A0C",
     "backgroundLight":  "#1F1F1F",
-    "textDark":         "#191919",
+    "textDark":         "#F5F5F5",
     "textSecondary":    "#9AA6B8",
     "textGrey":         "#8C8C8C",
     "textWhite":        "#FFFFFF",
