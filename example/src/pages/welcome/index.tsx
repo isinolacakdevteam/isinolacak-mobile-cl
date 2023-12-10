@@ -250,6 +250,8 @@ const Welcome = () => {
         <TextInput
             title="Hi Cnm"
             size="medium"
+            isShowable={true}
+            secureTextEntry
         />
     </PageContainer>;
 };

@@ -19,7 +19,9 @@ import {
 } from "../../core";
 import ITextInputProps from "./types";
 import {
-    InfoIcon 
+    InfoIcon,
+    EyeClosedIcon,
+    EyeOpenedIcon
 } from "../../assets/svg";
 
 const TextInput: FC<ITextInputProps> = ({
@@ -30,6 +32,7 @@ const TextInput: FC<ITextInputProps> = ({
     onFocus: onFocusProp,
     onBlur: onBlurProp,
     isRequired = false,
+    isShowable = false,
     disabled = false,
     size = "medium",
     title = "Title",
@@ -56,10 +59,13 @@ const TextInput: FC<ITextInputProps> = ({
 
     const [isFocused, setIsFocused] = useState(false);
     const [value, setValue] = useState(initialValue ? initialValue : "");
+    const [isShowingPassword, setIsShowingPassword] = useState(false);
 
     const inputRef = useRef<NativeTextInput>(null);
 
     const finalTitle = isRequired ? "* " + title : title;
+
+    let secureTextEntry = props.secureTextEntry;
 
     const {
         hintContainerStyle,
@@ -107,6 +113,7 @@ const TextInput: FC<ITextInputProps> = ({
             onFocus={onFocus}
             onBlur={onBlur}
             ref={inputRef}
+            secureTextEntry={isShowable ? secureTextEntry && isShowingPassword : secureTextEntry}
             underlineColorAndroid="rgba(255,255,255,0)"
             editable={!disabled}
             textAlignVertical="bottom"
@@ -204,6 +211,33 @@ const TextInput: FC<ITextInputProps> = ({
         return <IconComponentProp/>;
     };
 
+    const renderSecureIcon = () => {
+
+        if(!isShowable) {
+            return null;
+        }
+
+        if(isShowingPassword && secureTextEntry) {
+            return <TouchableOpacity
+                onPress={() => {
+                    setIsShowingPassword(!isShowingPassword);
+                }}
+            >
+                <EyeClosedIcon/>
+            </TouchableOpacity>;
+        }
+
+        if(!isShowingPassword) {
+            return <TouchableOpacity
+                onPress={() => {
+                    setIsShowingPassword(!isShowingPassword);
+                }}
+            >
+                <EyeOpenedIcon/>
+            </TouchableOpacity>;
+        }
+    };
+ 
     return <TouchableOpacity
         onPress={() =>  inputRef.current?.focus()}
         disabled={disabled}
@@ -229,6 +263,7 @@ const TextInput: FC<ITextInputProps> = ({
             </View>
             {renderOptional()}
             {renderIcon("right")}
+            {renderSecureIcon()}
         </View>
         {renderHint()}
     </TouchableOpacity>;
