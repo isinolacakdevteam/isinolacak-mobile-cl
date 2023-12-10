@@ -45,3 +45,7 @@ export {
 export {
     default as Sticker
 } from "./sticker";
+
+export {
+    default as Chip
+} from "./chip";
