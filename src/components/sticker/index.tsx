@@ -52,7 +52,7 @@ const Sticker: FC<IStickerProps> = ({
     const renderTitle = () => {
         return <Text
             color={titleProps.color}
-            variant="caption"
+            variant="body4-medium"
             style={[
                 titleProps.style
             ]}

@@ -100,7 +100,7 @@ const StateCard: FC<IStateCardProps> = ({
     const renderContent = () => {
         if(typeof content === "string") {
             return <Text
-                variant="body"
+                variant="body2-regular"
                 color="textSecondary"
             >
                 {content}
@@ -117,7 +117,7 @@ const StateCard: FC<IStateCardProps> = ({
     >
         {renderIcon()}
         <Text
-            variant="header6"
+            variant="header5-semiBold"
             color={titleStyler.color}
             style={[
                 titleStyler.style,

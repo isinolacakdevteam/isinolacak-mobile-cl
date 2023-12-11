@@ -62,7 +62,7 @@ const Dialog: FC<IDialogProps> = ({
             ]}
         >
             {headerComponent || <Text
-                variant="header5"
+                variant="header5-regular"
             >
                 {title}
             </Text>}

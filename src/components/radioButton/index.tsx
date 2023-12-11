@@ -20,7 +20,7 @@ const RadioButton: FC<IRadioButtonProps> = ({
     spreadBehaviour = "baseline",
     onChange: onChangeProp,
     isSelected = false,
-    titleType = "body",
+    titleType = "body-regular",
     disabled = false,
     titleStyle,
     title,
