@@ -8,7 +8,7 @@ import ITextProps from "./types";
 import IOCore from "../../core";
 
 const Text: FC<ITextProps> = ({
-    variant = "body",
+    variant = "body-regular",
     children,
     color,
     style,

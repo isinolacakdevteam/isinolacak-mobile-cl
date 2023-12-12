@@ -82,7 +82,7 @@ export const textInputStyler = ({
     };
 
     let titleProps: TitleProps = {
-        titleVariant: value?.length || isFocused ? "body3" : "body",
+        titleVariant: value?.length || isFocused ? "body2-regular" : "body3-regular",
         color: value?.length || isFocused ? "primary" : "textSecondary",
         style: {
         }
@@ -97,7 +97,7 @@ export const textInputStyler = ({
     let input: TextStyle = {
         opacity: value ? 1 : 0.5,
         color: colors.textDark,
-        ...typography.body,
+        ...typography["body2-regular"],
         lineHeight: undefined,
         height: 18
     };

@@ -46,7 +46,7 @@ const switchStyler = ({
         style: {
             marginRight: spaces.content
         },
-        variant: "body3",
+        variant: "body2-regular",
         color: "textGrey"
     };
 
