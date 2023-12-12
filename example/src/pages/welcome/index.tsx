@@ -86,7 +86,7 @@ const Welcome = () => {
             />
 
             <Text
-                variant="header2"
+                variant="header3-medium"
                 style={{
                     marginBottom: spaces.content
                 }}
@@ -94,7 +94,7 @@ const Welcome = () => {
                 {localize("isinolacak-cl")}
             </Text>
             <Text
-                variant="header6"
+                variant="body-regular"
                 color="hideBody"
                 style={[
                     stylesheet.welcomeText,

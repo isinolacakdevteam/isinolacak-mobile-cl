@@ -14,16 +14,46 @@ import {
 import stylesheet from "./stylesheet";
 
 const variants: Array<keyof IOCore.TypographyType> = [
-    "header1",
-    "header2",
-    "header3",
-    "header4",
-    "header5",
-    "header6",
-    "header7",
-    "caption",
-    "body",
-    "body2"
+    "header1-regular",
+    "header1-medium",
+    "header1-semiBold",
+    "header1-bold",
+    "header2-regular",
+    "header2-medium",
+    "header2-semiBold",
+    "header2-bold",
+    "header3-regular",
+    "header3-medium",
+    "header3-semiBold",
+    "header3-bold",
+    "header4-regular",
+    "header4-medium",
+    "header4-semiBold",
+    "header4-bold",
+    "header5-regular",
+    "header5-medium",
+    "header5-semiBold",
+    "header5-bold",
+    "body-regular",
+    "body-medium",
+    "body-semiBold",
+    "body-bold",
+    "body2-regular",
+    "body2-medium",
+    "body2-semiBold",
+    "body2-bold",
+    "body3-regular",
+    "body3-medium",
+    "body3-semiBold",
+    "body3-bold",
+    "body4-regular",
+    "body4-medium",
+    "body4-semiBold",
+    "body4-bold",
+    "caption-regular",
+    "caption-medium",
+    "caption-semiBold",
+    "caption-bold"
 ];
 
 const colorList: Array<keyof IOCore.ColorsType> = [
@@ -56,7 +86,7 @@ const colorList: Array<keyof IOCore.ColorsType> = [
 ];
 
 const Text = () => {
-    const [variant, setVariant]: [keyof IOCore.TypographyType, Dispatch<keyof IOCore.TypographyType>] = useState<keyof IOCore.TypographyType>("header1");
+    const [variant, setVariant]: [keyof IOCore.TypographyType, Dispatch<keyof IOCore.TypographyType>] = useState<keyof IOCore.TypographyType>("header1-regular");
     const [color, setColor]: [keyof IOCore.ColorsType, Dispatch<keyof IOCore.ColorsType>] = useState<keyof IOCore.ColorsType>("primary");
     const [value] = useState("Test Text");
 

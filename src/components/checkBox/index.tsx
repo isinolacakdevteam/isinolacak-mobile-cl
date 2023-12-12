@@ -23,7 +23,7 @@ const CheckBox: FC<ICheckBoxProps> = ({
     spreadBehaviour = "baseline",
     onChange: onChangeProp,
     isSelected = false,
-    titleType = "body",
+    titleType = "body2-regular",
     disabled = false,
     titleStyle,
     title,

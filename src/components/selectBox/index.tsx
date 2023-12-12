@@ -111,7 +111,7 @@ const SelectBox = <T extends {}>({
 
     const renderTitle = () => {
         return <Text
-            variant="body"
+            variant="body3-regular"
             color={titleProps.color}
             style={[
             ]} 
@@ -136,7 +136,7 @@ const SelectBox = <T extends {}>({
 
         return <Text
             color= {contentProps.color}
-            variant="body"
+            variant="body2-regular"
             style={[
                 contentProps.style
             ]}

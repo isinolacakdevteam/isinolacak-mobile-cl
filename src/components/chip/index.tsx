@@ -60,7 +60,7 @@ const Chip: FC<IChipProps> = ({
     const renderTitle = () => {
         return <Text
             color={titleProps.color}
-            variant="body"
+            variant="body2-medium"
             style={[
                 titleProps.style
             ]}

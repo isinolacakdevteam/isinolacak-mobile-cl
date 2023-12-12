@@ -149,7 +149,7 @@ const TextInput: FC<ITextInputProps> = ({
         }
 
         return <Text
-            variant="body3"
+            variant="body3-regular"
             numberOfLines={1}
             color="textGrey"
             style={[
@@ -186,7 +186,7 @@ const TextInput: FC<ITextInputProps> = ({
             }
             
             <Text
-                variant="body3"
+                variant="body3-regular"
                 numberOfLines={1}
                 color={isError ? "error" : hintTextProps.color}
                 style={[
