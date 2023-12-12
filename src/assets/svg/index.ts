@@ -13,3 +13,15 @@ export {
 export {
     default as SearchIcon
 } from "./searcIcon";
+
+export {
+    default as NotificationIcon
+} from "./notificationIcon";
+
+export {
+    default as EyeClosedIcon
+} from "./eyeClosed";
+
+export {
+    default as EyeOpenedIcon
+} from "./eyeOpened";

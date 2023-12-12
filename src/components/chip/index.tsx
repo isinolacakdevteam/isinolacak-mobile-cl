@@ -2,57 +2,65 @@ import React, {
     FC 
 } from "react";
 import {
-    TouchableOpacity,
-    View
+    TouchableOpacity
 } from "react-native";
+import chipStyler, {
+    styles
+} from "./stylesheet";
 import {
     IOCoreTheme 
 } from "../../core";
 import Text from "../text";
 import {
-    IStickerProps 
+    InfoIcon
+} from "../../assets/svg/index";
+import {
+    IChipProps 
 } from "./types";
-import stickerStyler,{
-    styles
-} from "./stylesheet";
 
-const Sticker: FC<IStickerProps> = ({
+const Chip: FC<IChipProps> = ({
     icon: IconComponentProp,
-    spreadBehaviour = "baseline",
     color = "primary",
-    disabled = true,
-    type = "filled",
+    selected = false,
+    closable = false,
+    disabled = false,
+    title = "Chip",
+    size= "small",
     titleColor,
     onPress,
-    title,
     style
 }) => {
     const {
+        disabled: designTokensDisabled,
         radiuses,
-        spaces,
-        colors
+        borders,
+        colors,
+        spaces
     } = IOCoreTheme.useContext();
 
     const {
-        iconContainerStyle,
+        closeIconProps,
         titleProps,
         container,
         iconProps
-    } = stickerStyler({
-        spreadBehaviour,
+    } = chipStyler({
         titleColor,
+        selected,
+        disabled,
+        disabledStyle: designTokensDisabled,
         radiuses,
+        borders,
         spaces,
         colors,
         color,
         style,
-        type
+        size
     });
 
     const renderTitle = () => {
         return <Text
             color={titleProps.color}
-            variant="body4-medium"
+            variant="body2-medium"
             style={[
                 titleProps.style
             ]}
@@ -62,19 +70,31 @@ const Sticker: FC<IStickerProps> = ({
     };
 
     const renderIcon = () => {
+        if(closable) {
+            return null;
+        }
+
         if(!IconComponentProp) {
             return null;
         }
 
-        return <View
-            style={[
-                iconContainerStyle
-            ]}
-        >
-            <IconComponentProp
-                {...iconProps}
-            />
-        </View>;
+        return <IconComponentProp
+            {...iconProps}
+        />;
+    };
+
+    const renderCloseIcon = () => {
+        if(IconComponentProp) {
+            return null;
+        }
+
+        if(!closable) {
+            return null;
+        }
+
+        return <InfoIcon
+            {...closeIconProps}
+        />;
     };
 
     return <TouchableOpacity
@@ -83,10 +103,11 @@ const Sticker: FC<IStickerProps> = ({
             container
         ]}
         disabled={!onPress || disabled}
-        onPress={onPress ? onPress : undefined}
+        onPress={onPress}
     >
         {renderIcon()}
         {renderTitle()}
+        {renderCloseIcon()}
     </TouchableOpacity>;
 };
-export default Sticker;
+export default Chip;

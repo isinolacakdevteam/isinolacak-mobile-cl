@@ -56,65 +56,205 @@ export const colors: Required<IOCore.ColorsType> = {
 };
 
 export const typography: Required<IOCore.TypographyType> = {
-    header1: {
+    "header1-regular": {
+        fontFamily: "Inter-Regular",
+        fontWeight: "400",
+        fontSize: 48
+    },
+    "header1-medium": {
+        fontFamily: "Inter-Medium",
+        fontWeight: "500",
+        fontSize: 48
+    },
+    "header1-semiBold": {
         fontFamily: "Inter-SemiBold",
         fontWeight: "600",
-        fontSize: 50
+        fontSize: 48
     },
-    header2: {
+    "header1-bold": {
         fontFamily: "Inter-Bold",
         fontWeight: "700",
-        fontSize: 41
+        fontSize: 48
     },
-    header3: {
-        fontFamily: "Inter-SemiBold",
-        fontWeight: "600",
-        fontSize: 33
+    "header2-regular": {
+        fontFamily: "Inter-Regular",
+        fontWeight: "400",
+        fontSize: 39
     },
-    header4: {
+    "header2-medium": {
         fontFamily: "Inter-Medium",
         fontWeight: "500",
-        fontSize: 27
+        fontSize: 39
     },
-    header5: {
-        fontFamily: "Inter-Medium",
-        fontWeight: "500",
-        fontSize: 22
-    },
-    header6: {
+    "header2-semiBold": {
         fontFamily: "Inter-SemiBold",
         fontWeight: "600",
-        fontSize: 18
+        fontSize: 39
     },
-    header7: {
+    "header2-bold": {
+        fontFamily: "Inter-Bold",
+        fontWeight: "700",
+        fontSize: 39
+    },
+    "header3-regular": {
+        fontFamily: "Inter-Regular",
+        fontWeight: "400",
+        fontSize: 31
+    },
+    "header3-medium": {
+        fontFamily: "Inter-Medium",
+        fontWeight: "500",
+        fontSize: 31
+    },
+    "header3-semiBold": {
+        fontFamily: "Inter-SemiBold",
+        fontWeight: "600",
+        fontSize: 31
+    },
+    "header3-bold": {
+        fontFamily: "Inter-Bold",
+        fontWeight: "700",
+        fontSize: 31
+    },
+    "header4-regular": {
+        fontFamily: "Inter-Regular",
+        fontWeight: "400",
+        fontSize: 25
+    },
+    "header4-medium": {
+        fontFamily: "Inter-Medium",
+        fontWeight: "500",
+        fontSize: 25
+    },
+    "header4-semiBold": {
+        fontFamily: "Inter-SemiBold",
+        fontWeight: "600",
+        fontSize: 25
+    },
+    "header4-bold": {
+        fontFamily: "Inter-Bold",
+        fontWeight: "700",
+        fontSize: 25
+    },
+    "header5-regular": {
+        fontFamily: "Inter-Regular",
+        fontWeight: "400",
+        fontSize: 20
+    },
+    "header5-medium": {
+        fontFamily: "Inter-Medium",
+        fontWeight: "500",
+        fontSize: 20
+    },
+    "header5-semiBold": {
+        fontFamily: "Inter-SemiBold",
+        fontWeight: "600",
+        fontSize: 20
+    },
+    "header5-bold": {
+        fontFamily: "Inter-Bold",
+        fontWeight: "700",
+        fontSize: 20
+    },
+    "body-regular": {
+        fontFamily: "Inter-Regular",
+        fontWeight: "400",
+        fontSize: 16
+    },
+    "body-medium": {
+        fontFamily: "Inter-Medium",
+        fontWeight: "500",
+        fontSize: 16
+    },
+    "body-semiBold": {
+        fontFamily: "Inter-SemiBold",
+        fontWeight: "600",
+        fontSize: 16
+    },
+    "body-bold": {
         fontFamily: "Inter-Bold",
         fontWeight: "700",
         fontSize: 16
     },
-    body: {
+    "body2-regular": {
         fontFamily: "Inter-Regular",
         fontWeight: "400",
         fontSize: 14
     },
-    body2: {
-        fontFamily: "Inter-Bold",
-        fontWeight: "700",
-        fontSize: 12
-    },
-    body3: {
-        fontFamily: "Inter-Bold",
-        fontWeight: "400",
-        fontSize: 12
-    },
-    button: {
+    "body2-medium": {
         fontFamily: "Inter-Medium",
         fontWeight: "500",
         fontSize: 14
     },
-    caption: {
+    "body2-semiBold": {
+        fontFamily: "Inter-SemiBold",
+        fontWeight: "600",
+        fontSize: 14
+    },
+    "body2-bold": {
+        fontFamily: "Inter-Bold",
+        fontWeight: "700",
+        fontSize: 14
+    },
+    "body3-regular": {
+        fontFamily: "Inter-Regular",
+        fontWeight: "400",
+        fontSize: 12
+    },
+    "body3-medium": {
+        fontFamily: "Inter-Medium",
+        fontWeight: "500",
+        fontSize: 12
+    },
+    "body3-semiBold": {
+        fontFamily: "Inter-SemiBold",
+        fontWeight: "600",
+        fontSize: 12
+    },
+    "body3-bold": {
+        fontFamily: "Inter-Bold",
+        fontWeight: "700",
+        fontSize: 12
+    },
+    "body4-regular": {
+        fontFamily: "Inter-Regular",
+        fontWeight: "400",
+        fontSize: 10
+    },
+    "body4-medium": {
         fontFamily: "Inter-Medium",
         fontWeight: "500",
         fontSize: 10
+    },
+    "body4-semiBold": {
+        fontFamily: "Inter-SemiBold",
+        fontWeight: "600",
+        fontSize: 10
+    },
+    "body4-bold": {
+        fontFamily: "Inter-Bold",
+        fontWeight: "700",
+        fontSize: 10
+    },
+    "caption-regular": {
+        fontFamily: "Inter-Regular",
+        fontWeight: "400",
+        fontSize: 8
+    },
+    "caption-medium": {
+        fontFamily: "Inter-Medium",
+        fontWeight: "500",
+        fontSize: 8
+    },
+    "caption-semiBold": {
+        fontFamily: "Inter-SemiBold",
+        fontWeight: "600",
+        fontSize: 8
+    },
+    "caption-bold": {
+        fontFamily: "Inter-Bold",
+        fontWeight: "700",
+        fontSize: 8
     }
 };
 

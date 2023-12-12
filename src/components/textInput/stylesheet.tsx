@@ -74,15 +74,15 @@ export const textInputStyler = ({
     };
 
     let contentContainer: ViewStyle = {
-        borderColor: isError ? colors.error : isFocused ? colors.primary : colors.black100,
+        borderColor: isError ? colors.error : isFocused ? colors.primary : colors.stroke,
         ...sizeToStyleMapping.contentContainer,
-        backgroundColor: colors.white,
+        backgroundColor: colors.layer2,
         borderRadius: radiuses.half,
         borderWidth: borders.line
     };
 
     let titleProps: TitleProps = {
-        titleVariant: value?.length || isFocused ? "body3" : "body",
+        titleVariant: value?.length || isFocused ? "body2-regular" : "body3-regular",
         color: value?.length || isFocused ? "primary" : "textSecondary",
         style: {
         }
@@ -97,7 +97,7 @@ export const textInputStyler = ({
     let input: TextStyle = {
         opacity: value ? 1 : 0.5,
         color: colors.textDark,
-        ...typography.body,
+        ...typography["body2-regular"],
         lineHeight: undefined,
         height: 18
     };

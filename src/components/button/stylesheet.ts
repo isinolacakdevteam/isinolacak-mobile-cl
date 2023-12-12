@@ -62,7 +62,7 @@ const buttonStyler = ({
 
     let titleProps: TitleProps = {
         color: titleColor,
-        variant: "button",
+        variant: "body2-medium",
         style: {
         }
     };
@@ -113,7 +113,7 @@ const buttonStyler = ({
     };
 
     let loadingProps: LoadingProps = {
-        containerSize: "body2",
+        containerSize: "body2-medium",
         color: colors[titleColor],
         size: "small"
     };

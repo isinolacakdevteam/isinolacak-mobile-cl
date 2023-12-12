@@ -4,7 +4,8 @@ import React, {
 import {
     StatusBar,
     Image,
-    View
+    View,
+    SafeAreaView
 } from 'react-native';
 import {
     PageContainer,
@@ -12,12 +13,14 @@ import {
     RadioButton,
     IOCoreTheme,
     TextInput,
+    StateCard,
     SelectBox,
     CheckBox,
+    Sticker,
     Switch,
     Button,
-    Text,
-    Sticker
+    Chip,
+    Text
 } from "isinolacak-cl";
 import stylesheet from "./stylesheet";
 import {
@@ -27,6 +30,24 @@ import {
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
 import Info from "../../../../src/assets/svg/info";
+import {
+    InfoIcon 
+} from "../../../../src/assets/svg";
+
+const MOCK_DATA_FOR_SELECT_BOX = [
+    {
+        val: "anam"
+    },
+    {
+        val: "babam"
+    },
+    {
+        val: "bee"
+    },
+    {
+        val: "!!!"
+    }
+];
 
 const Welcome = () => {
     const {
@@ -44,181 +65,202 @@ const Welcome = () => {
 
     const [isSelected, setIsSelected] = useState(false);
 
-    return <PageContainer
-        contentContainerStyle={stylesheet.contentContainer}
+    return <SafeAreaView
         style={{
-            backgroundColor: colors.white
+            backgroundColor: colors.layer1,
+            flex: 1
         }}
     >
-        <StatusBar
-            barStyle={activeTheme === "dark" ? "light-content" : "dark-content"}
-            backgroundColor={colors.layer1}
-        />
-
-        <Image
-            source={activeTheme === "dark" ? darkIcon : lightIcon}
-            resizeMode="contain"
-            style={stylesheet.logo}
-        />
-
-        <Text
-            variant="header2"
-            style={{
-                marginBottom: spaces.content
-            }}
+        <PageContainer
+            contentContainerStyle={stylesheet.contentContainer}
         >
-            {localize("isinolacak-cl")}
-        </Text>
-        <Text
-            variant="header6"
-            color="hideBody"
-            style={[
-                stylesheet.welcomeText,
-                {
-                    marginBottom: spaces.content * 4
-                }
-            ]}
-        >
-            {localize("welcome-description")}
-        </Text>
+            <StatusBar
+                barStyle={activeTheme === "dark" ? "light-content" : "dark-content"}
+                backgroundColor={colors.layer1}
+            />
 
-        <View
-            style={[
-                stylesheet.toolsContainer,
-                {
+            <Image
+                source={activeTheme === "dark" ? darkIcon : lightIcon}
+                resizeMode="contain"
+                style={stylesheet.logo}
+            />
+
+            <Text
+                variant="header3-medium"
+                style={{
                     marginBottom: spaces.content
-                }
-            ]}
-        >
-            <Button
-                spreadBehaviour="free"
-                // color={activeTheme === "dark" ? "constrastBody" : "body"}
-                textColor={activeTheme === "dark" ? "body" : "constrastBody"}
-                title={`${localize("active-theme")}: ${activeTheme.charAt(0).toLocaleUpperCase()}${activeTheme.slice(1)}`}
+                }}
+            >
+                {localize("isinolacak-cl")}
+            </Text>
+            <Text
+                variant="body-regular"
+                color="hideBody"
                 style={[
-                    stylesheet.toolButtonLeft,
+                    stylesheet.welcomeText,
                     {
-                        paddingRight: spaces.container / 2,
-                        paddingLeft: spaces.container / 2,
-                        marginRight: spaces.content / 2
+                        marginBottom: spaces.content * 4
                     }
                 ]}
-                size="small"
+            >
+                {localize("welcome-description")}
+            </Text>
+
+            <View
+                style={[
+                    stylesheet.toolsContainer,
+                    {
+                        marginBottom: spaces.content
+                    }
+                ]}
+            >
+                <Button
+                    spreadBehaviour="free"
+                    // color={activeTheme === "dark" ? "constrastBody" : "body"}
+                    textColor={"constrastBody"}
+                    title={`${localize("active-theme")}: ${activeTheme.charAt(0).toLocaleUpperCase()}${activeTheme.slice(1)}`}
+                    style={[
+                        stylesheet.toolButtonLeft,
+                        {
+                            paddingRight: spaces.container / 2,
+                            paddingLeft: spaces.container / 2,
+                            marginRight: spaces.content / 2
+                        }
+                    ]}
+                    size="small"
+                    onPress={() => {
+                        IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
+                    }}
+                />
+                <Button
+                    spreadBehaviour="free"
+                    color="layer2"
+                    textColor="body"
+                    title={`${localize("active-language")}: ${activeLocale.toLocaleUpperCase()}`}
+                    style={[
+                        stylesheet.toolButtonRight,
+                        {
+                            paddingRight: spaces.container / 2,
+                            paddingLeft: spaces.container / 2,
+                            marginLeft: spaces.content / 2
+                        }
+                    ]}
+                    onPress={() => {
+                        IOCoreLocale.switchLocale(activeLocale === "en" ? "tr" : "en");
+                    }}
+                />
+            </View>
+
+            <View
+                style={[
+                    stylesheet.seperator,
+                    {
+                        backgroundColor: colors.seperator,
+                        marginBottom: spaces.content * 2,
+                        marginTop: spaces.content
+                    }
+                ]}
+            />
+
+            <Button
+                spreadBehaviour="stretch"
+                title="Text"
+                color="layer2"
+                textColor="body"
+                style={{
+                    marginBottom: spaces.content
+                }}
+                onPress={() => {
+                    navigation.navigate("Text");
+                }}
+            />
+            <Button
+                spreadBehaviour="stretch"
+                title="Button"
+                color="layer2"
+                textColor="body"
+                style={{
+                    marginBottom: spaces.content
+                }}
                 onPress={() => {
                     IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
                 }}
             />
-            <Button
-                spreadBehaviour="free"
-                color="constrastBody"
-                textColor="body"
-                title={`${localize("active-language")}: ${activeLocale.toLocaleUpperCase()}`}
-                style={[
-                    stylesheet.toolButtonRight,
-                    {
-                        paddingRight: spaces.container / 2,
-                        paddingLeft: spaces.container / 2,
-                        marginLeft: spaces.content / 2
-                    }
-                ]}
+            <Chip
                 onPress={() => {
-                    IOCoreLocale.switchLocale(activeLocale === "en" ? "tr" : "en");
+                    setIsSelected(!isSelected);
+                }}
+                selected={isSelected}
+            />
+            <StateCard
+                title="Deneme"
+                content="SADASDSA DSAD"
+                titleColor="accent"
+                action={{
+                    onPress: () => {
+
+                    },
+                    spreadBehaviour: "free",
+                    title: "Hi Cnm",
+                    size: "small"
+                }}
+                icon={({
+                    color,
+                    size
+                }) => {
+                    return <InfoIcon
+                        color={color}
+                        size={size}
+                    />;
                 }}
             />
-        </View>
-
-        <View
-            style={[
-                stylesheet.seperator,
-                {
-                    backgroundColor: colors.seperator,
-                    marginBottom: spaces.content * 2,
-                    marginTop: spaces.content
-                }
-            ]}
-        />
-
-        <Button
-            spreadBehaviour="stretch"
-            title="Text"
-            color="constrastBody"
-            textColor="body"
-            style={{
-                marginBottom: spaces.content
-            }}
-            onPress={() => {
-                navigation.navigate("Text");
-            }}
-        />
-        <Button
-            spreadBehaviour="stretch"
-            title="Button"
-            color="constrastBody"
-            textColor="body"
-            style={{
-                marginBottom: spaces.content
-            }}
-            onPress={() => {
-                IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
-            }}
-        />
-        <SelectBox
-            title="Meslek"
-            titleExtractor={(item) => item.val}
-            disabled={false}
-            multiSelect={true}
-            maxChoice={2}
-            isNeedConfirm={true}
-            onOk={(_, closeSheet, save) => {
-                closeSheet();
-                save();
-            }}
-            data={[
-                {
-                    val: "anam"
-                },
-                {
-                    val: "babam"
-                },
-                {
-                    val: "bee"
-                },
-                {
-                    val: "!!!"
-                }
-            ]}
-            inputTitle="Mesleğiniz"
-        />
-        <Sticker
-            icon={({
-                color
-            }) => <Info size={12} color={color}/>}
-            title="test"
-        />
-        <TextInput
-            disabled={false}
-            size="medium"
-        />
-        <CheckBox
-            title="Check"
-            isSelected={isSelected}
-            onChange={() => setIsSelected(!isSelected)}
-        />
-        <Switch
-            isActive={isSelected}
-            onPress={() => {
-                setIsSelected(!isSelected);
-            }}
-        />
-        <RadioButton
-            isSelected={isSelected}
-            onChange={() => setIsSelected(!isSelected)}
-            title="Deneme mesajı 123 afakslflksd jglksdfj glsjkdfh glkjsdfg kjdfshg kjdshfg kjldsfhg"
-        />
-        <TextInput
-            title="Hi Cnm"
-            size="medium"
-        />
-    </PageContainer>;
+            <SelectBox
+                title="Meslek"
+                titleExtractor={(item) => item.val}
+                disabled={false}
+                multiSelect={true}
+                maxChoice={2}
+                isNeedConfirm={true}
+                onOk={(_, closeSheet, save) => {
+                    closeSheet();
+                    save();
+                }}
+                data={MOCK_DATA_FOR_SELECT_BOX}
+                inputTitle="Mesleğiniz"
+            />
+            <Sticker
+                icon={({
+                    color
+                }) => <Info size={12} color={color}/>}
+                title="test"
+            />
+            <TextInput
+                disabled={false}
+                size="medium"
+            />
+            <CheckBox
+                title="Check"
+                isSelected={isSelected}
+                onChange={() => setIsSelected(!isSelected)}
+            />
+            <Switch
+                isActive={isSelected}
+                onPress={() => {
+                    setIsSelected(!isSelected);
+                }}
+            />
+            <RadioButton
+                isSelected={isSelected}
+                onChange={() => setIsSelected(!isSelected)}
+                title="Deneme mesajı 123 afakslflksd jglksdfj glsjkdfh glkjsdfg kjdfshg kjdshfg kjldsfhg"
+            />
+            <TextInput
+                title="Hi Cnm"
+                size="medium"
+                isShowable={true}
+                secureTextEntry={true}
+            />
+        </PageContainer>
+    </SafeAreaView>;
 };
 export default Welcome;
