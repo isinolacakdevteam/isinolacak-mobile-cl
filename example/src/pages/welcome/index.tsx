@@ -236,6 +236,7 @@ const Welcome = () => {
             />
             <TextInput
                 disabled={false}
+                placeholder="Deneme"
                 size="medium"
             />
             <CheckBox

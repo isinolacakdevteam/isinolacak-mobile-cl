@@ -163,6 +163,7 @@ declare global {
             warning: string;
             warning50: string;
             error: string;
+            fillsSecondary: string;
             error50: string;
             danger: string;
             success: string;

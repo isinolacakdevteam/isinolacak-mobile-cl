@@ -51,7 +51,7 @@ const switchStyler = ({
     };
 
     let switchContainer: ViewStyle = {
-        backgroundColor: colors.gray80
+        backgroundColor: colors.fillsSecondary
     };
 
     let indicator: ViewStyle = {
