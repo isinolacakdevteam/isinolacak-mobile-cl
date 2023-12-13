@@ -10400,7 +10400,7 @@ __metadata:
     react-native-safe-area-context: 4.6.3
     react-native-screens: ~3.22.0
     react-native-svg: 13.14.0
-    react-native-toast-notifications: ^3.4.0
+    react-native-toast-notifications: 3.4.0
     react-native-web: ~0.19.6
   languageName: unknown
   linkType: soft
@@ -14633,7 +14633,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-toast-notifications@npm:^3.4.0":
+"react-native-toast-notifications@npm:3.4.0, react-native-toast-notifications@npm:^3.4.0":
   version: 3.4.0
   resolution: "react-native-toast-notifications@npm:3.4.0"
   peerDependencies:
