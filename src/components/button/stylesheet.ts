@@ -55,7 +55,7 @@ const buttonStyler = ({
         borderColor: variant !== "ghost" ? colors[color] : "transparent",
         ...SIZE_TO_STYLE_MAPPING[size].container,
         borderWidth: borders.indicator,
-        borderRadius: radiuses.half
+        borderRadius: radiuses.half + 2
     };
 
     let titleColor: keyof IOCore.ColorsType = textColor ? textColor : "body";

@@ -58,7 +58,7 @@ const selectSheetStyler = ({
         borderTopRightRadius: radiuses.hard,
         borderTopLeftRadius: radiuses.hard,
         paddingVertical: spaces.container,
-        backgroundColor: colors.layer1,
+        backgroundColor: colors.white,
         ...pageContainerStyleProp
     };
 

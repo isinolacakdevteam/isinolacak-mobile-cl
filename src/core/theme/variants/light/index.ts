@@ -18,6 +18,7 @@ export const colors: Required<IOCore.ColorsType> = {
     "attention":        "#EB477E",
     "info":             "#4799EB",
     "stroke":           "#E2E2E2",
+    "fillsSecondary":   "#78788052",
     "seperator":        "#cccccc",
     "hideBody":         "hsl(0, 0%, 60%)",
     "black":            "#000000",
