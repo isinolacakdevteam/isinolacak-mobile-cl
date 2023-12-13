@@ -1,7 +1,6 @@
 import React from "react";
 import Svg, {
-    SvgProps,
-    Path 
+    Path
 } from "react-native-svg";
 import { 
     IIOCoreIconPropsType 

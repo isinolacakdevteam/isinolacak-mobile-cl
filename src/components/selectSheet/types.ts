@@ -6,7 +6,7 @@ import {
 } from "react-native-modalize";
 import IPageContainerProps from "../pageContainer/types";
 import {
-    Dispatch, SetStateAction 
+    Dispatch 
 } from "react";
 
 export type SelectSheetRef = {

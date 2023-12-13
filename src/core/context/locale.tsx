@@ -56,6 +56,7 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
             }
         };
 
+        // @ts-ignore
         this.state = newState;
         this.setState(newState);
     };
