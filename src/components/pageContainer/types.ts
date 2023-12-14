@@ -3,8 +3,8 @@ import {
 } from "react-native";
 
 interface IPageContainerProps {
+    children?: JSX.Element | JSX.Element[];
     contentContainerStyle?: ViewStyle;
-    children?: JSX.Element;
     scrollable?: boolean;
     style?: ViewStyle;
 };
