@@ -67,11 +67,10 @@ const RenderWithoutScroll: FC<Omit<IPageContainerProps, "contentContainerStyle" 
     </View>;
 };
 
-const PageContainer = ({
+const PageContainer: FC<IPageContainerProps> = ({
     scrollable = true,
-    children,
     ...props
-}: IPageContainerProps) => {
+}) => {
     return scrollable ? <RenderWithScroll {...props} /> : <RenderWithoutScroll {...props} />;
 };
 export default PageContainer;
