@@ -4,6 +4,7 @@ import {
 
 interface IPageContainerProps {
     contentContainerStyle?: ViewStyle;
+    children?: JSX.Element;
     scrollable?: boolean;
     style?: ViewStyle;
 };
