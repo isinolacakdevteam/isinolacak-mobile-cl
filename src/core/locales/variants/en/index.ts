@@ -25,7 +25,11 @@ const en: {
         "isinolacak-cl": "IOCore Mobile",
         "welcome-description": "Welcome to IOCore Design System Component Library",
         "optional": "Optional",
-        "selectionCount": "Selections"
+        "selectionCount": "Selections",
+        "advert-sticker-announcement": "Announcement",
+        "advert-sticker-featuredAds": "Featured Ad",
+        "advert-sticker-newAd": "New Ad",
+        "advert-sticker-trusted": "Trusted"
     }
 };
 export default en;
