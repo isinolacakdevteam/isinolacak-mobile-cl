@@ -1,10 +1,13 @@
 import {
+    ReactNode 
+} from "react";
+import {
     ViewStyle
 } from "react-native";
 
 interface IPageContainerProps {
     contentContainerStyle?: ViewStyle;
-    children?: JSX.Element;
+    children?: ReactNode;
     scrollable?: boolean;
     style?: ViewStyle;
 };

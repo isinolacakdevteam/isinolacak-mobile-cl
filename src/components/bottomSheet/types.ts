@@ -30,8 +30,9 @@ export type BottomSheetStylerResult = {
     rootStyle: ViewStyle;
 };
 
-interface IBottomSheetProps extends Omit<ModalizeProps, "adjustToContentHeight" | "snapPoint" | "ref"> {
+interface IBottomSheetProps extends Omit<ModalizeProps, "children" | "adjustToContentHeight" | "snapPoint" | "ref"> {
     pageContainerProps?: IPageContainerProps;
+    children?: JSX.Element | JSX.Element[];
     pageContainerStyle?: ViewStyle;
     childrenStyle?: ViewStyle;
     modalStyle?: ViewStyle;

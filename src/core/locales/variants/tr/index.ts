@@ -25,7 +25,11 @@ const tr: {
         "isinolacak-cl": "IOCore Mobil",
         "welcome-description": "IOCore Design Sistem ve Bileşen Kütüphanesi'ne hoş geldiniz.",
         "optional": "Opsiyonel",
-        "selectionCount": "Seçim"
+        "selectionCount": "Seçim",
+        "advert-sticker-announcement": "Duyuru",
+        "advert-sticker-featuredAds": "Öne Çıkan İlan",
+        "advert-sticker-newAd": "Yeni İlan",
+        "advert-sticker-trusted": "Güvenilir"
     }
 };
 export default tr;

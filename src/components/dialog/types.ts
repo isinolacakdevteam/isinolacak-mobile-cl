@@ -1,7 +1,4 @@
 import {
-    ReactNode 
-} from "react";
-import {
     ViewStyle 
 } from "react-native";
 import {
@@ -42,7 +39,7 @@ interface IDialogProps extends PortalizedComponentProps {
     onOverlayPress?: () => void;
     primaryButtonProps?: DialogButton;
     secondaryButtonProps?: DialogButton;
-    headerComponent?: ReactNode;
-    bottomComponent?: ReactNode;
+    headerComponent?: JSX.Element;
+    bottomComponent?: JSX.Element;
 };
 export default IDialogProps;
