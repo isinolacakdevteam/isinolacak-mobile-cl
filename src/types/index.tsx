@@ -276,6 +276,10 @@ declare global {
             "welcome-description": string;
             "optional": string;
             "selectionCount": string;
+            "advert-sticker-announcement": string;
+            "advert-sticker-trusted": string;
+            "advert-sticker-newAd": string;
+            "advert-sticker-featuredAds": string;
         }
     }
 }
