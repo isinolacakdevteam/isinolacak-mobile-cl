@@ -207,6 +207,14 @@ declare global {
             gray98: string;
             gray100: string;
             modalBackground: string;
+            featuredAdFrontColor: string;
+            featuredAdBackColor: string;
+            newAdFrontColor: string;
+            newAdBackColor: string;
+            announcementFrontColor: string;
+            announcementBackColor: string;
+            trustedFrontColor: string;
+            trustedBackColor: string;
         }
 
         type TypograpghyVariantType = {

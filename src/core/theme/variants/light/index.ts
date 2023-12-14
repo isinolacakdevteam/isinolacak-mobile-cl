@@ -3,7 +3,7 @@ export const colors: Required<IOCore.ColorsType> = {
     "secondary":        "#0B2636",
     "body":             "#2A2A2A",
     "constrastBody":    "#F5F5F5",
-    "layer1":           "#E5E5E5",
+    "layer1":           "#FFFFFF",
     "layer2":           "#F2F2F2",
     "layer3":           "#FAFAFA",
     "panel":            "#F2F2F2",
@@ -53,7 +53,15 @@ export const colors: Required<IOCore.ColorsType> = {
     "gray96":           "hsl(0, 0%, 96%)",
     "gray98":           "hsl(0, 0%, 98%)",
     "gray100":          "hsl(0, 0%, 100%)",
-    "modalBackground":  "rgba(0, 0, 0, 0.5)"
+    "modalBackground":  "rgba(0, 0, 0, 0.5)",
+    "featuredAdFrontColor": "#DC2626",
+    "featuredAdBackColor": "#FEF2F2",
+    "newAdFrontColor": "#16A34A",
+    "newAdBackColor": "#F0FDF4",
+    "announcementFrontColor": "#2563EB",
+    "announcementBackColor": "#EFF6FF",
+    "trustedFrontColor": "#0284C7",
+    "trustedBackColor": "#EFF6FF"
 };
 
 export const typography: Required<IOCore.TypographyType> = {
