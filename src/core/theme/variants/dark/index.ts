@@ -53,7 +53,15 @@ export const colors: Required<IOCore.ColorsType> = {
     "gray96":           "hsl(0, 0%, 12%)",
     "gray98":           "hsl(0, 0%, 10%)",
     "gray100":          "hsl(0, 0%, 8%)",
-    "modalBackground":  "rgba(0, 0, 0, 0.5)"
+    "modalBackground":  "rgba(0, 0, 0, 0.5)",
+    "featuredAdFrontColor": "#DC2626",
+    "featuredAdBackColor": "#FEF2F2",
+    "newAdFrontColor": "#16A34A",
+    "newAdBackColor": "#F0FDF4",
+    "announcementFrontColor": "#2563EB",
+    "announcementBackColor": "#EFF6FF",
+    "trustedFrontColor": "#0284C7",
+    "trustedBackColor": "#EFF6FF"
 };
 
 export const typography: Required<IOCore.TypographyType> = {
