@@ -13,6 +13,7 @@ import IPageContainerProps from "./types";
 
 const RenderWithScroll: FC<Omit<IPageContainerProps, "scrollable">> = ({
     contentContainerStyle,
+    scrollViewProps,
     children,
     style
 }) => {
@@ -22,6 +23,7 @@ const RenderWithScroll: FC<Omit<IPageContainerProps, "scrollable">> = ({
     } = IOCoreTheme.useContext();
 
     return <ScrollView
+        {...scrollViewProps}
         style={[
             stylesheet.container,
             {
@@ -29,10 +31,10 @@ const RenderWithScroll: FC<Omit<IPageContainerProps, "scrollable">> = ({
             },
             style
         ]}
-        keyboardShouldPersistTaps="always"
-        keyboardDismissMode="on-drag"
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps={scrollViewProps?.keyboardShouldPersistTaps ? scrollViewProps.keyboardShouldPersistTaps : "always"}
+        keyboardDismissMode={scrollViewProps?.keyboardDismissMode ? scrollViewProps.keyboardDismissMode : "on-drag"}
+        showsHorizontalScrollIndicator={scrollViewProps?.showsHorizontalScrollIndicator ? scrollViewProps.showsHorizontalScrollIndicator : false}
+        showsVerticalScrollIndicator={scrollViewProps?.showsVerticalScrollIndicator ? scrollViewProps.showsVerticalScrollIndicator : false}
         contentContainerStyle={{
             paddingVertical: spaces.container / 2,
             paddingHorizontal: spaces.container,
@@ -45,7 +47,8 @@ const RenderWithScroll: FC<Omit<IPageContainerProps, "scrollable">> = ({
 
 const RenderWithoutScroll: FC<Omit<IPageContainerProps, "contentContainerStyle" | "scrollable">> = ({
     children,
-    style
+    style,
+    ...props
 }) => {
     const {
         colors,
@@ -53,6 +56,7 @@ const RenderWithoutScroll: FC<Omit<IPageContainerProps, "contentContainerStyle" 
     } = IOCoreTheme.useContext();
 
     return <View
+        {...props}
         style={[
             stylesheet.container,
             {
