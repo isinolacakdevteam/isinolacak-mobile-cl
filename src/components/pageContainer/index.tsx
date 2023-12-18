@@ -11,9 +11,10 @@ import {
 } from "../../core";
 import IPageContainerProps from "./types";
 
-const RenderWithScroll: FC<Omit<IPageContainerProps, "scrollable">> = ({
+const RenderWithScroll: FC<Omit<IPageContainerProps, "viewRef" | "scrollable">> = ({
     contentContainerStyle,
     scrollViewProps,
+    scrollViewRef,
     children,
     style
 }) => {
@@ -24,6 +25,7 @@ const RenderWithScroll: FC<Omit<IPageContainerProps, "scrollable">> = ({
 
     return <ScrollView
         {...scrollViewProps}
+        ref={scrollViewRef}
         style={[
             stylesheet.container,
             {
@@ -45,8 +47,9 @@ const RenderWithScroll: FC<Omit<IPageContainerProps, "scrollable">> = ({
     </ScrollView>;
 };
 
-const RenderWithoutScroll: FC<Omit<IPageContainerProps, "contentContainerStyle" | "scrollable">> = ({
+const RenderWithoutScroll: FC<Omit<IPageContainerProps, "contentContainerStyle" | "scrollViewProps" | "scrollViewRef" | "scrollable">> = ({
     children,
+    viewRef,
     style,
     ...props
 }) => {
