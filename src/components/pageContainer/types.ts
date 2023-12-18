@@ -1,16 +1,21 @@
 import {
-    ReactNode 
+    ReactNode,
+    RefObject 
 } from "react";
 import {
     ScrollViewProps,
-    ViewStyle
+    ScrollView,
+    ViewStyle,
+    View
 } from "react-native";
 
 interface IPageContainerProps {
+    scrollViewRef?: RefObject<ScrollView>;
     contentContainerStyle?: ViewStyle;
     scrollViewProps?: ScrollViewProps;
-    children?: ReactNode;
+    viewRef?: RefObject<View>;
     scrollable?: boolean;
+    children?: ReactNode;
     style?: ViewStyle;
 };
 export default IPageContainerProps;
