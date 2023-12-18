@@ -1,4 +1,5 @@
 import React, {
+    ReactNode,
     FC
 } from "react";
 import stylesheet from "./stylesheet";
@@ -45,8 +46,10 @@ class IOCoreInheritance {
         </GestureHandlerRootView>;
     };
 
-    Provider: FC = ({
+    Provider = ({
         children
+    }: {
+        children: ReactNode;
     }) => {
         const IOCoreContext = this.IOCoreContext;
 
