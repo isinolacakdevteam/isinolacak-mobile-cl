@@ -2,6 +2,9 @@ import {
     ViewStyle,
     TextStyle
 } from "react-native";
+import {
+    IOCoreIconType
+} from "../../types";
 
 export type CheckBoxSpreadBehaviour = "baseline" | "stretch" | "free";
 
@@ -10,6 +13,7 @@ export interface ICheckBoxProps {
     onChange?: (isSelected: boolean) => void;
     titleType?: keyof IOCore.TypographyType;
     titleStyle?: TextStyle;
+    icon?: IOCoreIconType;
     isSelected?: boolean;
     disabled?: boolean;
     style?: ViewStyle;

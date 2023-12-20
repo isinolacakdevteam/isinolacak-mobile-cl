@@ -18,12 +18,16 @@ export const stylesheet = StyleSheet.create({
         alignSelf: "stretch",
         paddingVertical: 10,
         minHeight: 60,
-        height: 60,
+        height: 60
     },
     content: {
         justifyContent: "center",
         flexDirection: "column",
         flex: 1
+    },
+    customRenderForIcon: {
+        flexDirection: "row",
+        alignItems: "center"
     }
 });
 

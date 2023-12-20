@@ -1,6 +1,13 @@
 import {
+    ReactNode
+} from "react";
+import {
     ViewStyle
 } from "react-native";
+import {
+    IIOCoreIconPropsType,
+    IOCoreIconType
+} from "../../types";
 
 export type SelectedItem = {
     title: string;
@@ -22,9 +29,24 @@ export interface ISelectBoxProps<T> {
         onSuccess: () => void,
         data: Array<T | SelectBoxInitialData>
     ) => void;
+    renderItem?: (props: Omit<Partial<ISelectBoxProps<T>>, "renderItem" | "renderIcon"> & IIOCoreIconPropsType & {
+        selectedItems: Array<SelectedItem>;
+        isSelected?: boolean;
+        index?: number;
+        item?: T;
+    }) => JSX.Element;
+    renderIcon?: (props: Omit<Partial<ISelectBoxProps<T>>, "renderItem" | "renderIcon"> & IIOCoreIconPropsType & {
+        selectedItems: Array<SelectedItem>;
+        isSelected?: boolean;
+        index?: number;
+        item?: T;
+    }) => IOCoreIconType;
     titleExtractor: (item: T, index: number) => string;
     keyExtractor?: (item: T, index: number) => string;
     onSearch?: (searchText: string) => void;
+    initialSelectedItems?: Array<T & {
+        originalIndex: number;
+    }>;
     isLoadingOKButton?: boolean;
     isNeedConfirm?: boolean;
     multiSelect?: boolean;

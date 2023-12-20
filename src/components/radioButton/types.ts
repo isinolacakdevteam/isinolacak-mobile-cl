@@ -2,6 +2,9 @@ import {
     ViewStyle,
     TextStyle
 } from "react-native";
+import {
+    IOCoreIconType
+} from "../../types";
 
 export type RadioButtonSpreadBehaviour = "baseline" | "stretch" | "free";
 
@@ -10,6 +13,7 @@ export interface IRadioButtonProps {
     onChange?: (isSelected: boolean) => void;
     titleType?: keyof IOCore.TypographyType;
     titleStyle?: TextStyle;
+    icon?: IOCoreIconType;
     isSelected?: boolean;
     disabled?: boolean;
     style?: ViewStyle;

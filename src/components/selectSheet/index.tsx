@@ -53,6 +53,7 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
         childrenStyle: childrenStyleProp,
         modalStyle: modalStyleProp,
         rootStyle: rootStyleProp,
+        renderItem: RenderItem,
         pageContainerProps,
         isLoadingOKButton,
         setSelectedItems,
@@ -63,6 +64,7 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
         autoHeight,
         inputTitle,
         fullScreen,
+        renderIcon,
         maxChoice,
         minChoice,
         children,
@@ -283,11 +285,47 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
     }) => {
         const isSelected = tempSelectedItems.findIndex((c_item) => c_item.key === item.__key) !== -1;
 
+        if(RenderItem) {
+            return RenderItem({
+                onChange: onChange ? () => onChange(selectedItems, renderData) : undefined,
+                onPress: onPress ? () => onPress(selectedItems, renderData) : undefined,
+                onOk: onOk ? () => onOk(
+                    tempSelectedItems,
+                    () => bottomSheetRef.current?.close(),
+                    () => {
+                        setSelectedItems(tempSelectedItems);
+                    },
+                    data
+                ) : undefined,
+                selectedItems,
+                isSelected,
+                index,
+                data,
+                item
+            });
+        }
+
         if(multiSelect) {
             return <CheckBox
                 key={`select-box-item-${index}`}
                 title={item.__title}
                 isSelected={isSelected}
+                icon={renderIcon ? ({
+                    color,
+                    size
+                }) => {
+                    const RenderIcon = renderIcon({
+                        data: renderData,
+                        selectedItems,
+                        isSelected,
+                        index,
+                        color,
+                        size,
+                        item
+                    });
+
+                    return <RenderIcon/>;
+                } : undefined}
                 onChange={() => {
                     _onChange(item);
                 }}
@@ -298,6 +336,22 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
             key={`select-box-item-${index}`}
             title={item.__title}
             isSelected={isSelected}
+            icon={renderIcon ? ({
+                color,
+                size
+            }) => {
+                const RenderIcon = renderIcon({
+                    data: renderData,
+                    selectedItems,
+                    isSelected,
+                    index,
+                    color,
+                    size,
+                    item
+                });
+
+                return <RenderIcon/>;
+            } : undefined}
             onChange={() => {
                 _onChange(item);
             }}
@@ -308,8 +362,8 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
         return <FlatList
             style={stylesheet.selectItemContainer}
             ListHeaderComponent={renderSearch()}
-            data={renderData}
             renderItem={renderItem}
+            data={renderData}
         />;
     };
 

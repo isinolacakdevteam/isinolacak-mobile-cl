@@ -1,4 +1,8 @@
 import {
+    ReactNode,
+    Dispatch
+} from "react";
+import {
     ViewStyle
 } from "react-native";
 import {
@@ -6,8 +10,12 @@ import {
 } from "react-native-modalize";
 import IPageContainerProps from "../pageContainer/types";
 import {
-    Dispatch 
-} from "react";
+    IIOCoreIconPropsType,
+    IOCoreIconType
+} from "../../types";
+import {
+    ISelectBoxProps
+} from "../selectBox/types";
 
 export type SelectSheetRef = {
     close: () => void,
@@ -60,6 +68,18 @@ interface ISelectSheetProps<T> extends Omit<ModalizeProps, "adjustToContentHeigh
         onSuccess: () => void,
         data: Array<T>
     ) => void;
+    renderItem?: (props: Omit<Partial<ISelectBoxProps<T>>, "renderItem" | "renderIcon"> & IIOCoreIconPropsType & {
+        selectedItems: Array<SelectedItem>;
+        isSelected?: boolean;
+        index?: number;
+        item?: T;
+    }) => JSX.Element;
+    renderIcon?: (props: Omit<Partial<ISelectBoxProps<T>>, "renderItem" | "renderIcon"> & IIOCoreIconPropsType & {
+        selectedItems: Array<SelectedItem>;
+        isSelected?: boolean;
+        index?: number;
+        item?: T;
+    }) => IOCoreIconType;
     pageContainerProps?: IPageContainerProps;
     onSearch?: (searchText: string) => void;
     selectedItems: Array<SelectedItem>;
