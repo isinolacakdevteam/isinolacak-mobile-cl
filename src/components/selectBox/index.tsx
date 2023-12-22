@@ -29,6 +29,9 @@ import {
 import {
     uuid 
 } from "../../utils";
+import {
+    SelectObjectType
+} from "../../types";
 
 const SelectBox = <T extends {}>({
     renderIcon: RenderIcon,
@@ -53,11 +56,7 @@ const SelectBox = <T extends {}>({
 }: ISelectBoxProps<T>) => {
     const selectSheetRef = useRef<BottomSheetRef>(null);
 
-    const [data, setData] = useState<Array<T & {
-        __key: string;
-        __title: string;
-        __originalIndex: number;
-    }>>([]);
+    const [data, setData] = useState<Array<T & SelectObjectType>>([]);
 
     const {
         typography,
@@ -228,14 +227,15 @@ const SelectBox = <T extends {}>({
 
     const renderSelectSheet = () => {
         return <SelectSheet
-            renderIcon={RenderIcon ? (props) => RenderIcon(props) : undefined}
-            renderItem={renderItem ? (props) => renderItem(props) : undefined}
             isLoadingOKButton={isLoadingOKButton}
             setSelectedItems={setSelectedItems}
             isNeedConfirm={isNeedConfirm}
             selectedItems={selectedItems}
             multiSelect={multiSelect}
+            initialData={initialData}
             inputTitle={inputTitle}
+            renderIcon={RenderIcon}
+            renderItem={renderItem}
             maxChoice={maxChoice}
             minChoice={minChoice}
             ref={selectSheetRef}
@@ -243,6 +243,7 @@ const SelectBox = <T extends {}>({
             onChange={onChange}
             fullScreen={false}
             withHandle={false}
+            onPress={onPress}
             snapPoint={0}
             data={data}
             onOk={onOk}
