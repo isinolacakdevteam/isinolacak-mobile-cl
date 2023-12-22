@@ -38,6 +38,7 @@ const TextInput: FC<ITextInputProps> = ({
     title = "Title",
     isError = false,
     initialValue,
+    iconOnPress,
     onChangeText,
     isOptional,
     hintText,
@@ -208,7 +209,12 @@ const TextInput: FC<ITextInputProps> = ({
             return null;
         }
 
-        return <IconComponentProp/>;
+        return <TouchableOpacity
+            onPress={iconOnPress}
+            disabled={iconOnPress ? false : true}
+        >
+            <IconComponentProp/>
+        </TouchableOpacity>;
     };
 
     const renderSecureIcon = () => {
