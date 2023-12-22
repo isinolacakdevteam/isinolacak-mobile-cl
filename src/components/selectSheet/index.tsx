@@ -27,7 +27,6 @@ import {
     IOCoreTheme
 } from "../../core";
 import ISelectSheetProps, {
-    SelectSheetInitialData,
     SelectSheetRef
 } from "./types";
 import {
@@ -43,9 +42,12 @@ import {
 import {
     useToast
 } from "react-native-toast-notifications";
+import {
+    SelectObjectType
+} from "../../types";
 
-const SelecetSheet = <T extends SelectSheetInitialData> (
-    properties: ISelectSheetProps<T>,
+const SelecetSheet = <T, K extends T & SelectObjectType>(
+    properties: ISelectSheetProps<T, K>,
     ref: ForwardedRef<SelectSheetRef>
 ) => {
     const {
@@ -53,6 +55,7 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
         childrenStyle: childrenStyleProp,
         modalStyle: modalStyleProp,
         rootStyle: rootStyleProp,
+        renderItem: RenderItem,
         pageContainerProps,
         isLoadingOKButton,
         setSelectedItems,
@@ -60,9 +63,11 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
         isNeedConfirm,
         selectedItems,
         multiSelect,
+        initialData,
         autoHeight,
         inputTitle,
         fullScreen,
+        renderIcon,
         maxChoice,
         minChoice,
         children,
@@ -95,7 +100,7 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
     useEffect(() => {
         if(searchText && searchText.length) {
             let newData = JSON.parse(JSON.stringify(data));
-            newData = newData.filter((item: T) => item.__title.match(new RegExp(searchText, "gi")));
+            newData = newData.filter((item: K) => item.__title.match(new RegExp(searchText, "gi")));
             setRenderData(newData);
         } else {
             setRenderData(data);
@@ -143,7 +148,7 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
         return snapPoint;
     };
 
-    const _onChange = (item: T) => {
+    const _onChange = (item: K) => {
         let _selectedItems = JSON.parse(JSON.stringify(tempSelectedItems));
 
         const isExistsInSelectedData = tempSelectedItems.findIndex(e => e.key === item.__key);
@@ -246,14 +251,14 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
             title={localize("iocore-select-sheet-ok-button")}
             onPress={() => {
                 if(onOk) {
-                    onOk(
-                        tempSelectedItems,
-                        () => bottomSheetRef.current?.close(),
-                        () => {
+                    onOk({
+                        selectedItems: tempSelectedItems,
+                        closeSheet: () => bottomSheetRef.current?.close(),
+                        onSuccess: () => {
                             setSelectedItems(tempSelectedItems);
                         },
-                        data
-                    );
+                        data: data
+                    });
                 } else {
                     setSelectedItems(tempSelectedItems);
                 }
@@ -278,16 +283,52 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
         item,
         index
     }: {
-        item: T,
+        item: K,
         index: number;
     }) => {
         const isSelected = tempSelectedItems.findIndex((c_item) => c_item.key === item.__key) !== -1;
+
+        if(RenderItem) {
+            return RenderItem({
+                onChange: onChange ? () => onChange(selectedItems, renderData) : undefined,
+                onPress: onPress ? () => onPress(selectedItems, renderData) : undefined,
+                onOk: onOk ? () => onOk({
+                    selectedItems: tempSelectedItems,
+                    closeSheet: () => bottomSheetRef.current?.close(),
+                    onSuccess: () => {
+                        setSelectedItems(tempSelectedItems);
+                    },
+                    data: data
+                }) : undefined,
+                selectedItems,
+                isSelected,
+                index,
+                data,
+                item
+            });
+        }
 
         if(multiSelect) {
             return <CheckBox
                 key={`select-box-item-${index}`}
                 title={item.__title}
                 isSelected={isSelected}
+                icon={renderIcon ? ({
+                    color,
+                    size
+                }) => {
+                    const RenderIcon = renderIcon({
+                        data: renderData,
+                        selectedItems,
+                        isSelected,
+                        index,
+                        color,
+                        size,
+                        item
+                    });
+
+                    return <RenderIcon/>;
+                } : undefined}
                 onChange={() => {
                     _onChange(item);
                 }}
@@ -298,6 +339,22 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
             key={`select-box-item-${index}`}
             title={item.__title}
             isSelected={isSelected}
+            icon={renderIcon ? ({
+                color,
+                size
+            }) => {
+                const RenderIcon = renderIcon({
+                    data: renderData,
+                    selectedItems,
+                    isSelected,
+                    index,
+                    color,
+                    size,
+                    item
+                });
+
+                return <RenderIcon/>;
+            } : undefined}
             onChange={() => {
                 _onChange(item);
             }}
@@ -308,8 +365,8 @@ const SelecetSheet = <T extends SelectSheetInitialData> (
         return <FlatList
             style={stylesheet.selectItemContainer}
             ListHeaderComponent={renderSearch()}
-            data={renderData}
             renderItem={renderItem}
+            data={renderData}
         />;
     };
 

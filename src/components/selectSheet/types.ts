@@ -1,4 +1,7 @@
 import {
+    Dispatch
+} from "react";
+import {
     ViewStyle
 } from "react-native";
 import {
@@ -6,8 +9,10 @@ import {
 } from "react-native-modalize";
 import IPageContainerProps from "../pageContainer/types";
 import {
-    Dispatch 
-} from "react";
+    IIOCoreIconPropsType,
+    SelectObjectType,
+    IOCoreIconType
+} from "../../types";
 
 export type SelectSheetRef = {
     close: () => void,
@@ -44,22 +49,46 @@ export type SelectedItem = {
     key: string;
 };
 
-export type SelectSheetInitialData = {
-    __originalIndex: number;
-    __title: string;
-    __key: string;
-};
-
-interface ISelectSheetProps<T> extends Omit<ModalizeProps, "adjustToContentHeight" | "snapPoint" | "ref"> {
-    onChange?: (selectedItems: Array<SelectedItem>, data: Array<T>) => void;
-    onPress?: (selectedItems: Array<SelectedItem>, data: Array<T>) => void;
+interface ISelectSheetProps<T, K extends T & SelectObjectType> extends Omit<ModalizeProps, "adjustToContentHeight" | "snapPoint" | "ref"> {
+    onChange?: (selectedItems: Array<SelectedItem>, data: Array<K>) => void;
+    onPress?: (selectedItems: Array<SelectedItem>, data: Array<K>) => void;
     setSelectedItems: Dispatch<Array<SelectedItem>>;
-    onOk?: (
-        selectedItems: Array<SelectedItem>,
-        closeSheet: () => void,
-        onSuccess: () => void,
-        data: Array<T>
-    ) => void;
+    onOk?: (props: {
+        selectedItems: Array<SelectedItem>;
+        closeSheet: () => void;
+        onSuccess: () => void;
+        data: Array<K>;
+    }) => void;
+    renderItem?: (props: IIOCoreIconPropsType & {
+        onChange?: (selectedItems: Array<SelectedItem>, data: Array<K>) => void;
+        onPress?: (selectedItems: Array<SelectedItem>, data: Array<K>) => void;
+        onOk?: (props: {
+            selectedItems: Array<SelectedItem>;
+            closeSheet: () => void;
+            onSuccess: () => void;
+            data: Array<K>;
+        }) => void;
+        selectedItems: Array<SelectedItem>;
+        isSelected?: boolean;
+        index?: number;
+        data: Array<K>;
+        item?: K;
+    }) => JSX.Element;
+    renderIcon?: (props: IIOCoreIconPropsType & {
+        onChange?: (selectedItems: Array<SelectedItem>, data: Array<K>) => void;
+        onPress?: (selectedItems: Array<SelectedItem>, data: Array<K>) => void;
+        onOk?: (props: {
+            selectedItems: Array<SelectedItem>;
+            closeSheet: () => void;
+            onSuccess: () => void;
+            data: Array<K>;
+        }) => void;
+        selectedItems: Array<SelectedItem>;
+        isSelected?: boolean;
+        index?: number;
+        data: Array<K>;
+        item?: K;
+    }) => IOCoreIconType;
     pageContainerProps?: IPageContainerProps;
     onSearch?: (searchText: string) => void;
     selectedItems: Array<SelectedItem>;
@@ -70,12 +99,13 @@ interface ISelectSheetProps<T> extends Omit<ModalizeProps, "adjustToContentHeigh
     modalStyle?: ViewStyle;
     multiSelect?: boolean;
     rootStyle?: ViewStyle;
+    initialData: Array<T>;
     autoHeight?: boolean;
     fullScreen?: boolean;
     inputTitle?: string;
     maxChoice?: number;
     minChoice?: number;
     snapPoint?: number;
-    data: Array<T>;
+    data: Array<K>;
 };
 export default ISelectSheetProps;

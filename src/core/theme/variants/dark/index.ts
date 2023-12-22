@@ -22,7 +22,7 @@ export const colors: Required<IOCore.ColorsType> = {
     "seperator":        "#333333",
     "hideBody":         "hsl(0, 0%, 40%)",
     "black":            "#000000",
-    "white":            "#ffffff",
+    "white":            "#1F1F1F",
     "backgroundDark":   "#0A0A0C",
     "backgroundLight":  "#1F1F1F",
     "textDark":         "#F5F5F5",

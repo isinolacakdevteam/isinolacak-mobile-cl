@@ -85,6 +85,12 @@ export type IOCoreContextConfigType = {
     key: string;
 };
 
+export type SelectObjectType = {
+    __originalIndex: number;
+    __title: string;
+    __key: string;
+};
+
 export type IOCoreThemeKeyType = IOCore.ThemeKeyType;
 export type IOCoreThemeType = IOCore.ThemeType;
 export type IOCoreTypographyType = IOCore.TypographyType;
