@@ -25,7 +25,7 @@ const Chip: FC<IChipProps> = ({
     closable = false,
     disabled = false,
     title = "Chip",
-    size= "small",
+    size= "medium",
     titleColor,
     onPress,
     style

@@ -34,14 +34,14 @@ const chipStyler = ({
 }: ChipStylerParams): ChipStylerResult => {
     let container: ViewStyle = {
         ...style,
-        paddingHorizontal: size === "small" ? spaces.container : spaces.container * 1.5,
-        paddingVertical: spaces.content * 1.5,
+        paddingHorizontal: spaces.content * 2,
+        paddingVertical: size === "small" ? spaces.content : spaces.content * 1.5,
         borderRadius: radiuses.half + 2,
         backgroundColor: colors.white,
         borderColor: colors.stroke,
         borderWidth: borders.line
     };
-
+    console.error(color);
     let titleProps: TitleProps = {
         color: "textDark",
         style: {
@@ -69,7 +69,7 @@ const chipStyler = ({
             titleProps.color = "white";
         }
     } else if(color) {
-        titleProps.color = color;
+        titleProps.color = "textDark";
     }
 
     if(titleColor) {
