@@ -237,6 +237,7 @@ const Welcome = () => {
             <TextInput
                 disabled={false}
                 placeholder="Deneme"
+                icon={() => <InfoIcon/>}
                 size="medium"
             />
             <CheckBox
@@ -244,11 +245,11 @@ const Welcome = () => {
                 isSelected={isSelected}
                 onChange={() => setIsSelected(!isSelected)}
             />
-            <Switch
-                isActive={isSelected}
-                onPress={() => {
-                    setIsSelected(!isSelected);
-                }}
+            <Chip
+                title="deneme"
+                size="medium"
+                selected={isSelected}
+                onPress={() => setIsSelected(!isSelected)}
             />
             <RadioButton
                 isSelected={isSelected}

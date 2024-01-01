@@ -13,6 +13,7 @@ interface ITextInputProps extends Omit<TextInputProps, "value" | "onChangeText" 
     onChangeText?: (value: string) => void;
     iconDirection?: "left" | "right";
     hintIcon?: IOCoreIconType;
+    iconOnPress?: () => void;
     clearEnabled?: boolean;
     icon?: IOCoreIconType;
     size?: TextInputSizes;

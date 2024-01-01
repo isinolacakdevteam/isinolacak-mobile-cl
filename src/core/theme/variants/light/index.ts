@@ -4,7 +4,7 @@ export const colors: Required<IOCore.ColorsType> = {
     "body":             "#2A2A2A",
     "constrastBody":    "#F5F5F5",
     "layer1":           "#FFFFFF",
-    "layer2":           "#F2F2F2",
+    "layer2":           "#ffffff",
     "layer3":           "#FAFAFA",
     "panel":            "#F2F2F2",
     "warning":          "#F8AA1C",
