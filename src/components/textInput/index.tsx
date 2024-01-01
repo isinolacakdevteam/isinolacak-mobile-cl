@@ -32,13 +32,13 @@ const TextInput: FC<ITextInputProps> = ({
     icon: IconComponentProp,
     iconDirection = "left",
     hintIcon: HintIconProp,
+    renderInfoSheetContent,
     clearEnabled = false,
     onFocus: onFocusProp,
     isInfoSheet = false,
     onBlur: onBlurProp,
     isRequired = false,
     isShowable = false,
-    infoSheetChildren,
     disabled = false,
     size = "medium",
     title = "Title",
@@ -229,7 +229,7 @@ const TextInput: FC<ITextInputProps> = ({
         if(!isInfoSheet) {
             return null;
         }
-        if(!infoSheetChildren) {
+        if(!renderInfoSheetContent) {
             return null;
         }
 
@@ -249,7 +249,7 @@ const TextInput: FC<ITextInputProps> = ({
     };
 
     const renderInfoSheet = () => {
-        if(!infoSheetChildren) {
+        if(!renderInfoSheetContent) {
             return null;
         }
 

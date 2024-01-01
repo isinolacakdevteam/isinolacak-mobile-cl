@@ -16,7 +16,7 @@ interface ITextInputProps extends Omit<TextInputProps, "value" | "onChangeText" 
     onChangeText?: (value: string) => void;
     iconDirection?: "left" | "right";
     infoSheetIcon?: IOCoreIconType;
-    infoSheetChildren?: () => ReactNode;
+    renderInfoSheetContent?: () => ReactNode;
     hintIcon?: IOCoreIconType;
     iconOnPress?: () => void;
     clearEnabled?: boolean;
