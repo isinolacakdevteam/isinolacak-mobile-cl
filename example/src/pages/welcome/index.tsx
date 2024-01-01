@@ -259,8 +259,24 @@ const Welcome = () => {
             <TextInput
                 title="Hi Cnm"
                 size="medium"
-                isShowable={true}
-                secureTextEntry={true}
+                isInfoSheet={true}
+                infoSheetChildren={() => {
+                    return <View
+                        style={{
+                            alignContent: "center",
+                            justifyContent: "center",
+                            alignSelf: "center",
+                            alignItems: "center",
+                        }}
+                    >
+                        <Text
+                            style={{
+                            }}
+                        >
+                            dsdsd
+                        </Text>
+                    </View>;
+                }}
             />
         </PageContainer>
     </SafeAreaView>;

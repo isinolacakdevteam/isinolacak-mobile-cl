@@ -6,15 +6,21 @@ import {
 import {
     IOCoreIconType
 } from "../../types";
+import {
+    ReactNode 
+} from "react";
 
 export type TextInputSizes = "small" | "medium" | "large";
 
 interface ITextInputProps extends Omit<TextInputProps, "value" | "onChangeText" | "onFocus" | "onBlur" | "multiline"> {
     onChangeText?: (value: string) => void;
     iconDirection?: "left" | "right";
+    infoSheetIcon?: IOCoreIconType;
+    infoSheetChildren?: () => ReactNode;
     hintIcon?: IOCoreIconType;
     iconOnPress?: () => void;
     clearEnabled?: boolean;
+    isInfoSheet?: boolean;
     icon?: IOCoreIconType;
     size?: TextInputSizes;
     initialValue?: string;
