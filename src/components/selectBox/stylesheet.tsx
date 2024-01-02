@@ -40,7 +40,7 @@ const selectBoxStyler = ({
 }: SelectBoxStylerParams): SelectBoxStylerResult => {
     let container: ViewStyle = {
         backgroundColor: colors.white,
-        borderRadius: radiuses.half + 2,
+        borderRadius: radiuses.half * 1.5,
         borderColor: colors.stroke,
         borderWidth: borders.line
     };
