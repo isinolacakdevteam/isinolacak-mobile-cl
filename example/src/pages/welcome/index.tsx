@@ -260,7 +260,7 @@ const Welcome = () => {
                 title="Hi Cnm"
                 size="medium"
                 isInfoSheet={true}
-                infoSheetChildren={() => {
+                renderInfoSheetContent={() => {
                     return <View
                         style={{
                             alignContent: "center",

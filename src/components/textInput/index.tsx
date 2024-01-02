@@ -25,10 +25,11 @@ import {
 } from "../../assets/svg";
 import BottomSheet from "../bottomSheet";
 import {
-    BottomSheetRef 
+    BottomSheetRef
 } from "../bottomSheet/types";
 
 const TextInput: FC<ITextInputProps> = ({
+    infoSheetIcon: InfoSheetComponentProp,
     icon: IconComponentProp,
     iconDirection = "left",
     hintIcon: HintIconProp,
@@ -43,7 +44,6 @@ const TextInput: FC<ITextInputProps> = ({
     size = "medium",
     title = "Title",
     isError = false,
-    infoSheetIcon: InfoSheetComponentProp,
     initialValue,
     iconOnPress,
     onChangeText,
@@ -61,7 +61,7 @@ const TextInput: FC<ITextInputProps> = ({
         colors
     } = IOCoreTheme.useContext();
 
-    const  {
+    const {
         localize
     } = IOCoreLocale.useContext();
 
@@ -229,9 +229,6 @@ const TextInput: FC<ITextInputProps> = ({
         if(!isInfoSheet) {
             return null;
         }
-        if(!renderInfoSheetContent) {
-            return null;
-        }
 
         return <TouchableOpacity
             onPress={() => {
@@ -242,7 +239,7 @@ const TextInput: FC<ITextInputProps> = ({
                 InfoSheetComponentProp ? 
                     <InfoSheetComponentProp/> : 
                     <InfoIcon
-                        size={15}
+                        size={22}
                     />
             }
         </TouchableOpacity>;
@@ -265,8 +262,9 @@ const TextInput: FC<ITextInputProps> = ({
             scrollViewProps={{
                 scrollEnabled: false
             }}
-            children={infoSheetChildren()}
-        />;
+        >
+            {renderInfoSheetContent()}
+        </BottomSheet>;
     };
 
     const renderSecureIcon = () => {
