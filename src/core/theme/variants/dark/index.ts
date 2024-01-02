@@ -279,9 +279,9 @@ export const designTokens: Required<IOCore.DesignTokensType> = {
         line: 1
     },
     radiuses: {
-        quarter: 5,
-        hard: 20,
-        half: 10
+        quarter: 4,
+        hard: 12,
+        half: 8
     },
     disabled: {
         opacity: 0.33

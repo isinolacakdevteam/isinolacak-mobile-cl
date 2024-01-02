@@ -35,7 +35,7 @@ const stickerStyler = ({
         borderColor: type !== "ghost" ? colors[color] : "transparent",
         borderWidth: type === "outline" ? 1 : 0,
         paddingHorizontal: spaces.inline * 1.5,
-        borderRadius: radiuses.quarter -1,
+        borderRadius: radiuses.quarter,
         paddingVertical: spaces.inline
     };
 

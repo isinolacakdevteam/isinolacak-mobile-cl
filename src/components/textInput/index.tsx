@@ -23,13 +23,20 @@ import {
     EyeClosedIcon,
     InfoIcon
 } from "../../assets/svg";
+import BottomSheet from "../bottomSheet";
+import {
+    BottomSheetRef
+} from "../bottomSheet/types";
 
 const TextInput: FC<ITextInputProps> = ({
+    infoSheetIcon: InfoSheetComponentProp,
     icon: IconComponentProp,
     iconDirection = "left",
     hintIcon: HintIconProp,
+    renderInfoSheetContent,
     clearEnabled = false,
     onFocus: onFocusProp,
+    isInfoSheet = false,
     onBlur: onBlurProp,
     isRequired = false,
     isShowable = false,
@@ -54,7 +61,7 @@ const TextInput: FC<ITextInputProps> = ({
         colors
     } = IOCoreTheme.useContext();
 
-    const  {
+    const {
         localize
     } = IOCoreLocale.useContext();
 
@@ -63,8 +70,9 @@ const TextInput: FC<ITextInputProps> = ({
     const [isShowingPassword, setIsShowingPassword] = useState(false);
 
     const inputRef = useRef<NativeTextInput>(null);
+    const infoSheetRef = useRef<BottomSheetRef>(null);
 
-    const finalTitle = isRequired ? "* " + title : title;
+    const finalTitle = isRequired ? title + " *" : title;
 
     let secureTextEntry = props.secureTextEntry;
 
@@ -217,6 +225,48 @@ const TextInput: FC<ITextInputProps> = ({
         </TouchableOpacity>;
     };
 
+    const renderInfoSheetIcon = () => {
+        if(!isInfoSheet) {
+            return null;
+        }
+
+        return <TouchableOpacity
+            onPress={() => {
+                infoSheetRef.current?.open();
+            }}
+        >
+            {
+                InfoSheetComponentProp ? 
+                    <InfoSheetComponentProp/> : 
+                    <InfoIcon
+                        size={22}
+                    />
+            }
+        </TouchableOpacity>;
+    };
+
+    const renderInfoSheet = () => {
+        if(!renderInfoSheetContent) {
+            return null;
+        }
+
+        return <BottomSheet
+            ref={infoSheetRef}
+            handlePosition="inside"
+            pageContainerProps={{
+                scrollable: false
+            }}
+            handleStyle={{
+                backgroundColor: colors.textGrey
+            }}
+            scrollViewProps={{
+                scrollEnabled: false
+            }}
+        >
+            {renderInfoSheetContent()}
+        </BottomSheet>;
+    };
+
     const renderSecureIcon = () => {
         if(!isShowable || !secureTextEntry) {
             return null;
@@ -266,9 +316,11 @@ const TextInput: FC<ITextInputProps> = ({
             </View>
             {renderOptional()}
             {renderIcon("right")}
+            {renderInfoSheetIcon()}
             {renderSecureIcon()}
         </View>
         {renderHint()}
+        {renderInfoSheet()}
     </TouchableOpacity>;
 };
 export default TextInput;

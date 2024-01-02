@@ -247,7 +247,7 @@ const Welcome = () => {
             />
             <Chip
                 title="deneme"
-                size="medium"
+                size="small"
                 selected={isSelected}
                 onPress={() => setIsSelected(!isSelected)}
             />
@@ -259,8 +259,25 @@ const Welcome = () => {
             <TextInput
                 title="Hi Cnm"
                 size="medium"
-                isShowable={true}
-                secureTextEntry={true}
+                isInfoSheet={true}
+                isRequired={true}
+                renderInfoSheetContent={() => {
+                    return <View
+                        style={{
+                            alignContent: "center",
+                            justifyContent: "center",
+                            alignSelf: "center",
+                            alignItems: "center",
+                        }}
+                    >
+                        <Text
+                            style={{
+                            }}
+                        >
+                            dsdsd
+                        </Text>
+                    </View>;
+                }}
             />
         </PageContainer>
     </SafeAreaView>;
