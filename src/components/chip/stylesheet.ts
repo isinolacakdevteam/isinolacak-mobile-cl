@@ -41,7 +41,7 @@ const chipStyler = ({
         borderColor: colors.stroke,
         borderWidth: borders.line
     };
-    console.error(color);
+    
     let titleProps: TitleProps = {
         color: "textDark",
         style: {
