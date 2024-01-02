@@ -260,6 +260,7 @@ const Welcome = () => {
                 title="Hi Cnm"
                 size="medium"
                 isInfoSheet={true}
+                isRequired={true}
                 renderInfoSheetContent={() => {
                     return <View
                         style={{
