@@ -31,6 +31,7 @@ const CheckBox: FC<ICheckBoxProps> = ({
 }) => {
     const {
         disabled: designTokensDisabled,
+        radiuses,
         borders,
         spaces,
         colors
@@ -46,6 +47,7 @@ const CheckBox: FC<ICheckBoxProps> = ({
         spreadBehaviour,
         titleStyle,
         isSelected,
+        radiuses,
         disabled,
         borders,
         colors,

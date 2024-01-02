@@ -18,7 +18,7 @@ import {
 
 export type ButtonSpreadBehaviour = "baseline" | "stretch" | "free";
 export type ButtonVariant = "filled" | "outline" | "ghost";
-export type ButtonSize = "small" | "medium" | "large";
+export type ButtonSize = "small" | "medium" | "large" | "xSmall";
 
 export interface IButtonProps {
     displayBehaviourWhileLoading?: ButtonDisplayBehaviourWhileLoading;
@@ -88,6 +88,7 @@ export type ButtonStyle = {
 };
 
 export type ButtonStyleMappingType = {
+    xSmall: ButtonStyle;
     small: ButtonStyle;
     medium: ButtonStyle;
     large: ButtonStyle;

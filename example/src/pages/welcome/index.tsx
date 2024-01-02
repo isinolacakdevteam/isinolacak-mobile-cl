@@ -247,7 +247,7 @@ const Welcome = () => {
             />
             <Chip
                 title="deneme"
-                size="medium"
+                size="small"
                 selected={isSelected}
                 onPress={() => setIsSelected(!isSelected)}
             />
