@@ -72,7 +72,7 @@ const TextInput: FC<ITextInputProps> = ({
     const inputRef = useRef<NativeTextInput>(null);
     const infoSheetRef = useRef<BottomSheetRef>(null);
 
-    const finalTitle = isRequired ? "* " + title : title;
+    const finalTitle = isRequired ? title + " *" : title;
 
     let secureTextEntry = props.secureTextEntry;
 

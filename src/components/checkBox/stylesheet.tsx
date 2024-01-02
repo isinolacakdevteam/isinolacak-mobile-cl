@@ -18,14 +18,12 @@ export const stylesheet = StyleSheet.create({
     checkContainer: {
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: 4,
         height: 24,
         width: 24
     },
     checkIndicator: {
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: 4,
         height: 24,
         width: 24
     },
@@ -40,6 +38,7 @@ const checkBoxStyler = ({
     disabledStyle,
     titleStyle,
     disabled,
+    radiuses,
     borders,
     colors,
     spaces
@@ -50,11 +49,13 @@ const checkBoxStyler = ({
 
     let checkContainer: ViewStyle = {
         backgroundColor: colors.backgroundLight,
+        borderRadius: radiuses.quarter,
         borderWidth: borders.line,
         borderColor: colors.stroke
     };
 
     let checkIndicator: ViewStyle = {
+        borderRadius: radiuses.quarter,
         backgroundColor: colors.primary
     };
 

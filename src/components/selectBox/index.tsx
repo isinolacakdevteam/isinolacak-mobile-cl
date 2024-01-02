@@ -139,6 +139,7 @@ const SelectBox = <T extends {}>({
         return <Text
             variant="body3-regular"
             color={titleProps.color}
+            numberOfLines={1}
             style={[
             ]} 
         >

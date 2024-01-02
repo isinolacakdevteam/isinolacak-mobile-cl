@@ -247,7 +247,7 @@ const Welcome = () => {
             />
             <Chip
                 title="deneme"
-                size="medium"
+                size="small"
                 selected={isSelected}
                 onPress={() => setIsSelected(!isSelected)}
             />
@@ -260,6 +260,7 @@ const Welcome = () => {
                 title="Hi Cnm"
                 size="medium"
                 isInfoSheet={true}
+                isRequired={true}
                 renderInfoSheetContent={() => {
                     return <View
                         style={{
