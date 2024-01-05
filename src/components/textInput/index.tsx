@@ -122,7 +122,7 @@ const TextInput: FC<ITextInputProps> = ({
             onFocus={onFocus}
             onBlur={onBlur}
             ref={inputRef}
-            secureTextEntry={isShowable ? secureTextEntry && isShowingPassword : secureTextEntry}
+            secureTextEntry={isShowable ? secureTextEntry && !isShowingPassword : secureTextEntry}
             underlineColorAndroid="rgba(255,255,255,0)"
             editable={!disabled}
             textAlignVertical="bottom"
@@ -278,7 +278,7 @@ const TextInput: FC<ITextInputProps> = ({
                     setIsShowingPassword(!isShowingPassword);
                 }}
             >
-                <EyeOpenedIcon/>
+                <EyeClosedIcon/>
             </TouchableOpacity>;
         };
 
@@ -287,7 +287,7 @@ const TextInput: FC<ITextInputProps> = ({
                 setIsShowingPassword(!isShowingPassword);
             }}
         >
-            <EyeClosedIcon/>
+            <EyeOpenedIcon/>
         </TouchableOpacity>;
     };
  
