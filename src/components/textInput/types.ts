@@ -6,9 +6,6 @@ import {
 import {
     IOCoreIconType
 } from "../../types";
-import {
-    ReactNode 
-} from "react";
 
 export type TextInputSizes = "small" | "medium" | "large";
 
