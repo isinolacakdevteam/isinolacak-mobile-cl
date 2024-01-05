@@ -238,6 +238,8 @@ const Welcome = () => {
                 disabled={false}
                 placeholder="Deneme"
                 icon={() => <InfoIcon/>}
+                secureTextEntry={true}
+                isShowable={true}
                 size="medium"
             />
             <CheckBox
