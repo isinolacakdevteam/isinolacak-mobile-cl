@@ -30,6 +30,7 @@ export {
     TextInput,
     SelectBox,
     StateCard,
+    TextArea,
     CheckBox,
     Sticker,
     Dialog,
