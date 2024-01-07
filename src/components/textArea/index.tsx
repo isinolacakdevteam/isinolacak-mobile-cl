@@ -14,7 +14,6 @@ import {
 } from "./stylesheet";
 import Text from "../text";
 import {
-    IOCoreLocale,
     IOCoreTheme
 } from "../../core";
 import ITextAreaProps from "./types";
@@ -44,9 +43,11 @@ const TextArea: FC<ITextAreaProps> = ({
         colors
     } = IOCoreTheme.useContext();
 
+    /*
     const {
         localize
     } = IOCoreLocale.useContext();
+    */
 
     const [isFocused, setIsFocused] = useState(false);
     const [value, setValue] = useState(initialValue ? initialValue : "");
@@ -55,7 +56,7 @@ const TextArea: FC<ITextAreaProps> = ({
 
     const finalTitle = isRequired ? title + " *" : title;
 
-    let secureTextEntry = props.secureTextEntry;
+    // let secureTextEntry = props.secureTextEntry;
 
     const {
         contentContainer,
