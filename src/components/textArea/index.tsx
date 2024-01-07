@@ -92,15 +92,13 @@ const TextArea: FC<ITextAreaProps> = ({
             value={value}
             multiline={true}
             onChangeText={e => {
-                if(isTextLimit && textLimit === value.length - 1 || textLimit < value.length) {
-                    return null;
-                }
                 if(onChangeText) onChangeText(e);
                 setValue(e);
             }}
             onFocus={onFocus}
             onBlur={onBlur}
             ref={inputRef}
+            maxLength={textLimit ? textLimit : undefined}
             underlineColorAndroid="rgba(255,255,255,0)"
             editable={!disabled}
             textAlignVertical="bottom"
