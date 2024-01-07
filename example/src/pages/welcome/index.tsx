@@ -20,7 +20,8 @@ import {
     Switch,
     Button,
     Chip,
-    Text
+    Text,
+    TextArea
 } from "isinolacak-cl";
 import stylesheet from "./stylesheet";
 import {
@@ -234,13 +235,12 @@ const Welcome = () => {
                 }) => <Info size={12} color={color}/>}
                 title="test"
             />
-            <TextInput
+            <TextArea
                 disabled={false}
-                placeholder="Deneme"
-                icon={() => <InfoIcon/>}
-                secureTextEntry={true}
-                isShowable={true}
-                size="medium"
+                title="Deneme"
+                isTextLimit={true}
+                textLimit={100}
+                numberOfLines={10}
             />
             <CheckBox
                 title="Check"

@@ -53,3 +53,7 @@ export {
 export {
     default as StateCard
 } from "./stateCard";
+
+export {
+    default as TextArea
+} from "./textArea";
