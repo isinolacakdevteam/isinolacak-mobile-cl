@@ -4,7 +4,7 @@ import React, {
 import {
     View
 } from "react-native";
-import radioButtonStyler, {
+import badgeHOCStyler, {
     stylesheet
 } from "./stylesheet";
 import {
@@ -16,6 +16,7 @@ import {
 import Text from "../text";
 
 const BadgeHOC: FC<IBadgeHOCProps> = ({
+    spreadBehaviour ="baseline",
     isActive = true,
     borderColor,
     location,
@@ -23,9 +24,9 @@ const BadgeHOC: FC<IBadgeHOCProps> = ({
     color,
     count,
     style,
+    size = 20
 }) => {
     const {
-        disabled: designTokensDisabled,
         radiuses,
         borders,
         spaces,
@@ -33,12 +34,20 @@ const BadgeHOC: FC<IBadgeHOCProps> = ({
     } = IOCoreTheme.useContext();
 
     const {
+        badgeContainer,
+        textStyler,
         container
-    } = radioButtonStyler({
-        disabledStyle: designTokensDisabled,
+    } = badgeHOCStyler({
+        spreadBehaviour,
+        borderColor,
+        radiuses,
+        location,
         borders,
+        spaces,
         colors,
-        spaces
+        count,
+        color,
+        size
     });
 
     const renderBadge = () => {
@@ -47,26 +56,13 @@ const BadgeHOC: FC<IBadgeHOCProps> = ({
         }
 
         return <View
-            style={{
-                backgroundColor: color ? color : colors.primary,
-                borderColor: borderColor ? borderColor : colors.white,
-                top: spaces.container,
-                right: spaces.container,
-                position: "absolute",
-                borderRadius: radiuses.hard * 3,
-                justifyContent: "center",
-                borderWidth: borders.line,
-                width: 30,
-                height: 30,
-                ...location
-            }}
+            style={badgeContainer}
         >
             {count ? 
                 <Text
                     color="textWhite"
-                    style={{
-                        textAlign: "center"
-                    }}
+                    variant="body4-medium"
+                    style={textStyler}
                 >
                     {count}
                 </Text>

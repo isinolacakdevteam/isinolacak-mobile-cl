@@ -14,14 +14,10 @@ import {
     IOCoreTheme,
     TextInput,
     StateCard,
-    SelectBox,
     CheckBox,
-    Sticker,
-    Switch,
     Button,
     Chip,
     Text,
-    TextArea,
     BadgeHOC
 } from "isinolacak-cl";
 import stylesheet from "./stylesheet";
@@ -31,25 +27,9 @@ import {
 } from "@react-navigation/native";
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
-import Info from "../../../../src/assets/svg/info";
 import {
     InfoIcon 
 } from "../../../../src/assets/svg";
-
-const MOCK_DATA_FOR_SELECT_BOX = [
-    {
-        val: "anam"
-    },
-    {
-        val: "babam"
-    },
-    {
-        val: "bee"
-    },
-    {
-        val: "!!!"
-    }
-];
 
 const Welcome = () => {
     const {
@@ -220,27 +200,7 @@ const Welcome = () => {
                     />;
                 }}
             />
-            <BadgeHOC
-                location={{
-                    top: 0,
-                    right: -5
-                }}
-                count={5}
-            >
-                <Sticker
-                    icon={({
-                        color
-                    }) => <Info size={12} color={color}/>}
-                    title="test"
-                />
-            </BadgeHOC>
-            <TextArea
-                disabled={false}
-                title="Deneme"
-                isTextLimit={true}
-                textLimit={100}
-                numberOfLines={10}
-            />
+           
             <CheckBox
                 title="Check"
                 isSelected={isSelected}

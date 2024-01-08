@@ -2,28 +2,41 @@ import {
     ViewStyle
 } from "react-native";
 import {
-    IOCoreColorsType,
-    IOCoreIconType
+    IOCoreColorsType
 } from "../../types";
+import {
+    TextStyle 
+} from "react-native";
 
+export type BadgeHOCSpreadBehaviour = "baseline" | "stretch" | "free";
 export interface IBadgeHOCProps {
+    spreadBehaviour?: BadgeHOCSpreadBehaviour;
     children: JSX.Element | JSX.Element[];
-    borderColor?: IOCoreColorsType;
-    color?: IOCoreColorsType;
+    borderColor?: keyof IOCoreColorsType;
+    color?: keyof IOCoreColorsType;
     location?: LocationType,
     isActive?: Boolean;
     style?: ViewStyle;
     count?: number;
+    size?: number;
 };
 
 export type BadgeHOCStylerParams = {
-    disabledStyle: IOCore.DisabledTokensType;
+    spreadBehaviour?: BadgeHOCSpreadBehaviour;
+    borderColor?: keyof IOCore.ColorsType;
+    radiuses: IOCore.RadiusesTokensType;
     borders: IOCore.BordersTokensType;
     spaces: IOCore.SpacesTokensType;
-    colors: IOCoreColorsType;
+    color?: keyof IOCore.ColorsType;
+    colors: IOCore.ColorsType
+    location?: LocationType;
+    count?: number;
+    size: number;
 };
 
 export type BadgeHOCStylerResult = {
+    badgeContainer: ViewStyle;
+    textStyler: TextStyle;
     container: ViewStyle;
 };
 
