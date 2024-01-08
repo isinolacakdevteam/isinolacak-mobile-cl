@@ -31,6 +31,7 @@ export {
     SelectBox,
     StateCard,
     TextArea,
+    BadgeHOC,
     CheckBox,
     Sticker,
     Dialog,

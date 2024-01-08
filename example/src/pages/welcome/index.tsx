@@ -21,7 +21,8 @@ import {
     Button,
     Chip,
     Text,
-    TextArea
+    TextArea,
+    BadgeHOC
 } from "isinolacak-cl";
 import stylesheet from "./stylesheet";
 import {
@@ -187,12 +188,16 @@ const Welcome = () => {
                     IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
                 }}
             />
-            <Chip
-                onPress={() => {
-                    setIsSelected(!isSelected);
-                }}
-                selected={isSelected}
-            />
+            <BadgeHOC
+                isActive={true}
+            >
+                <Chip
+                    onPress={() => {
+                        setIsSelected(!isSelected);
+                    }}
+                    selected={isSelected}
+                />
+            </BadgeHOC>
             <StateCard
                 title="Deneme"
                 content="SADASDSA DSAD"
@@ -215,26 +220,20 @@ const Welcome = () => {
                     />;
                 }}
             />
-            <SelectBox
-                title="Meslek"
-                titleExtractor={(item) => item.val}
-                disabled={false}
-                multiSelect={true}
-                maxChoice={2}
-                isNeedConfirm={true}
-                onOk={(_, closeSheet, save) => {
-                    closeSheet();
-                    save();
+            <BadgeHOC
+                location={{
+                    top: 0,
+                    right: -5
                 }}
-                data={MOCK_DATA_FOR_SELECT_BOX}
-                inputTitle="Mesleğiniz"
-            />
-            <Sticker
-                icon={({
-                    color
-                }) => <Info size={12} color={color}/>}
-                title="test"
-            />
+                count={5}
+            >
+                <Sticker
+                    icon={({
+                        color
+                    }) => <Info size={12} color={color}/>}
+                    title="test"
+                />
+            </BadgeHOC>
             <TextArea
                 disabled={false}
                 title="Deneme"

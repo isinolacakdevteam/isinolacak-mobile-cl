@@ -57,3 +57,7 @@ export {
 export {
     default as TextArea
 } from "./textArea";
+
+export {
+    default as BadgeHOC
+} from "./badgeHOC";
