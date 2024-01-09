@@ -14,14 +14,11 @@ import {
     IOCoreTheme,
     TextInput,
     StateCard,
-    SelectBox,
     CheckBox,
-    Sticker,
-    Switch,
     Button,
     Chip,
     Text,
-    TextArea
+    BadgeHOC
 } from "isinolacak-cl";
 import stylesheet from "./stylesheet";
 import {
@@ -30,25 +27,9 @@ import {
 } from "@react-navigation/native";
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
-import Info from "../../../../src/assets/svg/info";
 import {
     InfoIcon 
 } from "../../../../src/assets/svg";
-
-const MOCK_DATA_FOR_SELECT_BOX = [
-    {
-        val: "anam"
-    },
-    {
-        val: "babam"
-    },
-    {
-        val: "bee"
-    },
-    {
-        val: "!!!"
-    }
-];
 
 const Welcome = () => {
     const {
@@ -187,12 +168,16 @@ const Welcome = () => {
                     IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
                 }}
             />
-            <Chip
-                onPress={() => {
-                    setIsSelected(!isSelected);
-                }}
-                selected={isSelected}
-            />
+            <BadgeHOC
+                isActive={true}
+            >
+                <Chip
+                    onPress={() => {
+                        setIsSelected(!isSelected);
+                    }}
+                    selected={isSelected}
+                />
+            </BadgeHOC>
             <StateCard
                 title="Deneme"
                 content="SADASDSA DSAD"
@@ -215,33 +200,7 @@ const Welcome = () => {
                     />;
                 }}
             />
-            <SelectBox
-                title="Meslek"
-                titleExtractor={(item) => item.val}
-                disabled={false}
-                multiSelect={true}
-                maxChoice={2}
-                isNeedConfirm={true}
-                onOk={(_, closeSheet, save) => {
-                    closeSheet();
-                    save();
-                }}
-                data={MOCK_DATA_FOR_SELECT_BOX}
-                inputTitle="Mesleğiniz"
-            />
-            <Sticker
-                icon={({
-                    color
-                }) => <Info size={12} color={color}/>}
-                title="test"
-            />
-            <TextArea
-                disabled={false}
-                title="Deneme"
-                isTextLimit={true}
-                textLimit={100}
-                numberOfLines={10}
-            />
+           
             <CheckBox
                 title="Check"
                 isSelected={isSelected}
@@ -258,29 +217,33 @@ const Welcome = () => {
                 onChange={() => setIsSelected(!isSelected)}
                 title="Deneme mesajı 123 afakslflksd jglksdfj glsjkdfh glkjsdfg kjdfshg kjdshfg kjldsfhg"
             />
-            <TextInput
-                title="Hi Cnm"
-                size="medium"
-                isInfoSheet={true}
-                isRequired={true}
-                renderInfoSheetContent={() => {
-                    return <View
-                        style={{
-                            alignContent: "center",
-                            justifyContent: "center",
-                            alignSelf: "center",
-                            alignItems: "center",
-                        }}
-                    >
-                        <Text
+            <BadgeHOC
+                count={3232323232323232323232232}
+            >
+                <TextInput
+                    title="Hi Cnm"
+                    size="medium"
+                    isInfoSheet={true}
+                    isRequired={true}
+                    renderInfoSheetContent={() => {
+                        return <View
                             style={{
+                                alignContent: "center",
+                                justifyContent: "center",
+                                alignSelf: "center",
+                                alignItems: "center",
                             }}
                         >
+                            <Text
+                                style={{
+                                }}
+                            >
                             dsdsd
-                        </Text>
-                    </View>;
-                }}
-            />
+                            </Text>
+                        </View>;
+                    }}
+                />
+            </BadgeHOC>
         </PageContainer>
     </SafeAreaView>;
 };
