@@ -217,29 +217,33 @@ const Welcome = () => {
                 onChange={() => setIsSelected(!isSelected)}
                 title="Deneme mesajı 123 afakslflksd jglksdfj glsjkdfh glkjsdfg kjdfshg kjdshfg kjldsfhg"
             />
-            <TextInput
-                title="Hi Cnm"
-                size="medium"
-                isInfoSheet={true}
-                isRequired={true}
-                renderInfoSheetContent={() => {
-                    return <View
-                        style={{
-                            alignContent: "center",
-                            justifyContent: "center",
-                            alignSelf: "center",
-                            alignItems: "center",
-                        }}
-                    >
-                        <Text
+            <BadgeHOC
+                count={3232323232323232323232232}
+            >
+                <TextInput
+                    title="Hi Cnm"
+                    size="medium"
+                    isInfoSheet={true}
+                    isRequired={true}
+                    renderInfoSheetContent={() => {
+                        return <View
                             style={{
+                                alignContent: "center",
+                                justifyContent: "center",
+                                alignSelf: "center",
+                                alignItems: "center",
                             }}
                         >
+                            <Text
+                                style={{
+                                }}
+                            >
                             dsdsd
-                        </Text>
-                    </View>;
-                }}
-            />
+                            </Text>
+                        </View>;
+                    }}
+                />
+            </BadgeHOC>
         </PageContainer>
     </SafeAreaView>;
 };

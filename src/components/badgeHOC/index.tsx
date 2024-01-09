@@ -16,15 +16,15 @@ import {
 import Text from "../text";
 
 const BadgeHOC: FC<IBadgeHOCProps> = ({
-    spreadBehaviour ="baseline",
+    spreadBehaviour = "baseline",
     isActive = true,
     borderColor,
-    location,
+    size = 20,
     children,
     color,
     count,
     style,
-    size = 20
+    ...props
 }) => {
     const {
         radiuses,
@@ -32,6 +32,13 @@ const BadgeHOC: FC<IBadgeHOCProps> = ({
         spaces,
         colors
     } = IOCoreTheme.useContext();
+
+    const {
+        location= {
+            right: (size / 2) * -1,
+            top: 0,
+        }
+    } = props;
 
     const {
         badgeContainer,
