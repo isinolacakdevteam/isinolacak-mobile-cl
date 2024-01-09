@@ -29,6 +29,7 @@ export const stylesheet = StyleSheet.create({
 const badgeHOCStyler = ({
     spreadBehaviour,
     borderColor,
+    borderWidth,
     location,
     radiuses,
     borders,
@@ -40,7 +41,6 @@ const badgeHOCStyler = ({
 }: BadgeHOCStylerParams): BadgeHOCStylerResult => {
     
     let container: ViewStyle = {
-        paddingVertical: spaces.container / 2
     };
 
     let badgeContainer: ViewStyle = {
@@ -73,6 +73,10 @@ const badgeHOCStyler = ({
 
     if(spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
         container.alignSelf = spreadBehaviour;
+    }
+
+    if(borderWidth) {
+        badgeContainer.borderWidth = borderWidth;
     }
 
     return {

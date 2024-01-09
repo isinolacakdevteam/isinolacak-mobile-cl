@@ -15,6 +15,7 @@ export interface IBadgeHOCProps {
     borderColor?: keyof IOCoreColorsType;
     color?: keyof IOCoreColorsType;
     location?: LocationType,
+    borderWidth?: number;
     isActive?: Boolean;
     style?: ViewStyle;
     count?: number;
@@ -30,6 +31,7 @@ export type BadgeHOCStylerParams = {
     color?: keyof IOCore.ColorsType;
     colors: IOCore.ColorsType
     location?: LocationType;
+    borderWidth?: number;
     count?: number;
     size: number;
 };

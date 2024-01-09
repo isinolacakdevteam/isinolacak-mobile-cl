@@ -19,6 +19,7 @@ const BadgeHOC: FC<IBadgeHOCProps> = ({
     spreadBehaviour = "baseline",
     isActive = true,
     borderColor,
+    borderWidth,
     size = 20,
     children,
     color,
@@ -47,6 +48,7 @@ const BadgeHOC: FC<IBadgeHOCProps> = ({
     } = badgeHOCStyler({
         spreadBehaviour,
         borderColor,
+        borderWidth,
         radiuses,
         location,
         borders,
