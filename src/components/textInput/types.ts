@@ -1,7 +1,4 @@
 import {
-    RefObject
-} from "react";
-import {
     TextInputProps,
     ViewStyle,
     TextStyle,
