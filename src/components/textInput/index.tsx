@@ -34,6 +34,7 @@ const TextInput: FC<ITextInputProps> = ({
     iconDirection = "left",
     hintIcon: HintIconProp,
     renderInfoSheetContent,
+    inputRef: inputRefProp,
     clearEnabled = false,
     onFocus: onFocusProp,
     isInfoSheet = false,
@@ -69,8 +70,8 @@ const TextInput: FC<ITextInputProps> = ({
     const [value, setValue] = useState(initialValue ? initialValue : "");
     const [isShowingPassword, setIsShowingPassword] = useState(false);
 
-    const inputRef = useRef<NativeTextInput>(null);
     const infoSheetRef = useRef<BottomSheetRef>(null);
+    const inputRef = useRef<NativeTextInput | null>(null);
 
     const finalTitle = isRequired ? title + " *" : title;
 
@@ -121,7 +122,12 @@ const TextInput: FC<ITextInputProps> = ({
             }}
             onFocus={onFocus}
             onBlur={onBlur}
-            ref={inputRef}
+            ref={(e: NativeTextInput) => {
+                inputRef.current = e;
+                if(inputRefProp) {
+                    inputRefProp = e;
+                }
+            }}
             secureTextEntry={isShowable ? secureTextEntry && !isShowingPassword : secureTextEntry}
             underlineColorAndroid="rgba(255,255,255,0)"
             editable={!disabled}
