@@ -1,7 +1,8 @@
 import {
     TextInputProps,
     ViewStyle,
-    TextStyle
+    TextStyle,
+    TextInput
 } from "react-native";
 import {
     IOCoreIconType
@@ -12,6 +13,7 @@ export type TextInputSizes = "small" | "medium" | "large";
 interface ITextInputProps extends Omit<TextInputProps, "value" | "onChangeText" | "onFocus" | "onBlur" | "multiline"> {
     renderInfoSheetContent?: () => JSX.Element;
     onChangeText?: (value: string) => void;
+    inputRef?: TextInput | null;
     iconDirection?: "left" | "right";
     infoSheetIcon?: IOCoreIconType;
     hintIcon?: IOCoreIconType;
