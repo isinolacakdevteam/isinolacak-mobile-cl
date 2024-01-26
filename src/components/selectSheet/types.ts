@@ -96,6 +96,7 @@ interface ISelectSheetProps<T, K extends T & SelectObjectType> extends Omit<Moda
     isLoadingOKButton?: boolean;
     childrenStyle?: ViewStyle;
     isNeedConfirm?: boolean;
+    isSearchable?: boolean;
     modalStyle?: ViewStyle;
     multiSelect?: boolean;
     rootStyle?: ViewStyle;

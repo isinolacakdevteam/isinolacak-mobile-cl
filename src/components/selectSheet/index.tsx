@@ -62,6 +62,7 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         snapPoint = 300,
         isNeedConfirm,
         selectedItems,
+        isSearchable,
         multiSelect,
         initialData,
         autoHeight,
@@ -203,6 +204,10 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
     };
 
     const renderSearch = () => {
+        if(!isSearchable) {
+            return null;
+        }
+        
         return <View
             style={searchContainerProps}
         >

@@ -59,6 +59,7 @@ export interface ISelectBoxProps<T> {
     }>;
     isLoadingOKButton?: boolean;
     isNeedConfirm?: boolean;
+    isSearchable?: boolean;
     multiSelect?: boolean;
     maxChoice?: number;
     minChoice?: number;
