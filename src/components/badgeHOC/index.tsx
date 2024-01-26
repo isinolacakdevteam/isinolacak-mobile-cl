@@ -34,10 +34,12 @@ const BadgeHOC: FC<IBadgeHOCProps> = ({
         colors
     } = IOCoreTheme.useContext();
 
+    const coordinationToken = (size / 2) * -1;
+
     const {
         location= {
-            right: (size / 2) * -1,
-            top: 0,
+            top: coordinationToken + (size / 4),
+            right: coordinationToken
         }
     } = props;
 

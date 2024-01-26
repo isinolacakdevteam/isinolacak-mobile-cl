@@ -125,7 +125,7 @@ const TextInput: FC<ITextInputProps> = ({
             ref={(e: NativeTextInput) => {
                 inputRef.current = e;
                 if(inputRefProp) {
-                    inputRefProp = e;
+                    inputRefProp(e);
                 }
             }}
             secureTextEntry={isShowable ? secureTextEntry && !isShowingPassword : secureTextEntry}

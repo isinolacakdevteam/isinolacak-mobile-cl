@@ -1,11 +1,13 @@
 import React, {
-    useState 
+    useState,
+    useRef
 } from "react";
 import {
+    TextInput as NativeTextInput,
+    SafeAreaView,
     StatusBar,
     Image,
-    View,
-    SafeAreaView
+    View
 } from 'react-native';
 import {
     PageContainer,
@@ -15,21 +17,22 @@ import {
     TextInput,
     StateCard,
     CheckBox,
+    BadgeHOC,
     Button,
     Chip,
-    Text,
-    BadgeHOC
+    Text
 } from "isinolacak-cl";
 import stylesheet from "./stylesheet";
 import {
     CompositeScreenProps,
     useNavigation
 } from "@react-navigation/native";
+import {
+    InfoIcon
+} from "../../../../src/assets/svg";
+
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
-import {
-    InfoIcon 
-} from "../../../../src/assets/svg";
 
 const Welcome = () => {
     const {
@@ -46,6 +49,8 @@ const Welcome = () => {
     const navigation = useNavigation<CompositeScreenProps<any, any>["navigation"]>();
 
     const [isSelected, setIsSelected] = useState(false);
+
+    const inputRef = useRef<NativeTextInput | null>(null);
 
     return <SafeAreaView
         style={{
@@ -184,7 +189,7 @@ const Welcome = () => {
                 titleColor="accent"
                 action={{
                     onPress: () => {
-
+                        inputRef.current?.focus();
                     },
                     spreadBehaviour: "free",
                     title: "Hi Cnm",
@@ -225,6 +230,9 @@ const Welcome = () => {
                     size="medium"
                     isInfoSheet={true}
                     isRequired={true}
+                    inputRef={(e) => {
+                        inputRef.current = e;
+                    }}
                     renderInfoSheetContent={() => {
                         return <View
                             style={{
@@ -238,7 +246,7 @@ const Welcome = () => {
                                 style={{
                                 }}
                             >
-                            dsdsd
+                                dsdsd
                             </Text>
                         </View>;
                     }}

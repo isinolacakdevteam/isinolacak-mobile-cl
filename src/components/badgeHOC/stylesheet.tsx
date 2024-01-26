@@ -6,19 +6,19 @@ import {
     BadgeHOCStylerResult
 } from "./types";
 import {
-    ViewStyle 
+    ViewStyle
 } from "react-native";
 import {
-    TextStyle 
+    TextStyle
 } from "react-native";
 
 export const stylesheet = StyleSheet.create({
     container: {
-        position: "relative",
+        position: "relative"
     },
     badgeContainer: {
-        position: "absolute",
         justifyContent: "center",
+        position: "absolute",
         zIndex: 99
     },
     count: {
@@ -34,8 +34,8 @@ const badgeHOCStyler = ({
     radiuses,
     borders,
     colors,
-    count,
     spaces,
+    count,
     color,
     size
 }: BadgeHOCStylerParams): BadgeHOCStylerResult => {

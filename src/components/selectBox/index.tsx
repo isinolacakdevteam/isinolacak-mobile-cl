@@ -43,6 +43,7 @@ const SelectBox = <T extends {}>({
     titleExtractor,
     isNeedConfirm,
     keyExtractor,
+    isSearchable,
     inputTitle,
     renderItem,
     maxChoice,
@@ -211,6 +212,7 @@ const SelectBox = <T extends {}>({
         return <Text
             color= {contentProps.color}
             variant="body2-regular"
+            numberOfLines={1}
             style={[
                 contentProps.style
             ]}
@@ -232,6 +234,7 @@ const SelectBox = <T extends {}>({
             setSelectedItems={setSelectedItems}
             isNeedConfirm={isNeedConfirm}
             selectedItems={selectedItems}
+            isSearchable={isSearchable}
             multiSelect={multiSelect}
             initialData={initialData}
             inputTitle={inputTitle}
