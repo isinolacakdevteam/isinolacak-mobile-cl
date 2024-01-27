@@ -230,6 +230,9 @@ const Welcome = () => {
                     size="medium"
                     isInfoSheet={true}
                     isRequired={true}
+                    onValidate={(text) => {
+                        return /[0-9]|^$/g.test(text);
+                    }}
                     inputRef={(e) => {
                         inputRef.current = e;
                     }}

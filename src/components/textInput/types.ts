@@ -13,7 +13,9 @@ export type TextInputSizes = "small" | "medium" | "large";
 interface ITextInputProps extends Omit<TextInputProps, "value" | "onChangeText" | "onFocus" | "onBlur" | "multiline"> {
     inputRef?: (input: TextInput | null) => void;
     renderInfoSheetContent?: () => JSX.Element;
+    onValidate?: (text: string) => boolean;
     onChangeText?: (value: string) => void;
+    isValidateOnChangeText?: boolean;
     iconDirection?: "left" | "right";
     infoSheetIcon?: IOCoreIconType;
     hintIcon?: IOCoreIconType;
