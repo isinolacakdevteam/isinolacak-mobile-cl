@@ -35,6 +35,7 @@ const TextInput: FC<ITextInputProps> = ({
     hintIcon: HintIconProp,
     renderInfoSheetContent,
     inputRef: inputRefProp,
+    isValidateOnChangeText,
     clearEnabled = false,
     onFocus: onFocusProp,
     isInfoSheet = false,
@@ -49,6 +50,7 @@ const TextInput: FC<ITextInputProps> = ({
     iconOnPress,
     onChangeText,
     isOptional,
+    onValidate,
     hintText,
     style,
     ...props
@@ -116,9 +118,18 @@ const TextInput: FC<ITextInputProps> = ({
             placeholder={size === "small" ? title : undefined}
             value={value}
             multiline={false}
-            onChangeText={e => {
-                if(onChangeText) onChangeText(e);
-                setValue(e);
+            onChangeText={text => {
+                if(onChangeText && !isValidateOnChangeText) onChangeText(text);
+
+                if(onValidate) {
+                    const isValid = onValidate(text);
+                    if(isValid) setValue(text);
+                    return;
+                }
+
+                if(onChangeText && isValidateOnChangeText) onChangeText(text);
+
+                setValue(text);
             }}
             onFocus={onFocus}
             onBlur={onBlur}
