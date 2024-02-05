@@ -1,5 +1,6 @@
 import {
-    StyleSheet
+    StyleSheet,
+    ViewStyle
 } from "react-native";
 import {
     ButtonStylerParams,
@@ -8,14 +9,11 @@ import {
     TitleProps
 } from "./types";
 import {
-    ViewStyle 
-} from "react-native";
+    SIZE_TO_STYLE_MAPPING
+} from "./constants";
 import {
     IIOCoreIconPropsType 
 } from "../../types";
-import {
-    SIZE_TO_STYLE_MAPPING
-} from "./constants";
 
 export const stylesheet = StyleSheet.create({
     container: {

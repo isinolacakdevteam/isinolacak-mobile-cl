@@ -22,8 +22,8 @@ export const stylesheet = StyleSheet.create({
         flex: 1
     },
     contentContainer: {
-        flexDirection: "row",
         justifyContent:"center",
+        flexDirection: "row",
         alignItems: "center",
         borderWidth: 1,
         width: "100%",

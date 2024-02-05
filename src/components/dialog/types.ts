@@ -33,13 +33,13 @@ export type DialogButton = {
 };
 
 interface IDialogProps extends PortalizedComponentProps {
-    variant?: DialogVariant;
-    title?: string;
-    content?: string;
-    onOverlayPress?: () => void;
-    primaryButtonProps?: DialogButton;
     secondaryButtonProps?: DialogButton;
+    primaryButtonProps?: DialogButton;
     headerComponent?: JSX.Element;
     bottomComponent?: JSX.Element;
+    onOverlayPress?: () => void;
+    variant?: DialogVariant;
+    content?: string;
+    title?: string;
 };
 export default IDialogProps;

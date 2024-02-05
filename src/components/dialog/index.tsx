@@ -9,6 +9,7 @@ import {
 import dialogStyler, {
     stylesheet
 } from "./stylesheet";
+import IDialogProps from "./types";
 import {
     IOCoreLocale,
     IOCoreTheme
@@ -18,17 +19,16 @@ import Text from "../text";
 import {
     Portal
 } from "react-native-portalize";
-import IDialogProps from "./types";
 
 const Dialog: FC<IDialogProps> = ({
-    variant,
-    isVisible = false,
-    onOverlayPress,
-    primaryButtonProps,
     secondaryButtonProps,
+    primaryButtonProps,
+    isVisible = false,
     headerComponent,
     bottomComponent,
+    onOverlayPress,
     children,
+    variant,
     content,
     title
 }) => {
@@ -97,8 +97,8 @@ const Dialog: FC<IDialogProps> = ({
         return <Button
             title={secondaryButtonProps?.title || localize("IOCoreDefaultDialogSecondaryButtonTitle")}
             loading={secondaryButtonProps?.loading}
-            color="layer2"
             textColor="body"
+            color="layer2"
             onPress={() => {
                 if(secondaryButtonProps?.onPress) secondaryButtonProps.onPress();
             }}

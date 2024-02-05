@@ -12,25 +12,25 @@ import {
     textInputStyler,
     stylesheet
 } from "./stylesheet";
-import Text from "../text";
+import ITextAreaProps from "./types";
 import {
     IOCoreTheme
 } from "../../core";
-import ITextAreaProps from "./types";
+import Text from "../text";
 
 const TextArea: FC<ITextAreaProps> = ({
     placeholder= "Placeholder",
     clearEnabled = false,
     onFocus: onFocusProp,
-    onBlur: onBlurProp,
     isTextLimit= false,
     isRequired = false,
+    onBlur: onBlurProp,
     disabled = false,
     title = "Title",
     isError = false,
+    textLimit = 0,
     initialValue,
     onChangeText,
-    textLimit = 0,
     style,
     ...props
 }) => {
@@ -43,20 +43,12 @@ const TextArea: FC<ITextAreaProps> = ({
         colors
     } = IOCoreTheme.useContext();
 
-    /*
-    const {
-        localize
-    } = IOCoreLocale.useContext();
-    */
-
-    const [isFocused, setIsFocused] = useState(false);
     const [value, setValue] = useState(initialValue ? initialValue : "");
+    const [isFocused, setIsFocused] = useState(false);
 
     const inputRef = useRef<NativeTextInput>(null);
 
     const finalTitle = isRequired ? title + " *" : title;
-
-    // let secureTextEntry = props.secureTextEntry;
 
     const {
         contentContainer,
@@ -88,34 +80,34 @@ const TextArea: FC<ITextAreaProps> = ({
 
     const renderNativeInput = () => {
         return <NativeTextInput
-            {...props}
             placeholder={placeholder ? placeholder : undefined}
-            value={value}
-            multiline={true}
-            onChangeText={e => {
-                if(onChangeText) onChangeText(e);
-                setValue(e);
-            }}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            ref={inputRef}
             maxLength={textLimit ? textLimit : undefined}
             underlineColorAndroid="rgba(255,255,255,0)"
-            editable={!disabled}
-            textAlignVertical="bottom"
             placeholderTextColor={colors.hideBody}
+            textAlignVertical="bottom"
+            editable={!disabled}
+            onFocus={onFocus}
+            multiline={true}
+            onBlur={onBlur}
+            ref={inputRef}
+            value={value}
+            {...props}
             style={[
                 stylesheet.input,
                 input
             ]}
+            onChangeText={e => {
+                if(onChangeText) onChangeText(e);
+                setValue(e);
+            }}
         />;
     };
 
     const renderTitle = () => {
         return <Text
+            color={isError ? "error" : titleProps.color}
             variant={titleProps.titleVariant}
             numberOfLines={1}
-            color={isError ? "error" : titleProps.color}
             style={[
                 stylesheet.title,
                 titleProps.style

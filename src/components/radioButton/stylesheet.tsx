@@ -1,14 +1,12 @@
 import {
-    StyleSheet
+    StyleSheet,
+    ViewStyle
 } from "react-native";
 import {
     RadioButtonStylerParams, 
     RadioButtonStylerResult, 
     TitleProps
 } from "./types";
-import {
-    ViewStyle 
-} from "react-native";
 
 export const stylesheet = StyleSheet.create({
     container: {

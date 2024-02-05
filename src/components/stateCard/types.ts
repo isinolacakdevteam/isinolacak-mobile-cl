@@ -2,13 +2,13 @@ import {
     ReactElement 
 } from "react";
 import {
-    IIOCoreIconPropsType,
-    IOCoreIconType 
-} from "../../types";
-import {
     TextStyle, 
     ViewStyle 
 } from "react-native";
+import {
+    IIOCoreIconPropsType,
+    IOCoreIconType 
+} from "../../types";
 import {
     IButtonProps 
 } from "../button/types";

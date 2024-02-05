@@ -4,15 +4,15 @@ import {
 import {
     ViewStyle
 } from "react-native";
-import {
-    ModalizeProps
-} from "react-native-modalize";
 import IPageContainerProps from "../pageContainer/types";
 import {
     IIOCoreIconPropsType,
     SelectObjectType,
     IOCoreIconType
 } from "../../types";
+import {
+    ModalizeProps
+} from "react-native-modalize";
 
 export type SelectSheetRef = {
     close: () => void,
@@ -20,8 +20,8 @@ export type SelectSheetRef = {
 };
 
 export type SelectSheetStylerParams = {
-    pageContainerStyleProp?: ViewStyle;
     radiuses: IOCore.RadiusesTokensType;
+    pageContainerStyleProp?: ViewStyle;
     spaces: IOCore.SpacesTokensType;
     childrenStyleProp?: ViewStyle;
     modalStyleProp?: ViewStyle;
@@ -32,8 +32,8 @@ export type SelectSheetStylerParams = {
 };
 
 export type SelectSheetStylerResult = {
-    buttonsContainerProps: ViewStyle;
     contentContainerStyle: ViewStyle;
+    buttonsContainerProps: ViewStyle;
     searchContainerProps: ViewStyle;
     pageContainerStyle: ViewStyle;
     clearButtonProps: ViewStyle;

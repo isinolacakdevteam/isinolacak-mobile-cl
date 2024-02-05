@@ -8,18 +8,18 @@ import badgeHOCStyler, {
     stylesheet
 } from "./stylesheet";
 import {
-    IOCoreTheme
-} from "../../core";
-import {
     IBadgeHOCProps
 } from "./types";
+import {
+    IOCoreTheme
+} from "../../core";
 import Text from "../text";
 
 const BadgeHOC: FC<IBadgeHOCProps> = ({
     spreadBehaviour = "baseline",
     isActive = true,
-    borderColor,
     borderWidth,
+    borderColor,
     size = 20,
     children,
     color,
@@ -71,9 +71,9 @@ const BadgeHOC: FC<IBadgeHOCProps> = ({
         >
             {count ? 
                 <Text
-                    color="textWhite"
                     variant="body4-medium"
                     style={textStyler}
+                    color="textWhite"
                 >
                     {count}
                 </Text>

@@ -1,12 +1,10 @@
 import {
-    ViewStyle
+    ViewStyle,
+    TextStyle
 } from "react-native";
 import {
     IOCoreColorsType
 } from "../../types";
-import {
-    TextStyle 
-} from "react-native";
 
 export type BadgeHOCSpreadBehaviour = "baseline" | "stretch" | "free";
 export interface IBadgeHOCProps {
@@ -27,8 +25,8 @@ export type BadgeHOCStylerParams = {
     borderColor?: keyof IOCore.ColorsType;
     radiuses: IOCore.RadiusesTokensType;
     borders: IOCore.BordersTokensType;
-    spaces: IOCore.SpacesTokensType;
     color?: keyof IOCore.ColorsType;
+    spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType
     location?: LocationType;
     borderWidth?: number;
@@ -43,8 +41,8 @@ export type BadgeHOCStylerResult = {
 };
 
 export type LocationType = {
-    top?: number;
     bottom?: number;
     right?: number;
     left?: number;
+    top?: number;
 }

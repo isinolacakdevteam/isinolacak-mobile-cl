@@ -1,6 +1,6 @@
 import {
     ViewStyle,
-    TextStyle 
+    TextStyle
 } from "react-native";
 import {
     IIOCoreIconPropsType,
@@ -14,9 +14,9 @@ export interface IStickerProps {
     spreadBehaviour?: StickerSpreadBehaviour;
     titleColor?: keyof IOCore.ColorsType;
     color?: keyof IOCore.ColorsType;
-    type?: Stickertype;
     icon?: IOCoreIconType;
     onPress?: () => void;
+    type?: Stickertype;
     disabled?: boolean;
     style?: ViewStyle;
     title?: string;

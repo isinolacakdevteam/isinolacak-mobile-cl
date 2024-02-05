@@ -1,16 +1,12 @@
 import {
-    StyleSheet
+    StyleSheet,
+    ViewStyle,
+    TextStyle
 } from "react-native";
 import {
     BadgeHOCStylerParams,
     BadgeHOCStylerResult
 } from "./types";
-import {
-    ViewStyle
-} from "react-native";
-import {
-    TextStyle
-} from "react-native";
 
 export const stylesheet = StyleSheet.create({
     container: {
@@ -39,15 +35,15 @@ const badgeHOCStyler = ({
     color,
     size
 }: BadgeHOCStylerParams): BadgeHOCStylerResult => {
-    
+
     let container: ViewStyle = {
     };
 
     let badgeContainer: ViewStyle = {
         backgroundColor: colors.primary,
         borderRadius: radiuses.hard * 3,
-        borderWidth: borders.line,
         borderColor: colors.white,
+        borderWidth: borders.line,
         paddingHorizontal: 0,
         minWidth: size,
         height: size,

@@ -4,31 +4,31 @@ import React, {
     useRef
 } from "react";
 import {
-    ISelectBoxProps,
-    SelectedItem
-} from "./types";
-import {
     TouchableOpacity,
     View
 } from "react-native";
-import {
-    IOCoreLocale,
-    IOCoreTheme
-} from "../../core";
-import Text from "../text";
 import selectBoxStyler, {
     stylesheet
 } from "./stylesheet";
 import {
-    ChevronDownIcon
-} from "../../assets/svg";
-import SelectSheet from "../selectSheet";
-import {
-    BottomSheetRef
-} from "../bottomSheet/types";
+    ISelectBoxProps,
+    SelectedItem
+} from "./types";
 import {
     uuid 
 } from "../../utils";
+import {
+    IOCoreLocale,
+    IOCoreTheme
+} from "../../core";
+import {
+    ChevronDownIcon
+} from "../../assets/svg";
+import SelectSheet from "../selectSheet";
+import Text from "../text";
+import {
+    BottomSheetRef
+} from "../bottomSheet/types";
 import {
     SelectObjectType
 } from "../../types";

@@ -1,13 +1,8 @@
 import {
-    TextStyle
-} from "react-native";
-import {
+    TextStyle,
+    StyleProp,
     TextProps
 } from "react-native";
-import {
-    StyleProp
-} from "react-native";
-
 interface ITextProps extends TextProps {
     variant?: keyof IOCore.TypographyType;
     color?: keyof IOCore.ColorsType;
