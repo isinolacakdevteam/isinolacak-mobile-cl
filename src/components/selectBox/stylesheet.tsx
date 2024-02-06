@@ -12,11 +12,9 @@ import {
 export const stylesheet = StyleSheet.create({
     container: {
         justifyContent: "space-between",
-        paddingHorizontal: 20,
         flexDirection: "row",
         alignItems: "center",
         alignSelf: "stretch",
-        paddingVertical: 10,
         minHeight: 60,
         height: 60
     },
@@ -39,8 +37,10 @@ const selectBoxStyler = ({
     spaces
 }: SelectBoxStylerParams): SelectBoxStylerResult => {
     let container: ViewStyle = {
-        backgroundColor: colors.white,
+        paddingVertical: spaces.container / 8,
+        paddingHorizontal: spaces.container,
         borderRadius: radiuses.half * 1.5,
+        backgroundColor: colors.white,
         borderColor: colors.stroke,
         borderWidth: borders.line
     };
