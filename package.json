@@ -1,6 +1,6 @@
 {
   "name": "isinolacak-cl",
-  "version": "1.0.0-pre-alpha.25",
+  "version": "1.0.0-pre-alpha.26",
   "description": "İşinolacak Component Library",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
