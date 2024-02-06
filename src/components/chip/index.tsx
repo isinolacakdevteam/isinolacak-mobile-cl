@@ -8,15 +8,15 @@ import chipStyler, {
     styles
 } from "./stylesheet";
 import {
+    IChipProps 
+} from "./types";
+import {
     IOCoreTheme 
 } from "../../core";
 import Text from "../text";
 import {
     InfoIcon
 } from "../../assets/svg/index";
-import {
-    IChipProps 
-} from "./types";
 
 const Chip: FC<IChipProps> = ({
     icon: IconComponentProp,
@@ -44,10 +44,10 @@ const Chip: FC<IChipProps> = ({
         container,
         iconProps
     } = chipStyler({
+        disabledStyle: designTokensDisabled,
         titleColor,
         selected,
         disabled,
-        disabledStyle: designTokensDisabled,
         radiuses,
         borders,
         spaces,

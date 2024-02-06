@@ -79,8 +79,8 @@ export type TextInputStyle = {
 };
 
 export type TextInputStyleMappingType = {
-    small: TextInputStyle;
     medium: TextInputStyle;
+    small: TextInputStyle;
     large: TextInputStyle;
 };
 

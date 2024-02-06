@@ -9,12 +9,12 @@ import checkBoxStyler, {
     stylesheet
 } from "./stylesheet";
 import {
+    ICheckBoxProps
+} from "./types";
+import {
     IOCoreTheme
 } from "../../core";
 import Text from "../text";
-import {
-    ICheckBoxProps
-} from "./types";
 import {
     CheckIcon
 } from "../../assets/svg";

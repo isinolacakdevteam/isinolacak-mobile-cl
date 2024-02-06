@@ -12,21 +12,21 @@ import {
     textInputStyler,
     stylesheet
 } from "./stylesheet";
-import Text from "../text";
+import ITextInputProps from "./types";
 import {
     IOCoreLocale,
     IOCoreTheme
 } from "../../core";
-import ITextInputProps from "./types";
 import {
     EyeOpenedIcon,
     EyeClosedIcon,
     InfoIcon
 } from "../../assets/svg";
-import BottomSheet from "../bottomSheet";
 import {
     BottomSheetRef
 } from "../bottomSheet/types";
+import BottomSheet from "../bottomSheet";
+import Text from "../text";
 
 const TextInput: FC<ITextInputProps> = ({
     infoSheetIcon: InfoSheetComponentProp,
@@ -46,11 +46,11 @@ const TextInput: FC<ITextInputProps> = ({
     size = "medium",
     title = "Title",
     isError = false,
+    onChangeText,
     initialValue,
     iconOnPress,
-    onChangeText,
-    isOptional,
     onValidate,
+    isOptional,
     hintText,
     style,
     ...props
@@ -68,12 +68,12 @@ const TextInput: FC<ITextInputProps> = ({
         localize
     } = IOCoreLocale.useContext();
 
-    const [isFocused, setIsFocused] = useState(false);
     const [value, setValue] = useState(initialValue ? initialValue : "");
     const [isShowingPassword, setIsShowingPassword] = useState(false);
+    const [isFocused, setIsFocused] = useState(false);
 
-    const infoSheetRef = useRef<BottomSheetRef>(null);
     const inputRef = useRef<NativeTextInput | null>(null);
+    const infoSheetRef = useRef<BottomSheetRef>(null);
 
     const finalTitle = isRequired ? title + " *" : title;
 
@@ -82,9 +82,9 @@ const TextInput: FC<ITextInputProps> = ({
     const {
         hintContainerStyle,
         contentContainer,
+        hintTextProps,
         optionalStyle,
         hintIconStyle,
-        hintTextProps,
         titleProps,
         container,
         input
@@ -114,10 +114,27 @@ const TextInput: FC<ITextInputProps> = ({
 
     const renderNativeInput = () => {
         return <NativeTextInput
-            {...props}
+            secureTextEntry={isShowable ? secureTextEntry && !isShowingPassword : secureTextEntry}
             placeholder={size === "small" ? title : undefined}
-            value={value}
+            underlineColorAndroid="rgba(255,255,255,0)"
+            placeholderTextColor={colors.hideBody}
+            textAlignVertical="bottom"
+            editable={!disabled}
+            onFocus={onFocus}
             multiline={false}
+            onBlur={onBlur}
+            value={value}
+            {...props}
+            style={[
+                stylesheet.input,
+                input
+            ]}
+            ref={(e: NativeTextInput) => {
+                inputRef.current = e;
+                if(inputRefProp) {
+                    inputRefProp(e);
+                }
+            }}
             onChangeText={text => {
                 if(onChangeText && !isValidateOnChangeText) onChangeText(text);
 
@@ -131,23 +148,6 @@ const TextInput: FC<ITextInputProps> = ({
 
                 setValue(text);
             }}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            ref={(e: NativeTextInput) => {
-                inputRef.current = e;
-                if(inputRefProp) {
-                    inputRefProp(e);
-                }
-            }}
-            secureTextEntry={isShowable ? secureTextEntry && !isShowingPassword : secureTextEntry}
-            underlineColorAndroid="rgba(255,255,255,0)"
-            editable={!disabled}
-            textAlignVertical="bottom"
-            placeholderTextColor={colors.hideBody}
-            style={[
-                stylesheet.input,
-                input
-            ]}
         />;
     };
 
@@ -157,9 +157,9 @@ const TextInput: FC<ITextInputProps> = ({
         }
 
         return <Text
+            color={isError ? "error" : titleProps.color}
             variant={titleProps.titleVariant}
             numberOfLines={1}
-            color={isError ? "error" : titleProps.color}
             style={[
                 stylesheet.title,
                 titleProps.style
@@ -203,8 +203,8 @@ const TextInput: FC<ITextInputProps> = ({
                     <HintIconProp/> 
                     :
                     <InfoIcon
-                        size={15}
                         color={isError ? colors.error : colors.greyBase}
+                        size={15}
                         style={[
                             hintIconStyle
                         ]}
@@ -212,9 +212,9 @@ const TextInput: FC<ITextInputProps> = ({
             }
             
             <Text
+                color={isError ? "error" : hintTextProps.color}
                 variant="body3-regular"
                 numberOfLines={1}
-                color={isError ? "error" : hintTextProps.color}
                 style={[
                     stylesheet.hintText,
                     hintTextProps.style
@@ -268,8 +268,8 @@ const TextInput: FC<ITextInputProps> = ({
         }
 
         return <BottomSheet
-            ref={infoSheetRef}
             handlePosition="inside"
+            ref={infoSheetRef}
             pageContainerProps={{
                 scrollable: false
             }}

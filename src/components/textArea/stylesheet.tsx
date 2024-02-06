@@ -60,11 +60,10 @@ export const textInputStyler = ({
     borders,
     colors,
     spaces,
-    value,
+    value
 }: TextInputStylerParams): TextInputStylerResult => {
 
     let container: ViewStyle = {
-        
     };
 
     let contentContainer: ViewStyle = {

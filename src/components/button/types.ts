@@ -1,23 +1,19 @@
 import {
-    ViewStyle 
+    ActivityIndicatorProps,
+    ViewStyle,
+    TextStyle,
+    StyleProp
 } from "react-native";
 import {
     ButtonDisplayBehaviourWhileLoading,
     IIOCoreIconPropsType,
     IOCoreIconType 
 } from "../../types";
-import {
-    TextStyle 
-} from "react-native";
-import {
-    StyleProp 
-} from "react-native";
-import {
-    ActivityIndicatorProps 
-} from "react-native";
 
 export type ButtonSpreadBehaviour = "baseline" | "stretch" | "free";
+
 export type ButtonVariant = "filled" | "outline" | "ghost";
+
 export type ButtonSize = "small" | "medium" | "large" | "xSmall";
 
 export interface IButtonProps {

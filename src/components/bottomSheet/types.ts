@@ -12,8 +12,8 @@ export type BottomSheetRef = {
 };
 
 export type BottomSheetStylerParams = {
-    pageContainerStyleProp?: ViewStyle;
     radiuses: IOCore.RadiusesTokensType;
+    pageContainerStyleProp?: ViewStyle;
     spaces: IOCore.SpacesTokensType;
     childrenStyleProp?: ViewStyle;
     modalStyleProp?: ViewStyle;

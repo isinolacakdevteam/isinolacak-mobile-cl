@@ -9,18 +9,18 @@ import radioButtonStyler, {
     stylesheet
 } from "./stylesheet";
 import {
+    IRadioButtonProps
+} from "./types";
+import {
     IOCoreTheme
 } from "../../core";
 import Text from "../text";
-import {
-    IRadioButtonProps
-} from "./types";
 
 const RadioButton: FC<IRadioButtonProps> = ({
     spreadBehaviour = "baseline",
+    titleType = "body2-regular",
     onChange: onChangeProp,
     isSelected = false,
-    titleType = "body2-regular",
     disabled = false,
     titleStyle,
     title,

@@ -1,13 +1,11 @@
 import {
-    StyleSheet
+    StyleSheet,
+    ViewStyle
 } from "react-native";
 import {
     BottomSheetStylerParams,
     BottomSheetStylerResult
 } from "./types";
-import {
-    ViewStyle
-} from "react-native";
 
 const stylesheet = StyleSheet.create({
     modalStyle: {
@@ -69,18 +67,18 @@ const bottomSheetStyler = ({
     }
 
     if(fullScreen) {
-        childrenStyle.borderTopLeftRadius = 0;
         childrenStyle.borderTopRightRadius = 0;
+        childrenStyle.borderTopLeftRadius = 0;
 
-        modalStyle.borderTopLeftRadius = 0;
         modalStyle.borderTopRightRadius = 0;
+        modalStyle.borderTopLeftRadius = 0;
         modalStyle.minHeight = "100%";
 
-        rootStyle.borderTopLeftRadius = 0;
         rootStyle.borderTopRightRadius = 0;
+        rootStyle.borderTopLeftRadius = 0;
 
-        pageContainerStyle.borderTopLeftRadius = 0;
         pageContainerStyle.borderTopRightRadius = 0;
+        pageContainerStyle.borderTopLeftRadius = 0;
     }
 
     return {

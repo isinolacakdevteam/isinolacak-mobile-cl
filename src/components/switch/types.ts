@@ -5,7 +5,6 @@ import {
 } from "react-native";
 
 export type SwitchSpreadBehaviour = "baseline" | "stretch" | "free";
-
 export interface ISwitchProps {
     spreadBehaviour?: SwitchSpreadBehaviour;
     indicatorStyle?: ViewStyle;
@@ -13,6 +12,8 @@ export interface ISwitchProps {
     onPress?: () => void;
     isActive?: boolean;
     disabled?: boolean;
+    style?: ViewStyle;
+    title?: string;
     renderTitle?: (props: {
         titleVariant: keyof IOCore.TypographyType;
         spreadBehaviour?: SwitchSpreadBehaviour;
@@ -20,13 +21,11 @@ export interface ISwitchProps {
         color: keyof IOCore.ColorsType;
         isActive?: boolean;
     }) => JSX.Element;
-    style?: ViewStyle;
-    title?: string;
 };
 
 export type SwitchStylerParams = {
-    spreadBehaviour?: SwitchSpreadBehaviour;
     disabledStyle: IOCore.DisabledTokensType;
+    spreadBehaviour?: SwitchSpreadBehaviour;
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;
     isActive: boolean;

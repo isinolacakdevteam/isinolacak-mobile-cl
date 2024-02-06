@@ -1,24 +1,24 @@
 import React, {
-    FC 
+    FC
 } from "react";
 import {
     TouchableOpacity,
     View
 } from "react-native";
-import {
-    IOCoreTheme 
-} from "../../core";
-import Text from "../text";
-import {
-    IStickerProps 
-} from "./types";
 import stickerStyler,{
     styles
 } from "./stylesheet";
+import {
+    IStickerProps 
+} from "./types";
+import {
+    IOCoreTheme
+} from "../../core";
+import Text from "../text";
 
 const Sticker: FC<IStickerProps> = ({
-    icon: IconComponentProp,
     spreadBehaviour = "baseline",
+    icon: IconComponentProp,
     color = "primary",
     disabled = true,
     type = "filled",

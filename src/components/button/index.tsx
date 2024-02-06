@@ -7,32 +7,32 @@ import {
     TextStyle,
     View
 } from "react-native";
-import Text from "../text";
-import {
-    IOCoreTheme 
-} from "../../core";
-import {
-    IButtonProps 
-} from "./types";
 import buttonStyler, {
     stylesheet
 } from "./stylesheet";
+import {
+    IButtonProps 
+} from "./types";
+import {
+    IOCoreTheme 
+} from "../../core";
+import Text from "../text";
 
 const Button: FC<IButtonProps> = ({
     displayBehaviourWhileLoading = "disabled",
-    spreadBehaviour = "baseline",
     renderTitle: renderTitleProp,
+    spreadBehaviour = "baseline",
     icon: IconComponentProp,
+    iconDirection= "left",
     variant = "filled",
     color = "primary",
     disabled = false,
     size = "medium",
-    iconDirection= "left",
     titleStyle,
     textColor,
     iconColor,
-    loading,
     onPress,
+    loading,
     title,
     style
 }) => {

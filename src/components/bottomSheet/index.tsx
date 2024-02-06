@@ -6,6 +6,15 @@ import React, {
     useRef
 } from "react";
 import bottomSheetStyler from "./stylesheet";
+import IBottomSheetProps, {
+    BottomSheetRef
+} from "./types";
+import {
+    windowHeight
+} from "../../utils";
+import {
+    IOCoreTheme
+} from "../../core";
 import {
     Portal
 } from "react-native-portalize";
@@ -13,15 +22,6 @@ import {
     Modalize
 } from "react-native-modalize";
 import PageContainer from "../pageContainer";
-import {
-    IOCoreTheme
-} from "../../core";
-import IBottomSheetProps, {
-    BottomSheetRef
-} from "./types";
-import {
-    windowHeight
-} from "../../utils";
 
 const BottomSheet: RefForwardingComponent<BottomSheetRef, IBottomSheetProps> = ({
     pageContainerStyle: pageContainerStyleProp,
@@ -30,8 +30,8 @@ const BottomSheet: RefForwardingComponent<BottomSheetRef, IBottomSheetProps> = (
     rootStyle: rootStyleProp,
     pageContainerProps,
     snapPoint = 300,
-    autoHeight,
     fullScreen,
+    autoHeight,
     children,
     ...props
 }, ref) => {
@@ -90,17 +90,17 @@ const BottomSheet: RefForwardingComponent<BottomSheetRef, IBottomSheetProps> = (
 
     return <Portal>
         <Modalize
+            adjustToContentHeight={autoHeight ? true : false}
+            modalTopOffset={fullScreen ? 0 : undefined}
+            snapPoint={createSnapPoint()}
+            childrenStyle={childrenStyle}
+            closeOnOverlayTap={true}
             panGestureEnabled={true}
             tapGestureEnabled={true}
-            {...props}
-            ref={bottomSheetRef}
-            adjustToContentHeight={autoHeight ? true : false}
-            snapPoint={createSnapPoint()}
-            closeOnOverlayTap={true}
-            childrenStyle={childrenStyle}
-            modalTopOffset={fullScreen ? 0 : undefined}
             modalStyle={modalStyle}
             rootStyle={rootStyle}
+            ref={bottomSheetRef}
+            {...props}
             scrollViewProps={{
                 contentContainerStyle: contentContainerStyle
             }}

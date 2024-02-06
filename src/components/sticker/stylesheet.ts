@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     container: {
         justifyContent: "center",
         flexDirection: "row",
-        alignItems: "center",
+        alignItems: "center"
     }
 });
 

@@ -2,33 +2,31 @@ import React, {
     FC
 } from "react";
 import {
+    ViewStyle,
     View
 } from "react-native";
 import stateCardStyler, {
     styles 
 } from "./stylesheet";
 import {
-    NotificationIcon 
-} from "../../assets/svg";
-import Text from "../text";
-import Button from "../button";
+    IStateCardProps
+} from "./types";
 import {
     IOCoreTheme 
 } from "../../core";
 import {
-    IStateCardProps
-} from "./types";
-import {
-    ViewStyle 
-} from "react-native";
+    NotificationIcon 
+} from "../../assets/svg";
+import Button from "../button";
+import Text from "../text";
 
 const StateCard: FC<IStateCardProps> = ({
     icon: IconProp = (props) => <NotificationIcon
         {...props}
     />,
     titleColor,
-    action,
     content,
+    action,
     style,
     title
 }) => {

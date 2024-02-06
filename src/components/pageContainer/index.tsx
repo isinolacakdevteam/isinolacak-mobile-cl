@@ -6,10 +6,10 @@ import {
     View
 } from "react-native";
 import stylesheet from "./stylesheet";
+import IPageContainerProps from "./types";
 import {
     IOCoreTheme
 } from "../../core";
-import IPageContainerProps from "./types";
 
 const RenderWithScroll: FC<Omit<IPageContainerProps, "viewRef" | "scrollable">> = ({
     contentContainerStyle,

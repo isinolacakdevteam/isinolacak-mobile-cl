@@ -16,13 +16,6 @@ import selectSheetStyler,{
     stylesheet
 } from "./stylesheet";
 import {
-    Portal
-} from "react-native-portalize";
-import {
-    Modalize
-} from "react-native-modalize";
-import PageContainer from "../pageContainer";
-import {
     IOCoreLocale,
     IOCoreTheme
 } from "../../core";
@@ -32,19 +25,26 @@ import ISelectSheetProps, {
 import {
     windowHeight
 } from "../../utils";
-import TextInput from "../textInput";
-import Button from "../button";
-import CheckBox from "../checkBox";
-import RadioButton from "../radioButton";
 import {
     SearchIcon 
 } from "../../assets/svg";
+import PageContainer from "../pageContainer";
+import RadioButton from "../radioButton";
+import TextInput from "../textInput";
+import CheckBox from "../checkBox";
+import Button from "../button";
+import {
+    SelectObjectType
+} from "../../types";
 import {
     useToast
 } from "react-native-toast-notifications";
 import {
-    SelectObjectType
-} from "../../types";
+    Portal
+} from "react-native-portalize";
+import {
+    Modalize
+} from "react-native-modalize";
 
 const SelecetSheet = <T, K extends T & SelectObjectType>(
     properties: ISelectSheetProps<T, K>,
@@ -80,10 +80,6 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         ...props
     } = properties;
 
-    const [searchText, setSearchText] = useState("");
-    const [renderData, setRenderData] = useState(data);
-    const [tempSelectedItems, setTempSelectedItems] = useState(selectedItems);
-
     const {
         radiuses,
         colors,
@@ -93,6 +89,10 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
     const {
         localize
     } = IOCoreLocale.useContext();
+
+    const [tempSelectedItems, setTempSelectedItems] = useState(selectedItems);
+    const [renderData, setRenderData] = useState(data);
+    const [searchText, setSearchText] = useState("");
 
     const Toast = useToast();
 
@@ -212,9 +212,9 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
             style={searchContainerProps}
         >
             <TextInput
-                title={inputTitle}
-                initialValue={searchText}
                 onChangeText={(text) => setSearchText(text)}
+                initialValue={searchText}
+                title={inputTitle}
                 size="small"
                 icon={() => <SearchIcon 
                     size={25}
@@ -235,15 +235,15 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
 
         return <Button
             title={localize("iocore-select-sheet-clear-button")}
-            onPress={() => {
-                setTempSelectedItems([]);
-            }}
+            spreadBehaviour={isNeedConfirm ? "baseline" : "stretch"}
             variant="outline"
             style={{
                 ...clearButtonProps,
                 flex: isNeedConfirm ? undefined : 1
             }}
-            spreadBehaviour={isNeedConfirm ? "baseline" : "stretch"}
+            onPress={() => {
+                setTempSelectedItems([]);
+            }}
         />;
     };
 
@@ -254,6 +254,10 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
 
         return <Button
             title={localize("iocore-select-sheet-ok-button")}
+            loading={isLoadingOKButton}
+            style={okButtonProps}
+            variant="filled"
+            size="medium"
             onPress={() => {
                 if(onOk) {
                     onOk({
@@ -268,10 +272,6 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
                     setSelectedItems(tempSelectedItems);
                 }
             }}
-            loading={isLoadingOKButton}
-            size="medium"
-            variant="filled"
-            style={okButtonProps}
         />;
     };
 
@@ -316,8 +316,8 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         if(multiSelect) {
             return <CheckBox
                 key={`select-box-item-${index}`}
-                title={item.__title}
                 isSelected={isSelected}
+                title={item.__title}
                 icon={renderIcon ? ({
                     color,
                     size
@@ -342,8 +342,8 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
 
         return <RadioButton
             key={`select-box-item-${index}`}
-            title={item.__title}
             isSelected={isSelected}
+            title={item.__title}
             icon={renderIcon ? ({
                 color,
                 size

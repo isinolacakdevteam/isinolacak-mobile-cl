@@ -1,7 +1,7 @@
 import React, {
     useEffect,
     useRef,
-    FC 
+    FC
 } from "react";
 import {
     TouchableOpacity,
@@ -12,13 +12,13 @@ import switchStyler, {
     TOGGLE_SIZE,
     stylesheet
 } from "./stylesheet";
-import Text from "../text";
+import {
+    ISwitchProps
+} from "./types";
 import {
     IOCoreTheme
 } from "../../core/";
-import {
-    ISwitchProps 
-} from "./types";
+import Text from "../text";
 
 const Switch: FC<ISwitchProps> = ({
     renderTitle: renderTitleProp,
