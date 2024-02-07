@@ -19,7 +19,6 @@ import {
 import Text from "../text";
 
 const TextArea: FC<ITextAreaProps> = ({
-    placeholder= "Placeholder",
     clearEnabled = false,
     onFocus: onFocusProp,
     isTextLimit= false,
@@ -27,6 +26,7 @@ const TextArea: FC<ITextAreaProps> = ({
     onBlur: onBlurProp,
     disabled = false,
     title = "Title",
+    placeholder= "",
     isError = false,
     textLimit = 0,
     initialValue,
@@ -84,7 +84,7 @@ const TextArea: FC<ITextAreaProps> = ({
             maxLength={textLimit ? textLimit : undefined}
             underlineColorAndroid="rgba(255,255,255,0)"
             placeholderTextColor={colors.hideBody}
-            textAlignVertical="bottom"
+            textAlignVertical="top"
             editable={!disabled}
             onFocus={onFocus}
             multiline={true}
