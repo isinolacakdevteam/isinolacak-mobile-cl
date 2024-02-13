@@ -259,12 +259,15 @@ const Welcome = () => {
             </BadgeHOC>
             <DatePicker
                 DateTimePickerSheetRef={DateBottomSheet}
+                handlePosition="inside"
+                autoHeight={true}
                 display="spinner"
                 disabled={false}
                 is24Hour={true}
                 mode="date"
                 size={20}
                 title=""
+                value={new Date()}
                 onPress={() => {
                     DateBottomSheet.current?.open();
                 }}
