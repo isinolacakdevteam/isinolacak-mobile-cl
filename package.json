@@ -71,6 +71,7 @@
     "@types/react": "17.0.21"
   },
   "peerDependencies": {
+    "@react-native-community/datetimepicker": ">= 7.6.2",
     "ncore-context": ">= 0.1.0-pre-alpha.6",
     "react": "*",
     "react-native": "*",
