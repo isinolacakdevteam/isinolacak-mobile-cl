@@ -10,10 +10,12 @@ import {
     View
 } from 'react-native';
 import {
+    BottomSheetRef,
     PageContainer,
     IOCoreLocale,
     RadioButton,
     IOCoreTheme,
+    DatePicker,
     TextInput,
     StateCard,
     CheckBox,
@@ -47,8 +49,8 @@ const Welcome = () => {
     } = IOCoreLocale.useContext();
 
     const navigation = useNavigation<CompositeScreenProps<any, any>["navigation"]>();
-
     const [isSelected, setIsSelected] = useState(false);
+    const DateBottomSheet = useRef<BottomSheetRef>(null);
 
     const inputRef = useRef<NativeTextInput | null>(null);
 
@@ -205,7 +207,7 @@ const Welcome = () => {
                     />;
                 }}
             />
-           
+
             <CheckBox
                 title="Check"
                 isSelected={isSelected}
@@ -255,6 +257,21 @@ const Welcome = () => {
                     }}
                 />
             </BadgeHOC>
+            <DatePicker
+                DateTimePickerSheetRef={DateBottomSheet}
+                display="spinner"
+                disabled={false}
+                is24Hour={true}
+                mode="date"
+                size={20}
+                title=""
+                onPress={() => {
+                    DateBottomSheet.current?.open();
+                }}
+                style={{
+                    marginBottom: spaces.content
+                }}
+            />
         </PageContainer>
     </SafeAreaView>;
 };

@@ -25,3 +25,7 @@ export {
 export {
     default as EyeOpenedIcon
 } from "./eyeOpened";
+
+export {
+    default as CalendarIcon
+} from "./calendarIcon";

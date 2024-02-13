@@ -27,6 +27,7 @@ export {
     BottomSheet,
     RadioButton,
     SelectSheet,
+    DatePicker,
     TextInput,
     SelectBox,
     StateCard,

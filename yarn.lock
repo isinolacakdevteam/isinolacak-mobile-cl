@@ -3100,6 +3100,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-community/datetimepicker@npm:^7.6.2":
+  version: 7.6.2
+  resolution: "@react-native-community/datetimepicker@npm:7.6.2"
+  dependencies:
+    invariant: ^2.2.4
+  checksum: 24c718c01e7ff6bc4b47867bfdf77b98fb8e3a872a627ce057062c37bf24a27264ac40c46cc66c27b134fc56392dc90d5b81dfb3ad5073af2477da055c13cb17
+  languageName: node
+  linkType: hard
+
 "@react-native/assets-registry@npm:^0.72.0":
   version: 0.72.0
   resolution: "@react-native/assets-registry@npm:0.72.0"
@@ -10383,6 +10392,7 @@ __metadata:
     "@babel/core": ^7.20.0
     "@expo-google-fonts/inter": ^0.2.3
     "@expo/webpack-config": ^18.0.1
+    "@react-native-community/datetimepicker": ^7.6.2
     "@react-navigation/native": ^6.1.8
     "@react-navigation/native-stack": ^6.9.14
     babel-loader: ^8.1.0
@@ -10410,6 +10420,7 @@ __metadata:
   resolution: "isinolacak-cl@workspace:."
   dependencies:
     "@evilmartians/lefthook": 1.5.0
+    "@react-native-community/datetimepicker": ^7.6.2
     "@react-native/eslint-config": 0.72.2
     "@release-it/conventional-changelog": 5.0.0
     "@types/jest": 28.1.2
@@ -10420,10 +10431,12 @@ __metadata:
     eslint-config-prettier: 8.5.0
     eslint-plugin-prettier: 4.0.0
     jest: 28.1.1
+    moment: ^2.30.1
     ncore-context: 0.1.0-pre-alpha.6
     react: 18.2.0
     react-native: 0.72.6
     react-native-builder-bob: 0.20.0
+    react-native-date-picker: ^4.3.6
     react-native-gesture-handler: 2.13.1
     react-native-modalize: 2.1.1
     react-native-portalize: 1.0.7
@@ -12574,6 +12587,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"moment@npm:^2.30.1":
+  version: 2.30.1
+  resolution: "moment@npm:2.30.1"
+  checksum: 859236bab1e88c3e5802afcf797fc801acdbd0ee509d34ea3df6eea21eb6bcc2abd4ae4e4e64aa7c986aa6cba563c6e62806218e6412a765010712e5fa121ba6
+  languageName: node
+  linkType: hard
+
 "ms@npm:2.0.0":
   version: 2.0.0
   resolution: "ms@npm:2.0.0"
@@ -14557,6 +14577,16 @@ __metadata:
   bin:
     bob: bin/bob
   checksum: 3f458f835c5ba4e042e522f4f685c99c4b68427b9fff7e3d6b7bc119d439880cb5f8461704fd86bff909b5bf29929b598471ff010492463487d089bdf99bdd52
+  languageName: node
+  linkType: hard
+
+"react-native-date-picker@npm:^4.3.6":
+  version: 4.3.6
+  resolution: "react-native-date-picker@npm:4.3.6"
+  peerDependencies:
+    react: ">= 17.0.1"
+    react-native: ">= 0.64.3"
+  checksum: b704313a02a3e0b7dd45e3e1c66224af4cd180293f3dc22127f0544b85d1d6dbaa9dad9599039dade0c049dbcf2e4ddbd0ac17a152296228e343d5dfab0d380a
   languageName: node
   linkType: hard
 
