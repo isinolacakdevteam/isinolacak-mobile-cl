@@ -1,7 +1,3 @@
-import {
-    TextStyle 
-} from "react-native";
-
 interface IHeaderProps {
     titleVariant?: keyof IOCore.TypographyType;
     goBackFrontColor?: keyof IOCore.ColorsType;
