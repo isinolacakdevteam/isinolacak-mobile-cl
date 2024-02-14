@@ -259,14 +259,11 @@ const Welcome = () => {
                 />
             </BadgeHOC>
             <DatePicker
-                DateTimePickerSheetRef={DateBottomSheet}
                 display="spinner"
-                disabled={false}
-                is24Hour={true}
                 setDate={setDate}
-                date={date}
-                mode="date"
+                mode="datetime"
                 title="Deneme"
+                date={date}
                 style={{
                     marginBottom: spaces.content
                 }}

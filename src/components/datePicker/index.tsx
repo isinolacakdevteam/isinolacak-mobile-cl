@@ -1,7 +1,7 @@
 import React, {
     useState,
-    FC,
-    useRef
+    useRef,
+    FC
 } from 'react';
 import {
     TouchableOpacity,
@@ -15,11 +15,11 @@ import {
     IDatePickerProps
 } from './type';
 import {
-    CalendarIcon
-} from '../../assets/svg';
-import {
     IOCoreTheme
 } from '../../core';
+import {
+    CalendarIcon
+} from '../../assets/svg';
 import DateTimePicker, {
     DateTimePickerEvent
 } from '@react-native-community/datetimepicker';
@@ -31,7 +31,6 @@ import {
 } from '../bottomSheet/types';
 
 const CustomDatePicker: FC<IDatePickerProps> = ({
-    DateTimePickerSheetRef,
     is24Hour = false,
     disabled,
     setDate,
@@ -115,12 +114,24 @@ const CustomDatePicker: FC<IDatePickerProps> = ({
     };
 
     const renderDate = () => {
+        let currentDate;
+
+        if(mode === "date") {
+            currentDate = moment(date).format("DD/MM/YY");
+        }
+        if(mode === "time") {
+            currentDate = moment(date).format("hh:mm");
+        }
+        if(mode === "datetime") {
+            currentDate = moment(date).format("DD/MM/YY hh:mm");
+        }
+
         return <Text
             color={titleProps.color}
             variant="body2-regular"
             numberOfLines={1}
         >
-            {moment(date).format("DD/MM/YY")}
+            {currentDate}
         </Text>;
     };
 

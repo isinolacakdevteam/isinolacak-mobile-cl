@@ -1,17 +1,12 @@
 import {
     SetStateAction,
-    RefObject,
-    Dispatch,
+    Dispatch
 } from "react";
 import {
     ViewStyle
 } from "react-native";
-import {
-    BottomSheetRef
-} from "../bottomSheet/types";
 
 export interface IDatePickerProps {
-    DateTimePickerSheetRef: RefObject<BottomSheetRef>;
     setDate: Dispatch<SetStateAction<Date>>
     display: DatePickerDisplay;
     mode: DatePickerMode;
