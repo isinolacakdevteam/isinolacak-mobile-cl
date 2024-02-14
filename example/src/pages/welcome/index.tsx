@@ -28,8 +28,10 @@ import {
     useNavigation
 } from "@react-navigation/native";
 import {
-    InfoIcon
+    InfoIcon,
+    SearchIcon
 } from "../../../../src/assets/svg";
+import BottomSheetHeader from "../../../../src/components/bottomSheetHeader";
 
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
@@ -58,6 +60,15 @@ const Welcome = () => {
             flex: 1
         }}
     >
+        <BottomSheetHeader 
+            renderRight={<SearchIcon />}
+            isShowGoBack={true}
+            title="Welcome"
+            onGoBack={() => {
+                navigation.goBack();
+            }}
+        />
+
         <PageContainer
             contentContainerStyle={stylesheet.contentContainer}
         >
@@ -245,6 +256,18 @@ const Welcome = () => {
                                 alignItems: "center",
                             }}
                         >
+                            <BottomSheetHeader
+                                renderRight={<SearchIcon color={colors.error} size={20} />}
+                                renderLeft={<SearchIcon color={colors.black} size={20} />}
+                                titleVariant="body-medium"
+                                titleColor="primary"
+                                isShowGoBack={true}
+                                title="Info Sheet"
+                                size={30}
+                                onGoBack={() => {
+                                    navigation.goBack();
+                                }}
+                            />
                             <Text
                                 style={{
                                 }}

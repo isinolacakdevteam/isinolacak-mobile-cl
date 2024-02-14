@@ -61,3 +61,7 @@ export {
 export {
     default as BadgeHOC
 } from "./badgeHOC";
+
+export {
+    default as BottomSheetHeader
+} from "./bottomSheetHeader";
