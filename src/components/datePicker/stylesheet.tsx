@@ -44,6 +44,7 @@ const datePickerStyler = ({
     };
 
     let titleProps: TitleProps = {
+        textColor: "textGrey",
         color: "primary"
     };
 

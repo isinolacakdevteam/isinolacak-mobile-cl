@@ -29,6 +29,7 @@ export type DatePickerStylerParams = {
 };
 
 export type TitleProps = {
+    textColor: keyof IOCore.ColorsType;
     color: keyof IOCore.ColorsType;
 };
 

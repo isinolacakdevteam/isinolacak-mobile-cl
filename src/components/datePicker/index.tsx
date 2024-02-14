@@ -102,7 +102,7 @@ const CustomDatePicker: FC<IDatePickerProps> = ({
 
     const renderTitle = () => {
         return <Text
-            color={titleProps.color}
+            color={titleProps.textColor}
             variant="body2-regular"
             numberOfLines={1}
             style={[
