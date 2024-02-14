@@ -10,7 +10,6 @@ import {
 
 export const stylesheet = StyleSheet.create({
     container: {
-        justifyContent: "space-between",
         flexDirection: "row",
         alignItems: "center",
         alignSelf: "stretch",
@@ -18,8 +17,9 @@ export const stylesheet = StyleSheet.create({
         height: 60
     },
     content: {
-        justifyContent: "center",
-        flexDirection: "column"
+        justifyContent: "space-between",
+        flexDirection: "row",
+        flex: 1
     },
     customRenderForIcon: {
         flexDirection: "row",
@@ -47,9 +47,19 @@ const datePickerStyler = ({
         color: "primary"
     };
 
+    let titleStyle : ViewStyle = {
+        marginBottom: spaces.inline
+    };
+
+    let customIcon : ViewStyle = {
+        marginLeft: spaces.content * 1.5
+    };
+
     return {
-        container,
-        titleProps
+        customIcon,
+        titleStyle,
+        titleProps,
+        container
     };
 };
 

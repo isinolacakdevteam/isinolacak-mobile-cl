@@ -1,5 +1,7 @@
 import {
-    RefObject
+    SetStateAction,
+    RefObject,
+    Dispatch,
 } from "react";
 import {
     ViewStyle
@@ -10,23 +12,18 @@ import {
 
 export interface IDatePickerProps {
     DateTimePickerSheetRef: RefObject<BottomSheetRef>;
-    // onChange: (date: Date) => void;
-    handlePosition?: handlePosition;
+    setDate: Dispatch<SetStateAction<Date>>
     display: DatePickerDisplay;
-    autoHeight?: boolean;
     mode: DatePickerMode;
-    onPress: () => void;
+    disabled?: boolean;
+    is24Hour?: boolean;
     style?: ViewStyle;
-    disabled: boolean;
-    is24Hour: boolean;
     title: string;
-    size: number;
-    value: Date;
+    date: Date;
 }
 
 export type DatePickerMode = "date" | "time" | "datetime";
 export type DatePickerDisplay = "default" | "spinner"
-export type handlePosition= "inside" | "outside";
 
 export type DatePickerStylerParams = {
     radiuses: IOCore.RadiusesTokensType;
@@ -42,5 +39,7 @@ export type TitleProps = {
 
 export type DatePickerStylerResult = {
     titleProps: TitleProps;
+    titleStyle: ViewStyle;
+    customIcon: ViewStyle;
     container: ViewStyle;
 };

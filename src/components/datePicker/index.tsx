@@ -1,6 +1,7 @@
 import React, {
     useState,
-    FC
+    FC,
+    useRef
 } from 'react';
 import {
     TouchableOpacity,
@@ -25,20 +26,20 @@ import DateTimePicker, {
 import moment from 'moment';
 import BottomSheet from '../bottomSheet';
 import Text from '../text';
+import {
+    BottomSheetRef 
+} from '../bottomSheet/types';
 
 const CustomDatePicker: FC<IDatePickerProps> = ({
     DateTimePickerSheetRef,
     is24Hour = false,
-    handlePosition,
-    autoHeight,
     disabled,
+    setDate,
     display,
-    onPress,
     style,
     title,
-    value,
-    mode,
-    size
+    date,
+    mode
 }: IDatePickerProps) => {
     const {
         radiuses,
@@ -46,8 +47,11 @@ const CustomDatePicker: FC<IDatePickerProps> = ({
         spaces,
         colors
     } = IOCoreTheme.useContext();
+
     const {
         titleProps,
+        customIcon,
+        titleStyle,
         container
     } = datePickerStyler({
         radiuses,
@@ -58,12 +62,14 @@ const CustomDatePicker: FC<IDatePickerProps> = ({
     });
 
     const [showDatePicker, setShowDatePicker] = useState(false);
-    const [date, setDate] = useState(new Date(1598051730000));
+
+    const IOSdatePickerRef = useRef<BottomSheetRef>(null);
 
     const onSelectBoxPress = () => {
-        setShowDatePicker(true);
-        if (Platform.OS === 'ios') {
-            DateTimePickerSheetRef.current?.open();
+        if(Platform.OS === "ios") {
+            IOSdatePickerRef.current?.open();
+        } else {
+            setShowDatePicker(true);
         }
     };
 
@@ -74,81 +80,110 @@ const CustomDatePicker: FC<IDatePickerProps> = ({
         const currentDate = selectedDate;
         setShowDatePicker(false);
         setDate(currentDate);
-        DateTimePickerSheetRef.current?.close();
-    };
-
-    const renderBottomSheet = () => {
-        return (
-            <BottomSheet
-                ref={DateTimePickerSheetRef}
-                handlePosition={handlePosition}
-                autoHeight={autoHeight}
-            >
-                <DateTimePicker
-                    value={date}
-                    mode={mode}
-                    is24Hour={is24Hour}
-                    display={display}
-                    //@ts-ignore
-                    onChange={onDatePickerChange} //TODO: Type issue will fix
-                />
-            </BottomSheet>
-        );
+        if(Platform.OS === "ios") {
+            IOSdatePickerRef.current?.close();
+        } else {
+            setShowDatePicker(false);
+        }
     };
 
     const renderIcon = () => {
         return <View                 
             style={[
-                stylesheet.customRenderForIcon
+                stylesheet.customRenderForIcon,
+                customIcon
             ]}
         >
             <CalendarIcon
                 color={colors.textGrey}
-                size={size}
+                size={24}
             />
         </View>;        
     };
 
-    return (
-        <View>
-            <TouchableOpacity
-                style={[
-                    stylesheet.container,
-                    container,
-                    style
-                ]}
-                onPress={() => {
-                    if(disabled) {
-                        return;
-                    }
+    const renderTitle = () => {
+        return <Text
+            color={titleProps.color}
+            variant="body2-regular"
+            numberOfLines={1}
+            style={[
+                titleStyle
+            ]}
+        >
+            {title}
+        </Text>;
+    };
 
-                    if(!onPress) {
-                        DateTimePickerSheetRef.current?.open();
-                        return;
-                    }
+    const renderDate = () => {
+        return <Text
+            color={titleProps.color}
+            variant="body2-regular"
+            numberOfLines={1}
+        >
+            {moment(date).format("DD/MM/YY")}
+        </Text>;
+    };
+
+    const renderAndroidDatePicker = () => {
+        if(Platform.OS === "ios") {
+            return null;
+        }
+
+        if(!showDatePicker) {
+            return null;
+        }
         
-                    onPress(onSelectBoxPress);
-                }}
-                disabled={disabled}
-            >
-                <View                 
-                    style={[
-                        stylesheet.content,
-                    ]}
-                > 
-                    <Text
-                        color={titleProps.color}
-                        variant="body2-regular"
-                        numberOfLines={1}
-                    >
-                        {title || moment(date).format('DD/MM/YYYY')}
-                    </Text>
-                </View>
-                {renderIcon()}
-            </TouchableOpacity>
-            {renderBottomSheet()}
-        </View>
-    );
-};
+        return <DateTimePicker
+            is24Hour={is24Hour}
+            display={display}
+            value={date}
+            mode={mode}
+            //@ts-ignore
+            onChange={onDatePickerChange} //TODO: Type issue will fix
+        />;
+    };
 
+    const renderIOSDatePicker = () => {
+        if(Platform.OS === "android") {
+            return null;
+        }
+
+        return <BottomSheet
+            ref={IOSdatePickerRef}
+            handlePosition="inside"
+            autoHeight={true}
+        >
+            <DateTimePicker
+                is24Hour={is24Hour}
+                display={display}
+                value={date}
+                mode={mode}
+                //@ts-ignore
+                onChange={onDatePickerChange} //TODO: Type issue will fix
+            />
+        </BottomSheet>;
+    };
+
+    return <TouchableOpacity
+        style={[
+            stylesheet.container,
+            container,
+            style
+        ]}
+        onPress={onSelectBoxPress}
+        disabled={disabled}
+    >
+        <View                 
+            style={stylesheet.content}
+        > 
+            <View>
+                {renderTitle()}
+                {renderDate()}
+            </View>
+            {renderIcon()}
+        </View>
+        {renderAndroidDatePicker()}
+        {renderIOSDatePicker()}
+    </TouchableOpacity>;
+};
 export default CustomDatePicker;

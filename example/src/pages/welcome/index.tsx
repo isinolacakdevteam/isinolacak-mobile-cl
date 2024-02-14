@@ -50,8 +50,9 @@ const Welcome = () => {
 
     const navigation = useNavigation<CompositeScreenProps<any, any>["navigation"]>();
     const [isSelected, setIsSelected] = useState(false);
-    const DateBottomSheet = useRef<BottomSheetRef>(null);
+    const [date, setDate] = useState<Date>(new Date);
 
+    const DateBottomSheet = useRef<BottomSheetRef>(null);
     const inputRef = useRef<NativeTextInput | null>(null);
 
     return <SafeAreaView
@@ -259,18 +260,13 @@ const Welcome = () => {
             </BadgeHOC>
             <DatePicker
                 DateTimePickerSheetRef={DateBottomSheet}
-                handlePosition="inside"
-                autoHeight={true}
                 display="spinner"
                 disabled={false}
                 is24Hour={true}
+                setDate={setDate}
+                date={date}
                 mode="date"
-                size={20}
-                title=""
-                value={new Date()}
-                onPress={() => {
-                    DateBottomSheet.current?.open();
-                }}
+                title="Deneme"
                 style={{
                     marginBottom: spaces.content
                 }}
