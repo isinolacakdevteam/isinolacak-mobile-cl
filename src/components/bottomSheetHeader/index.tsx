@@ -6,24 +6,24 @@ import {
     View
 } from 'react-native';
 import {
+    stylesheet
+} from './stylesheet';
+import {
     Text
 } from 'isinolacak-cl';
 import {
     SearchIcon
 } from '../../assets/svg';
 import IHeaderProps from './type';
-import {
-    stylesheet 
-} from './stylesheet';
 
 const BottomSheetHeader:FC<IHeaderProps> = ({
     titleVariant = "header5-semiBold",
     renderLeft: renderLeftProps,
     titleColor = "textDark",
     isShowGoBack = false,
+    showGoBackSize = 20,
     renderRightProps,
     goBackFrontColor,
-    size = 20,
     onGoBack,
     title
 }: IHeaderProps) => {
@@ -40,7 +40,7 @@ const BottomSheetHeader:FC<IHeaderProps> = ({
         return <TouchableOpacity onPress={onGoBack}>
             <SearchIcon
                 color={goBackFrontColor}
-                size={size} 
+                size={showGoBackSize} 
             />
         </TouchableOpacity>;
     };

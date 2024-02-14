@@ -254,8 +254,8 @@ const Welcome = () => {
                                 titleVariant="body-medium"
                                 titleColor="primary"
                                 isShowGoBack={true}
+                                showGoBackSize={30}
                                 title="Info Sheet"
-                                size={30}
                                 onGoBack={() => {
                                     navigation.goBack();
                                 }}

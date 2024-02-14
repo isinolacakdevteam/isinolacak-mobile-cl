@@ -4,9 +4,9 @@ interface IHeaderProps {
     titleColor?: keyof IOCore.ColorsType;
     renderRightProps?: React.ReactNode;
     renderLeft?: () => React.ReactNode;
+    showGoBackSize?: number;
     isShowGoBack?: boolean;
     onGoBack?: () => void;
     title: string;
-    size?: number;
 };
 export default IHeaderProps;
