@@ -143,7 +143,7 @@ const CustomDatePicker: FC<IDatePickerProps> = ({
         if(!showDatePicker) {
             return null;
         }
-        
+
         return <DateTimePicker
             is24Hour={is24Hour}
             display={display}

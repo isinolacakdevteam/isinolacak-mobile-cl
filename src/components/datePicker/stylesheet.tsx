@@ -14,7 +14,8 @@ export const stylesheet = StyleSheet.create({
         alignItems: "center",
         alignSelf: "stretch",
         minHeight: 60,
-        height: 60
+        height: 60,
+        flex: 1
     },
     content: {
         justifyContent: "space-between",
@@ -23,8 +24,7 @@ export const stylesheet = StyleSheet.create({
     },
     customRenderForIcon: {
         flexDirection: "row",
-        alignItems: "center",
-        marginLeft: 20
+        alignItems: "center"
     }
 });
 
@@ -62,5 +62,4 @@ const datePickerStyler = ({
         container
     };
 };
-
 export default datePickerStyler;

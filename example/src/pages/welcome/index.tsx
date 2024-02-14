@@ -258,16 +258,33 @@ const Welcome = () => {
                     }}
                 />
             </BadgeHOC>
-            <DatePicker
-                display="spinner"
-                setDate={setDate}
-                mode="datetime"
-                title="Deneme"
-                date={date}
+            <View
                 style={{
-                    marginBottom: spaces.content
+                    flexDirection: "row",
+                    flex: 1
                 }}
-            />
+            >
+                <DatePicker
+                    display="spinner"
+                    setDate={setDate}
+                    mode="datetime"
+                    title="Deneme"
+                    date={date}
+                    style={{
+                        marginBottom: spaces.content
+                    }}
+                />
+                <DatePicker
+                    display="spinner"
+                    setDate={setDate}
+                    mode="datetime"
+                    title="Deneme"
+                    date={date}
+                    style={{
+                        marginBottom: spaces.content
+                    }}
+                />
+            </View>
         </PageContainer>
     </SafeAreaView>;
 };
