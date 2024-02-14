@@ -18,57 +18,55 @@ import {
 
 const BottomSheetHeader:FC<IHeaderProps> = ({
     titleVariant = "header5-semiBold",
+    renderLeft: renderLeftProps,
     titleColor = "textDark",
     isShowGoBack = false,
-    renderRight = null,
+    renderRightProps,
     goBackFrontColor,
-    renderLeft,
     size = 20,
     onGoBack,
     title
 }: IHeaderProps) => {
 
-    const renderLeftContent = () => {
-        if (renderLeft) {
-            return renderLeft;
-        } else if (isShowGoBack) {
-            return (
-                <TouchableOpacity onPress={onGoBack}>
-                    <SearchIcon
-                        color={goBackFrontColor}
-                        size={size} 
-                    />
-                </TouchableOpacity>
-            );
-        } else {
+    const renderLeft = () => {
+        if (renderLeftProps) {
+            return renderLeftProps();
+        }
+
+        if (!isShowGoBack) {
             return null;
         }
+
+        return <TouchableOpacity onPress={onGoBack}>
+            <SearchIcon
+                color={goBackFrontColor}
+                size={size} 
+            />
+        </TouchableOpacity>;
     };
 
-    return (
+    return <View
+        style={
+            stylesheet.container
+        }
+    >
+        {renderLeft()}
         <View
             style={
-                stylesheet.container
-            }
-        >
-            {renderLeftContent()}
-            <View
+                stylesheet.content
+            }>
+            <Text
+                variant={titleVariant}
+                color={titleColor}
                 style={
-                    stylesheet.content
-                }>
-                <Text
-                    variant={titleVariant}
-                    color={titleColor}
-                    style={
-                        stylesheet.title
-                    }
-                >
-                    {title}
-                </Text>
-            </View>
-            {renderRight}
+                    stylesheet.title
+                }
+            >
+                {title}
+            </Text>
         </View>
-    );
+        {renderRightProps}
+    </View>;
 };
 
 export default BottomSheetHeader;

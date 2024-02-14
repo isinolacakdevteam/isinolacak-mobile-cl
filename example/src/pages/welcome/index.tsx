@@ -60,14 +60,6 @@ const Welcome = () => {
             flex: 1
         }}
     >
-        <BottomSheetHeader 
-            renderRight={<SearchIcon />}
-            isShowGoBack={true}
-            title="Welcome"
-            onGoBack={() => {
-                navigation.goBack();
-            }}
-        />
 
         <PageContainer
             contentContainerStyle={stylesheet.contentContainer}
@@ -216,7 +208,7 @@ const Welcome = () => {
                     />;
                 }}
             />
-           
+
             <CheckBox
                 title="Check"
                 isSelected={isSelected}
@@ -257,8 +249,8 @@ const Welcome = () => {
                             }}
                         >
                             <BottomSheetHeader
-                                renderRight={<SearchIcon color={colors.error} size={20} />}
-                                renderLeft={<SearchIcon color={colors.black} size={20} />}
+                                renderRightProps={<SearchIcon color={colors.error} size={20} />}
+                                renderLeft={() => <SearchIcon color={colors.black} size={20} />}
                                 titleVariant="body-medium"
                                 titleColor="primary"
                                 isShowGoBack={true}
