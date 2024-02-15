@@ -11,23 +11,23 @@ import bottomSheetHeaderStyler,{
 import {
     ChevronLeftIcon
 } from '../../assets/svg';
-import IHeaderProps from './type';
+import IBottomSheetHeaderProps from './type';
 import {
     IOCoreTheme
 } from '../../core';
 import Text from '../text';
 
-const BottomSheetHeader:FC<IHeaderProps> = ({
+const BottomSheetHeader:FC<IBottomSheetHeaderProps> = ({
     titleVariant = "header5-semiBold",
-    renderLeft: renderLeftProps,
+    renderRight: RenderRightProps,
+    renderLeft: RenderLeftProps,
     titleColor = "textDark",
     isShowGoBack = false,
     showGoBackSize = 20,
-    renderRightProps,
     goBackFrontColor,
     onGoBack,
     title
-}: IHeaderProps) => {
+}: IBottomSheetHeaderProps) => {
 
     const {
         borders,
@@ -44,8 +44,8 @@ const BottomSheetHeader:FC<IHeaderProps> = ({
     });
 
     const renderLeft = () => {
-        if (renderLeftProps) {
-            return renderLeftProps();
+        if (RenderLeftProps) {
+            return <RenderLeftProps />;
         }
 
         if (!isShowGoBack) {
@@ -60,6 +60,16 @@ const BottomSheetHeader:FC<IHeaderProps> = ({
                 size={showGoBackSize} 
             />
         </TouchableOpacity>;
+    };
+
+    const renderRight = () => {
+        if(!RenderRightProps) {
+            return null;
+        }
+
+        if (RenderRightProps) {
+            return <RenderRightProps />;
+        }
     };
 
     return <View
@@ -84,7 +94,7 @@ const BottomSheetHeader:FC<IHeaderProps> = ({
                 {title}
             </Text>
         </View>
-        {renderRightProps}
+        {renderRight()}
     </View>;
 };
 

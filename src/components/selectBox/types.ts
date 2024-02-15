@@ -6,6 +6,7 @@ import {
     SelectObjectType,
     IOCoreIconType
 } from "../../types";
+import IBottomSheetHeaderProps from "../bottomSheetHeader/type";
 
 export type SelectedItem = {
     title: string;
@@ -57,18 +58,12 @@ export interface ISelectBoxProps<T> {
     initialSelectedItems?: Array<T & {
         originalIndex: number;
     }>;
-    titleVariant?: keyof IOCore.TypographyType;
-    goBackFrontColor?: keyof IOCore.ColorsType;
-    titleColor?: keyof IOCore.ColorsType;
-    renderRightProps?: React.ReactNode;
-    renderLeft?: () => React.ReactNode;
+    bottomSheetProps?: IBottomSheetHeaderProps;
     isLoadingOKButton?: boolean;
     isNeedConfirm?: boolean;
     showGoBackSize?: number;
     isHeaderShown?: boolean;
     isSearchable?: boolean;
-    isShowGoBack?: boolean;
-    onGoBack?: () => void;
     multiSelect?: boolean;
     maxChoice?: number;
     minChoice?: number;

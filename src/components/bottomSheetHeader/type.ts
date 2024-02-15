@@ -1,19 +1,21 @@
 import {
     ViewStyle
 } from "react-native";
-
-interface IHeaderProps {
+import {
+    IOCoreIconType
+} from "../../types";
+interface IBottomSheetHeaderProps {
     titleVariant?: keyof IOCore.TypographyType;
     goBackFrontColor?: keyof IOCore.ColorsType;
     titleColor?: keyof IOCore.ColorsType;
-    renderRightProps?: React.ReactNode;
-    renderLeft?: () => React.ReactNode;
+    renderRight?: IOCoreIconType;
+    renderLeft?: IOCoreIconType;
     showGoBackSize?: number;
     isShowGoBack?: boolean;
     onGoBack?: () => void;
     title: string;
 };
-export default IHeaderProps;
+export default IBottomSheetHeaderProps;
 
 export type BottomSheetHeaderStylerProps = {
     borders: IOCore.BordersTokensType;

@@ -34,19 +34,13 @@ import {
 } from "../../types";
 
 const SelectBox = <T extends {}>({
-    titleVariant = "header5-semiBold",
-    renderLeft: renderLeftProps,
-    titleColor = "textDark",
     renderIcon: RenderIcon,
     initialSelectedItems,
-    isShowGoBack = false,
     multiSelect = false,
-    showGoBackSize = 20,
     isLoadingOKButton,
     data: initialData,
     disabled = false,
-    goBackFrontColor,
-    renderRightProps,
+    bottomSheetProps,
     titleExtractor,
     isNeedConfirm,
     isHeaderShown,
@@ -56,7 +50,6 @@ const SelectBox = <T extends {}>({
     renderItem,
     maxChoice,
     minChoice,
-    onGoBack,
     onSearch,
     onChange,
     onPress,
@@ -239,28 +232,21 @@ const SelectBox = <T extends {}>({
 
     const renderSelectSheet = () => {
         return <SelectSheet
+            BottomSheetHeaderProps={bottomSheetProps}
             isLoadingOKButton={isLoadingOKButton}
-            renderRightProps={renderRightProps}
-            goBackFrontColor={goBackFrontColor}
             setSelectedItems={setSelectedItems}
-            showGoBackSize={showGoBackSize}
             isNeedConfirm={isNeedConfirm}
             selectedItems={selectedItems}
             isHeaderShown={isHeaderShown}
-            renderLeft={renderLeftProps}
-            titleVariant={titleVariant}
             isSearchable={isSearchable}
-            isShowGoBack={isShowGoBack}
             multiSelect={multiSelect}
             initialData={initialData}
             inputTitle={inputTitle}
-            titleColor={titleColor}
             renderIcon={RenderIcon}
             renderItem={renderItem}
             maxChoice={maxChoice}
             minChoice={minChoice}
             ref={selectSheetRef}
-            onGoBack={onGoBack}
             onSearch={onSearch}
             onChange={onChange}
             fullScreen={false}

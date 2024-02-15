@@ -270,7 +270,10 @@ const Welcome = () => {
                 titleExtractor={(item) => item.val}
                 isHeaderShown={true}
                 isNeedConfirm={true}
-                isShowGoBack={true}
+                bottomSheetProps={{
+                    isShowGoBack: true,
+                    title: "Time"
+                }}
                 multiSelect={false}
                 inputTitle="Time"
                 disabled={false}

@@ -46,27 +46,20 @@ import {
     Modalize
 } from "react-native-modalize";
 import BottomSheetHeader from "../bottomSheetHeader";
-
 const SelecetSheet = <T, K extends T & SelectObjectType>(
     properties: ISelectSheetProps<T, K>,
     ref: ForwardedRef<SelectSheetRef>
 ) => {
     const {
         pageContainerStyle: pageContainerStyleProp,
-        titleVariant = "header5-semiBold",
         childrenStyle: childrenStyleProp,
-        renderLeft: renderLeftProps,
         modalStyle: modalStyleProp,
         rootStyle: rootStyleProp,
-        titleColor = "textDark",
         renderItem: RenderItem,
-        isShowGoBack = false,
-        showGoBackSize = 20,
+        BottomSheetHeaderProps,
         pageContainerProps,
         isLoadingOKButton,
         setSelectedItems,
-        renderRightProps,
-        goBackFrontColor,
         snapPoint = 300,
         isNeedConfirm,
         selectedItems,
@@ -81,7 +74,6 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         maxChoice,
         minChoice,
         children,
-        onGoBack,
         onSearch,
         onChange,
         onPress,
@@ -391,18 +383,13 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         if(!isHeaderShown) {
             return null;
         }
+        
         return <BottomSheetHeader 
-            goBackFrontColor={goBackFrontColor}
-            renderRightProps={renderRightProps}
-            showGoBackSize={showGoBackSize}
-            renderLeft={renderLeftProps}
-            titleVariant={titleVariant}
-            isShowGoBack={isShowGoBack}
-            titleColor={titleColor}
-            onGoBack={onGoBack}
-            title={title}
+            {...BottomSheetHeaderProps}
+            title={title} //TODO: This will be checked
         />;
     };
+
 
     const {
         buttonsContainerProps,
