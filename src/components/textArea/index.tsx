@@ -19,7 +19,6 @@ import {
 import Text from "../text";
 
 const TextArea: FC<ITextAreaProps> = ({
-    placeholder= "Placeholder",
     clearEnabled = false,
     onFocus: onFocusProp,
     isTextLimit= false,
@@ -31,6 +30,7 @@ const TextArea: FC<ITextAreaProps> = ({
     textLimit = 0,
     initialValue,
     onChangeText,
+    placeholder,
     style,
     ...props
 }) => {
@@ -80,11 +80,11 @@ const TextArea: FC<ITextAreaProps> = ({
 
     const renderNativeInput = () => {
         return <NativeTextInput
-            placeholder={placeholder ? placeholder : undefined}
             maxLength={textLimit ? textLimit : undefined}
             underlineColorAndroid="rgba(255,255,255,0)"
             placeholderTextColor={colors.hideBody}
-            textAlignVertical="bottom"
+            placeholder={placeholder}
+            textAlignVertical="top"
             editable={!disabled}
             onFocus={onFocus}
             multiline={true}

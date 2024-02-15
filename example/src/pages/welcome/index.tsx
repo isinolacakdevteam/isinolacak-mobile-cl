@@ -16,6 +16,7 @@ import {
     IOCoreTheme,
     TextInput,
     StateCard,
+    TextArea,
     CheckBox,
     BadgeHOC,
     Button,
@@ -183,6 +184,12 @@ const Welcome = () => {
                     selected={isSelected}
                 />
             </BadgeHOC>
+            <TextArea
+                title="Text Area"
+                style={{
+                    marginVertical: spaces.content
+                }}
+            />
             <StateCard
                 title="Deneme"
                 content="SADASDSA DSAD"
