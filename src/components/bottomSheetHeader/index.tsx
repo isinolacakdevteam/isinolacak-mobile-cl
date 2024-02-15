@@ -5,16 +5,17 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
-import {
+import bottomSheetHeaderStyler,{
     stylesheet
 } from './stylesheet';
 import {
-    Text
-} from 'isinolacak-cl';
-import {
-    SearchIcon
+    ChevronLeftIcon
 } from '../../assets/svg';
 import IHeaderProps from './type';
+import {
+    IOCoreTheme
+} from '../../core';
+import Text from '../text';
 
 const BottomSheetHeader:FC<IHeaderProps> = ({
     titleVariant = "header5-semiBold",
@@ -28,6 +29,20 @@ const BottomSheetHeader:FC<IHeaderProps> = ({
     title
 }: IHeaderProps) => {
 
+    const {
+        borders,
+        colors,
+        spaces
+    } = IOCoreTheme.useContext();
+
+    const {
+        container
+    } = bottomSheetHeaderStyler({
+        borders,
+        colors,
+        spaces
+    });
+
     const renderLeft = () => {
         if (renderLeftProps) {
             return renderLeftProps();
@@ -37,8 +52,10 @@ const BottomSheetHeader:FC<IHeaderProps> = ({
             return null;
         }
 
-        return <TouchableOpacity onPress={onGoBack}>
-            <SearchIcon
+        return <TouchableOpacity
+            onPress={onGoBack}
+        >
+            <ChevronLeftIcon
                 color={goBackFrontColor}
                 size={showGoBackSize} 
             />
@@ -46,15 +63,17 @@ const BottomSheetHeader:FC<IHeaderProps> = ({
     };
 
     return <View
-        style={
-            stylesheet.container
-        }
+        style={[
+            stylesheet.container,
+            container
+        ]}
     >
         {renderLeft()}
         <View
             style={
                 stylesheet.content
-            }>
+            }
+        >
             <Text
                 variant={titleVariant}
                 color={titleColor}

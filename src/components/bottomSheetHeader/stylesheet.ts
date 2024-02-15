@@ -1,25 +1,47 @@
 import {
+    ViewStyle
+} from "react-native";
+import {
     StyleSheet
 } from "react-native";
+import {
+    BottomSheetHeaderStylerProps,
+    BottomSheetHeaderStylerResult
+} from "./type";
 
 export const stylesheet = StyleSheet.create({
     container: {
-        borderBottomColor: 'rgba(0,0,0,0.2)',
         justifyContent: 'space-between',
-        borderBottomWidth: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom:20,
-        minHeight: 45
+        maxHeight: 45,
+        flex:1
     },
     content: {
         alignItems: 'center',
         flex: 1
     },
     title: {
-        width: '100%',
         justifyContent: 'center',
         alignSelf: 'center',
         textAlign: 'center',
     }
 });
+
+const bottomSheetHeaderStyler = ({
+    borders,
+    colors,
+    spaces
+}: BottomSheetHeaderStylerProps):BottomSheetHeaderStylerResult => {
+    let container: ViewStyle = {
+        borderBottomWidth: borders.line,
+        marginBottom: spaces.container,
+        borderColor: colors.stroke
+    };
+
+    return {
+        container
+    };
+};
+
+export default bottomSheetHeaderStyler;

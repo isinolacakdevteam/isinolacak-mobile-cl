@@ -6,7 +6,7 @@ import {
     IIOCoreIconPropsType
 } from "../../../types";
 
-const ChevronDownICon = ({
+const ChevronDown = ({
     color = "#9AA6B8",
     size = 24,
     ...props
@@ -28,4 +28,4 @@ const ChevronDownICon = ({
         />
     </Svg>;
 };
-export default ChevronDownICon;
+export default ChevronDown;

@@ -1,10 +1,10 @@
 export {
     default as InfoIcon
-} from "./info";
+} from "./infoIcon";
 
 export {
     default as ChevronDownIcon
-} from "./chevronDown";
+} from "./chevronDownIcon";
 
 export {
     default as CheckIcon
@@ -12,7 +12,7 @@ export {
 
 export {
     default as SearchIcon
-} from "./searcIcon";
+} from "./searchIcon";
 
 export {
     default as NotificationIcon
@@ -20,8 +20,12 @@ export {
 
 export {
     default as EyeClosedIcon
-} from "./eyeClosed";
+} from "./eyeClosedIcon";
 
 export {
     default as EyeOpenedIcon
-} from "./eyeOpened";
+} from "./eyeOpenedIcon";
+
+export {
+    default as ChevronLeftIcon
+} from "./chevronLeftIcon";

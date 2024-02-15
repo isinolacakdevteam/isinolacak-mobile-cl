@@ -6,7 +6,7 @@ import {
     IIOCoreIconPropsType
 } from "../../../types";
 
-const EyeOpenedIcon = ({
+const EyeOpened = ({
     color = "#9AA6B8",
     size = 24,
     ...props
@@ -35,4 +35,4 @@ const EyeOpenedIcon = ({
         />
     </Svg>;
 };
-export default EyeOpenedIcon;
+export default EyeOpened;

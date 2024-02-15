@@ -28,8 +28,7 @@ import {
     useNavigation
 } from "@react-navigation/native";
 import {
-    InfoIcon,
-    SearchIcon
+    InfoIcon
 } from "../../../../src/assets/svg";
 import BottomSheetHeader from "../../../../src/components/bottomSheetHeader";
 
@@ -249,12 +248,8 @@ const Welcome = () => {
                             }}
                         >
                             <BottomSheetHeader
-                                renderRightProps={<SearchIcon color={colors.error} size={20} />}
-                                renderLeft={() => <SearchIcon color={colors.black} size={20} />}
-                                titleVariant="body-medium"
-                                titleColor="primary"
                                 isShowGoBack={true}
-                                showGoBackSize={30}
+                                showGoBackSize={20}
                                 title="Info Sheet"
                                 onGoBack={() => {
                                     navigation.goBack();
