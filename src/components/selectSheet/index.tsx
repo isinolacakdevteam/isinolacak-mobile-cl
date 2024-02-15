@@ -45,6 +45,7 @@ import {
 import {
     Modalize
 } from "react-native-modalize";
+import BottomSheetHeader from "../bottomSheetHeader";
 
 const SelecetSheet = <T, K extends T & SelectObjectType>(
     properties: ISelectSheetProps<T, K>,
@@ -52,13 +53,20 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
 ) => {
     const {
         pageContainerStyle: pageContainerStyleProp,
+        titleVariant = "header5-semiBold",
         childrenStyle: childrenStyleProp,
+        renderLeft: renderLeftProps,
         modalStyle: modalStyleProp,
         rootStyle: rootStyleProp,
+        titleColor = "textDark",
         renderItem: RenderItem,
+        isShowGoBack = false,
+        showGoBackSize = 20,
         pageContainerProps,
         isLoadingOKButton,
         setSelectedItems,
+        renderRightProps,
+        goBackFrontColor,
         snapPoint = 300,
         isNeedConfirm,
         selectedItems,
@@ -72,9 +80,11 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         maxChoice,
         minChoice,
         children,
+        onGoBack,
         onSearch,
         onChange,
         onPress,
+        title,
         data,
         onOk,
         ...props
@@ -375,6 +385,20 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         />;
     };
 
+    const renderSelectSheetHeader = () => {
+        return <BottomSheetHeader 
+            goBackFrontColor={goBackFrontColor}
+            renderRightProps={renderRightProps}
+            showGoBackSize={showGoBackSize}
+            renderLeft={renderLeftProps}
+            titleVariant={titleVariant}
+            isShowGoBack={isShowGoBack}
+            titleColor={titleColor}
+            onGoBack={onGoBack}
+            title={title}
+        />;
+    };
+
     const {
         buttonsContainerProps,
         contentContainerStyle,
@@ -433,6 +457,7 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
                 style={pageContainerStyle}
                 scrollable={false}
             >
+                {renderSelectSheetHeader()}
                 {renderContent()}
                 {renderActions()}
             </PageContainer>

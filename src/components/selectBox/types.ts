@@ -57,9 +57,17 @@ export interface ISelectBoxProps<T> {
     initialSelectedItems?: Array<T & {
         originalIndex: number;
     }>;
+    titleVariant?: keyof IOCore.TypographyType;
+    goBackFrontColor?: keyof IOCore.ColorsType;
+    titleColor?: keyof IOCore.ColorsType;
+    renderRightProps?: React.ReactNode;
+    renderLeft?: () => React.ReactNode;
     isLoadingOKButton?: boolean;
     isNeedConfirm?: boolean;
+    showGoBackSize?: number;
     isSearchable?: boolean;
+    isShowGoBack?: boolean;
+    onGoBack?: () => void;
     multiSelect?: boolean;
     maxChoice?: number;
     minChoice?: number;
