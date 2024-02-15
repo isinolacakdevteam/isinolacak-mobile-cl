@@ -70,6 +70,7 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         snapPoint = 300,
         isNeedConfirm,
         selectedItems,
+        isHeaderShown,
         isSearchable,
         multiSelect,
         initialData,
@@ -385,7 +386,11 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         />;
     };
 
+
     const renderSelectSheetHeader = () => {
+        if(!isHeaderShown) {
+            return null;
+        }
         return <BottomSheetHeader 
             goBackFrontColor={goBackFrontColor}
             renderRightProps={renderRightProps}

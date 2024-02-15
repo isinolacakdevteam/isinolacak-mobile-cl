@@ -65,6 +65,7 @@ export interface ISelectBoxProps<T> {
     isLoadingOKButton?: boolean;
     isNeedConfirm?: boolean;
     showGoBackSize?: number;
+    isHeaderShown?: boolean;
     isSearchable?: boolean;
     isShowGoBack?: boolean;
     onGoBack?: () => void;

@@ -100,6 +100,7 @@ interface ISelectSheetProps<T, K extends T & SelectObjectType> extends Omit<Moda
     pageContainerStyle?: ViewStyle;
     isLoadingOKButton?: boolean;
     childrenStyle?: ViewStyle;
+    isHeaderShown?: boolean;
     isNeedConfirm?: boolean;
     showGoBackSize?: number;
     isSearchable?: boolean;

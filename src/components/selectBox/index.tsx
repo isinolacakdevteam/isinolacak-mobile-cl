@@ -49,6 +49,7 @@ const SelectBox = <T extends {}>({
     renderRightProps,
     titleExtractor,
     isNeedConfirm,
+    isHeaderShown,
     keyExtractor,
     isSearchable,
     inputTitle,
@@ -245,6 +246,7 @@ const SelectBox = <T extends {}>({
             showGoBackSize={showGoBackSize}
             isNeedConfirm={isNeedConfirm}
             selectedItems={selectedItems}
+            isHeaderShown={isHeaderShown}
             renderLeft={renderLeftProps}
             titleVariant={titleVariant}
             isSearchable={isSearchable}

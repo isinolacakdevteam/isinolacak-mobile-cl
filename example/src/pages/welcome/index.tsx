@@ -267,13 +267,14 @@ const Welcome = () => {
                 />
             </BadgeHOC>
             <SelectBox
-                isShowGoBack={true}
-                inputTitle="Time"
                 titleExtractor={(item) => item.val}
-                title="Time"
+                isHeaderShown={true}
                 isNeedConfirm={true}
+                isShowGoBack={true}
                 multiSelect={false}
+                inputTitle="Time"
                 disabled={false}
+                title="Time"
                 style={{
                     marginBottom: spaces.content * 1.5
                 }}
