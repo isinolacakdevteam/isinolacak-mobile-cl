@@ -31,6 +31,7 @@ import {
     InfoIcon
 } from "../../../../src/assets/svg";
 import BottomSheetHeader from "../../../../src/components/bottomSheetHeader";
+import SelectBox from "../../../../src/components/selectBox";
 
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
@@ -265,6 +266,36 @@ const Welcome = () => {
                     }}
                 />
             </BadgeHOC>
+            <SelectBox
+                isShowGoBack={true}
+                inputTitle="Time"
+                titleExtractor={(item) => item.val}
+                title="Time"
+                isNeedConfirm={true}
+                multiSelect={false}
+                disabled={false}
+                style={{
+                    marginBottom: spaces.content * 1.5
+                }}
+                onOk={({
+                    closeSheet,
+                    onSuccess
+                }) => {
+                    closeSheet();
+                    onSuccess();
+                }}
+                data={[
+                    {
+                        val: "00:15"
+                    },
+                    {
+                        val: "00:30"
+                    },
+                    {
+                        val: "00:45"
+                    },
+                ]}
+            />
         </PageContainer>
     </SafeAreaView>;
 };
