@@ -63,5 +63,5 @@ export {
 } from "./badgeHOC";
 
 export {
-    default as DatePicker
-} from "./datePicker";
+    default as DateTimePicker
+} from "./dateTimePicker";

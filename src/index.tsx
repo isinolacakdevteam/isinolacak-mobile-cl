@@ -23,11 +23,11 @@ export type {
 } from "./types";
 
 export {
+    DateTimePicker,
     PageContainer,
     BottomSheet,
     RadioButton,
     SelectSheet,
-    DatePicker,
     TextInput,
     SelectBox,
     StateCard,

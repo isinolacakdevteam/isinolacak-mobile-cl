@@ -3,8 +3,8 @@ import {
     ViewStyle
 } from "react-native";
 import {
-    DatePickerStylerParams, 
-    DatePickerStylerResult,
+    DateTimePickerStylerParams, 
+    DateTimePickerStylerResult,
     TitleProps
 } from "./type";
 
@@ -28,12 +28,12 @@ export const stylesheet = StyleSheet.create({
     }
 });
 
-const datePickerStyler = ({
+const dateTimePickerStyler = ({
     radiuses,
     borders,
     colors,
     spaces
-}: DatePickerStylerParams): DatePickerStylerResult => {
+}: DateTimePickerStylerParams): DateTimePickerStylerResult => {
     let container: ViewStyle = {
         paddingVertical: spaces.container / 8,
         paddingHorizontal: spaces.container,
@@ -63,4 +63,4 @@ const datePickerStyler = ({
         container
     };
 };
-export default datePickerStyler;
+export default dateTimePickerStyler;

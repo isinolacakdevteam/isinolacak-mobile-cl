@@ -10,12 +10,11 @@ import {
     View
 } from 'react-native';
 import {
-    BottomSheetRef,
+    DateTimePicker,
     PageContainer,
     IOCoreLocale,
     RadioButton,
     IOCoreTheme,
-    DatePicker,
     TextInput,
     StateCard,
     CheckBox,
@@ -37,6 +36,8 @@ const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
 
 const Welcome = () => {
+    const navigation = useNavigation<CompositeScreenProps<any, any>["navigation"]>();
+
     const {
         activeTheme,
         colors,
@@ -48,11 +49,9 @@ const Welcome = () => {
         localize
     } = IOCoreLocale.useContext();
 
-    const navigation = useNavigation<CompositeScreenProps<any, any>["navigation"]>();
     const [isSelected, setIsSelected] = useState(false);
     const [date, setDate] = useState<Date>(new Date);
 
-    const DateBottomSheet = useRef<BottomSheetRef>(null);
     const inputRef = useRef<NativeTextInput | null>(null);
 
     return <SafeAreaView
@@ -264,7 +263,7 @@ const Welcome = () => {
                     flex: 1
                 }}
             >
-                <DatePicker
+                <DateTimePicker
                     display="spinner"
                     setDate={setDate}
                     mode="datetime"
@@ -274,7 +273,7 @@ const Welcome = () => {
                         marginBottom: spaces.content
                     }}
                 />
-                <DatePicker
+                <DateTimePicker
                     display="spinner"
                     setDate={setDate}
                     mode="datetime"

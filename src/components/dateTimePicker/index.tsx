@@ -8,38 +8,33 @@ import {
     Platform,
     View
 } from 'react-native';
-import datePickerStyler, {
+import dateTimePickerStyler, {
     stylesheet
 } from './stylesheet';
-import {
-    IDatePickerProps
-} from './type';
+import IDateTimePickerProps from './type';
 import {
     IOCoreTheme
 } from '../../core';
 import {
     CalendarIcon
 } from '../../assets/svg';
-import DateTimePicker, {
-    DateTimePickerEvent
-} from '@react-native-community/datetimepicker';
-import moment from 'moment';
-import BottomSheet from '../bottomSheet';
 import Text from '../text';
+import DateTimePickerComponent from '@react-native-community/datetimepicker';
+import BottomSheet from '../bottomSheet';
 import {
-    BottomSheetRef 
+    BottomSheetRef
 } from '../bottomSheet/types';
+import moment from 'moment';
 
-const CustomDatePicker: FC<IDatePickerProps> = ({
-    is24Hour = false,
+const DateTimePicker: FC<IDateTimePickerProps> = ({
+    onChange: onChangeProp,
     disabled,
-    setDate,
     display,
     style,
     title,
-    date,
-    mode
-}: IDatePickerProps) => {
+    mode,
+    ...props
+}: IDateTimePickerProps) => {
     const {
         radiuses,
         borders,
@@ -52,7 +47,7 @@ const CustomDatePicker: FC<IDatePickerProps> = ({
         customIcon,
         titleStyle,
         container
-    } = datePickerStyler({
+    } = dateTimePickerStyler({
         radiuses,
         disabled,
         borders,
@@ -60,31 +55,51 @@ const CustomDatePicker: FC<IDatePickerProps> = ({
         colors
     });
 
-    const [showDatePicker, setShowDatePicker] = useState(false);
+    const [showPicker, setShowPicker] = useState(false);
+    const [date, setDate] = useState(new Date());
 
-    const IOSdatePickerRef = useRef<BottomSheetRef>(null);
+    const iOSDateTimePickerRef = useRef<BottomSheetRef>(null);
 
-    const onSelectBoxPress = () => {
+    const onPress = () => {
         if(Platform.OS === "ios") {
-            IOSdatePickerRef.current?.open();
+            iOSDateTimePickerRef.current?.open();
         } else {
-            setShowDatePicker(true);
+            setShowPicker(true);
         }
     };
 
-    const onDatePickerChange = (
-        event: DateTimePickerEvent,
-        selectedDate: Date
-    ) => {
-        const currentDate = selectedDate;
-        setShowDatePicker(false);
-        setDate(currentDate);
+    const onChange = (selectedDate?: Date) => {
+        if(!selectedDate) {
+            return;
+        }
+
+        setShowPicker(false);
+        setDate(selectedDate);
+
+        if(onChangeProp) onChangeProp(selectedDate, formatDate(selectedDate));
+
         if(Platform.OS === "ios") {
-            IOSdatePickerRef.current?.close();
+            iOSDateTimePickerRef.current?.close();
         } else {
-            setShowDatePicker(false);
+            setShowPicker(false);
         }
     };
+
+    const formatDate = (originalDate: Date) => {
+        let currentDate = moment(originalDate).format("DD/MM/YY hh:mm");
+
+        if(mode === "date") {
+            currentDate = moment(originalDate).format("DD/MM/YY");
+        }
+
+        if(mode === "time") {
+            currentDate = moment(originalDate).format("hh:mm");
+        }
+
+        return currentDate;
+    };
+
+    const formattedDate = formatDate(date);
 
     const renderIcon = () => {
         return <View                 
@@ -114,75 +129,59 @@ const CustomDatePicker: FC<IDatePickerProps> = ({
     };
 
     const renderDate = () => {
-        let currentDate;
-
-        if(mode === "date") {
-            currentDate = moment(date).format("DD/MM/YY");
-        }
-        if(mode === "time") {
-            currentDate = moment(date).format("hh:mm");
-        }
-        if(mode === "datetime") {
-            currentDate = moment(date).format("DD/MM/YY hh:mm");
-        }
-
         return <Text
             color={titleProps.color}
             variant="body2-regular"
             numberOfLines={1}
         >
-            {currentDate}
+            {formattedDate}
         </Text>;
     };
 
-    const renderAndroidDatePicker = () => {
+    const renderPicker = () => {
+        return <DateTimePickerComponent
+            {...props}
+            onChange={(_, date) => onChange(date)}
+            display={display}
+            value={date}
+            mode={mode}
+        />;
+    };
+
+    const renderAndroidPicker = () => {
         if(Platform.OS === "ios") {
             return null;
         }
 
-        if(!showDatePicker) {
+        if(!showPicker) {
             return null;
         }
 
-        return <DateTimePicker
-            is24Hour={is24Hour}
-            display={display}
-            value={date}
-            mode={mode}
-            //@ts-ignore
-            onChange={onDatePickerChange} //TODO: Type issue will fix
-        />;
+        return renderPicker();
     };
 
-    const renderIOSDatePicker = () => {
+    const renderIOSPicker = () => {
         if(Platform.OS === "android") {
             return null;
         }
 
         return <BottomSheet
-            ref={IOSdatePickerRef}
+            ref={iOSDateTimePickerRef}
             handlePosition="inside"
             autoHeight={true}
         >
-            <DateTimePicker
-                is24Hour={is24Hour}
-                display={display}
-                value={date}
-                mode={mode}
-                //@ts-ignore
-                onChange={onDatePickerChange} //TODO: Type issue will fix
-            />
+            {renderPicker()}
         </BottomSheet>;
     };
 
     return <TouchableOpacity
+        disabled={disabled}
+        onPress={onPress}
         style={[
             stylesheet.container,
             container,
             style
         ]}
-        onPress={onSelectBoxPress}
-        disabled={disabled}
     >
         <View                 
             style={stylesheet.content}
@@ -193,8 +192,8 @@ const CustomDatePicker: FC<IDatePickerProps> = ({
             </View>
             {renderIcon()}
         </View>
-        {renderAndroidDatePicker()}
-        {renderIOSDatePicker()}
+        {renderAndroidPicker()}
+        {renderIOSPicker()}
     </TouchableOpacity>;
 };
-export default CustomDatePicker;
+export default DateTimePicker;

@@ -12,6 +12,7 @@ const Calendar = ({
     ...props
 }: IIOCoreIconPropsType) => {
     const pathScale = 24 / size;
+
     return <Svg
         height={size}
         width={size}
