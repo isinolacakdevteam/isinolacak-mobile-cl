@@ -65,3 +65,7 @@ export {
 export {
     default as DateTimePicker
 } from "./dateTimePicker";
+
+export {
+    default as BottomSheetHeader
+} from "./bottomSheetHeader";

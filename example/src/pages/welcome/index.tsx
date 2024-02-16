@@ -32,6 +32,8 @@ import {
 import {
     InfoIcon
 } from "../../../../src/assets/svg";
+import BottomSheetHeader from "../../../../src/components/bottomSheetHeader";
+import SelectBox from "../../../../src/components/selectBox";
 
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
@@ -51,7 +53,6 @@ const Welcome = () => {
     } = IOCoreLocale.useContext();
 
     const [isSelected, setIsSelected] = useState(false);
-    const [date, setDate] = useState<Date>(new Date);
 
     const inputRef = useRef<NativeTextInput | null>(null);
 
@@ -61,6 +62,7 @@ const Welcome = () => {
             flex: 1
         }}
     >
+
         <PageContainer
             contentContainerStyle={stylesheet.contentContainer}
         >
@@ -243,6 +245,8 @@ const Welcome = () => {
                         return /[0-9]|^$/g.test(text);
                     }}
                     inputRef={(e) => {
+                        // TODO: will be fix
+                        // @ts-ignore
                         inputRef.current = e;
                     }}
                     renderInfoSheetContent={() => {
@@ -254,6 +258,14 @@ const Welcome = () => {
                                 alignItems: "center",
                             }}
                         >
+                            <BottomSheetHeader
+                                isShowGoBack={true}
+                                showGoBackSize={20}
+                                title="Info Sheet"
+                                onGoBack={() => {
+                                    navigation.goBack();
+                                }}
+                            />
                             <Text
                                 style={{
                                 }}
@@ -272,25 +284,56 @@ const Welcome = () => {
             >
                 <DateTimePicker
                     display="spinner"
-                    setDate={setDate}
                     mode="datetime"
                     title="Deneme"
-                    date={date}
                     style={{
                         marginBottom: spaces.content
                     }}
                 />
                 <DateTimePicker
                     display="spinner"
-                    setDate={setDate}
+                    
                     mode="datetime"
                     title="Deneme"
-                    date={date}
                     style={{
                         marginBottom: spaces.content
                     }}
                 />
             </View>
+            <SelectBox
+                titleExtractor={(item) => item.val}
+                isHeaderShown={true}
+                isNeedConfirm={true}
+                bottomSheetProps={{
+                    isShowGoBack: true,
+                    title: "Time"
+                }}
+                multiSelect={false}
+                inputTitle="Time"
+                disabled={false}
+                title="Time"
+                style={{
+                    marginBottom: spaces.content * 1.5
+                }}
+                onOk={({
+                    closeSheet,
+                    onSuccess
+                }) => {
+                    closeSheet();
+                    onSuccess();
+                }}
+                data={[
+                    {
+                        val: "00:15"
+                    },
+                    {
+                        val: "00:30"
+                    },
+                    {
+                        val: "00:45"
+                    },
+                ]}
+            />
         </PageContainer>
     </SafeAreaView>;
 };

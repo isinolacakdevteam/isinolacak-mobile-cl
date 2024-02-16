@@ -45,7 +45,7 @@ import {
 import {
     Modalize
 } from "react-native-modalize";
-
+import BottomSheetHeader from "../bottomSheetHeader";
 const SelecetSheet = <T, K extends T & SelectObjectType>(
     properties: ISelectSheetProps<T, K>,
     ref: ForwardedRef<SelectSheetRef>
@@ -56,12 +56,14 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         modalStyle: modalStyleProp,
         rootStyle: rootStyleProp,
         renderItem: RenderItem,
+        BottomSheetHeaderProps,
         pageContainerProps,
         isLoadingOKButton,
         setSelectedItems,
         snapPoint = 300,
         isNeedConfirm,
         selectedItems,
+        isHeaderShown,
         isSearchable,
         multiSelect,
         initialData,
@@ -75,6 +77,7 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         onSearch,
         onChange,
         onPress,
+        title,
         data,
         onOk,
         ...props
@@ -375,6 +378,19 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         />;
     };
 
+
+    const renderSelectSheetHeader = () => {
+        if(!isHeaderShown) {
+            return null;
+        }
+        
+        return <BottomSheetHeader 
+            {...BottomSheetHeaderProps}
+            title={title} //TODO: This will be checked
+        />;
+    };
+
+
     const {
         buttonsContainerProps,
         contentContainerStyle,
@@ -433,6 +449,7 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
                 style={pageContainerStyle}
                 scrollable={false}
             >
+                {renderSelectSheetHeader()}
                 {renderContent()}
                 {renderActions()}
             </PageContainer>

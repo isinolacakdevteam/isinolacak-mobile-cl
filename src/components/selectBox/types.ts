@@ -6,6 +6,7 @@ import {
     SelectObjectType,
     IOCoreIconType
 } from "../../types";
+import IBottomSheetHeaderProps from "../bottomSheetHeader/type";
 
 export type SelectedItem = {
     title: string;
@@ -57,8 +58,11 @@ export interface ISelectBoxProps<T> {
     initialSelectedItems?: Array<T & {
         originalIndex: number;
     }>;
+    bottomSheetProps?: IBottomSheetHeaderProps;
     isLoadingOKButton?: boolean;
     isNeedConfirm?: boolean;
+    showGoBackSize?: number;
+    isHeaderShown?: boolean;
     isSearchable?: boolean;
     multiSelect?: boolean;
     maxChoice?: number;

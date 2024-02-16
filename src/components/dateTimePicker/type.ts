@@ -12,7 +12,7 @@ export type DateTimePickerDisplay = "default" | "spinner";
 
 export type DTP = WindowsNativeProps | AndroidNativeProps | IOSNativeProps;
 
-type IDateTimePickerProps = DTP & {
+type IDateTimePickerProps = Omit<DTP, "value" | "mode" | "display"> & {
     onChange?: (date: Date, formattedDate: string) => void;
     display: DateTimePickerDisplay;
     mode: DateTimePickerMode;
