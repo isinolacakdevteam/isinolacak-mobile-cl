@@ -6,7 +6,7 @@ import {
     IIOCoreIconPropsType
 } from "../../../types/index";
 
-const NotificationIcon = ({
+const Notification = ({
     color = "#9AA6B8",
     size = 100,
     ...props
@@ -33,4 +33,4 @@ const NotificationIcon = ({
         />
     </Svg>;
 };
-export default NotificationIcon;
+export default Notification;

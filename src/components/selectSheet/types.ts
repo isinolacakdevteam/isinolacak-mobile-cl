@@ -5,6 +5,7 @@ import {
     ViewStyle
 } from "react-native";
 import IPageContainerProps from "../pageContainer/types";
+import IBottomSheetHeaderProps from "./../bottomSheetHeader/type";
 import {
     IIOCoreIconPropsType,
     SelectObjectType,
@@ -89,12 +90,14 @@ interface ISelectSheetProps<T, K extends T & SelectObjectType> extends Omit<Moda
         data: Array<K>;
         item?: K;
     }) => IOCoreIconType;
+    BottomSheetHeaderProps?: IBottomSheetHeaderProps;
     pageContainerProps?: IPageContainerProps;
     onSearch?: (searchText: string) => void;
     selectedItems: Array<SelectedItem>;
     pageContainerStyle?: ViewStyle;
     isLoadingOKButton?: boolean;
     childrenStyle?: ViewStyle;
+    isHeaderShown?: boolean;
     isNeedConfirm?: boolean;
     isSearchable?: boolean;
     modalStyle?: ViewStyle;
@@ -108,5 +111,8 @@ interface ISelectSheetProps<T, K extends T & SelectObjectType> extends Omit<Moda
     minChoice?: number;
     snapPoint?: number;
     data: Array<K>;
+    title: string;
 };
 export default ISelectSheetProps;
+
+

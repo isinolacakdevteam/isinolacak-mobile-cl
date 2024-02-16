@@ -1,6 +1,6 @@
 {
   "name": "isinolacak-cl",
-  "version": "1.0.0-pre-alpha.26",
+  "version": "1.0.0-pre-alpha.27",
   "description": "İşinolacak Component Library",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -71,6 +71,7 @@
     "@types/react": "17.0.21"
   },
   "peerDependencies": {
+    "@react-native-community/datetimepicker": ">= 7.6.2",
     "ncore-context": ">= 0.1.0-pre-alpha.6",
     "react": "*",
     "react-native": "*",
@@ -81,6 +82,8 @@
     "react-native-toast-notifications": ">= 3.4.0"
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "^7.6.2",
+    "moment": "^2.30.1",
     "ncore-context": "0.1.0-pre-alpha.6",
     "react-native-gesture-handler": "2.13.1",
     "react-native-modalize": "2.1.1",

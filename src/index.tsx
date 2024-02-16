@@ -23,6 +23,8 @@ export type {
 } from "./types";
 
 export {
+    BottomSheetHeader,
+    DateTimePicker,
     PageContainer,
     BottomSheet,
     RadioButton,

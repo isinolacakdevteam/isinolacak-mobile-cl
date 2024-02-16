@@ -10,12 +10,14 @@ import {
     View
 } from 'react-native';
 import {
+    DateTimePicker,
     PageContainer,
     IOCoreLocale,
     RadioButton,
     IOCoreTheme,
     TextInput,
     StateCard,
+    TextArea,
     CheckBox,
     BadgeHOC,
     Button,
@@ -30,11 +32,15 @@ import {
 import {
     InfoIcon
 } from "../../../../src/assets/svg";
+import BottomSheetHeader from "../../../../src/components/bottomSheetHeader";
+import SelectBox from "../../../../src/components/selectBox";
 
 const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
 
 const Welcome = () => {
+    const navigation = useNavigation<CompositeScreenProps<any, any>["navigation"]>();
+
     const {
         activeTheme,
         colors,
@@ -46,8 +52,6 @@ const Welcome = () => {
         localize
     } = IOCoreLocale.useContext();
 
-    const navigation = useNavigation<CompositeScreenProps<any, any>["navigation"]>();
-
     const [isSelected, setIsSelected] = useState(false);
 
     const inputRef = useRef<NativeTextInput | null>(null);
@@ -58,6 +62,7 @@ const Welcome = () => {
             flex: 1
         }}
     >
+
         <PageContainer
             contentContainerStyle={stylesheet.contentContainer}
         >
@@ -183,6 +188,12 @@ const Welcome = () => {
                     selected={isSelected}
                 />
             </BadgeHOC>
+            <TextArea
+                title="Text Area"
+                style={{
+                    marginVertical: spaces.content
+                }}
+            />
             <StateCard
                 title="Deneme"
                 content="SADASDSA DSAD"
@@ -205,7 +216,7 @@ const Welcome = () => {
                     />;
                 }}
             />
-           
+
             <CheckBox
                 title="Check"
                 isSelected={isSelected}
@@ -234,6 +245,8 @@ const Welcome = () => {
                         return /[0-9]|^$/g.test(text);
                     }}
                     inputRef={(e) => {
+                        // TODO: will be fix
+                        // @ts-ignore
                         inputRef.current = e;
                     }}
                     renderInfoSheetContent={() => {
@@ -245,6 +258,14 @@ const Welcome = () => {
                                 alignItems: "center",
                             }}
                         >
+                            <BottomSheetHeader
+                                isShowGoBack={true}
+                                showGoBackSize={20}
+                                title="Info Sheet"
+                                onGoBack={() => {
+                                    navigation.goBack();
+                                }}
+                            />
                             <Text
                                 style={{
                                 }}
@@ -255,6 +276,64 @@ const Welcome = () => {
                     }}
                 />
             </BadgeHOC>
+            <View
+                style={{
+                    flexDirection: "row",
+                    flex: 1
+                }}
+            >
+                <DateTimePicker
+                    display="spinner"
+                    mode="datetime"
+                    title="Deneme"
+                    style={{
+                        marginBottom: spaces.content
+                    }}
+                />
+                <DateTimePicker
+                    display="spinner"
+                    
+                    mode="datetime"
+                    title="Deneme"
+                    style={{
+                        marginBottom: spaces.content
+                    }}
+                />
+            </View>
+            <SelectBox
+                titleExtractor={(item) => item.val}
+                isHeaderShown={true}
+                isNeedConfirm={true}
+                bottomSheetProps={{
+                    isShowGoBack: true,
+                    title: "Time"
+                }}
+                multiSelect={false}
+                inputTitle="Time"
+                disabled={false}
+                title="Time"
+                style={{
+                    marginBottom: spaces.content * 1.5
+                }}
+                onOk={({
+                    closeSheet,
+                    onSuccess
+                }) => {
+                    closeSheet();
+                    onSuccess();
+                }}
+                data={[
+                    {
+                        val: "00:15"
+                    },
+                    {
+                        val: "00:30"
+                    },
+                    {
+                        val: "00:45"
+                    },
+                ]}
+            />
         </PageContainer>
     </SafeAreaView>;
 };

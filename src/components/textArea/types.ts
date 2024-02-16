@@ -9,9 +9,9 @@ interface ITextAreaProps extends Omit<TextInputProps, "value" | "onChangeText" |
     clearEnabled?: boolean;
     initialValue?: string;
     isTextLimit?:boolean;
-    placeholder?: string;
     isRequired?: boolean;
     onFocus?: () => void;
+    placeholder?: string;
     onBlur?: () => void;
     textLimit?: number;
     disabled?: boolean;

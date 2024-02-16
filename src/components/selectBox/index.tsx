@@ -40,8 +40,10 @@ const SelectBox = <T extends {}>({
     isLoadingOKButton,
     data: initialData,
     disabled = false,
+    bottomSheetProps,
     titleExtractor,
     isNeedConfirm,
+    isHeaderShown,
     keyExtractor,
     isSearchable,
     inputTitle,
@@ -230,10 +232,12 @@ const SelectBox = <T extends {}>({
 
     const renderSelectSheet = () => {
         return <SelectSheet
+            BottomSheetHeaderProps={bottomSheetProps}
             isLoadingOKButton={isLoadingOKButton}
             setSelectedItems={setSelectedItems}
             isNeedConfirm={isNeedConfirm}
             selectedItems={selectedItems}
+            isHeaderShown={isHeaderShown}
             isSearchable={isSearchable}
             multiSelect={multiSelect}
             initialData={initialData}
@@ -248,6 +252,7 @@ const SelectBox = <T extends {}>({
             fullScreen={false}
             withHandle={false}
             onPress={onPress}
+            title={title}
             snapPoint={0}
             data={data}
             onOk={onOk}

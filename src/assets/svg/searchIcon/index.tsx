@@ -5,7 +5,7 @@ import Svg, {
 import {
     IIOCoreIconPropsType
 } from "../../../types";
-const SearchIcon = ({
+const Search = ({
     color = "#45BBD4",
     size = 20,
     ...props
@@ -34,4 +34,4 @@ const SearchIcon = ({
         />
     </Svg>;
 };
-export default SearchIcon;
+export default Search;
