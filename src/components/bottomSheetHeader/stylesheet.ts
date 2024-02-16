@@ -5,26 +5,26 @@ import {
     StyleSheet
 } from "react-native";
 import {
-    BottomSheetHeaderStylerProps,
-    BottomSheetHeaderStylerResult
+    BottomSheetHeaderStylerResult,
+    BottomSheetHeaderStylerProps
 } from "./type";
 
 export const stylesheet = StyleSheet.create({
     container: {
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-        alignItems: 'center',
+        justifyContent: "space-between",
+        flexDirection: "row",
+        alignItems: "center",
         maxHeight: 45,
-        flex:1
+        flex: 1
     },
     content: {
-        alignItems: 'center',
+        alignItems: "center",
         flex: 1
     },
     title: {
-        justifyContent: 'center',
-        alignSelf: 'center',
-        textAlign: 'center',
+        justifyContent: "center",
+        alignSelf: "center",
+        textAlign: "center"
     }
 });
 
@@ -32,7 +32,7 @@ const bottomSheetHeaderStyler = ({
     borders,
     colors,
     spaces
-}: BottomSheetHeaderStylerProps):BottomSheetHeaderStylerResult => {
+}: BottomSheetHeaderStylerProps): BottomSheetHeaderStylerResult => {
     let container: ViewStyle = {
         borderBottomWidth: borders.line,
         marginBottom: spaces.container,
@@ -43,5 +43,4 @@ const bottomSheetHeaderStyler = ({
         container
     };
 };
-
 export default bottomSheetHeaderStyler;

@@ -4,9 +4,10 @@ import {
 import {
     IOCoreIconType
 } from "../../types";
+
 interface IBottomSheetHeaderProps {
-    titleVariant?: keyof IOCore.TypographyType;
     goBackFrontColor?: keyof IOCore.ColorsType;
+    titleVariant?: keyof IOCore.TypographyType;
     titleColor?: keyof IOCore.ColorsType;
     renderRight?: IOCoreIconType;
     renderLeft?: IOCoreIconType;
@@ -15,7 +16,6 @@ interface IBottomSheetHeaderProps {
     onGoBack?: () => void;
     title: string;
 };
-export default IBottomSheetHeaderProps;
 
 export type BottomSheetHeaderStylerProps = {
     borders: IOCore.BordersTokensType;
@@ -26,4 +26,4 @@ export type BottomSheetHeaderStylerProps = {
 export type BottomSheetHeaderStylerResult = {
     container: ViewStyle;
 }
-
+export default IBottomSheetHeaderProps;

@@ -5,19 +5,19 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
-import bottomSheetHeaderStyler,{
+import bottomSheetHeaderStyler, {
     stylesheet
 } from './stylesheet';
-import {
-    ChevronLeftIcon
-} from '../../assets/svg';
 import IBottomSheetHeaderProps from './type';
 import {
     IOCoreTheme
 } from '../../core';
+import {
+    ChevronLeftIcon
+} from '../../assets/svg';
 import Text from '../text';
 
-const BottomSheetHeader:FC<IBottomSheetHeaderProps> = ({
+const BottomSheetHeader: FC<IBottomSheetHeaderProps> = ({
     titleVariant = "header5-semiBold",
     renderRight: RenderRightProps,
     renderLeft: RenderLeftProps,
@@ -28,7 +28,6 @@ const BottomSheetHeader:FC<IBottomSheetHeaderProps> = ({
     onGoBack,
     title
 }: IBottomSheetHeaderProps) => {
-
     const {
         borders,
         colors,
@@ -45,7 +44,7 @@ const BottomSheetHeader:FC<IBottomSheetHeaderProps> = ({
 
     const renderLeft = () => {
         if (RenderLeftProps) {
-            return <RenderLeftProps />;
+            return <RenderLeftProps/>;
         }
 
         if (!isShowGoBack) {
@@ -67,9 +66,7 @@ const BottomSheetHeader:FC<IBottomSheetHeaderProps> = ({
             return null;
         }
 
-        if (RenderRightProps) {
-            return <RenderRightProps />;
-        }
+        return <RenderRightProps/>;
     };
 
     return <View
@@ -80,16 +77,12 @@ const BottomSheetHeader:FC<IBottomSheetHeaderProps> = ({
     >
         {renderLeft()}
         <View
-            style={
-                stylesheet.content
-            }
+            style={stylesheet.content}
         >
             <Text
+                style={stylesheet.title}
                 variant={titleVariant}
                 color={titleColor}
-                style={
-                    stylesheet.title
-                }
             >
                 {title}
             </Text>
@@ -97,5 +90,4 @@ const BottomSheetHeader:FC<IBottomSheetHeaderProps> = ({
         {renderRight()}
     </View>;
 };
-
 export default BottomSheetHeader;
