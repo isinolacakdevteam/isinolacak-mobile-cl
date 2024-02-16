@@ -10,6 +10,7 @@ import {
     View
 } from 'react-native';
 import {
+    DateTimePicker,
     PageContainer,
     IOCoreLocale,
     RadioButton,
@@ -36,6 +37,8 @@ const lightIcon = require("../../../assets/lightlogo.png");
 const darkIcon = require("../../../assets/darklogo.png");
 
 const Welcome = () => {
+    const navigation = useNavigation<CompositeScreenProps<any, any>["navigation"]>();
+
     const {
         activeTheme,
         colors,
@@ -47,9 +50,8 @@ const Welcome = () => {
         localize
     } = IOCoreLocale.useContext();
 
-    const navigation = useNavigation<CompositeScreenProps<any, any>["navigation"]>();
-
     const [isSelected, setIsSelected] = useState(false);
+    const [date, setDate] = useState<Date>(new Date);
 
     const inputRef = useRef<NativeTextInput | null>(null);
 
@@ -212,7 +214,7 @@ const Welcome = () => {
                     />;
                 }}
             />
-           
+
             <CheckBox
                 title="Check"
                 isSelected={isSelected}
@@ -262,6 +264,33 @@ const Welcome = () => {
                     }}
                 />
             </BadgeHOC>
+            <View
+                style={{
+                    flexDirection: "row",
+                    flex: 1
+                }}
+            >
+                <DateTimePicker
+                    display="spinner"
+                    setDate={setDate}
+                    mode="datetime"
+                    title="Deneme"
+                    date={date}
+                    style={{
+                        marginBottom: spaces.content
+                    }}
+                />
+                <DateTimePicker
+                    display="spinner"
+                    setDate={setDate}
+                    mode="datetime"
+                    title="Deneme"
+                    date={date}
+                    style={{
+                        marginBottom: spaces.content
+                    }}
+                />
+            </View>
         </PageContainer>
     </SafeAreaView>;
 };
