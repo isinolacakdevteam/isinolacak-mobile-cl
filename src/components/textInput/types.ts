@@ -19,6 +19,7 @@ interface ITextInputProps extends Omit<TextInputProps, "value" | "onChangeText" 
     iconDirection?: "left" | "right";
     infoSheetIcon?: IOCoreIconType;
     hintIcon?: IOCoreIconType;
+    secureTextEntry?: boolean;
     iconOnPress?: () => void;
     clearEnabled?: boolean;
     isInfoSheet?: boolean;
