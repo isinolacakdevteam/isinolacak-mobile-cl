@@ -46,6 +46,7 @@ const TextInput: FC<ITextInputProps> = ({
     size = "medium",
     title = "Title",
     isError = false,
+    secureTextEntry,
     onChangeText,
     initialValue,
     iconOnPress,
@@ -76,9 +77,7 @@ const TextInput: FC<ITextInputProps> = ({
     const infoSheetRef = useRef<BottomSheetRef>(null);
 
     const finalTitle = isRequired ? title + " *" : title;
-
-    let secureTextEntry = props.secureTextEntry;
-
+    
     const {
         hintContainerStyle,
         contentContainer,

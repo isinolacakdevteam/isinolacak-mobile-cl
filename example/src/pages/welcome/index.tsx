@@ -222,6 +222,10 @@ const Welcome = () => {
                 isSelected={isSelected}
                 onChange={() => setIsSelected(!isSelected)}
             />
+            <TextInput
+                isShowable={true}
+                secureTextEntry={true}
+            />
             <Chip
                 title="deneme"
                 size="small"
