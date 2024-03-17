@@ -2,6 +2,7 @@ import {
     Dispatch
 } from "react";
 import {
+    FlatList,
     ViewStyle
 } from "react-native";
 import IPageContainerProps from "../pageContainer/types";
@@ -94,6 +95,7 @@ interface ISelectSheetProps<T, K extends T & SelectObjectType> extends Omit<Moda
     pageContainerProps?: IPageContainerProps;
     onSearch?: (searchText: string) => void;
     selectedItems: Array<SelectedItem>;
+    flatListProps?: typeof FlatList;
     pageContainerStyle?: ViewStyle;
     isLoadingOKButton?: boolean;
     childrenStyle?: ViewStyle;

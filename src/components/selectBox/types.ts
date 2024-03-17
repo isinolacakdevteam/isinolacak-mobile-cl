@@ -1,4 +1,5 @@
 import {
+    FlatList,
     ViewStyle
 } from "react-native";
 import {
@@ -59,6 +60,7 @@ export interface ISelectBoxProps<T> {
         originalIndex: number;
     }>;
     bottomSheetProps?: IBottomSheetHeaderProps;
+    flatListProps?: typeof FlatList;
     isLoadingOKButton?: boolean;
     isNeedConfirm?: boolean;
     showGoBackSize?: number;
