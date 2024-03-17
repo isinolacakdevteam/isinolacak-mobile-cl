@@ -56,6 +56,10 @@ const Welcome = () => {
 
     const inputRef = useRef<NativeTextInput | null>(null);
 
+    const onReachEnd = (data: any) => {
+        console.error("data", data);
+    };
+
     return <SafeAreaView
         style={{
             backgroundColor: colors.layer1,
@@ -314,6 +318,12 @@ const Welcome = () => {
                 }}
                 multiSelect={false}
                 inputTitle="Time"
+                flatListProps={{
+                    onEndReached: ({
+                        distanceFromEnd
+                    }) => onReachEnd(distanceFromEnd),
+                    onEndReachedThreshold: .9
+                }}
                 disabled={false}
                 title="Time"
                 style={{
@@ -336,6 +346,88 @@ const Welcome = () => {
                     {
                         val: "00:45"
                     },
+                    {
+                        val: "00:15"
+                    },
+                    {
+                        val: "00:30"
+                    },
+                    {
+                        val: "00:45"
+                    },
+                    {
+                        val: "00:15"
+                    },
+                    {
+                        val: "00:30"
+                    },
+                    {
+                        val: "00:45"
+                    },
+                    {
+                        val: "00:15"
+                    },
+                    {
+                        val: "00:30"
+                    },
+                    {
+                        val: "00:45"
+                    },
+                    {
+                        val: "00:15"
+                    },
+                    {
+                        val: "00:30"
+                    },
+                    {
+                        val: "00:45"
+                    },
+                    {
+                        val: "00:15"
+                    },
+                    {
+                        val: "00:30"
+                    },
+                    {
+                        val: "00:45"
+                    },
+                    {
+                        val: "00:15"
+                    },
+                    {
+                        val: "00:30"
+                    },
+                    {
+                        val: "00:45"
+                    },
+                    {
+                        val: "00:15"
+                    },
+                    {
+                        val: "00:30"
+                    },
+                    {
+                        val: "00:45"
+                    },
+                    {
+                        val: "00:15"
+                    },
+                    {
+                        val: "00:30"
+                    },
+                    {
+                        val: "00:45"
+                    },
+                    {
+                        val: "00:15"
+                    },
+                    {
+                        val: "00:30"
+                    },
+                    {
+                        val: "00:45"
+                    }
+
                 ]}
             />
         </PageContainer>

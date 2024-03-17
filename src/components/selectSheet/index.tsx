@@ -62,6 +62,7 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         setSelectedItems,
         snapPoint = 300,
         isNeedConfirm,
+        flatListProps,
         selectedItems,
         isHeaderShown,
         isSearchable,
@@ -371,6 +372,7 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
 
     const renderContent = () => {
         return <FlatList
+            {...flatListProps}
             style={stylesheet.selectItemContainer}
             ListHeaderComponent={renderSearch()}
             renderItem={renderItem}

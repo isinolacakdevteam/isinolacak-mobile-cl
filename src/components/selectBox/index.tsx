@@ -43,6 +43,7 @@ const SelectBox = <T extends {}>({
     bottomSheetProps,
     titleExtractor,
     isNeedConfirm,
+    flatListProps,
     isHeaderShown,
     keyExtractor,
     isSearchable,
@@ -235,6 +236,7 @@ const SelectBox = <T extends {}>({
             BottomSheetHeaderProps={bottomSheetProps}
             isLoadingOKButton={isLoadingOKButton}
             setSelectedItems={setSelectedItems}
+            flatListProps={flatListProps}
             isNeedConfirm={isNeedConfirm}
             selectedItems={selectedItems}
             isHeaderShown={isHeaderShown}
