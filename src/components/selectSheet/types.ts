@@ -2,7 +2,6 @@ import {
     Dispatch
 } from "react";
 import {
-    FlatList,
     FlatListProps,
     ViewStyle
 } from "react-native";
