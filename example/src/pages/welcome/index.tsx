@@ -56,8 +56,8 @@ const Welcome = () => {
 
     const inputRef = useRef<NativeTextInput | null>(null);
 
-    const onReachEnd = (data) => {
-        console.error("data");
+    const onReachEnd = (data: any) => {
+        console.error("data", data);
     };
 
     return <SafeAreaView
@@ -319,7 +319,7 @@ const Welcome = () => {
                 multiSelect={false}
                 inputTitle="Time"
                 flatListProps={{
-                    onReachEnd: ({
+                    onEndReached: ({
                         distanceFromEnd
                     }) => onReachEnd(distanceFromEnd),
                     onEndReachedThreshold: .9

@@ -3,6 +3,7 @@ import {
 } from "react";
 import {
     FlatList,
+    FlatListProps,
     ViewStyle
 } from "react-native";
 import IPageContainerProps from "../pageContainer/types";
@@ -51,7 +52,7 @@ export type SelectedItem = {
     key: string;
 };
 
-interface ISelectSheetProps<T, K extends T & SelectObjectType> extends Omit<ModalizeProps, "adjustToContentHeight" | "snapPoint" | "ref"> {
+interface ISelectSheetProps<T, K extends T & SelectObjectType> extends Omit<ModalizeProps, "flatListProps" | "adjustToContentHeight" | "snapPoint" | "ref"> {
     onChange?: (selectedItems: Array<SelectedItem>, data: Array<K>) => void;
     onPress?: (selectedItems: Array<SelectedItem>, data: Array<K>) => void;
     setSelectedItems: Dispatch<Array<SelectedItem>>;
@@ -91,11 +92,12 @@ interface ISelectSheetProps<T, K extends T & SelectObjectType> extends Omit<Moda
         data: Array<K>;
         item?: K;
     }) => IOCoreIconType;
+    flatListProps?: Omit<FlatListProps<K>, "data" | "renderItem">;
+    modalizeFlatListProps?: ModalizeProps["flatListProps"];
     BottomSheetHeaderProps?: IBottomSheetHeaderProps;
     pageContainerProps?: IPageContainerProps;
     onSearch?: (searchText: string) => void;
     selectedItems: Array<SelectedItem>;
-    flatListProps?: typeof FlatList;
     pageContainerStyle?: ViewStyle;
     isLoadingOKButton?: boolean;
     childrenStyle?: ViewStyle;
@@ -116,5 +118,3 @@ interface ISelectSheetProps<T, K extends T & SelectObjectType> extends Omit<Moda
     title: string;
 };
 export default ISelectSheetProps;
-
-
