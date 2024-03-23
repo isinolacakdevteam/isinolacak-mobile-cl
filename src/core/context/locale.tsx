@@ -67,13 +67,21 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
         }
 
         if(parameters && parameters.length) {
-            let newResp = this.state.translations[localeCode];
+            try {
+                let newResp = this.state.translations[localeCode];
 
-            parameters.forEach((item, index) => {
-                newResp.replace(`{{${index}}}`, item);
-            });
+                if(!newResp) {
+                    return localeCode;
+                }
 
-            return newResp;
+                parameters.forEach((item, index) => {
+                    newResp.replace(`{{${index}}}`, item);
+                });
+
+                return newResp;
+            } catch {
+                return localeCode;
+            }
         }
 
         return this.state.translations[localeCode];
