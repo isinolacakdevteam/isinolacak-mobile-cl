@@ -33,6 +33,7 @@ const DateTimePicker: FC<IDateTimePickerProps> = ({
     style,
     title,
     mode,
+    value,
     ...props
 }: IDateTimePickerProps) => {
     const {
@@ -56,7 +57,7 @@ const DateTimePicker: FC<IDateTimePickerProps> = ({
     });
 
     const [showPicker, setShowPicker] = useState(false);
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState(value || new Date());
 
     const iOSDateTimePickerRef = useRef<BottomSheetRef>(null);
 
@@ -102,7 +103,7 @@ const DateTimePicker: FC<IDateTimePickerProps> = ({
     const formattedDate = formatDate(date);
 
     const renderIcon = () => {
-        return <View                 
+        return <View  
             style={[
                 stylesheet.customRenderForIcon,
                 customIcon

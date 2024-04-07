@@ -53,6 +53,8 @@ const Welcome = () => {
     } = IOCoreLocale.useContext();
 
     const [isSelected, setIsSelected] = useState(false);
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
 
     const inputRef = useRef<NativeTextInput | null>(null);
 
@@ -291,18 +293,26 @@ const Welcome = () => {
                 }}
             >
                 <DateTimePicker
+                    maximumDate={endDate}
+                    value={startDate}
+                    title="Başlangıç"
                     display="spinner"
-                    mode="datetime"
-                    title="Deneme"
+                    mode="date"
+                    onChange={date => {
+                        setStartDate(date);
+                        setEndDate(date);
+                    }}
                     style={{
                         marginBottom: spaces.content
                     }}
                 />
                 <DateTimePicker
+                    minimumDate={startDate}
                     display="spinner"
-                    
-                    mode="datetime"
-                    title="Deneme"
+                    value={endDate}
+                    title="Bitiş"
+                    mode="date"
+                    onChange={date => setEndDate(date)}
                     style={{
                         marginBottom: spaces.content
                     }}

@@ -20,6 +20,7 @@ type IDateTimePickerProps = Omit<DTP, "value" | "mode" | "display"> & {
     is24Hour?: boolean;
     style?: ViewStyle;
     title: string;
+    value: any;
 }
 
 export type DateTimePickerStylerParams = {
