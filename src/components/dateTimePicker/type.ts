@@ -1,4 +1,7 @@
 import {
+    Dispatch
+} from "react";
+import {
     ViewStyle
 } from "react-native";
 import {
@@ -12,10 +15,16 @@ export type DateTimePickerDisplay = "default" | "spinner";
 
 export type DTP = WindowsNativeProps | AndroidNativeProps | IOSNativeProps;
 
+export type DateTimePickerRef = {
+    state: Date;
+    setState: Dispatch<Date>;
+};
+
 type IDateTimePickerProps = Omit<DTP, "value" | "mode" | "display"> & {
     onChange?: (date: Date, formattedDate: string) => void;
     display: DateTimePickerDisplay;
     mode: DateTimePickerMode;
+    initialValue: Date;
     disabled?: boolean;
     is24Hour?: boolean;
     style?: ViewStyle;
