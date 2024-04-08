@@ -1,7 +1,9 @@
 import React, {
+    RefForwardingComponent,
+    useImperativeHandle,
+    forwardRef,
     useState,
-    useRef,
-    FC
+    useRef
 } from 'react';
 import {
     TouchableOpacity,
@@ -11,7 +13,9 @@ import {
 import dateTimePickerStyler, {
     stylesheet
 } from './stylesheet';
-import IDateTimePickerProps from './type';
+import IDateTimePickerProps, {
+    DateTimePickerRef
+} from './type';
 import {
     IOCoreTheme
 } from '../../core';
@@ -26,7 +30,8 @@ import {
 } from '../bottomSheet/types';
 import moment from 'moment';
 
-const DateTimePicker: FC<IDateTimePickerProps> = ({
+const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerProps> = ({
+    initialValue = new Date(),
     onChange: onChangeProp,
     disabled,
     display,
@@ -34,7 +39,7 @@ const DateTimePicker: FC<IDateTimePickerProps> = ({
     title,
     mode,
     ...props
-}: IDateTimePickerProps) => {
+}, ref) => {
     const {
         radiuses,
         borders,
@@ -56,9 +61,18 @@ const DateTimePicker: FC<IDateTimePickerProps> = ({
     });
 
     const [showPicker, setShowPicker] = useState(false);
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState(initialValue);
 
     const iOSDateTimePickerRef = useRef<BottomSheetRef>(null);
+
+    useImperativeHandle(
+        ref,
+        () => ({
+            setState: setDate,
+            state: date
+        }),
+        []
+    );
 
     const onPress = () => {
         if(Platform.OS === "ios") {
@@ -196,4 +210,4 @@ const DateTimePicker: FC<IDateTimePickerProps> = ({
         {renderIOSPicker()}
     </TouchableOpacity>;
 };
-export default DateTimePicker;
+export default forwardRef(DateTimePicker);
