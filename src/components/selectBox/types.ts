@@ -26,6 +26,7 @@ export interface ISelectBoxProps<T> {
     renderItem?: (props: IIOCoreIconPropsType & {
         onChange?: (selectedItems: Array<SelectedItem>, data: Array<T & SelectObjectType>) => void;
         onPress?: (selectedItems: Array<SelectedItem>, data: Array<T & SelectObjectType>) => void;
+        onClick?: (item: T) => void;
         onOk?: (props: {
             selectedItems: Array<SelectedItem>;
             data: Array<T & SelectObjectType>;

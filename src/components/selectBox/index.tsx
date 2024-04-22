@@ -112,11 +112,17 @@ const SelectBox = <T extends {}>({
         setData(newData);
 
         if(initialSelectedItems && initialSelectedItems.length) {
-            const newSelectedItems: Array<SelectedItem> = initialSelectedItems.map((item) => {
-                const originalItem = newData[item.originalIndex];
+            const newSelectedItems: Array<SelectedItem> = initialSelectedItems.map((item, index) => {
+                let originalItem = newData[item.originalIndex];
 
                 if(!originalItem) {
-                    throw new Error("SelectBox -> initialSelectedItems prop is not valid.");
+                    originalItem = {
+                        ...item,
+                        __key: keyExtractor ? keyExtractor(item, index) : uuid(),
+                        __title: titleExtractor(item, index),
+                        __originalIndex: newData.length
+                    };
+                    newData.push(originalItem);
                 };
 
                 return {
