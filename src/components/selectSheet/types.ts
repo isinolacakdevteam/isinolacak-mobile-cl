@@ -64,6 +64,7 @@ interface ISelectSheetProps<T, K extends T & SelectObjectType> extends Omit<Moda
     renderItem?: (props: IIOCoreIconPropsType & {
         onChange?: (selectedItems: Array<SelectedItem>, data: Array<K>) => void;
         onPress?: (selectedItems: Array<SelectedItem>, data: Array<K>) => void;
+        onClick?: (item: K) => void;
         onOk?: (props: {
             selectedItems: Array<SelectedItem>;
             closeSheet: () => void;

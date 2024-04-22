@@ -1,6 +1,7 @@
 import React, {
     useState,
-    useRef
+    useRef,
+    useEffect
 } from "react";
 import {
     TextInput as NativeTextInput,
@@ -54,10 +55,94 @@ const Welcome = () => {
 
     const [isSelected, setIsSelected] = useState(false);
 
+    const [page, setPage] = useState(1);
+    const [search, setSearch] = useState("");
+    const [data, setData] = useState([]);
+    const [isEndOfData, setIsEndOfData] = useState(false);
+    const [isLoadMore, setIsLoadMore] = useState(false);
+
     const inputRef = useRef<NativeTextInput | null>(null);
 
     const onReachEnd = (data: any) => {
         console.error("data", data);
+    };
+
+    useEffect(() => {
+        loadMoreSectorData();
+    },[]);
+
+    const onSearchOccupation = (e: string) => {
+        const timer = setTimeout(() => {
+            if (e && e.length) {
+                let params: any = {
+                    search: e,
+                    page:  1
+                };
+                loadMoreSectorData(params);
+            }
+            if(!e.length) {
+                fetch(`https://gw-test.isinolacak.com/staticData/getOccupations?language=tr-TR&page="1"`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    }
+                })
+                    .then((res) => {
+                        if (res.status === 200) {
+                            return res.json();
+                        }
+                    })
+                    .then((res) => {
+                        setPage(1);
+                        setSearch("");
+                        setData(res);
+                    }).catch((err) => {
+                    });
+            }
+        }, 750);
+        return () => clearTimeout(timer);
+    };
+
+    const loadMoreSectorData = (_data?: any) => {
+
+        let params = `&page=${String(page)}`;
+
+        if(_data) {
+            params = `&page=${String(_data.page)}&search=${_data.search}`;
+        }
+
+        fetch(`https://gw-test.isinolacak.com/staticData/getOccupations?language=tr-TR${params}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        })
+            .then((res) => {
+                if (res.status === 200) {
+                    return res.json();
+                }
+            })
+            .then((res) => {
+                if(data.length) {
+                    let _getSectors = JSON.parse(JSON.stringify(data));
+                    let newSectors = res.filter(newItem => !_getSectors.some(oldItem => oldItem._id === newItem._id));
+                    setData([..._getSectors, ...newSectors]);
+                } else {
+                    setData(res);
+                }
+                setPage(page + 1);
+                setIsLoadMore(false);
+
+                if(res.length === 0 || res.length < 20) {
+                    setIsEndOfData(true);
+                    return;
+                }
+    
+            }).catch((err) => {
+            });
+        
     };
 
     return <SafeAreaView
@@ -73,6 +158,58 @@ const Welcome = () => {
             <StatusBar
                 barStyle={activeTheme === "dark" ? "light-content" : "dark-content"}
                 backgroundColor={colors.layer1}
+            />
+            <SelectBox
+                titleExtractor={(item) => item.localizedText}
+                isHeaderShown={true}
+                isNeedConfirm={true}
+                initialSelectedItems={data && data.length ? [
+                    data[1],
+                    data[3]
+                ] : undefined}
+                bottomSheetProps={{
+                    isShowGoBack: true,
+                    title: "Time"
+                }}
+                multiSelect={false}
+                inputTitle="Time"
+                isSearchable={true}
+                onSearch={(e) => {
+                    setIsEndOfData(false);
+                    setSearch(e);
+                    onSearchOccupation(e);
+                }}
+                flatListProps={{
+                    onEndReachedThreshold: .5,
+                    onEndReached: () => {
+                        if(isLoadMore) {
+                            return;
+                        }
+                        setIsLoadMore(true);
+                        loadMoreSectorData();
+                    },
+                    ListEmptyComponent: () => {
+                        return <StateCard
+                            title="Meslek Bulnumadı"
+                            style = {{
+                                marginTop: spaces.container * 4
+                            }}
+                        />;
+                    }
+                }}
+                disabled={false}
+                title="Time"
+                style={{
+                    marginBottom: spaces.content * 1.5
+                }}
+                onOk={({
+                    closeSheet,
+                    onSuccess
+                }) => {
+                    closeSheet();
+                    onSuccess();
+                }}
+                data={data}
             />
 
             <Image
@@ -308,128 +445,6 @@ const Welcome = () => {
                     }}
                 />
             </View>
-            <SelectBox
-                titleExtractor={(item) => item.val}
-                isHeaderShown={true}
-                isNeedConfirm={true}
-                bottomSheetProps={{
-                    isShowGoBack: true,
-                    title: "Time"
-                }}
-                multiSelect={false}
-                inputTitle="Time"
-                flatListProps={{
-                    onEndReached: ({
-                        distanceFromEnd
-                    }) => onReachEnd(distanceFromEnd),
-                    onEndReachedThreshold: .9
-                }}
-                disabled={false}
-                title="Time"
-                style={{
-                    marginBottom: spaces.content * 1.5
-                }}
-                onOk={({
-                    closeSheet,
-                    onSuccess
-                }) => {
-                    closeSheet();
-                    onSuccess();
-                }}
-                data={[
-                    {
-                        val: "00:15"
-                    },
-                    {
-                        val: "00:30"
-                    },
-                    {
-                        val: "00:45"
-                    },
-                    {
-                        val: "00:15"
-                    },
-                    {
-                        val: "00:30"
-                    },
-                    {
-                        val: "00:45"
-                    },
-                    {
-                        val: "00:15"
-                    },
-                    {
-                        val: "00:30"
-                    },
-                    {
-                        val: "00:45"
-                    },
-                    {
-                        val: "00:15"
-                    },
-                    {
-                        val: "00:30"
-                    },
-                    {
-                        val: "00:45"
-                    },
-                    {
-                        val: "00:15"
-                    },
-                    {
-                        val: "00:30"
-                    },
-                    {
-                        val: "00:45"
-                    },
-                    {
-                        val: "00:15"
-                    },
-                    {
-                        val: "00:30"
-                    },
-                    {
-                        val: "00:45"
-                    },
-                    {
-                        val: "00:15"
-                    },
-                    {
-                        val: "00:30"
-                    },
-                    {
-                        val: "00:45"
-                    },
-                    {
-                        val: "00:15"
-                    },
-                    {
-                        val: "00:30"
-                    },
-                    {
-                        val: "00:45"
-                    },
-                    {
-                        val: "00:15"
-                    },
-                    {
-                        val: "00:30"
-                    },
-                    {
-                        val: "00:45"
-                    },
-                    {
-                        val: "00:15"
-                    },
-                    {
-                        val: "00:30"
-                    },
-                    {
-                        val: "00:45"
-                    }
-
-                ]}
-            />
         </PageContainer>
     </SafeAreaView>;
 };
