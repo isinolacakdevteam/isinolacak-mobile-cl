@@ -156,7 +156,7 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
     const _onChange = (item: K) => {
         let _selectedItems = JSON.parse(JSON.stringify(tempSelectedItems));
 
-        const isExistsInSelectedData = tempSelectedItems.findIndex(e => e.key === item.__key);
+        const isExistsInSelectedData = tempSelectedItems.findIndex(e => e.__key === item.__key);
 
         if(isExistsInSelectedData !== -1) {
             if(multiSelect) {
@@ -189,20 +189,10 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
                     return;
                 }
 
-                _selectedItems.push({
-                    ...item,
-                    key: item.__key,
-                    title: item.__title
-                });
+                _selectedItems.push(item);
                 setTempSelectedItems(_selectedItems);
             } else {
-                setTempSelectedItems([
-                    {
-                        ...item,
-                        key: item.__key,
-                        title: item.__title
-                    }
-                ]);
+                setTempSelectedItems([item]);
             }
         }
     };
@@ -295,7 +285,7 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         item: K,
         index: number;
     }) => {
-        const isSelected = tempSelectedItems.findIndex((c_item) => c_item.key === item.__key) !== -1;
+        const isSelected = tempSelectedItems.findIndex((c_item) => c_item.__key === item.__key) !== -1;
 
         if(RenderItem) {
             return RenderItem({
