@@ -15,9 +15,6 @@ import {
     SelectedItem
 } from "./types";
 import {
-    uuid 
-} from "../../utils";
-import {
     IOCoreLocale,
     IOCoreTheme
 } from "../../core";
