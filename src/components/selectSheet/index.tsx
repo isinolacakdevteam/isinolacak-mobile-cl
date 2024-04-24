@@ -301,6 +301,7 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
             return RenderItem({
                 onChange: onChange ? () => onChange(selectedItems, renderData) : undefined,
                 onPress: onPress ? () => onPress(selectedItems, renderData) : undefined,
+                onClick: _onChange,
                 onOk: onOk ? () => onOk({
                     selectedItems: tempSelectedItems,
                     closeSheet: () => bottomSheetRef.current?.close(),
