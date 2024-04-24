@@ -171,13 +171,16 @@ const Welcome = () => {
                     isShowGoBack: true,
                     title: "Time"
                 }}
-                multiSelect={false}
+                multiSelect={true}
                 inputTitle="Time"
                 isSearchable={true}
                 onSearch={(e) => {
                     setIsEndOfData(false);
                     setSearch(e);
                     onSearchOccupation(e);
+                }}
+                keyExtractor={(item) => {
+                    return item.key;
                 }}
                 flatListProps={{
                     onEndReachedThreshold: .5,

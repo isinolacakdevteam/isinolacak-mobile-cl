@@ -103,8 +103,8 @@ const SelectBox = <T extends {}>({
         }> = JSON.parse(JSON.stringify(initialData)).map((item: T, index: number) => {
             return {
                 ...item,
-                __key: keyExtractor ? keyExtractor(item, index) : uuid(),
                 __title: titleExtractor(item, index),
+                __key: keyExtractor(item, index),
                 __originalIndex: index
             };
         });
@@ -112,23 +112,22 @@ const SelectBox = <T extends {}>({
         setData(newData);
 
         if(initialSelectedItems && initialSelectedItems.length) {
-            const newSelectedItems: Array<SelectedItem> = initialSelectedItems.map((item, index) => {
-                let originalItem = newData[item.originalIndex];
+            const newSelectedItems: Array<T & SelectedItem> = initialSelectedItems.map((item, index) => {
+                let originalItem = newData.find(dataItem => {
+                    return dataItem.__key === keyExtractor(item, index);
+                });
 
                 if(!originalItem) {
                     originalItem = {
                         ...item,
-                        __key: keyExtractor ? keyExtractor(item, index) : uuid(),
                         __title: titleExtractor(item, index),
+                        __key: keyExtractor(item, index),
                         __originalIndex: newData.length
                     };
                     newData.push(originalItem);
                 };
 
-                return {
-                    title: originalItem.__title,
-                    key: originalItem.__key
-                };
+                return originalItem;
             });
 
             setSelectedItems(newSelectedItems);
@@ -167,7 +166,7 @@ const SelectBox = <T extends {}>({
 
             if(selectedItems.length === 1) {
                 //@ts-ignore
-                content = selectedItems[0].title;
+                content = selectedItems[0].__title;
             }
         }
 
@@ -180,7 +179,7 @@ const SelectBox = <T extends {}>({
                 (multiSelect && selectedItems.length === 1)
             )
         ) {
-            const selectedIndex = data.findIndex(e => e.__key === selectedItems[0]?.key);
+            const selectedIndex = data.findIndex(e => e.__key === selectedItems[0]?.__key);
 
             return <View
                 style={[
@@ -206,7 +205,7 @@ const SelectBox = <T extends {}>({
                 (multiSelect && selectedItems.length === 1)
             )
         ) {
-            const selectedIndex = data.findIndex(e => e.__key === selectedItems[0]?.key);
+            const selectedIndex = data.findIndex(e => e.__key === selectedItems[0]?.__key);
 
             return renderItem({
                 size: typography["body2-regular"]?.fontSize,
@@ -247,6 +246,7 @@ const SelectBox = <T extends {}>({
             selectedItems={selectedItems}
             isHeaderShown={isHeaderShown}
             isSearchable={isSearchable}
+            keyExtractor={keyExtractor}
             multiSelect={multiSelect}
             initialData={initialData}
             inputTitle={inputTitle}
