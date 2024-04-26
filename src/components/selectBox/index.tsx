@@ -169,7 +169,7 @@ const SelectBox = <T extends {}>({
 
         if(
             RenderIcon &&
-            !renderItem &&
+            !renderItem && // TODO: will be check.
             selectedItems.length &&
             (
                 !multiSelect ||
@@ -194,28 +194,8 @@ const SelectBox = <T extends {}>({
             </View>;
         }
 
-        if(
-            renderItem &&
-            selectedItems.length &&
-            (
-                !multiSelect ||
-                (multiSelect && selectedItems.length === 1)
-            )
-        ) {
-            const selectedIndex = data.findIndex(e => e.__key === selectedItems[0]?.__key);
-
-            return renderItem({
-                size: typography["body2-regular"]?.fontSize,
-                selectedItems: selectedItems,
-                color: contentProps.color,
-                item: data[selectedIndex],
-                index: selectedIndex,
-                data: data
-            });
-        }
-
         return <Text
-            color= {contentProps.color}
+            color={contentProps.color}
             variant="body2-regular"
             numberOfLines={1}
             style={[
