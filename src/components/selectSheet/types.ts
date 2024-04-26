@@ -47,8 +47,9 @@ export type SelectSheetStylerResult = {
 };
 
 export type SelectedItem = {
-    title: string;
-    key: string;
+    __originalIndex: number;
+    __title: string;
+    __key: string;
 };
 
 interface ISelectSheetProps<T, K extends T & SelectObjectType> extends Omit<ModalizeProps, "flatListProps" | "adjustToContentHeight" | "snapPoint" | "ref"> {
@@ -64,6 +65,7 @@ interface ISelectSheetProps<T, K extends T & SelectObjectType> extends Omit<Moda
     renderItem?: (props: IIOCoreIconPropsType & {
         onChange?: (selectedItems: Array<SelectedItem>, data: Array<K>) => void;
         onPress?: (selectedItems: Array<SelectedItem>, data: Array<K>) => void;
+        onClick?: (item: K) => void;
         onOk?: (props: {
             selectedItems: Array<SelectedItem>;
             closeSheet: () => void;
@@ -93,6 +95,8 @@ interface ISelectSheetProps<T, K extends T & SelectObjectType> extends Omit<Moda
     }) => IOCoreIconType;
     flatListProps?: Omit<FlatListProps<K>, "data" | "renderItem">;
     modalizeFlatListProps?: ModalizeProps["flatListProps"];
+    // TODO: will be fix. ( any type. )
+    keyExtractor: (item: K | any, index: number) => string;
     BottomSheetHeaderProps?: IBottomSheetHeaderProps;
     pageContainerProps?: IPageContainerProps;
     onSearch?: (searchText: string) => void;

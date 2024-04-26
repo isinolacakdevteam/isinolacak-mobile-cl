@@ -15,9 +15,6 @@ import {
     SelectedItem
 } from "./types";
 import {
-    uuid 
-} from "../../utils";
-import {
     IOCoreLocale,
     IOCoreTheme
 } from "../../core";
@@ -103,8 +100,8 @@ const SelectBox = <T extends {}>({
         }> = JSON.parse(JSON.stringify(initialData)).map((item: T, index: number) => {
             return {
                 ...item,
-                __key: keyExtractor ? keyExtractor(item, index) : uuid(),
                 __title: titleExtractor(item, index),
+                __key: keyExtractor(item, index),
                 __originalIndex: index
             };
         });
@@ -112,17 +109,22 @@ const SelectBox = <T extends {}>({
         setData(newData);
 
         if(initialSelectedItems && initialSelectedItems.length) {
-            const newSelectedItems: Array<SelectedItem> = initialSelectedItems.map((item) => {
-                const originalItem = newData[item.originalIndex];
+            const newSelectedItems: Array<T & SelectedItem> = initialSelectedItems.map((item, index) => {
+                let originalItem = newData.find(dataItem => {
+                    return dataItem.__key === keyExtractor(item, index);
+                });
 
                 if(!originalItem) {
-                    throw new Error("SelectBox -> initialSelectedItems prop is not valid.");
+                    originalItem = {
+                        ...item,
+                        __title: titleExtractor(item, index),
+                        __key: keyExtractor(item, index),
+                        __originalIndex: newData.length
+                    };
+                    newData.push(originalItem);
                 };
 
-                return {
-                    title: originalItem.__title,
-                    key: originalItem.__key
-                };
+                return originalItem;
             });
 
             setSelectedItems(newSelectedItems);
@@ -161,20 +163,20 @@ const SelectBox = <T extends {}>({
 
             if(selectedItems.length === 1) {
                 //@ts-ignore
-                content = selectedItems[0].title;
+                content = selectedItems[0].__title;
             }
         }
 
         if(
             RenderIcon &&
-            !renderItem &&
+            !renderItem && // TODO: will be check.
             selectedItems.length &&
             (
                 !multiSelect ||
                 (multiSelect && selectedItems.length === 1)
             )
         ) {
-            const selectedIndex = data.findIndex(e => e.__key === selectedItems[0]?.key);
+            const selectedIndex = data.findIndex(e => e.__key === selectedItems[0]?.__key);
 
             return <View
                 style={[
@@ -192,28 +194,8 @@ const SelectBox = <T extends {}>({
             </View>;
         }
 
-        if(
-            renderItem &&
-            selectedItems.length &&
-            (
-                !multiSelect ||
-                (multiSelect && selectedItems.length === 1)
-            )
-        ) {
-            const selectedIndex = data.findIndex(e => e.__key === selectedItems[0]?.key);
-
-            return renderItem({
-                size: typography["body2-regular"]?.fontSize,
-                selectedItems: selectedItems,
-                color: contentProps.color,
-                item: data[selectedIndex],
-                index: selectedIndex,
-                data: data
-            });
-        }
-
         return <Text
-            color= {contentProps.color}
+            color={contentProps.color}
             variant="body2-regular"
             numberOfLines={1}
             style={[
@@ -241,6 +223,7 @@ const SelectBox = <T extends {}>({
             selectedItems={selectedItems}
             isHeaderShown={isHeaderShown}
             isSearchable={isSearchable}
+            keyExtractor={keyExtractor}
             multiSelect={multiSelect}
             initialData={initialData}
             inputTitle={inputTitle}

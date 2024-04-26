@@ -10,8 +10,9 @@ import {
 import IBottomSheetHeaderProps from "../bottomSheetHeader/type";
 
 export type SelectedItem = {
-    title: string;
-    key: string;
+    __originalIndex: number;
+    __title: string;
+    __key: string;
 };
 
 export interface ISelectBoxProps<T> {
@@ -26,6 +27,7 @@ export interface ISelectBoxProps<T> {
     renderItem?: (props: IIOCoreIconPropsType & {
         onChange?: (selectedItems: Array<SelectedItem>, data: Array<T & SelectObjectType>) => void;
         onPress?: (selectedItems: Array<SelectedItem>, data: Array<T & SelectObjectType>) => void;
+        onClick?: (item: T & SelectObjectType) => void;
         onOk?: (props: {
             selectedItems: Array<SelectedItem>;
             data: Array<T & SelectObjectType>;
@@ -54,7 +56,7 @@ export interface ISelectBoxProps<T> {
         index?: number;
     }) => IOCoreIconType;
     titleExtractor: (item: T, index: number) => string;
-    keyExtractor?: (item: T, index: number) => string;
+    keyExtractor: (item: T, index: number) => string;
     onSearch?: (searchText: string) => void;
     initialSelectedItems?: Array<T & {
         originalIndex: number;
