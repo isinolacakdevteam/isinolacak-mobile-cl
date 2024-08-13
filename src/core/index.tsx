@@ -1,5 +1,7 @@
 import React, {
     ReactNode,
+    useEffect,
+    useState,
     FC
 } from "react";
 import stylesheet from "./stylesheet";
@@ -13,6 +15,9 @@ import {
 import {
     ToastProvider
 } from 'react-native-toast-notifications';
+import {
+    ThemeContextType
+} from "../types";
 
 class IOCoreInheritance {
     IOCoreContext;
@@ -23,42 +28,56 @@ class IOCoreInheritance {
         });
     }
 
-    ContextApi: FC = ({
-        children
-    }) => {
-        const {
-            colors
-        } = IOCoreContext.ThemeContext.useContext();
+    ContextAPI: FC<{
+        onUpdateThemeState: (themeState: ThemeContextType) => void;
+        children: ReactNode;
+    }> = ({
+            onUpdateThemeState,
+            children
+        }) => {
+            const themeState = this.IOCoreContext.ThemeContext.useContext();
 
-        return <GestureHandlerRootView
-            style={[
-                stylesheet.container,
-                {
-                    backgroundColor: colors.layer1
-                }
-            ]}
-        >
-            <ToastProvider>
-                <Host>
-                    {children}
-                </Host>
-            </ToastProvider>
-        </GestureHandlerRootView>;
-    };
+            useEffect(() => {
+                if(onUpdateThemeState) onUpdateThemeState(themeState);
+            }, [themeState]);
+
+            return <>
+                {children}
+            </>;
+        };
 
     Provider = ({
         children
     }: {
         children: ReactNode;
     }) => {
-        const IOCoreContext = this.IOCoreContext;
-        const ContextAPI = this.ContextApi;
+        const [themeState, setThemeState] = useState<null | ThemeContextType>();
 
-        return <IOCoreContext.Provider>
-            <ContextAPI>
-                {children}
-            </ContextAPI>
-        </IOCoreContext.Provider>;
+        const IOCoreContext = this.IOCoreContext;
+        const ContextAPI = this.ContextAPI;
+
+        return <GestureHandlerRootView
+            style={[
+                stylesheet.container,
+                {
+                    backgroundColor: themeState && themeState.colors ? themeState.colors.layer1 : "white"
+                }
+            ]}
+        >
+            <IOCoreContext.Provider>
+                <ToastProvider>
+                    <Host>
+                        <ContextAPI
+                            onUpdateThemeState={(themeState: ThemeContextType) => {
+                                setThemeState(themeState);
+                            }}
+                        >
+                            {children}
+                        </ContextAPI>
+                    </Host>
+                </ToastProvider>
+            </IOCoreContext.Provider>
+        </GestureHandlerRootView>;
     };
 };
 
