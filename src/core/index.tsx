@@ -52,11 +52,12 @@ class IOCoreInheritance {
         children: ReactNode;
     }) => {
         const IOCoreContext = this.IOCoreContext;
+        const ContextAPI = this.ContextApi;
 
         return <IOCoreContext.Provider>
-            <this.ContextApi>
+            <ContextAPI>
                 {children}
-            </this.ContextApi>
+            </ContextAPI>
         </IOCoreContext.Provider>;
     };
 };

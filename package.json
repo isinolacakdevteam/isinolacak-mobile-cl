@@ -26,7 +26,7 @@
     "!**/.*"
   ],
   "scripts": {
-    "example": "yarn workspace isinolacak-cl-example",
+    "example": "yarn workspace isinolacak-mobile-cl-example",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -39,13 +39,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://gitlab.com/isin-olacak/isinolacak-cl.git",
+  "repository": "https://gitlab.com/isin-olacak/isinolacak-mobile-cl.git",
   "author": "isinolacak <developer@isinolacak.com> (https://gitlab.com/isinolacak.developer)",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/isin-olacak/isinolacak-cl.git/issues"
+    "url": "https://gitlab.com/isin-olacak/isinolacak-mobile-cl.git/issues"
   },
-  "homepage": "https://gitlab.com/isin-olacak/isinolacak-cl.git#readme",
+  "homepage": "https://gitlab.com/isin-olacak/isinolacak-mobile-cl.git#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -83,7 +83,7 @@
   "dependencies": {
     "@react-native-community/datetimepicker": "^7.6.2",
     "moment": "^2.30.1",
-    "ncore-context": "^1.0.3",
+    "ncore-context": "^1.0.5",
     "react-native-gesture-handler": "2.13.1",
     "react-native-modalize": "2.1.1",
     "react-native-portalize": "1.0.7",

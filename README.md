@@ -1,17 +1,17 @@
-# isinolacak-cl
+# isinolacak-mobile-cl
 
 İşinolacak Component Library
 
 ## Installation
 
 ```sh
-yarn add isinolacak-cl
+yarn add isinolacak-mobile-cl
 ```
 
 ## Usage
 
 ```js
-import { multiply } from 'isinolacak-cl';
+import { multiply } from 'isinolacak-mobile-cl';
 
 // ...
 

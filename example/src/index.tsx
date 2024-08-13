@@ -6,7 +6,7 @@ import {
     PageContainer,
     IOCoreTheme,
     IOCore
-} from "isinolacak-cl";
+} from "isinolacak-mobile-cl";
 import stylesheet from './stylesheet';
 import {
     Inter_600SemiBold,
