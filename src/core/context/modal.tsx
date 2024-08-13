@@ -13,10 +13,6 @@ import {
 import BottomSheet from "../../components/bottomSheet";
 import Dialog from "../../components/dialog";
 
-const isDialog = (object: any): object is ModalDataType["type"] => {
-    return 'dialog' in object;
-};
-
 class ModalStateContextInheritance extends IOCoreContext<ModalStateContextType, ConfigType<ModalStateContextType>> {
 };
 
@@ -95,7 +91,7 @@ class ModalContextInheritance extends IOCoreContext<ModalContextType, ConfigType
             {children}
             {
                 data && data.length ? data.map((modal: ModalDataType) => {
-                    if(isDialog(modal.type)) {
+                    if(modal.type === "dialog") {
                         return <Dialog
                             {...modal}
                         />;
