@@ -22,7 +22,7 @@ const en: {
         "iocore-select-sheet-min-choice": "You must choose at least {{0}}.",
         "active-theme": "Theme",
         "active-language": "Language",
-        "isinolacak-cl": "IOCore Mobile",
+        "isinolacak-mobile-cl": "IOCore Mobile",
         "welcome-description": "Welcome to IOCore Design System Component Library",
         "optional": "Optional",
         "selectionCount": "Selections",

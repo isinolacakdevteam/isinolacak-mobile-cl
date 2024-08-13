@@ -115,13 +115,14 @@ class ModalContextInheritance extends IOCoreContext<ModalContextType, ConfigType
         children: ReactNode
     }) => {
         const StateProvider = this.ModalStateContext.Provider;
+        const StateAPI = this.StateAPI;
         const Provider = this.Provider;
 
         return <StateProvider>
             <Provider>
-                <this.StateAPI>
+                <StateAPI>
                     {children}
-                </this.StateAPI>
+                </StateAPI>
             </Provider>
         </StateProvider>;
     };

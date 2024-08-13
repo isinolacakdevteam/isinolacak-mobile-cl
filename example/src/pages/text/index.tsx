@@ -10,7 +10,7 @@ import {
     PageContainer,
     IOCoreTheme,
     Button
-} from "isinolacak-cl";
+} from "isinolacak-mobile-cl";
 import stylesheet from "./stylesheet";
 
 const variants: Array<keyof IOCore.TypographyType> = [
