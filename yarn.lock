@@ -14596,9 +14596,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"isinolacak-cl@workspace:.":
+"isinolacak-mobile-cl@workspace:.":
   version: 0.0.0-use.local
-  resolution: "isinolacak-cl@workspace:."
+  resolution: "isinolacak-mobile-cl@workspace:."
   dependencies:
     "@evilmartians/lefthook": 1.5.0
     "@react-native-community/datetimepicker": ^7.6.2
