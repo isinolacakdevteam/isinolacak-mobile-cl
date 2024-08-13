@@ -23,7 +23,8 @@ import {
     BadgeHOC,
     Button,
     Chip,
-    Text
+    Text,
+    IOCoreModal
 } from "isinolacak-mobile-cl";
 import stylesheet from "./stylesheet";
 import {
@@ -265,7 +266,20 @@ const Welcome = () => {
                     ]}
                     size="small"
                     onPress={() => {
-                        IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
+                        // IOCoreTheme.setTheme(activeTheme === "dark" ? "light" : "dark");
+                        IOCoreModal.open({
+                            type: "dialog",
+                            key: "x3d",
+                            title: "yyyy",
+                            content: "4tegsrx",
+                            variant: "yes-no",
+                            isVisible: true,
+                            onOverlayPress: () => {
+                                IOCoreModal.close({
+                                    key: "x3d"
+                                });
+                            }
+                        });
                     }}
                 />
                 <Button
