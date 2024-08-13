@@ -78,6 +78,10 @@ export type ModalContextType = {
     data: Array<ModalDataType>;
 };
 
+export type ModalStateContextType = {
+    data: Array<ModalDataType>;
+};
+
 export type IOCoreContextConfigType = {
     onStorageUpdate?: (state: any) => void;
     onSetStateFromStorage?: () => any;
