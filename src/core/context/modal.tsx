@@ -1,10 +1,12 @@
 import React, {
-    FC
+    ReactNode,
+    Fragment
 } from "react";
 import IOCoreContext, {
     ConfigType
 } from "ncore-context";
 import {
+    ModalStateContextType,
     ModalContextType,
     ModalDataType
 } from "../../types";
@@ -15,23 +17,35 @@ const isDialog = (object: any): object is ModalDataType["type"] => {
     return 'dialog' in object;
 };
 
+class ModalStateContextInheritance extends IOCoreContext<ModalStateContextType, ConfigType<ModalStateContextType>> {
+};
+
 class ModalContextInheritance extends IOCoreContext<ModalContextType, ConfigType<ModalContextType>> {
-    constructor(config: ConfigType<ModalContextType>) {
+    ModalStateContext: ModalStateContextInheritance;
+
+    constructor(data: Array<ModalDataType>, config: ConfigType<ModalContextType>) {
         super({
             close: () => {},
             open: () => {},
-            data: []
+            data: data
         }, config);
 
-        this.setState({
-            data: []
-        });
+        this.ModalStateContext = new ModalStateContextInheritance(
+            {
+                data: data
+            },
+            {
+                key: "modal-state-context"
+            }
+        );
     }
 
     open = (modalData: ModalDataType) => {
-        let _state = this.state;
-        
-        _state.data.push(modalData);
+        let currentData = this.ModalStateContext.state.data;
+        currentData.push(modalData);
+        this.ModalStateContext.setState({
+            data: currentData
+        });
     };
 
     close = ({
@@ -41,33 +55,46 @@ class ModalContextInheritance extends IOCoreContext<ModalContextType, ConfigType
         index?: number;
         key?: string;
     }) => {
+        let currentData = this.ModalStateContext.state.data;
+
         if(key) {
-            const keyIndex = this.state.data.findIndex((modal) => modal.key === key);
+            const keyIndex = currentData.findIndex((modal) => modal.key === key);
             if(keyIndex !== -1) {
-                this.state.data.splice(keyIndex, 1);
-                this.setState(this.state);
+                currentData.splice(keyIndex, 1);
+                this.ModalStateContext.setState({
+                    data: currentData
+                });
             }
             return;
         }
 
         if(index !== undefined) {
-            this.state.data.splice(index, 1);
-            this.setState(this.state);
+            currentData.splice(index, 1);
+            this.ModalStateContext.setState({
+                data: currentData
+            });
             return;
         }
 
-        this.state.data.pop();
+        currentData.pop();
+        this.ModalStateContext.setState({
+            data: currentData
+        });
     };
 
-    Render: FC = ({
+    StateAPI = ({
         children
+    }: {
+        children: ReactNode;
     }) => {
-        const Provider = this.Provider;
+        const {
+            data
+        } = this.ModalStateContext.useContext();
 
-        return <Provider>
+        return <Fragment>
             {children}
             {
-                this.state && this.state.data ? this.state.data.map((modal) => {
+                data && data.length ? data.map((modal: ModalDataType) => {
                     if(isDialog(modal.type)) {
                         return <Dialog
                             {...modal}
@@ -79,7 +106,24 @@ class ModalContextInheritance extends IOCoreContext<ModalContextType, ConfigType
                     />;
                 }) : null
             }
-        </Provider>;
+        </Fragment>;
+    };
+
+    Render = ({
+        children
+    }: {
+        children: ReactNode
+    }) => {
+        const StateProvider = this.ModalStateContext.Provider;
+        const Provider = this.Provider;
+
+        return <StateProvider>
+            <Provider>
+                <this.StateAPI>
+                    {children}
+                </this.StateAPI>
+            </Provider>
+        </StateProvider>;
     };
 };
 export default ModalContextInheritance;

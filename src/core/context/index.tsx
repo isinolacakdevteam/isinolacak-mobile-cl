@@ -46,6 +46,7 @@ class Context {
         );
 
         this.ModalContext = new ModalContextInheritance(
+            [],
             {
                 ...config,
                 key: "IOCoreModal"
