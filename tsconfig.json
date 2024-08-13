@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "isinolacak-cl": [
+      "isinolacak-mobile-cl": [
         "./src/index"
       ]
     },

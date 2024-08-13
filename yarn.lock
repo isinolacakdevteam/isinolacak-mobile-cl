@@ -14566,9 +14566,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isinolacak-cl-example@workspace:example":
+"isinolacak-mobile-cl-example@workspace:example":
   version: 0.0.0-use.local
-  resolution: "isinolacak-cl-example@workspace:example"
+  resolution: "isinolacak-mobile-cl-example@workspace:example"
   dependencies:
     "@babel/core": ^7.20.0
     "@expo-google-fonts/inter": ^0.2.3
@@ -14581,7 +14581,7 @@ __metadata:
     expo: ^50.0.6
     expo-status-bar: ~1.11.1
     immer: 10.0.3
-    ncore-context: ^1.0.3
+    ncore-context: ^1.0.5
     react: 18.2.0
     react-dom: 18.2.0
     react-native: 0.73.4
@@ -14613,7 +14613,7 @@ __metadata:
     eslint-plugin-prettier: 4.0.0
     jest: 28.1.1
     moment: ^2.30.1
-    ncore-context: ^1.0.3
+    ncore-context: ^1.0.5
     react: 18.2.0
     react-native: 0.72.6
     react-native-builder-bob: 0.20.0
@@ -17484,15 +17484,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ncore-context@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "ncore-context@npm:1.0.3"
+"ncore-context@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "ncore-context@npm:1.0.5"
   dependencies:
     "@storybook/addon-docs": ^6.5.9
   peerDependencies:
     react: ">=17.0.1"
     react-dom: ">=17.0.1"
-  checksum: 2f704064f0f0861e30bb07a2581766737054e55dea6e064e70ccc8c0aaeeea796c2b8b05020f685b105f2e9aa8cec892c095394c44be8bd64af6099e9fb803e5
+  checksum: c54f43f10cb2b03040c3210b2daa0e3b08b4fc12e20c43ba0708f458baa41b75ca019fd3d4667879d25f2c517ed1f09e2428532840d2052980103c86cc51acfe
   languageName: node
   linkType: hard
 

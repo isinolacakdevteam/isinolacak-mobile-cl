@@ -22,7 +22,7 @@ const tr: {
         "iocore-select-sheet-min-choice": "En az {{0}} adet seçmelisiniz.",
         "active-theme": "Tema",
         "active-language": "Dil",
-        "isinolacak-cl": "IOCore Mobil",
+        "isinolacak-mobile-cl": "IOCore Mobil",
         "welcome-description": "IOCore Design Sistem ve Bileşen Kütüphanesi'ne hoş geldiniz.",
         "optional": "Opsiyonel",
         "selectionCount": "Seçim",

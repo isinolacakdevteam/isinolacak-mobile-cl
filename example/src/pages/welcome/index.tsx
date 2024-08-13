@@ -24,7 +24,7 @@ import {
     Button,
     Chip,
     Text
-} from "isinolacak-cl";
+} from "isinolacak-mobile-cl";
 import stylesheet from "./stylesheet";
 import {
     CompositeScreenProps,
@@ -227,7 +227,7 @@ const Welcome = () => {
                     marginBottom: spaces.content
                 }}
             >
-                {localize("isinolacak-cl")}
+                {localize("isinolacak-mobile-cl")}
             </Text>
             <Text
                 variant="body-regular"

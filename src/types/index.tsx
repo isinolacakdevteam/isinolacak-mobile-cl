@@ -282,7 +282,7 @@ declare global {
             "iocore-select-box-n-selected": string;
             "active-theme": string;
             "active-language": string;
-            "isinolacak-cl": string;
+            "isinolacak-mobile-cl": string;
             "welcome-description": string;
             "optional": string;
             "selectionCount": string;
