@@ -1,15 +1,7 @@
 import React, {
-    ReactNode,
-    FC
+    ReactNode
 } from "react";
-import stylesheet from "./stylesheet";
-import {
-    GestureHandlerRootView
-} from "react-native-gesture-handler";
 import Context from "./context";
-import {
-    Host
-} from "react-native-portalize";
 import {
     ToastProvider
 } from 'react-native-toast-notifications';
@@ -23,41 +15,17 @@ class IOCoreInheritance {
         });
     }
 
-    ContextApi: FC = ({
-        children
-    }) => {
-        const {
-            colors
-        } = IOCoreContext.ThemeContext.useContext();
-
-        return <GestureHandlerRootView
-            style={[
-                stylesheet.container,
-                {
-                    backgroundColor: colors.layer1
-                }
-            ]}
-        >
-            <ToastProvider>
-                <Host>
-                    {children}
-                </Host>
-            </ToastProvider>
-        </GestureHandlerRootView>;
-    };
-
     Provider = ({
         children
     }: {
         children: ReactNode;
     }) => {
         const IOCoreContext = this.IOCoreContext;
-        const ContextAPI = this.ContextApi;
 
         return <IOCoreContext.Provider>
-            <ContextAPI>
+            <ToastProvider>
                 {children}
-            </ContextAPI>
+            </ToastProvider>
         </IOCoreContext.Provider>;
     };
 };

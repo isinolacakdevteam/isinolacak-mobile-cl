@@ -12,6 +12,12 @@ import {
 import {
     IOCoreContextConfigType
 } from "../../types";
+import {
+    Host
+} from "react-native-portalize";
+import {
+    GestureHandlerRootView
+} from "react-native-gesture-handler";
 
 class Context {
     ThemeContext;
@@ -54,6 +60,29 @@ class Context {
         );
     }
 
+    ContextAPI = ({
+        children
+    }: {
+        children: ReactNode;
+    }) => {
+        const {
+            colors
+        } = this.ThemeContext.useContext();
+
+        return <GestureHandlerRootView
+            style={[
+                {
+                    backgroundColor: colors.layer1,
+                    flex: 1
+                }
+            ]}
+        >
+            <Host>
+                {children}
+            </Host>
+        </GestureHandlerRootView>;
+    };
+
     Provider = ({
         children
     }: {
@@ -63,11 +92,15 @@ class Context {
         const LocaleContext= this.LocaleContext;
         const ThemeContext = this.ThemeContext;
 
+        const ContextAPI = this.ContextAPI;
+
         return <ThemeContext.Provider>
             <LocaleContext.Provider>
-                <ModalContext.Render>
-                    {children}
-                </ModalContext.Render>
+                <ContextAPI>
+                    <ModalContext.Render>
+                        {children}
+                    </ModalContext.Render>
+                </ContextAPI>
             </LocaleContext.Provider>
         </ThemeContext.Provider>;
     };
