@@ -10,7 +10,8 @@ import {
     tr
 } from "../locales";
 import {
-    IOCoreContextConfigType
+    IOCoreContextConfigType,
+    ModalDataType
 } from "../../types";
 import {
     Host
@@ -18,6 +19,8 @@ import {
 import {
     GestureHandlerRootView
 } from "react-native-gesture-handler";
+import Dialog from "../../components/dialog";
+import BottomSheet from "../../components/bottomSheet";
 
 class Context {
     ThemeContext;
@@ -69,6 +72,10 @@ class Context {
             colors
         } = this.ThemeContext.useContext();
 
+        const {
+            data
+        } = this.ModalContext.ModalStateContext.useContext();
+
         return <GestureHandlerRootView
             style={[
                 {
@@ -79,6 +86,21 @@ class Context {
         >
             <Host>
                 {children}
+                {
+                    data && data.length ? data.map((modal: ModalDataType, index: number) => {
+                        if(modal.type === "dialog") {
+                            return <Dialog
+                                {...modal}
+                                key={`dialog-${modal.key}-${index}`}
+                            />;
+                        }
+                        
+                        return <BottomSheet
+                            {...modal}
+                            key={`bottomSheet-${modal.key}-${index}`}
+                        />;
+                    }) : null
+                }
             </Host>
         </GestureHandlerRootView>;
     };
@@ -96,11 +118,11 @@ class Context {
 
         return <ThemeContext.Provider>
             <LocaleContext.Provider>
-                <ContextAPI>
-                    <ModalContext.Render>
+                <ModalContext.Render>
+                    <ContextAPI>
                         {children}
-                    </ModalContext.Render>
-                </ContextAPI>
+                    </ContextAPI>
+                </ModalContext.Render>
             </LocaleContext.Provider>
         </ThemeContext.Provider>;
     };
