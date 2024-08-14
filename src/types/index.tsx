@@ -59,14 +59,14 @@ export type ThemeContextType = {
 export type DialogTypeForModalType = IDialogProps & {
     type: "dialog";
     key: string;
-    additionalData: any;
+    additionalData?: any;
 };
 
 export type BottomSheetTypeForModalType = ModalizeProps & IBottomSheetProps & {
     type: "bottomsheet";
     isVisible: boolean;
     key: string;
-    additionalData: any;
+    additionalData?: any;
 };
 
 export type ModalDataType = DialogTypeForModalType | BottomSheetTypeForModalType;
