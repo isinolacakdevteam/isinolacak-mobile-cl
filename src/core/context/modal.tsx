@@ -90,15 +90,17 @@ class ModalContextInheritance extends IOCoreContext<ModalContextType, ConfigType
         return <Fragment>
             {children}
             {
-                data && data.length ? data.map((modal: ModalDataType) => {
+                data && data.length ? data.map((modal: ModalDataType, index: number) => {
                     if(modal.type === "dialog") {
                         return <Dialog
                             {...modal}
+                            key={`dialog-${modal.key}-${index}`}
                         />;
                     }
-
+                        
                     return <BottomSheet
                         {...modal}
+                        key={`bottomSheet-${modal.key}-${index}`}
                     />;
                 }) : null
             }
