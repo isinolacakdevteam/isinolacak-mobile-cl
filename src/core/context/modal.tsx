@@ -1,6 +1,5 @@
 import React, {
-    ReactNode,
-    Fragment
+    ReactNode
 } from "react";
 import IOCoreContext, {
     ConfigType
@@ -10,8 +9,6 @@ import {
     ModalContextType,
     ModalDataType
 } from "../../types";
-import BottomSheet from "../../components/bottomSheet";
-import Dialog from "../../components/dialog";
 
 class ModalStateContextInheritance extends IOCoreContext<ModalStateContextType, ConfigType<ModalStateContextType>> {
 };
@@ -78,49 +75,17 @@ class ModalContextInheritance extends IOCoreContext<ModalContextType, ConfigType
         });
     };
 
-    StateAPI = ({
-        children
-    }: {
-        children: ReactNode;
-    }) => {
-        const {
-            data
-        } = this.ModalStateContext.useContext();
-
-        return <Fragment>
-            {children}
-            {
-                data && data.length ? data.map((modal: ModalDataType, index: number) => {
-                    if(modal.type === "dialog") {
-                        return <Dialog
-                            {...modal}
-                            key={`dialog-${modal.key}-${index}`}
-                        />;
-                    }
-                        
-                    return <BottomSheet
-                        {...modal}
-                        key={`bottomSheet-${modal.key}-${index}`}
-                    />;
-                }) : null
-            }
-        </Fragment>;
-    };
-
     Render = ({
         children
     }: {
         children: ReactNode
     }) => {
         const StateProvider = this.ModalStateContext.Provider;
-        const StateAPI = this.StateAPI;
         const Provider = this.Provider;
 
         return <StateProvider>
             <Provider>
-                <StateAPI>
-                    {children}
-                </StateAPI>
+                {children}
             </Provider>
         </StateProvider>;
     };
