@@ -1,6 +1,6 @@
 {
   "name": "isinolacak-mobile-cl",
-  "version": "1.0.0-pre-alpha.45",
+  "version": "1.0.0-pre-alpha.51",
   "description": "İşinolacak Component Library",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -72,6 +72,7 @@
   },
   "peerDependencies": {
     "@react-native-community/datetimepicker": "= 7.6.2",
+    "moment": ">= 2.30.1",
     "react": "*",
     "react-native": "*",
     "react-native-gesture-handler": ">= 2.13.1",

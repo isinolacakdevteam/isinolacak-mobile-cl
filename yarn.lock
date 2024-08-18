@@ -4695,12 +4695,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-community/datetimepicker@npm:^7.6.2":
-  version: 7.6.2
-  resolution: "@react-native-community/datetimepicker@npm:7.6.2"
+"@react-native-community/datetimepicker@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "@react-native-community/datetimepicker@npm:8.2.0"
   dependencies:
     invariant: ^2.2.4
-  checksum: 24c718c01e7ff6bc4b47867bfdf77b98fb8e3a872a627ce057062c37bf24a27264ac40c46cc66c27b134fc56392dc90d5b81dfb3ad5073af2477da055c13cb17
+  peerDependencies:
+    expo: ">=50.0.0"
+    react: "*"
+    react-native: "*"
+    react-native-windows: "*"
+  peerDependenciesMeta:
+    expo:
+      optional: true
+    react-native-windows:
+      optional: true
+  checksum: 3adc9346f8948abed246da3bfa3a223e44c2c5903070178a82e583ce6f8273607fe5a542af834b3a27aff81980c555e5f72bf0e87c85e3f00856a0de21525374
   languageName: node
   linkType: hard
 
@@ -14601,7 +14611,7 @@ __metadata:
   resolution: "isinolacak-mobile-cl@workspace:."
   dependencies:
     "@evilmartians/lefthook": 1.5.0
-    "@react-native-community/datetimepicker": ^7.6.2
+    "@react-native-community/datetimepicker": ^8.2.0
     "@react-native/eslint-config": 0.72.2
     "@release-it/conventional-changelog": 5.0.0
     "@types/jest": 28.1.2
@@ -14621,18 +14631,18 @@ __metadata:
     react-native-modalize: 2.1.1
     react-native-portalize: 1.0.7
     react-native-svg: 13.14.0
-    react-native-toast-notifications: ^3.4.0
+    react-native-toast-notifications: 3.4.0
     release-it: 15.0.0
     typescript: 5.0.2
   peerDependencies:
-    "@react-native-community/datetimepicker": ">= 7.6.2"
+    "@react-native-community/datetimepicker": = 8.2.0
     react: "*"
     react-native: "*"
     react-native-gesture-handler: ">= 2.13.1"
     react-native-modalize: ">= 2.1.1"
     react-native-portalize: ">= 1.0.7"
     react-native-svg: ">= 13.14.0"
-    react-native-toast-notifications: ">= 3.4.0"
+    react-native-toast-notifications: = 3.4.0
   languageName: unknown
   linkType: soft
 
@@ -19822,7 +19832,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-toast-notifications@npm:3.4.0, react-native-toast-notifications@npm:^3.4.0":
+"react-native-toast-notifications@npm:3.4.0":
   version: 3.4.0
   resolution: "react-native-toast-notifications@npm:3.4.0"
   peerDependencies:

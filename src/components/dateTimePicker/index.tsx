@@ -23,7 +23,7 @@ import {
     CalendarIcon
 } from '../../assets/svg';
 import Text from '../text';
-import DateTimePickerComponent from '@react-native-community/datetimepicker';
+import DateTimePickerComponent from "@react-native-community/datetimepicker";
 import BottomSheet from '../bottomSheet';
 import {
     BottomSheetRef
