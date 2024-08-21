@@ -46,6 +46,10 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
             localize: (translationKey: keyof IOCore.TranslationType, parameters?: Array<any>) => {
                 let resp = translations[translationKey];
 
+                if(!resp) {
+                    return translationKey;
+                }
+
                 if(parameters && parameters.length) {
                     parameters.forEach((item, index) => {
                         resp = resp.replace(`{{${index}}}`, item);
