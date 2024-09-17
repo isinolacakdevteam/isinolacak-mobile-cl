@@ -16,6 +16,7 @@ import {
     IOCoreLocale,
     RadioButton,
     IOCoreTheme,
+    IOCoreModal,
     TextInput,
     StateCard,
     TextArea,
@@ -24,7 +25,6 @@ import {
     Button,
     Chip,
     Text,
-    IOCoreModal
 } from "isinolacak-mobile-cl";
 import stylesheet from "./stylesheet";
 import {
@@ -162,8 +162,10 @@ const Welcome = () => {
             />
             <SelectBox
                 titleExtractor={(item) => item.localizedText}
-                isHeaderShown={true}
                 isNeedConfirm={true}
+                isHeaderShown={true}
+                infoText="dsadsad"
+                isError={true}
                 initialSelectedItems={data && data.length ? [
                     data[1],
                     data[3]

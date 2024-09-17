@@ -19,7 +19,8 @@ import {
     IOCoreTheme
 } from "../../core";
 import {
-    ChevronDownIcon
+    ChevronDownIcon,
+    InfoIcon
 } from "../../assets/svg";
 import SelectSheet from "../selectSheet";
 import Text from "../text";
@@ -32,12 +33,14 @@ import {
 
 const SelectBox = <T extends {}>({
     renderIcon: RenderIcon,
+    infoIcon: InfoIconProp,
     initialSelectedItems,
     multiSelect = false,
     isLoadingOKButton,
     data: initialData,
     disabled = false,
     bottomSheetProps,
+    isClick = false,
     titleExtractor,
     isNeedConfirm,
     flatListProps,
@@ -50,7 +53,9 @@ const SelectBox = <T extends {}>({
     minChoice,
     onSearch,
     onChange,
+    infoText,
     onPress,
+    isError,
     style,
     title,
     onOk
@@ -68,13 +73,18 @@ const SelectBox = <T extends {}>({
     } = IOCoreTheme.useContext();
 
     const {
+        infoTextContainer,
+        infoIconStyler,
         contentProps,
         titleProps,
         container
     } = selectBoxStyler({
         radiuses,
         disabled,
+        infoText,
+        isClick,
         borders,
+        isError,
         spaces,
         colors
     });
@@ -151,6 +161,44 @@ const SelectBox = <T extends {}>({
         >
             {title}
         </Text>;
+    };
+
+    const renderInfoText = () => {
+        if (!infoText) {
+            return null;
+        }
+
+        return <View
+            style={[
+                stylesheet.infoText,
+                infoTextContainer
+            ]}
+        >
+            {InfoIconProp ?
+                <View
+                    style={[
+                        infoIconStyler
+                    ]}
+                >
+                    <InfoIconProp />
+                </View> : <View
+                    style={[
+                        infoIconStyler
+                    ]}
+                >
+                    <InfoIcon
+                        color={isError ? colors.error : colors.textGrey}
+                        size={15}
+                    />
+                </View>
+            }
+            <Text
+                color={isError ? "error" : "textGrey"}
+                variant="body3-regular"
+            >
+                {infoText}
+            </Text>
+        </View>;
     };
 
     const renderContent = () => {
@@ -244,36 +292,43 @@ const SelectBox = <T extends {}>({
         />;
     };
 
-    return <TouchableOpacity
-        style={[
-            stylesheet.container,
-            container,
-            style
-        ]}
-        onPress={() => {
-            if(disabled) {
-                return;
-            }
-
-            if(!onPress) {
-                selectSheetRef.current?.open();
-                return;
-            }
-
-            onPress(selectedItems, cleanData());
-        }}
-        disabled={disabled}
+    return <View
+        style={
+            stylesheet.mainContainer
+        }
     >
-        <View
+        <TouchableOpacity
             style={[
-                stylesheet.content
+                stylesheet.container,
+                container,
+                style
             ]}
+            onPress={() => {
+                if(disabled) {
+                    return;
+                }
+
+                if(!onPress) {
+                    selectSheetRef.current?.open();
+                    return;
+                }
+
+                onPress(selectedItems, cleanData());
+            }}
+            disabled={disabled}
         >
-            {renderTitle()}
-            {renderContent()}
-        </View>
-        {renderIcon()}
-        {renderSelectSheet()}
-    </TouchableOpacity>;
+            <View
+                style={[
+                    stylesheet.content
+                ]}
+            >
+                {renderTitle()}
+                {renderContent()}
+            </View>
+            {renderIcon()}
+            {renderSelectSheet()}
+        </TouchableOpacity>
+        {renderInfoText()}
+    </View>;
 };
 export default SelectBox;

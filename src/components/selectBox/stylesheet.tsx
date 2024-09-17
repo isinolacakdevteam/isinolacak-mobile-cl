@@ -10,6 +10,12 @@ import {
 } from "./types";
 
 export const stylesheet = StyleSheet.create({
+    mainContainer: {
+        boxSizing: "border-box",
+        flexDirection: "column",
+        alignItems: "center",
+        flex: 1
+    },
     container: {
         justifyContent: "space-between",
         flexDirection: "row",
@@ -26,42 +32,57 @@ export const stylesheet = StyleSheet.create({
     customRenderForIcon: {
         flexDirection: "row",
         alignItems: "center"
+    },
+    infoText: {
+        flexDirection: "row"
     }
 });
 
 const selectBoxStyler = ({
     radiuses,
     disabled,
+    infoText,
+    isError,
+    isClick,
     borders,
     colors,
     spaces
 }: SelectBoxStylerParams): SelectBoxStylerResult => {
     let container: ViewStyle = {
+        borderColor: isError ? colors.error : isClick ? colors.primary : colors.stroke,
         paddingVertical: spaces.container / 8,
         paddingHorizontal: spaces.container,
         borderRadius: radiuses.half * 1.5,
         backgroundColor: colors.white,
-        borderColor: colors.stroke,
-        borderWidth: borders.line
+        borderWidth: borders.line,
     };
 
     let titleProps: TitleProps = {
-        color: "primary"
+        color: disabled ? "textGrey" : "primary"
     };
 
     let contentProps: ContentProps = {
-        color: "body",
+        color: disabled ? "textGrey" : "body",
         style: {
             marginTop: spaces.content / 2
         }
     };
 
-    if(disabled) {
-        contentProps.color = "textGrey";
-        titleProps.color = "textGrey";
+    let infoTextContainer: ViewStyle = {
+        paddingLeft: spaces.content
+    };
+
+    let infoIconStyler: ViewStyle = {
+        marginRight: spaces.inline
+    };
+
+    if (infoText) {
+        container.marginBottom = spaces.inline;
     }
 
     return {
+        infoTextContainer,
+        infoIconStyler,
         contentProps,
         titleProps,
         container
