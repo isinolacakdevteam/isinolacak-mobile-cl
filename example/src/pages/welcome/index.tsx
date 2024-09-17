@@ -382,6 +382,52 @@ const Welcome = () => {
                 isSelected={isSelected}
                 onChange={() => setIsSelected(!isSelected)}
             />
+            <SelectBox
+            isError={true}
+            infoText="DENEME"
+            titleExtractor={(item) => item.localizedText}
+            inputTitle={"Deneme"}
+            title={"Deneme"}
+            keyExtractor={(e) => e._id}
+            isSearchable={true}
+            multiSelect={false}
+            style={{
+                width: 300,
+                marginBottom: spaces.content * 1.5,
+            }}
+            onOk={({
+                selectedItems,
+                closeSheet,
+                onSuccess
+            }) => {
+                const selectedItem = selectedItems[0];
+                if (selectedItem) {
+                    //@ts-ignore
+                    onChangeExperienceLevel(selectedItem, index);
+                }
+                closeSheet();
+                onSuccess();
+            }}
+            isNeedConfirm={true}
+            data={[
+                {
+                    _id: '1',
+                    localizedText: 'Beginner'
+                },
+                {
+                    _id: '2',
+                    localizedText: 'Intermediate'
+                },
+                {
+                    _id: '3',
+                    localizedText: 'Advanced'
+                },
+                {
+                    _id: '4',
+                    localizedText: 'Expert'
+                }
+            ]}
+        />
             <TextInput
                 isShowable={true}
                 secureTextEntry={true}
@@ -464,7 +510,55 @@ const Welcome = () => {
                     }}
                 />
             </View>
+            <SelectBox
+            isError={true}
+            infoText="DENEME"
+            titleExtractor={(item) => item.localizedText}
+            inputTitle={"Deneme"}
+            title={"Deneme"}
+            keyExtractor={(e) => e._id}
+            isSearchable={true}
+            multiSelect={false}
+            
+            style={{
+                flex: 1,
+                marginBottom: spaces.content * 1.5,
+            }}
+            onOk={({
+                selectedItems,
+                closeSheet,
+                onSuccess
+            }) => {
+                const selectedItem = selectedItems[0];
+                if (selectedItem) {
+                    //@ts-ignore
+                    onChangeExperienceLevel(selectedItem, index);
+                }
+                closeSheet();
+                onSuccess();
+            }}
+            isNeedConfirm={true}
+            data={[
+                {
+                    _id: '1',
+                    localizedText: 'Beginner'
+                },
+                {
+                    _id: '2',
+                    localizedText: 'Intermediate'
+                },
+                {
+                    _id: '3',
+                    localizedText: 'Advanced'
+                },
+                {
+                    _id: '4',
+                    localizedText: 'Expert'
+                }
+            ]}
+        />
         </PageContainer>
+        
     </SafeAreaView>;
 };
 export default Welcome;

@@ -81,7 +81,6 @@ const SelectBox = <T extends {}>({
     } = selectBoxStyler({
         radiuses,
         disabled,
-        infoText,
         isClick,
         borders,
         isError,
