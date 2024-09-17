@@ -39,6 +39,7 @@ export const stylesheet = StyleSheet.create({
 });
 
 const selectBoxStyler = ({
+    infoText,
     radiuses,
     disabled,
     isError,
@@ -74,6 +75,10 @@ const selectBoxStyler = ({
     let infoIconStyler: ViewStyle = {
         marginRight: spaces.inline
     };
+
+    if (infoText) {
+        container.marginBottom = spaces.content;
+    }
 
     return {
         infoTextContainer,
