@@ -14581,6 +14581,7 @@ __metadata:
     expo: ^50.0.6
     expo-status-bar: ~1.11.1
     immer: 10.0.3
+    moment: ^2.30.1
     ncore-context: ^1.0.5
     react: 18.2.0
     react-dom: 18.2.0

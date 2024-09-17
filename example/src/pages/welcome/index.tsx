@@ -205,9 +205,6 @@ const Welcome = () => {
                 }}
                 disabled={false}
                 title="Time"
-                style={{
-                    marginBottom: spaces.content * 1.5
-                }}
                 onOk={({
                     closeSheet,
                     onSuccess
@@ -382,6 +379,48 @@ const Welcome = () => {
                 isSelected={isSelected}
                 onChange={() => setIsSelected(!isSelected)}
             />
+            <SelectBox
+            isError={true}
+            infoText="DENEME"
+            titleExtractor={(item) => item.localizedText}
+            inputTitle={"Deneme"}
+            title={"Deneme"}
+            keyExtractor={(e) => e._id}
+            isSearchable={true}
+            multiSelect={false}
+            onOk={({
+                selectedItems,
+                closeSheet,
+                onSuccess
+            }) => {
+                const selectedItem = selectedItems[0];
+                if (selectedItem) {
+                    //@ts-ignore
+                    onChangeExperienceLevel(selectedItem, index);
+                }
+                closeSheet();
+                onSuccess();
+            }}
+            isNeedConfirm={true}
+            data={[
+                {
+                    _id: '1',
+                    localizedText: 'Beginner'
+                },
+                {
+                    _id: '2',
+                    localizedText: 'Intermediate'
+                },
+                {
+                    _id: '3',
+                    localizedText: 'Advanced'
+                },
+                {
+                    _id: '4',
+                    localizedText: 'Expert'
+                }
+            ]}
+        />
             <TextInput
                 isShowable={true}
                 secureTextEntry={true}
@@ -465,6 +504,7 @@ const Welcome = () => {
                 />
             </View>
         </PageContainer>
+        
     </SafeAreaView>;
 };
 export default Welcome;

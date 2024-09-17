@@ -293,15 +293,15 @@ const SelectBox = <T extends {}>({
     };
 
     return <View
-        style={
-            stylesheet.mainContainer
-        }
+        style={[
+            stylesheet.mainContainer,
+            style
+        ]}
     >
         <TouchableOpacity
             style={[
                 stylesheet.container,
-                container,
-                style
+                container
             ]}
             onPress={() => {
                 if(disabled) {

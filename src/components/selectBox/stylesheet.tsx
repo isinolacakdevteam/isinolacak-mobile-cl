@@ -11,9 +11,9 @@ import {
 
 export const stylesheet = StyleSheet.create({
     mainContainer: {
-        boxSizing: "border-box",
         flexDirection: "column",
-        alignItems: "center",
+        alignSelf: "stretch",
+        minHeight: 60,
         flex: 1
     },
     container: {
@@ -39,9 +39,9 @@ export const stylesheet = StyleSheet.create({
 });
 
 const selectBoxStyler = ({
+    infoText,
     radiuses,
     disabled,
-    infoText,
     isError,
     isClick,
     borders,
@@ -54,7 +54,7 @@ const selectBoxStyler = ({
         paddingHorizontal: spaces.container,
         borderRadius: radiuses.half * 1.5,
         backgroundColor: colors.white,
-        borderWidth: borders.line,
+        borderWidth: borders.line
     };
 
     let titleProps: TitleProps = {
@@ -77,7 +77,7 @@ const selectBoxStyler = ({
     };
 
     if (infoText) {
-        container.marginBottom = spaces.inline;
+        container.marginBottom = spaces.content;
     }
 
     return {
