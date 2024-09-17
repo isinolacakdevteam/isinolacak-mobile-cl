@@ -205,9 +205,6 @@ const Welcome = () => {
                 }}
                 disabled={false}
                 title="Time"
-                style={{
-                    marginBottom: spaces.content * 1.5
-                }}
                 onOk={({
                     closeSheet,
                     onSuccess
@@ -391,10 +388,6 @@ const Welcome = () => {
             keyExtractor={(e) => e._id}
             isSearchable={true}
             multiSelect={false}
-            style={{
-                marginBottom: spaces.content,
-                width: 300
-            }}
             onOk={({
                 selectedItems,
                 closeSheet,

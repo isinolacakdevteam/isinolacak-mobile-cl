@@ -11,8 +11,9 @@ import {
 
 export const stylesheet = StyleSheet.create({
     mainContainer: {
-        boxSizing: "border-box",
         flexDirection: "column",
+        alignSelf: "stretch",
+        minHeight: 60,
         flex: 1
     },
     container: {
