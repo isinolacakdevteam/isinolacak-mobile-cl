@@ -9,6 +9,7 @@ import {
     AndroidNativeProps,
     IOSNativeProps
 } from "@react-native-community/datetimepicker";
+import { IOCoreIconType } from "../../types";
 
 export type DateTimePickerMode = "date" | "time" | "datetime" | "countdown";
 export type DateTimePickerDisplay = "default" | "spinner";
@@ -23,11 +24,15 @@ export type DateTimePickerRef = {
 type IDateTimePickerProps = Omit<DTP, "value" | "mode" | "display"> & {
     onChange?: (date: Date, formattedDate: string) => void;
     display: DateTimePickerDisplay;
+    infoIcon?: IOCoreIconType;
     mode: DateTimePickerMode;
     initialValue: Date;
     disabled?: boolean;
     is24Hour?: boolean;
     style?: ViewStyle;
+    infoText?: string;
+    isClick?: boolean; 
+    isError?: boolean;
     title: string;
 }
 
@@ -37,6 +42,9 @@ export type DateTimePickerStylerParams = {
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;
     disabled?: boolean;
+    infoText?: string;
+    isError?: boolean;
+    isClick?: boolean;
 };
 
 export type TitleProps = {
@@ -45,6 +53,8 @@ export type TitleProps = {
 };
 
 export type DateTimePickerStylerResult = {
+    infoTextContainer: ViewStyle;
+    infoIconStyler: ViewStyle;
     titleProps: TitleProps;
     titleStyle: ViewStyle;
     customIcon: ViewStyle;

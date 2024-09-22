@@ -20,7 +20,8 @@ import {
     IOCoreTheme
 } from '../../core';
 import {
-    CalendarIcon
+    CalendarIcon,
+    InfoIcon
 } from '../../assets/svg';
 import Text from '../text';
 import DateTimePickerComponent from "@react-native-community/datetimepicker";
@@ -33,8 +34,12 @@ import moment from 'moment';
 const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerProps> = ({
     initialValue = new Date(),
     onChange: onChangeProp,
+    infoIcon: InfoIconProp,
+    isClick = false,
     disabled,
+    infoText,
     display,
+    isError,
     style,
     title,
     mode,
@@ -48,14 +53,20 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
     } = IOCoreTheme.useContext();
 
     const {
+        infoTextContainer,
+        infoIconStyler,
         titleProps,
         customIcon,
         titleStyle,
         container
+
     } = dateTimePickerStyler({
         radiuses,
+        infoText,
         disabled,
         borders,
+        isError,
+        isClick,
         spaces,
         colors
     });
@@ -114,6 +125,44 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
     };
 
     const formattedDate = formatDate(date);
+
+    const renderInfoText = () => {
+        if (!infoText) {
+            return null;
+        }
+
+        return <View
+            style={[
+                stylesheet.infoText,
+                infoTextContainer
+            ]}
+        >
+            {InfoIconProp ?
+                <View
+                    style={[
+                        infoIconStyler
+                    ]}
+                >
+                    <InfoIconProp />
+                </View> : <View
+                    style={[
+                        infoIconStyler
+                    ]}
+                >
+                    <InfoIcon
+                        color={isError ? colors.error : colors.textGrey}
+                        size={15}
+                    />
+                </View>
+            }
+            <Text
+                color={isError ? "error" : "textGrey"}
+                variant="body3-regular"
+            >
+                {infoText}
+            </Text>
+        </View>;
+    };
 
     const renderIcon = () => {
         return <View                 
@@ -188,13 +237,18 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
         </BottomSheet>;
     };
 
-    return <TouchableOpacity
+    return <View
+        style={[
+            stylesheet.mainContainer,
+            style
+        ]}
+    >
+        <TouchableOpacity
         disabled={disabled}
         onPress={onPress}
         style={[
             stylesheet.container,
-            container,
-            style
+            container
         ]}
     >
         <View                 
@@ -208,6 +262,8 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
         </View>
         {renderAndroidPicker()}
         {renderIOSPicker()}
-    </TouchableOpacity>;
+    </TouchableOpacity>
+        {renderInfoText()}
+    </View>;
 };
 export default forwardRef(DateTimePicker);

@@ -501,21 +501,18 @@ const Welcome = () => {
                 }}
             >
                 <DateTimePicker
+                    infoText="DENEME"
                     display="spinner"
                     mode="datetime"
                     title="Deneme"
-                    style={{
-                        marginBottom: spaces.content
-                    }}
+                    isError={true}
                 />
                 <DateTimePicker
+                    infoText="DENEME"
                     display="spinner"
-                    
+                    isError={false}
                     mode="datetime"
                     title="Deneme"
-                    style={{
-                        marginBottom: spaces.content
-                    }}
                 />
             </View>
         </PageContainer>

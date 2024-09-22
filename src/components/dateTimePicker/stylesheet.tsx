@@ -9,6 +9,12 @@ import {
 } from "./type";
 
 export const stylesheet = StyleSheet.create({
+    mainContainer: {
+        flexDirection: "column",
+        alignSelf: "stretch",
+        minHeight: 60,
+        flex: 1
+    },
     container: {
         flexDirection: "row",
         alignItems: "center",
@@ -25,21 +31,27 @@ export const stylesheet = StyleSheet.create({
     customRenderForIcon: {
         flexDirection: "row",
         alignItems: "center"
+    },
+    infoText: {
+        flexDirection: "row"
     }
 });
 
 const dateTimePickerStyler = ({
     radiuses,
+    infoText,
+    isError,
+    isClick,
     borders,
     colors,
     spaces
 }: DateTimePickerStylerParams): DateTimePickerStylerResult => {
     let container: ViewStyle = {
+        borderColor: isError ? colors.error : isClick ? colors.primary : colors.stroke,
         paddingVertical: spaces.container / 8,
         paddingHorizontal: spaces.container,
         borderRadius: radiuses.half * 1.5,
         backgroundColor: colors.white,
-        borderColor: colors.stroke,
         borderWidth: borders.line
     };
 
@@ -56,7 +68,21 @@ const dateTimePickerStyler = ({
         marginLeft: spaces.content * 1.5
     };
 
+    let infoTextContainer: ViewStyle = {
+        paddingLeft: spaces.content
+    };
+
+    let infoIconStyler: ViewStyle = {
+        marginRight: spaces.inline
+    };
+
+    if (infoText) {
+        container.marginBottom = spaces.content;
+    }
+
     return {
+        infoTextContainer,
+        infoIconStyler,
         customIcon,
         titleStyle,
         titleProps,
