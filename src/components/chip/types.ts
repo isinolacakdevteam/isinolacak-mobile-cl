@@ -44,6 +44,8 @@ export type TitleProps = {
 export type ChipStylerResult = {
     closeIconProps: IIOCoreIconPropsType;
     iconProps: IIOCoreIconPropsType;
+    ıconComponentProp: ViewStyle;
     titleProps: TitleProps;
     container: ViewStyle;
+    closeIcon: ViewStyle;
 };

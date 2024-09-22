@@ -22,9 +22,10 @@ import {
     TextArea,
     CheckBox,
     BadgeHOC,
+    Sticker,
     Button,
     Chip,
-    Text,
+    Text
 } from "isinolacak-mobile-cl";
 import stylesheet from "./stylesheet";
 import {
@@ -426,10 +427,24 @@ const Welcome = () => {
                 secureTextEntry={true}
             />
             <Chip
+                onPress={() => setIsSelected(!isSelected)}
+                selected={isSelected}
+                closable={true}
                 title="deneme"
                 size="small"
-                selected={isSelected}
+            />
+            <Chip
                 onPress={() => setIsSelected(!isSelected)}
+                icon={() => <InfoIcon size={15} />}
+                selected={isSelected}
+                title="deneme"
+                size="small"
+            />
+            <Sticker 
+                icon={() => <InfoIcon size={15} />}
+                titleColor="accent"
+                color="white"
+                title="Title"
             />
             <RadioButton
                 isSelected={isSelected}

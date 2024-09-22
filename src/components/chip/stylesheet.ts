@@ -58,6 +58,14 @@ const chipStyler = ({
         size: 14
     };
 
+    let ıconComponentProp: ViewStyle = {
+        marginRight: spaces.inline
+    }
+
+    let closeIcon: ViewStyle = {
+        marginLeft: spaces.inline
+    }
+
     if(selected) {
         if(color) {
             container.backgroundColor = colors[color];
@@ -85,10 +93,12 @@ const chipStyler = ({
     }
 
     return {
+        ıconComponentProp,
         closeIconProps,
         titleProps,
         container,
-        iconProps
+        iconProps,
+        closeIcon
     };
 };
 export default chipStyler;
