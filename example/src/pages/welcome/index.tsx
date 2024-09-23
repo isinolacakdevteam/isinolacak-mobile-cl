@@ -503,7 +503,7 @@ const Welcome = () => {
                 <DateTimePicker
                     infoText="DENEME"
                     display="spinner"
-                    mode="datetime"
+                    mode="time"
                     title="Deneme"
                     isError={true}
                 />

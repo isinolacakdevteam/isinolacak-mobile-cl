@@ -5,11 +5,13 @@ import {
     ViewStyle
 } from "react-native";
 import {
+    IOCoreIconType
+} from "../../types";
+import {
     WindowsNativeProps,
     AndroidNativeProps,
     IOSNativeProps
 } from "@react-native-community/datetimepicker";
-import { IOCoreIconType } from "../../types";
 
 export type DateTimePickerMode = "date" | "time" | "datetime" | "countdown";
 export type DateTimePickerDisplay = "default" | "spinner";
@@ -17,8 +19,8 @@ export type DateTimePickerDisplay = "default" | "spinner";
 export type DTP = WindowsNativeProps | AndroidNativeProps | IOSNativeProps;
 
 export type DateTimePickerRef = {
-    state: Date;
     setState: Dispatch<Date>;
+    state: Date | null;
 };
 
 type IDateTimePickerProps = Omit<DTP, "value" | "mode" | "display"> & {

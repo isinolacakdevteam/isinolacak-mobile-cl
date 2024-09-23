@@ -29,7 +29,8 @@ const en: {
         "advert-sticker-announcement": "Announcement",
         "advert-sticker-featuredAds": "Featured Ad",
         "advert-sticker-newAd": "New Ad",
-        "advert-sticker-trusted": "Trusted"
+        "advert-sticker-trusted": "Trusted",
+        "select-a-date": "Select a date"
     }
 };
 export default en;
