@@ -170,7 +170,7 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
             >
                 {infoText}
             </Text>
-        </View>
+        </View>;
     };
 
     const renderIcon = () => {
@@ -183,7 +183,7 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
                 color={colors.textGrey}
                 size={24}
             />
-        </View>
+        </View>;
     };
 
     const renderTitle = () => {
@@ -194,7 +194,7 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
             numberOfLines={1}
         >
             {title}
-        </Text>
+        </Text>;
     };
 
     const renderDate = () => {
@@ -204,7 +204,7 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
             numberOfLines={1}
         >
             {formattedDate || localize("select-a-date")}
-        </Text>
+        </Text>;
     };
 
     const renderPicker = () => {
@@ -214,7 +214,7 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
             display={display}
             mode={mode}
             {...props}
-        />
+        />;
     };
 
     const renderAndroidPicker = () => {
@@ -235,12 +235,12 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
         }
 
         return <BottomSheet
-                ref={iOSDateTimePickerRef}
-                handlePosition="inside"
-                autoHeight={true}
-            >
-                {renderPicker()}
-            </BottomSheet>
+            ref={iOSDateTimePickerRef}
+            handlePosition="inside"
+            autoHeight={true}
+        >
+            {renderPicker()}
+        </BottomSheet>;
     };
 
     return <View
@@ -248,29 +248,29 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
             stylesheet.mainContainer,
             style
         ]}>
-            <TouchableOpacity
-                disabled={disabled}
-                onPress={onPress}
-                style={[
-                    stylesheet.container,
-                    container
-                ]}
-            >
-                <View
-                    style={
-                        stylesheet.content
-                    }>
-                    <View>
-                        {renderTitle()}
-                        {renderDate()}
-                    </View>
-                    {renderIcon()}
+        <TouchableOpacity
+            disabled={disabled}
+            onPress={onPress}
+            style={[
+                stylesheet.container,
+                container
+            ]}
+        >
+            <View
+                style={
+                    stylesheet.content
+                }>
+                <View>
+                    {renderTitle()}
+                    {renderDate()}
                 </View>
-                {renderAndroidPicker()}
-                {renderIOSPicker()}
-            </TouchableOpacity>
-            {renderInfoText()}
-        </View>
+                {renderIcon()}
+            </View>
+            {renderAndroidPicker()}
+            {renderIOSPicker()}
+        </TouchableOpacity>
+        {renderInfoText()}
+    </View>;
 };
 
 export default forwardRef(DateTimePicker);

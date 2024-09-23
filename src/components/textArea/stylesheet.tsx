@@ -118,11 +118,11 @@ export const textInputStyler = ({
 
     let infoTextIconColor: InfoTextIconProps = {
         color: isError ? colors.error : colors.textGrey
-    }
+    };
 
     let infoTextColor: InfoTextColorProps = {
         color: isError ? "error" : "textGrey"
-    }
+    };
 
     if (infoText) {
         container.marginBottom = spaces.content;

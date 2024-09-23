@@ -383,47 +383,47 @@ const Welcome = () => {
                 onChange={() => setIsSelected(!isSelected)}
             />
             <SelectBox
-            isError={false}
-            infoText="DENEME"
-            titleExtractor={(item) => item.localizedText}
-            inputTitle={"Deneme"}
-            title={"Deneme"}
-            keyExtractor={(e) => e._id}
-            isSearchable={true}
-            multiSelect={false}
-            onOk={({
-                selectedItems,
-                closeSheet,
-                onSuccess
-            }) => {
-                const selectedItem = selectedItems[0];
-                if (selectedItem) {
+                isError={false}
+                infoText="DENEME"
+                titleExtractor={(item) => item.localizedText}
+                inputTitle={"Deneme"}
+                title={"Deneme"}
+                keyExtractor={(e) => e._id}
+                isSearchable={true}
+                multiSelect={false}
+                onOk={({
+                    selectedItems,
+                    closeSheet,
+                    onSuccess
+                }) => {
+                    const selectedItem = selectedItems[0];
+                    if (selectedItem) {
                     //@ts-ignore
-                    onChangeExperienceLevel(selectedItem, index);
-                }
-                closeSheet();
-                onSuccess();
-            }}
-            isNeedConfirm={true}
-            data={[
-                {
-                    _id: '1',
-                    localizedText: 'Beginner'
-                },
-                {
-                    _id: '2',
-                    localizedText: 'Intermediate'
-                },
-                {
-                    _id: '3',
-                    localizedText: 'Advanced'
-                },
-                {
-                    _id: '4',
-                    localizedText: 'Expert'
-                }
-            ]}
-        />
+                        onChangeExperienceLevel(selectedItem, index);
+                    }
+                    closeSheet();
+                    onSuccess();
+                }}
+                isNeedConfirm={true}
+                data={[
+                    {
+                        _id: '1',
+                        localizedText: 'Beginner'
+                    },
+                    {
+                        _id: '2',
+                        localizedText: 'Intermediate'
+                    },
+                    {
+                        _id: '3',
+                        localizedText: 'Advanced'
+                    },
+                    {
+                        _id: '4',
+                        localizedText: 'Expert'
+                    }
+                ]}
+            />
             <TextInput
                 isShowable={true}
                 secureTextEntry={true}

@@ -60,11 +60,11 @@ const chipStyler = ({
 
     let iconComponentProp: ViewStyle = {
         marginRight: spaces.inline
-    }
+    };
 
     let closeIcon: ViewStyle = {
         marginLeft: spaces.inline
-    }
+    };
 
     if(selected) {
         if(color) {

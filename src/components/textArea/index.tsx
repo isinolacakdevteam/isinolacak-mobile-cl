@@ -17,7 +17,9 @@ import {
     IOCoreTheme
 } from "../../core";
 import Text from "../text";
-import { InfoIcon } from "../../assets/svg";
+import {
+    InfoIcon 
+} from "../../assets/svg";
 
 const TextArea: FC<ITextAreaProps> = ({
     infoIcon: InfoIconProp,
@@ -205,9 +207,9 @@ const TextArea: FC<ITextAreaProps> = ({
                 {renderNativeInput()}
                 {renderCounter()}
                 
-        </View>
-    </TouchableOpacity>
-            {renderInfoText()}
+            </View>
+        </TouchableOpacity>
+        {renderInfoText()}
     </View>;
 };
 export default TextArea;
