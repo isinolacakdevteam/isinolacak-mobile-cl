@@ -124,15 +124,15 @@ const TextArea: FC<ITextAreaProps> = ({
         >
             {InfoIconProp ?
                 <View
-                    style={[
+                    style={
                         infoIconStyler
-                    ]}
+                    }
                 >
                     <InfoIconProp />
                 </View> : <View
-                    style={[
+                    style={
                         infoIconStyler
-                    ]}
+                    }
                 >
                     <InfoIcon
                         color={infoTextIconColor.color}
