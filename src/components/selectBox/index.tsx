@@ -73,8 +73,10 @@ const SelectBox = <T extends {}>({
     } = IOCoreTheme.useContext();
 
     const {
+        infoTextIconColor,
         infoTextContainer,
         infoIconStyler,
+        infoTextColor,
         contentProps,
         titleProps,
         container
@@ -187,13 +189,13 @@ const SelectBox = <T extends {}>({
                     ]}
                 >
                     <InfoIcon
-                        color={isError ? colors.error : colors.textGrey}
+                        color={infoTextIconColor.color}
                         size={15}
                     />
                 </View>
             }
             <Text
-                color={isError ? "error" : "textGrey"}
+                color={infoTextColor.color}
                 variant="body3-regular"
             >
                 {infoText}

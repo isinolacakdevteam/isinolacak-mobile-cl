@@ -17,8 +17,10 @@ import {
     IOCoreTheme
 } from "../../core";
 import Text from "../text";
+import { InfoIcon } from "../../assets/svg";
 
 const TextArea: FC<ITextAreaProps> = ({
+    infoIcon: InfoIconProp,
     clearEnabled = false,
     onFocus: onFocusProp,
     isTextLimit= false,
@@ -31,6 +33,7 @@ const TextArea: FC<ITextAreaProps> = ({
     initialValue,
     onChangeText,
     placeholder,
+    infoText,
     style,
     ...props
 }) => {
@@ -51,7 +54,11 @@ const TextArea: FC<ITextAreaProps> = ({
     const finalTitle = isRequired ? title + " *" : title;
 
     const {
+        infoTextContainer,
+        infoTextIconColor,
         contentContainer,
+        infoIconStyler,
+        infoTextColor,
         titleProps,
         container,
         input
@@ -61,6 +68,7 @@ const TextArea: FC<ITextAreaProps> = ({
         isFocused,
         disabled,
         radiuses,
+        infoText,
         isError,
         borders,
         colors,
@@ -103,6 +111,44 @@ const TextArea: FC<ITextAreaProps> = ({
         />;
     };
 
+    const renderInfoText = () => {
+        if (!infoText) {
+            return null;
+        }
+
+        return <View
+            style={[
+                stylesheet.infoText,
+                infoTextContainer
+            ]}
+        >
+            {InfoIconProp ?
+                <View
+                    style={[
+                        infoIconStyler
+                    ]}
+                >
+                    <InfoIconProp />
+                </View> : <View
+                    style={[
+                        infoIconStyler
+                    ]}
+                >
+                    <InfoIcon
+                        color={infoTextIconColor.color}
+                        size={15}
+                    />
+                </View>
+            }
+            <Text
+                color={infoTextColor.color}
+                variant="body3-regular"
+            >
+                {infoText}
+            </Text>
+        </View>;
+    };
+
     const renderTitle = () => {
         return <Text
             color={isError ? "error" : titleProps.color}
@@ -133,28 +179,35 @@ const TextArea: FC<ITextAreaProps> = ({
         
     };
  
-    return <TouchableOpacity
-        onPress={() =>  inputRef.current?.focus()}
-        disabled={disabled}
-        activeOpacity={1}
+    return <View
         style={[
-            stylesheet.container,
-            container,
+            stylesheet.mainContainer,
             style
         ]}
     >
-        <View
+        <TouchableOpacity
+            onPress={() =>  inputRef.current?.focus()}
+            disabled={disabled}
+            activeOpacity={1}
             style={[
-                stylesheet.contentContainer,
-                contentContainer
+                stylesheet.container,
+                container,
+                style
             ]}
         >
-            {renderTitle()}
-            {renderNativeInput()}
-            {renderCounter()}
-            
+            <View
+                style={[
+                    stylesheet.contentContainer,
+                    contentContainer
+                ]}
+            >
+                {renderTitle()}
+                {renderNativeInput()}
+                {renderCounter()}
+                
         </View>
-        
-    </TouchableOpacity>;
+    </TouchableOpacity>
+            {renderInfoText()}
+    </View>;
 };
 export default TextArea;

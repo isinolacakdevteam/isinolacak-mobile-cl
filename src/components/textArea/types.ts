@@ -3,9 +3,13 @@ import {
     ViewStyle,
     TextStyle
 } from "react-native";
+import {
+    IOCoreIconType
+} from "../../types";
 
 interface ITextAreaProps extends Omit<TextInputProps, "value" | "onChangeText" | "onFocus" | "onBlur" | "multiline"> {
     onChangeText?: (value: string) => void;
+    infoIcon?: IOCoreIconType;
     clearEnabled?: boolean;
     initialValue?: string;
     isTextLimit?:boolean;
@@ -17,6 +21,7 @@ interface ITextAreaProps extends Omit<TextInputProps, "value" | "onChangeText" |
     disabled?: boolean;
     style?: ViewStyle;
     isError?: boolean;
+    infoText?: string;
     title?: string;
 };
 
@@ -29,6 +34,7 @@ export type TextInputStylerParams = {
     disabledStyle: ViewStyle;
     isFocused: boolean;
     disabled?: boolean;
+    infoText?: string;
     isError?: boolean;
     value: string;
 };
@@ -39,8 +45,20 @@ export type TitleProps = {
     style: TextStyle;
 };
 
+export type InfoTextIconProps = {
+    color: string | keyof IOCore.ColorsType;
+};
+
+export type InfoTextColorProps = {
+    color: keyof IOCore.ColorsType;
+};
+
 export type TextInputStylerResult = {
+    infoTextIconColor: InfoTextIconProps;
+    infoTextColor: InfoTextColorProps;
+    infoTextContainer: ViewStyle;
     contentContainer: ViewStyle;
+    infoIconStyler: ViewStyle;
     optionalStyle: ViewStyle;
     titleProps: TitleProps;
     container: ViewStyle;

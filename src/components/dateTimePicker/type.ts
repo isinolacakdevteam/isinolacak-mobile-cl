@@ -54,7 +54,17 @@ export type TitleProps = {
     color: keyof IOCore.ColorsType;
 };
 
+export type InfoTextIconProps = {
+    color: string | keyof IOCore.ColorsType;
+};
+
+export type InfoTextColorProps = {
+    color: keyof IOCore.ColorsType;
+};
+
 export type DateTimePickerStylerResult = {
+    infoTextIconColor: InfoTextIconProps;
+    infoTextColor: InfoTextColorProps;
     infoTextContainer: ViewStyle;
     infoIconStyler: ViewStyle;
     titleProps: TitleProps;

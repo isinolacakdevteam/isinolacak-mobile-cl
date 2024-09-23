@@ -348,6 +348,8 @@ const Welcome = () => {
             </BadgeHOC>
             <TextArea
                 title="Text Area"
+                infoText="DENEME"
+                isError={true}
                 style={{
                     marginVertical: spaces.content
                 }}
@@ -381,7 +383,7 @@ const Welcome = () => {
                 onChange={() => setIsSelected(!isSelected)}
             />
             <SelectBox
-            isError={true}
+            isError={false}
             infoText="DENEME"
             titleExtractor={(item) => item.localizedText}
             inputTitle={"Deneme"}
@@ -455,6 +457,7 @@ const Welcome = () => {
                 count={3232323232323232323232232}
             >
                 <TextInput
+                    hintText="sdasdsa"
                     title="Hi Cnm"
                     size="medium"
                     isInfoSheet={true}

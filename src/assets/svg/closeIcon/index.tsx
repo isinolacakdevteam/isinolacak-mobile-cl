@@ -6,7 +6,7 @@ import {
     IIOCoreIconPropsType
 } from "isinolacak-mobile-cl";
 
-const CloseIcon = ({
+const Close = ({
     color = "#9AA6B8",
     size = 24,
     ...props
@@ -33,4 +33,4 @@ const CloseIcon = ({
     />
     </Svg>;
 };
-export default CloseIcon;
+export default Close;

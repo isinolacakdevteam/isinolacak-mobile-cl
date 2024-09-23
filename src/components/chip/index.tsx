@@ -12,10 +12,12 @@ import {
     IChipProps 
 } from "./types";
 import {
+    CloseIcon
+} from "../../assets/svg";
+import {
     IOCoreTheme 
 } from "../../core";
 import Text from "../text";
-import CloseIcon from "../../../example/assets/svg/closeIcon";
 
 const Chip: FC<IChipProps> = ({
     icon: IconComponentProp,
@@ -38,7 +40,7 @@ const Chip: FC<IChipProps> = ({
     } = IOCoreTheme.useContext();
 
     const {
-        ıconComponentProp,
+        iconComponentProp,
         closeIconProps,
         titleProps,
         container,
@@ -81,7 +83,7 @@ const Chip: FC<IChipProps> = ({
 
         return <View
             style={
-                ıconComponentProp
+                iconComponentProp
             }
         >
             <IconComponentProp

@@ -5,6 +5,8 @@ import {
 import {
     SelectBoxStylerParams,
     SelectBoxStylerResult,
+    InfoTextColorProps,
+    InfoTextIconProps,
     ContentProps,
     TitleProps
 } from "./types";
@@ -76,13 +78,23 @@ const selectBoxStyler = ({
         marginRight: spaces.inline
     };
 
+    let infoTextIconColor: InfoTextIconProps = {
+        color: isError ? colors.error : colors.textGrey
+    }
+
+    let infoTextColor: InfoTextColorProps = {
+        color: isError ? "error" : "textGrey"
+    }
+
     if (infoText) {
         container.marginBottom = spaces.content;
     }
 
     return {
         infoTextContainer,
+        infoTextIconColor,
         infoIconStyler,
+        infoTextColor,
         contentProps,
         titleProps,
         container

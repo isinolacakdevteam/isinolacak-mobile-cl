@@ -58,7 +58,7 @@ const chipStyler = ({
         size: 14
     };
 
-    let ıconComponentProp: ViewStyle = {
+    let iconComponentProp: ViewStyle = {
         marginRight: spaces.inline
     }
 
@@ -93,7 +93,7 @@ const chipStyler = ({
     }
 
     return {
-        ıconComponentProp,
+        iconComponentProp,
         closeIconProps,
         titleProps,
         container,

@@ -5,6 +5,8 @@ import {
 import {
     DateTimePickerStylerParams, 
     DateTimePickerStylerResult,
+    InfoTextColorProps,
+    InfoTextIconProps,
     TitleProps
 } from "./type";
 
@@ -76,13 +78,23 @@ const dateTimePickerStyler = ({
         marginRight: spaces.inline
     };
 
+    let infoTextIconColor: InfoTextIconProps = {
+        color: isError ? colors.error : colors.textGrey
+    }
+
+    let infoTextColor: InfoTextColorProps = {
+        color: isError ? "error" : "textGrey"
+    }
+
     if (infoText) {
         container.marginBottom = spaces.content;
     }
 
     return {
+        infoTextIconColor,
         infoTextContainer,
         infoIconStyler,
+        infoTextColor,
         customIcon,
         titleStyle,
         titleProps,

@@ -58,8 +58,10 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
     } = IOCoreLocale.useContext();
 
     const {
+        infoTextIconColor,
         infoTextContainer,
         infoIconStyler,
+        infoTextColor,
         titleProps,
         customIcon,
         titleStyle,
@@ -157,14 +159,14 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
                     ]}
                 >
                     <InfoIcon
-                        color={isError ? colors.error : colors.textGrey}
+                        color={infoTextIconColor.color}
                         size={15}
                     />
                 </View>
             }
             <Text
-                color={isError ? "error" : "textGrey"}
                 variant="body3-regular"
+                color={infoTextColor.color}
             >
                 {infoText}
             </Text>
@@ -188,7 +190,7 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
         return <Text
             color={titleProps.textColor}
             variant="body2-regular"
-            style={[titleStyle]}
+            style={titleStyle}
             numberOfLines={1}
         >
             {title}
