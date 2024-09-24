@@ -62,6 +62,20 @@ const Welcome = () => {
     const [data, setData] = useState([]);
     const [isEndOfData, setIsEndOfData] = useState(false);
     const [isLoadMore, setIsLoadMore] = useState(false);
+    const [districts, setDistricts] = useState([]);
+    const [cities, setCities] = useState([]);
+    const [registerInfo, setRegisterInfo] = useState({
+        city: {
+          localizedText: "",
+          key: "",
+          _id: "",
+        },
+        district: {
+          localizedText: "",
+          key: "",
+          _id: "",
+        },
+      });
 
     const inputRef = useRef<NativeTextInput | null>(null);
 
@@ -72,6 +86,55 @@ const Welcome = () => {
     useEffect(() => {
         loadMoreSectorData();
     },[]);
+
+    useEffect(() => {
+        const fetchCities = async () => {
+          try {
+            const response = await fetch('https://gw-test.isinolacak.com/staticData/getCities', {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+    
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+    
+            const result = await response.json();
+            setCities(result.payload);
+          } catch (err) {
+            console.error(err || 'Something went wrong');
+          }
+        };
+    
+        fetchCities();
+      }, []);
+    
+      useEffect(() => {
+        if(registerInfo.city._id) {const fetchDataDistricts = async () => {
+            try {
+              const response = await fetch(`https://gw-test.isinolacak.com/staticData/getDistricts?cityID=${registerInfo.city._id}`, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              });
+    
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+              }
+    
+              const result = await response.json();
+              setDistricts(result.payload);
+    
+            } catch (err) {
+              console.error(err || 'Something went wrong');
+            }
+          };
+    
+          fetchDataDistricts();
+        }}, [registerInfo.city._id]);
 
     const onSearchOccupation = (e: string) => {
         const timer = setTimeout(() => {
@@ -383,11 +446,13 @@ const Welcome = () => {
                 onChange={() => setIsSelected(!isSelected)}
             />
             <SelectBox
+                //@ts-ignore
+                initialSelectedItems={registerInfo.city._id.length ? [registerInfo.city] : []}
                 isError={false}
-                infoText="DENEME"
+                infoText="cities"
                 titleExtractor={(item) => item.localizedText}
-                inputTitle={"Deneme"}
-                title={"Deneme"}
+                inputTitle={"cities"}
+                title={"cities"}
                 keyExtractor={(e) => e._id}
                 isSearchable={true}
                 multiSelect={false}
@@ -396,33 +461,80 @@ const Welcome = () => {
                     closeSheet,
                     onSuccess
                 }) => {
-                    const selectedItem = selectedItems[0];
-                    if (selectedItem) {
-                    //@ts-ignore
-                        onChangeExperienceLevel(selectedItem, index);
+                    if(selectedItems[0]) {
+                        setRegisterInfo((prev) => {
+                        //@ts-ignore
+                            if(prev.city._id !== selectedItems[0]._id) {
+                                setDistricts([]);
+                                return {
+                                    ...prev,
+                                    district: {
+                                        localizedText: "",
+                                        key: "",
+                                        _id: ""
+                                    },
+                                    city: {
+                                    //@ts-ignore //TODO: Will be fix
+                                        localizedText: selectedItems[0].localizedText,
+                                        //@ts-ignore
+                                        key: selectedItems[0].key,
+                                        //@ts-ignore
+                                        _id: selectedItems[0]._id
+                                    }
+                                };
+                            }
+                            return {
+                                ...prev,
+                                city: {
+                                //@ts-ignore //TODO: Will be fix
+                                    localizedText: selectedItems[0].localizedText,
+                                    //@ts-ignore
+                                    key: selectedItems[0].key,
+                                    //@ts-ignore
+                                    _id: selectedItems[0]._id
+                                }
+                            };
+                        });
                     }
                     closeSheet();
                     onSuccess();
                 }}
                 isNeedConfirm={true}
-                data={[
-                    {
-                        _id: '1',
-                        localizedText: 'Beginner'
-                    },
-                    {
-                        _id: '2',
-                        localizedText: 'Intermediate'
-                    },
-                    {
-                        _id: '3',
-                        localizedText: 'Advanced'
-                    },
-                    {
-                        _id: '4',
-                        localizedText: 'Expert'
+                data={cities}
+            />
+            <SelectBox
+                initialSelectedItems={registerInfo.district && registerInfo.district._id && registerInfo.district._id.length ? [registerInfo.district] : []}
+                titleExtractor={(item) => item.localizedText}
+                keyExtractor={(e) => e._id}
+                inputTitle={"districts"}
+                infoText="districts"
+                title={"districts"}
+                isError={false}
+                isSearchable={true}
+                multiSelect={false}
+                onOk={({
+                    selectedItems,
+                    closeSheet,
+                    onSuccess
+                }) => {
+                    if(selectedItems[0]) {
+                        setRegisterInfo({
+                            ...registerInfo,
+                            district: {
+                                //@ts-ignore //TODO: Will be fix
+                                localizedText: selectedItems[0].localizedText,
+                                //@ts-ignore
+                                key: selectedItems[0].key,
+                                //@ts-ignore
+                                _id: selectedItems[0]._id,
+                            }
+                        });
                     }
-                ]}
+                    closeSheet();
+                    onSuccess();
+                }}
+                isNeedConfirm={true}
+                data={districts}
             />
             <TextInput
                 isShowable={true}

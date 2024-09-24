@@ -101,7 +101,7 @@ const SelectBox = <T extends {}>({
     ] = useState<Array<SelectedItem> | []>([]);
 
     useEffect(() => {
-        if(!initialData || !initialData.length) {
+        if (!initialData || !initialData.length) {
             return;
         }
 
@@ -112,21 +112,21 @@ const SelectBox = <T extends {}>({
         }> = JSON.parse(JSON.stringify(initialData)).map((item: T, index: number) => {
             return {
                 ...item,
+                __key: keyExtractor ? keyExtractor(item, index) : null,
                 __title: titleExtractor(item, index),
-                __key: keyExtractor(item, index),
                 __originalIndex: index
             };
         });
 
         setData(newData);
 
-        if(initialSelectedItems && initialSelectedItems.length) {
+        if (initialSelectedItems && initialSelectedItems.length) {
             const newSelectedItems: Array<T & SelectedItem> = initialSelectedItems.map((item, index) => {
                 let originalItem = newData.find(dataItem => {
                     return dataItem.__key === keyExtractor(item, index);
                 });
 
-                if(!originalItem) {
+                if (!originalItem) {
                     originalItem = {
                         ...item,
                         __title: titleExtractor(item, index),
@@ -140,6 +140,8 @@ const SelectBox = <T extends {}>({
             });
 
             setSelectedItems(newSelectedItems);
+        } else { 
+            setSelectedItems([])
         }
     }, [initialData]);
 
