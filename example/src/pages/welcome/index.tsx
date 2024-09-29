@@ -66,16 +66,16 @@ const Welcome = () => {
     const [cities, setCities] = useState([]);
     const [registerInfo, setRegisterInfo] = useState({
         city: {
-          localizedText: "",
-          key: "",
-          _id: "",
+            localizedText: "",
+            key: "",
+            _id: "",
         },
         district: {
-          localizedText: "",
-          key: "",
-          _id: "",
+            localizedText: "",
+            key: "",
+            _id: "",
         },
-      });
+    });
 
     const inputRef = useRef<NativeTextInput | null>(null);
 
@@ -89,51 +89,51 @@ const Welcome = () => {
 
     useEffect(() => {
         const fetchCities = async () => {
-          try {
-            const response = await fetch('https://gw-test.isinolacak.com/staticData/getCities', {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            });
+            try {
+                const response = await fetch('https://gw-test.isinolacak.com/staticData/getCities', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
     
-            if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+    
+                const result = await response.json();
+                setCities(result.payload);
+            } catch (err) {
+                console.error(err || 'Something went wrong');
             }
-    
-            const result = await response.json();
-            setCities(result.payload);
-          } catch (err) {
-            console.error(err || 'Something went wrong');
-          }
         };
     
         fetchCities();
-      }, []);
+    }, []);
     
-      useEffect(() => {
+    useEffect(() => {
         if(registerInfo.city._id) {const fetchDataDistricts = async () => {
             try {
-              const response = await fetch(`https://gw-test.isinolacak.com/staticData/getDistricts?cityID=${registerInfo.city._id}`, {
-                method: 'GET',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-              });
+                const response = await fetch(`https://gw-test.isinolacak.com/staticData/getDistricts?cityID=${registerInfo.city._id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
     
-              if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-              }
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
     
-              const result = await response.json();
-              setDistricts(result.payload);
+                const result = await response.json();
+                setDistricts(result.payload);
     
             } catch (err) {
-              console.error(err || 'Something went wrong');
+                console.error(err || 'Something went wrong');
             }
-          };
+        };
     
-          fetchDataDistricts();
+        fetchDataDistricts();
         }}, [registerInfo.city._id]);
 
     const onSearchOccupation = (e: string) => {

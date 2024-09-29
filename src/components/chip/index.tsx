@@ -9,13 +9,13 @@ import chipStyler, {
     styles
 } from "./stylesheet";
 import {
-    IChipProps 
+    IChipProps
 } from "./types";
 import {
     CloseIcon
 } from "../../assets/svg";
 import {
-    IOCoreTheme 
+    IOCoreTheme
 } from "../../core";
 import Text from "../text";
 

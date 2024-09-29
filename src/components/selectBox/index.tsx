@@ -141,7 +141,7 @@ const SelectBox = <T extends {}>({
 
             setSelectedItems(newSelectedItems);
         } else { 
-            setSelectedItems([])
+            setSelectedItems([]);
         }
     }, [initialData]);
 
