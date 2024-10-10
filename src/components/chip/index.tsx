@@ -2,21 +2,22 @@ import React, {
     FC 
 } from "react";
 import {
-    TouchableOpacity
+    TouchableOpacity,
+    View
 } from "react-native";
 import chipStyler, {
     styles
 } from "./stylesheet";
 import {
-    IChipProps 
+    IChipProps
 } from "./types";
 import {
-    IOCoreTheme 
+    CloseIcon
+} from "../../assets/svg";
+import {
+    IOCoreTheme
 } from "../../core";
 import Text from "../text";
-import {
-    InfoIcon
-} from "../../assets/svg/index";
 
 const Chip: FC<IChipProps> = ({
     icon: IconComponentProp,
@@ -39,10 +40,12 @@ const Chip: FC<IChipProps> = ({
     } = IOCoreTheme.useContext();
 
     const {
+        iconComponentProp,
         closeIconProps,
         titleProps,
         container,
-        iconProps
+        iconProps,
+        closeIcon
     } = chipStyler({
         disabledStyle: designTokensDisabled,
         titleColor,
@@ -78,9 +81,15 @@ const Chip: FC<IChipProps> = ({
             return null;
         }
 
-        return <IconComponentProp
-            {...iconProps}
-        />;
+        return <View
+            style={
+                iconComponentProp
+            }
+        >
+            <IconComponentProp
+                {...iconProps}
+            />
+        </View>;
     };
 
     const renderCloseIcon = () => {
@@ -92,9 +101,15 @@ const Chip: FC<IChipProps> = ({
             return null;
         }
 
-        return <InfoIcon
-            {...closeIconProps}
-        />;
+        return <View
+            style={
+                closeIcon
+            }
+        >
+            <CloseIcon
+                {...closeIconProps}
+            />
+        </View>;
     };
 
     return <TouchableOpacity

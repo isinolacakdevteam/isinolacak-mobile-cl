@@ -292,6 +292,7 @@ declare global {
             "advert-sticker-trusted": string;
             "advert-sticker-newAd": string;
             "advert-sticker-featuredAds": string;
+            "select-a-date": string;
         }
     }
 }

@@ -17,10 +17,12 @@ import IDateTimePickerProps, {
     DateTimePickerRef
 } from './type';
 import {
+    IOCoreLocale,
     IOCoreTheme
 } from '../../core';
 import {
-    CalendarIcon
+    CalendarIcon,
+    InfoIcon
 } from '../../assets/svg';
 import Text from '../text';
 import DateTimePickerComponent from "@react-native-community/datetimepicker";
@@ -31,10 +33,14 @@ import {
 import moment from 'moment';
 
 const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerProps> = ({
-    initialValue = new Date(),
     onChange: onChangeProp,
+    infoIcon: InfoIconProp,
+    initialValue = null,
+    isClick = false,
     disabled,
+    infoText,
     display,
+    isError,
     style,
     title,
     mode,
@@ -48,20 +54,31 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
     } = IOCoreTheme.useContext();
 
     const {
+        localize
+    } = IOCoreLocale.useContext();
+
+    const {
+        infoTextIconColor,
+        infoTextContainer,
+        infoIconStyler,
+        infoTextColor,
         titleProps,
         customIcon,
         titleStyle,
         container
     } = dateTimePickerStyler({
         radiuses,
+        infoText,
         disabled,
         borders,
+        isError,
+        isClick,
         spaces,
         colors
     });
 
+    const [date, setDate] = useState<Date | null>(initialValue);
     const [showPicker, setShowPicker] = useState(false);
-    const [date, setDate] = useState(initialValue);
 
     const iOSDateTimePickerRef = useRef<BottomSheetRef>(null);
 
@@ -71,11 +88,11 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
             setState: setDate,
             state: date
         }),
-        []
+        [date]
     );
 
     const onPress = () => {
-        if(Platform.OS === "ios") {
+        if (Platform.OS === "ios") {
             iOSDateTimePickerRef.current?.open();
         } else {
             setShowPicker(true);
@@ -83,30 +100,32 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
     };
 
     const onChange = (selectedDate?: Date) => {
-        if(!selectedDate) {
+        if (!selectedDate) {
             return;
         }
 
         setShowPicker(false);
         setDate(selectedDate);
 
-        if(onChangeProp) onChangeProp(selectedDate, formatDate(selectedDate));
+        if (onChangeProp) onChangeProp(selectedDate, formatDate(selectedDate));
 
-        if(Platform.OS === "ios") {
+        if (Platform.OS === "ios") {
             iOSDateTimePickerRef.current?.close();
         } else {
             setShowPicker(false);
         }
     };
 
-    const formatDate = (originalDate: Date) => {
+    const formatDate = (originalDate: Date | null) => {
+        if (!originalDate) return ""; 
+
         let currentDate = moment(originalDate).format("DD/MM/YY hh:mm");
 
-        if(mode === "date") {
+        if (mode === "date") {
             currentDate = moment(originalDate).format("DD/MM/YY");
         }
 
-        if(mode === "time") {
+        if (mode === "time") {
             currentDate = moment(originalDate).format("hh:mm");
         }
 
@@ -115,28 +134,64 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
 
     const formattedDate = formatDate(date);
 
+    const renderInfoText = () => {
+        if (!infoText) {
+            return null;
+        }
+
+        return <View
+            style={[
+                stylesheet.infoText,
+                infoTextContainer
+            ]}
+        >
+            {InfoIconProp ?
+                <View
+                    style={
+                        infoIconStyler
+                    }
+                >
+                    <InfoIconProp />
+                </View>
+                : <View
+                    style={
+                        infoIconStyler
+                    }
+                >
+                    <InfoIcon
+                        color={infoTextIconColor.color}
+                        size={15}
+                    />
+                </View>
+            }
+            <Text
+                variant="body3-regular"
+                color={infoTextColor.color}
+            >
+                {infoText}
+            </Text>
+        </View>;
+    };
+
     const renderIcon = () => {
-        return <View                 
+        return <View
             style={[
                 stylesheet.customRenderForIcon,
                 customIcon
-            ]}
-        >
+            ]}>
             <CalendarIcon
                 color={colors.textGrey}
                 size={24}
             />
-        </View>;        
+        </View>;
     };
 
     const renderTitle = () => {
         return <Text
             color={titleProps.textColor}
             variant="body2-regular"
+            style={titleStyle}
             numberOfLines={1}
-            style={[
-                titleStyle
-            ]}
         >
             {title}
         </Text>;
@@ -148,26 +203,26 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
             variant="body2-regular"
             numberOfLines={1}
         >
-            {formattedDate}
+            {formattedDate || localize("select-a-date")}
         </Text>;
     };
 
     const renderPicker = () => {
         return <DateTimePickerComponent
-            {...props}
             onChange={(_, date) => onChange(date)}
+            value={date || new Date()}
             display={display}
-            value={date}
             mode={mode}
+            {...props}
         />;
     };
 
     const renderAndroidPicker = () => {
-        if(Platform.OS === "ios") {
+        if (Platform.OS === "ios") {
             return null;
         }
 
-        if(!showPicker) {
+        if (!showPicker) {
             return null;
         }
 
@@ -175,7 +230,7 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
     };
 
     const renderIOSPicker = () => {
-        if(Platform.OS === "android") {
+        if (Platform.OS === "android") {
             return null;
         }
 
@@ -188,26 +243,34 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
         </BottomSheet>;
     };
 
-    return <TouchableOpacity
-        disabled={disabled}
-        onPress={onPress}
+    return <View
         style={[
-            stylesheet.container,
-            container,
+            stylesheet.mainContainer,
             style
-        ]}
-    >
-        <View                 
-            style={stylesheet.content}
-        > 
-            <View>
-                {renderTitle()}
-                {renderDate()}
+        ]}>
+        <TouchableOpacity
+            disabled={disabled}
+            onPress={onPress}
+            style={[
+                stylesheet.container,
+                container
+            ]}
+        >
+            <View
+                style={
+                    stylesheet.content
+                }>
+                <View>
+                    {renderTitle()}
+                    {renderDate()}
+                </View>
+                {renderIcon()}
             </View>
-            {renderIcon()}
-        </View>
-        {renderAndroidPicker()}
-        {renderIOSPicker()}
-    </TouchableOpacity>;
+            {renderAndroidPicker()}
+            {renderIOSPicker()}
+        </TouchableOpacity>
+        {renderInfoText()}
+    </View>;
 };
+
 export default forwardRef(DateTimePicker);

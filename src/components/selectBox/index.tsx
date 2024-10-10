@@ -19,7 +19,8 @@ import {
     IOCoreTheme
 } from "../../core";
 import {
-    ChevronDownIcon
+    ChevronDownIcon,
+    InfoIcon
 } from "../../assets/svg";
 import SelectSheet from "../selectSheet";
 import Text from "../text";
@@ -32,12 +33,14 @@ import {
 
 const SelectBox = <T extends {}>({
     renderIcon: RenderIcon,
+    infoIcon: InfoIconProp,
     initialSelectedItems,
     multiSelect = false,
     isLoadingOKButton,
     data: initialData,
     disabled = false,
     bottomSheetProps,
+    isClick = false,
     titleExtractor,
     isNeedConfirm,
     flatListProps,
@@ -50,7 +53,9 @@ const SelectBox = <T extends {}>({
     minChoice,
     onSearch,
     onChange,
+    infoText,
     onPress,
+    isError,
     style,
     title,
     onOk
@@ -68,13 +73,20 @@ const SelectBox = <T extends {}>({
     } = IOCoreTheme.useContext();
 
     const {
+        infoTextIconColor,
+        infoTextContainer,
+        infoIconStyler,
+        infoTextColor,
         contentProps,
         titleProps,
         container
     } = selectBoxStyler({
         radiuses,
         disabled,
+        infoText,
+        isClick,
         borders,
+        isError,
         spaces,
         colors
     });
@@ -89,7 +101,7 @@ const SelectBox = <T extends {}>({
     ] = useState<Array<SelectedItem> | []>([]);
 
     useEffect(() => {
-        if(!initialData || !initialData.length) {
+        if (!initialData || !initialData.length) {
             return;
         }
 
@@ -100,21 +112,21 @@ const SelectBox = <T extends {}>({
         }> = JSON.parse(JSON.stringify(initialData)).map((item: T, index: number) => {
             return {
                 ...item,
+                __key: keyExtractor ? keyExtractor(item, index) : null,
                 __title: titleExtractor(item, index),
-                __key: keyExtractor(item, index),
                 __originalIndex: index
             };
         });
 
         setData(newData);
 
-        if(initialSelectedItems && initialSelectedItems.length) {
+        if (initialSelectedItems && initialSelectedItems.length) {
             const newSelectedItems: Array<T & SelectedItem> = initialSelectedItems.map((item, index) => {
                 let originalItem = newData.find(dataItem => {
                     return dataItem.__key === keyExtractor(item, index);
                 });
 
-                if(!originalItem) {
+                if (!originalItem) {
                     originalItem = {
                         ...item,
                         __title: titleExtractor(item, index),
@@ -128,6 +140,8 @@ const SelectBox = <T extends {}>({
             });
 
             setSelectedItems(newSelectedItems);
+        } else { 
+            setSelectedItems([]);
         }
     }, [initialData]);
 
@@ -151,6 +165,44 @@ const SelectBox = <T extends {}>({
         >
             {title}
         </Text>;
+    };
+
+    const renderInfoText = () => {
+        if (!infoText) {
+            return null;
+        }
+
+        return <View
+            style={[
+                stylesheet.infoText,
+                infoTextContainer
+            ]}
+        >
+            {InfoIconProp ?
+                <View
+                    style={
+                        infoIconStyler
+                    }
+                >
+                    <InfoIconProp />
+                </View> : <View
+                    style={
+                        infoIconStyler
+                    }
+                >
+                    <InfoIcon
+                        color={infoTextIconColor.color}
+                        size={15}
+                    />
+                </View>
+            }
+            <Text
+                color={infoTextColor.color}
+                variant="body3-regular"
+            >
+                {infoText}
+            </Text>
+        </View>;
     };
 
     const renderContent = () => {
@@ -244,36 +296,43 @@ const SelectBox = <T extends {}>({
         />;
     };
 
-    return <TouchableOpacity
+    return <View
         style={[
-            stylesheet.container,
-            container,
+            stylesheet.mainContainer,
             style
         ]}
-        onPress={() => {
-            if(disabled) {
-                return;
-            }
-
-            if(!onPress) {
-                selectSheetRef.current?.open();
-                return;
-            }
-
-            onPress(selectedItems, cleanData());
-        }}
-        disabled={disabled}
     >
-        <View
+        <TouchableOpacity
             style={[
-                stylesheet.content
+                stylesheet.container,
+                container
             ]}
+            onPress={() => {
+                if(disabled) {
+                    return;
+                }
+
+                if(!onPress) {
+                    selectSheetRef.current?.open();
+                    return;
+                }
+
+                onPress(selectedItems, cleanData());
+            }}
+            disabled={disabled}
         >
-            {renderTitle()}
-            {renderContent()}
-        </View>
-        {renderIcon()}
-        {renderSelectSheet()}
-    </TouchableOpacity>;
+            <View
+                style={[
+                    stylesheet.content
+                ]}
+            >
+                {renderTitle()}
+                {renderContent()}
+            </View>
+            {renderIcon()}
+            {renderSelectSheet()}
+        </TouchableOpacity>
+        {renderInfoText()}
+    </View>;
 };
 export default SelectBox;

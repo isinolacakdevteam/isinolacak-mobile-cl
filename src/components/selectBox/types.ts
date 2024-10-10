@@ -64,6 +64,7 @@ export interface ISelectBoxProps<T> {
     flatListProps?: Omit<FlatListProps<any>, "data" | "renderItem">;
     bottomSheetProps?: IBottomSheetHeaderProps;
     isLoadingOKButton?: boolean;
+    infoIcon?: IOCoreIconType;
     isNeedConfirm?: boolean;
     showGoBackSize?: number;
     isHeaderShown?: boolean;
@@ -73,7 +74,10 @@ export interface ISelectBoxProps<T> {
     minChoice?: number;
     disabled?: boolean;
     inputTitle: string;
+    isError?: boolean;
+    infoText?: string;
     style?: ViewStyle;
+    isClick?: boolean;
     data: Array<T>;
     title: string;
 };
@@ -84,9 +88,20 @@ export type SelectBoxStylerParams = {
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;
     disabled?: boolean;
+    infoText?: string;
+    isError?: boolean;
+    isClick?: boolean;
 };
 
 export type TitleProps = {
+    color: keyof IOCore.ColorsType;
+};
+
+export type InfoTextIconProps = {
+    color: string | keyof IOCore.ColorsType;
+};
+
+export type InfoTextColorProps = {
     color: keyof IOCore.ColorsType;
 };
 
@@ -96,7 +111,11 @@ export type ContentProps = {
 };
 
 export type SelectBoxStylerResult = {
+    infoTextIconColor: InfoTextIconProps;
+    infoTextColor: InfoTextColorProps;
+    infoTextContainer: ViewStyle;
     contentProps: ContentProps;
+    infoIconStyler: ViewStyle;
     titleProps: TitleProps;
     container: ViewStyle;
 };

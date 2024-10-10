@@ -6,10 +6,16 @@ import {
 import {
     TextInputStylerResult,
     TextInputStylerParams,
+    InfoTextColorProps,
+    InfoTextIconProps,
     TitleProps
 } from "./types";
 
 export const stylesheet = StyleSheet.create({
+    mainContainer: {
+        flexDirection: "column",
+        width: "100%"
+    },
     container: {
         flexDirection: "column",
         width: "100%"
@@ -47,6 +53,9 @@ export const stylesheet = StyleSheet.create({
     },
     clearButton: {
         alignSelf: "center"
+    },
+    infoText: {
+        flexDirection: "row"
     }
 });
 
@@ -56,6 +65,7 @@ export const textInputStyler = ({
     isFocused,
     disabled,
     radiuses,
+    infoText,
     isError,
     borders,
     colors,
@@ -70,11 +80,11 @@ export const textInputStyler = ({
         borderColor: isError ? colors.error : isFocused ? colors.primary : colors.stroke,
         paddingVertical: spaces.container / 2,
         paddingHorizontal: spaces.container,
-        minHeight: 180,
-        height: 180,
         borderRadius: radiuses.half * 1.5,
         backgroundColor: colors.layer2,
-        borderWidth: borders.line
+        borderWidth: borders.line,
+        minHeight: 180,
+        height: 180,
     };
 
     let titleProps: TitleProps = {
@@ -98,6 +108,26 @@ export const textInputStyler = ({
         marginHorizontal: spaces.inline
     };
 
+    let infoTextContainer: ViewStyle = {
+        paddingLeft: spaces.content
+    };
+
+    let infoIconStyler: ViewStyle = {
+        marginRight: spaces.inline
+    };
+
+    let infoTextIconColor: InfoTextIconProps = {
+        color: isError ? colors.error : colors.textGrey
+    };
+
+    let infoTextColor: InfoTextColorProps = {
+        color: isError ? "error" : "textGrey"
+    };
+
+    if (infoText) {
+        container.marginBottom = spaces.content;
+    }
+
     if(disabled) {
         container = {
             ...container,
@@ -110,8 +140,12 @@ export const textInputStyler = ({
     }
 
     return {
+        infoTextContainer,
+        infoTextIconColor,
         contentContainer,
+        infoIconStyler,
         optionalStyle,
+        infoTextColor,
         titleProps,
         container,
         input

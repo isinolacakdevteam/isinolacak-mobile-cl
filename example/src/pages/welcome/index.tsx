@@ -16,15 +16,16 @@ import {
     IOCoreLocale,
     RadioButton,
     IOCoreTheme,
+    IOCoreModal,
     TextInput,
     StateCard,
     TextArea,
     CheckBox,
     BadgeHOC,
+    Sticker,
     Button,
     Chip,
-    Text,
-    IOCoreModal
+    Text
 } from "isinolacak-mobile-cl";
 import stylesheet from "./stylesheet";
 import {
@@ -61,6 +62,20 @@ const Welcome = () => {
     const [data, setData] = useState([]);
     const [isEndOfData, setIsEndOfData] = useState(false);
     const [isLoadMore, setIsLoadMore] = useState(false);
+    const [districts, setDistricts] = useState([]);
+    const [cities, setCities] = useState([]);
+    const [registerInfo, setRegisterInfo] = useState({
+        city: {
+            localizedText: "",
+            key: "",
+            _id: "",
+        },
+        district: {
+            localizedText: "",
+            key: "",
+            _id: "",
+        },
+    });
 
     const inputRef = useRef<NativeTextInput | null>(null);
 
@@ -71,6 +86,55 @@ const Welcome = () => {
     useEffect(() => {
         loadMoreSectorData();
     },[]);
+
+    useEffect(() => {
+        const fetchCities = async () => {
+            try {
+                const response = await fetch('https://gw-test.isinolacak.com/staticData/getCities', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+    
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+    
+                const result = await response.json();
+                setCities(result.payload);
+            } catch (err) {
+                console.error(err || 'Something went wrong');
+            }
+        };
+    
+        fetchCities();
+    }, []);
+    
+    useEffect(() => {
+        if(registerInfo.city._id) {const fetchDataDistricts = async () => {
+            try {
+                const response = await fetch(`https://gw-test.isinolacak.com/staticData/getDistricts?cityID=${registerInfo.city._id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+    
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+    
+                const result = await response.json();
+                setDistricts(result.payload);
+    
+            } catch (err) {
+                console.error(err || 'Something went wrong');
+            }
+        };
+    
+        fetchDataDistricts();
+        }}, [registerInfo.city._id]);
 
     const onSearchOccupation = (e: string) => {
         const timer = setTimeout(() => {
@@ -162,8 +226,10 @@ const Welcome = () => {
             />
             <SelectBox
                 titleExtractor={(item) => item.localizedText}
-                isHeaderShown={true}
                 isNeedConfirm={true}
+                isHeaderShown={true}
+                infoText="dsadsad"
+                isError={true}
                 initialSelectedItems={data && data.length ? [
                     data[1],
                     data[3]
@@ -203,9 +269,6 @@ const Welcome = () => {
                 }}
                 disabled={false}
                 title="Time"
-                style={{
-                    marginBottom: spaces.content * 1.5
-                }}
                 onOk={({
                     closeSheet,
                     onSuccess
@@ -348,6 +411,8 @@ const Welcome = () => {
             </BadgeHOC>
             <TextArea
                 title="Text Area"
+                infoText="DENEME"
+                isError={true}
                 style={{
                     marginVertical: spaces.content
                 }}
@@ -380,15 +445,120 @@ const Welcome = () => {
                 isSelected={isSelected}
                 onChange={() => setIsSelected(!isSelected)}
             />
+            <SelectBox
+                //@ts-ignore
+                initialSelectedItems={registerInfo.city._id.length ? [registerInfo.city] : []}
+                isError={false}
+                infoText="cities"
+                titleExtractor={(item) => item.localizedText}
+                inputTitle={"cities"}
+                title={"cities"}
+                keyExtractor={(e) => e._id}
+                isSearchable={true}
+                multiSelect={false}
+                onOk={({
+                    selectedItems,
+                    closeSheet,
+                    onSuccess
+                }) => {
+                    if(selectedItems[0]) {
+                        setRegisterInfo((prev) => {
+                        //@ts-ignore
+                            if(prev.city._id !== selectedItems[0]._id) {
+                                setDistricts([]);
+                                return {
+                                    ...prev,
+                                    district: {
+                                        localizedText: "",
+                                        key: "",
+                                        _id: ""
+                                    },
+                                    city: {
+                                    //@ts-ignore //TODO: Will be fix
+                                        localizedText: selectedItems[0].localizedText,
+                                        //@ts-ignore
+                                        key: selectedItems[0].key,
+                                        //@ts-ignore
+                                        _id: selectedItems[0]._id
+                                    }
+                                };
+                            }
+                            return {
+                                ...prev,
+                                city: {
+                                //@ts-ignore //TODO: Will be fix
+                                    localizedText: selectedItems[0].localizedText,
+                                    //@ts-ignore
+                                    key: selectedItems[0].key,
+                                    //@ts-ignore
+                                    _id: selectedItems[0]._id
+                                }
+                            };
+                        });
+                    }
+                    closeSheet();
+                    onSuccess();
+                }}
+                isNeedConfirm={true}
+                data={cities}
+            />
+            <SelectBox
+                initialSelectedItems={registerInfo.district && registerInfo.district._id && registerInfo.district._id.length ? [registerInfo.district] : []}
+                titleExtractor={(item) => item.localizedText}
+                keyExtractor={(e) => e._id}
+                inputTitle={"districts"}
+                infoText="districts"
+                title={"districts"}
+                isError={false}
+                isSearchable={true}
+                multiSelect={false}
+                onOk={({
+                    selectedItems,
+                    closeSheet,
+                    onSuccess
+                }) => {
+                    if(selectedItems[0]) {
+                        setRegisterInfo({
+                            ...registerInfo,
+                            district: {
+                                //@ts-ignore //TODO: Will be fix
+                                localizedText: selectedItems[0].localizedText,
+                                //@ts-ignore
+                                key: selectedItems[0].key,
+                                //@ts-ignore
+                                _id: selectedItems[0]._id,
+                            }
+                        });
+                    }
+                    closeSheet();
+                    onSuccess();
+                }}
+                isNeedConfirm={true}
+                data={districts}
+            />
             <TextInput
                 isShowable={true}
                 secureTextEntry={true}
             />
             <Chip
+                onPress={() => setIsSelected(!isSelected)}
+                selected={isSelected}
+                closable={true}
                 title="deneme"
                 size="small"
-                selected={isSelected}
+            />
+            <Chip
                 onPress={() => setIsSelected(!isSelected)}
+                icon={() => <InfoIcon size={15} />}
+                selected={isSelected}
+                title="deneme"
+                size="small"
+            />
+            <Sticker 
+                icon={() => <InfoIcon size={15} />}
+                titleColor="accent"
+                color="white"
+                title="Title"
             />
             <RadioButton
                 isSelected={isSelected}
@@ -399,6 +569,7 @@ const Welcome = () => {
                 count={3232323232323232323232232}
             >
                 <TextInput
+                    hintText="sdasdsa"
                     title="Hi Cnm"
                     size="medium"
                     isInfoSheet={true}
@@ -445,24 +616,22 @@ const Welcome = () => {
                 }}
             >
                 <DateTimePicker
+                    infoText="DENEME"
                     display="spinner"
-                    mode="datetime"
+                    mode="time"
                     title="Deneme"
-                    style={{
-                        marginBottom: spaces.content
-                    }}
+                    isError={true}
                 />
                 <DateTimePicker
+                    infoText="DENEME"
                     display="spinner"
-                    
+                    isError={false}
                     mode="datetime"
                     title="Deneme"
-                    style={{
-                        marginBottom: spaces.content
-                    }}
                 />
             </View>
         </PageContainer>
+        
     </SafeAreaView>;
 };
 export default Welcome;
