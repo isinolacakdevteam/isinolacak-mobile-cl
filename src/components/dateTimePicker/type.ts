@@ -5,6 +5,9 @@ import {
     ViewStyle
 } from "react-native";
 import {
+    IOCoreIconType
+} from "../../types";
+import {
     WindowsNativeProps,
     AndroidNativeProps,
     IOSNativeProps
@@ -16,18 +19,22 @@ export type DateTimePickerDisplay = "default" | "spinner";
 export type DTP = WindowsNativeProps | AndroidNativeProps | IOSNativeProps;
 
 export type DateTimePickerRef = {
-    state: Date;
     setState: Dispatch<Date>;
+    state: Date | null;
 };
 
 type IDateTimePickerProps = Omit<DTP, "value" | "mode" | "display"> & {
     onChange?: (date: Date, formattedDate: string) => void;
     display: DateTimePickerDisplay;
+    infoIcon?: IOCoreIconType;
     mode: DateTimePickerMode;
     initialValue: Date;
     disabled?: boolean;
     is24Hour?: boolean;
     style?: ViewStyle;
+    infoText?: string;
+    isClick?: boolean; 
+    isError?: boolean;
     title: string;
 }
 
@@ -37,6 +44,9 @@ export type DateTimePickerStylerParams = {
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;
     disabled?: boolean;
+    infoText?: string;
+    isError?: boolean;
+    isClick?: boolean;
 };
 
 export type TitleProps = {
@@ -44,7 +54,19 @@ export type TitleProps = {
     color: keyof IOCore.ColorsType;
 };
 
+export type InfoTextIconProps = {
+    color: string | keyof IOCore.ColorsType;
+};
+
+export type InfoTextColorProps = {
+    color: keyof IOCore.ColorsType;
+};
+
 export type DateTimePickerStylerResult = {
+    infoTextIconColor: InfoTextIconProps;
+    infoTextColor: InfoTextColorProps;
+    infoTextContainer: ViewStyle;
+    infoIconStyler: ViewStyle;
     titleProps: TitleProps;
     titleStyle: ViewStyle;
     customIcon: ViewStyle;

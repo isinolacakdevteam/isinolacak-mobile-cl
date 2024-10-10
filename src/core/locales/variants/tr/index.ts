@@ -29,7 +29,8 @@ const tr: {
         "advert-sticker-announcement": "Duyuru",
         "advert-sticker-featuredAds": "Öne Çıkan İlan",
         "advert-sticker-newAd": "Yeni İlan",
-        "advert-sticker-trusted": "Güvenilir"
+        "advert-sticker-trusted": "Güvenilir",
+        "select-a-date": "Bir tarih seç"
     }
 };
 export default tr;

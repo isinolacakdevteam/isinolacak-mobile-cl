@@ -97,12 +97,22 @@ export type TitleProps = {
     color: keyof IOCore.ColorsType;
 };
 
+export type InfoTextIconProps = {
+    color: string | keyof IOCore.ColorsType;
+};
+
+export type InfoTextColorProps = {
+    color: keyof IOCore.ColorsType;
+};
+
 export type ContentProps = {
     color: keyof IOCore.ColorsType;
     style: ViewStyle;
 };
 
 export type SelectBoxStylerResult = {
+    infoTextIconColor: InfoTextIconProps;
+    infoTextColor: InfoTextColorProps;
     infoTextContainer: ViewStyle;
     contentProps: ContentProps;
     infoIconStyler: ViewStyle;
