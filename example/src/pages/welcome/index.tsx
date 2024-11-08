@@ -210,6 +210,11 @@ const Welcome = () => {
         
     };
 
+    const regexValidation = (text: string) => {
+        const regex = /^[A-Za-zÇçĞğİıÖöŞşÜü\s]+$/;
+        return regex.test(text);
+    };
+
     return <SafeAreaView
         style={{
             backgroundColor: colors.layer1,
@@ -537,8 +542,7 @@ const Welcome = () => {
                 data={districts}
             />
             <TextInput
-                isShowable={true}
-                secureTextEntry={true}
+                onValidate={regexValidation}
             />
             <Chip
                 onPress={() => setIsSelected(!isSelected)}
