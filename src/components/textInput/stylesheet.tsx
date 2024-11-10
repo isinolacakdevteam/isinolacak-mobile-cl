@@ -82,8 +82,8 @@ export const textInputStyler = ({
     };
 
     let titleProps: TitleProps = {
-        titleVariant: value?.length || isFocused ? "body2-regular" : "body3-regular",
         color: value?.length || isFocused ? "primary" : "textSecondary",
+        titleVariant: "body3-regular",
         style: {
         }
     };
