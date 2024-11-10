@@ -134,18 +134,22 @@ const TextInput: FC<ITextInputProps> = ({
                     inputRefProp(e);
                 }
             }}
-            onChangeText={text => {
-                if(onChangeText && !isValidateOnChangeText) onChangeText(text);
-
-                if(onValidate) {
-                    const isValid = onValidate(text);
-                    if(isValid) setValue(text);
+            onChangeText={(text) => {
+                if (text === "") {
+                    setValue("");
+                    onChangeText && onChangeText("");
                     return;
                 }
 
-                if(onChangeText && isValidateOnChangeText) onChangeText(text);
-
-                setValue(text);
+                if (onValidate) {
+                    if (onValidate(text)) {
+                        setValue(text);
+                        onChangeText && onChangeText(text);
+                    }
+                } else {
+                    setValue(text);
+                    onChangeText && onChangeText(text);
+                }
             }}
         />;
     };
