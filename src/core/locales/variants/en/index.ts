@@ -30,7 +30,8 @@ const en: {
         "advert-sticker-featuredAds": "Featured Ad",
         "advert-sticker-newAd": "New Ad",
         "advert-sticker-trusted": "Trusted",
-        "select-a-date": "Select a date"
+        "select-a-date": "Select a date",
+        "date-time-picker-default-button-title": "Save"
     }
 };
 export default en;

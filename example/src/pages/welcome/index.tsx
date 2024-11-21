@@ -620,6 +620,8 @@ const Welcome = () => {
                 }}
             >
                 <DateTimePicker
+                    dateTitle="Tarih seçiniz"
+                    buttonTitle="Kaydet"
                     infoText="DENEME"
                     display="spinner"
                     mode="time"
@@ -627,6 +629,7 @@ const Welcome = () => {
                     isError={true}
                 />
                 <DateTimePicker
+                    dateTitle="Tarih seçiniz"
                     infoText="DENEME"
                     display="spinner"
                     isError={false}

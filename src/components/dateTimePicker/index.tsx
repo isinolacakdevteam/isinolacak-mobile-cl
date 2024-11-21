@@ -31,12 +31,15 @@ import {
     BottomSheetRef
 } from '../bottomSheet/types';
 import moment from 'moment';
+import Button from '../button';
 
 const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerProps> = ({
     onChange: onChangeProp,
     infoIcon: InfoIconProp,
     initialValue = null,
     isClick = false,
+    buttonTitle,
+    dateTitle,
     disabled,
     infoText,
     display,
@@ -108,12 +111,6 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
         setDate(selectedDate);
 
         if (onChangeProp) onChangeProp(selectedDate, formatDate(selectedDate));
-
-        if (Platform.OS === "ios") {
-            iOSDateTimePickerRef.current?.close();
-        } else {
-            setShowPicker(false);
-        }
     };
 
     const formatDate = (originalDate: Date | null) => {
@@ -198,12 +195,22 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
     };
 
     const renderDate = () => {
+        if(!dateTitle) {
+            return <Text
+                color={titleProps.color}
+                variant="body2-regular"
+                numberOfLines={1}
+            >
+                {formattedDate || localize("select-a-date")}
+            </Text>;
+        }
+
         return <Text
             color={titleProps.color}
             variant="body2-regular"
             numberOfLines={1}
         >
-            {formattedDate || localize("select-a-date")}
+            {formattedDate || dateTitle}
         </Text>;
     };
 
@@ -234,13 +241,32 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
             return null;
         }
 
+        if(!buttonTitle) {
+            buttonTitle = localize("date-time-picker-default-button-title");
+        }
+
         return <BottomSheet
-            ref={iOSDateTimePickerRef}
-            handlePosition="inside"
-            autoHeight={true}
-        >
-            {renderPicker()}
-        </BottomSheet>;
+                ref={iOSDateTimePickerRef}
+                handlePosition="inside"
+                autoHeight={true}
+            >
+                <View
+                    style={stylesheet.iosDateTimePicker}
+                >
+                    {renderPicker()}
+                    <Button
+                        spreadBehaviour='free'
+                        title={buttonTitle}
+                        variant="ghost"
+                        onPress={() => {
+                            iOSDateTimePickerRef.current?.close();
+                            if (onChangeProp && date) {
+                                onChangeProp(date, formatDate(date));
+                            }
+                        }}
+                    />
+                </View>
+            </BottomSheet>;
     };
 
     return <View

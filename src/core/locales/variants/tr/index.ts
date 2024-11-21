@@ -30,7 +30,8 @@ const tr: {
         "advert-sticker-featuredAds": "Öne Çıkan İlan",
         "advert-sticker-newAd": "Yeni İlan",
         "advert-sticker-trusted": "Güvenilir",
-        "select-a-date": "Bir tarih seç"
+        "select-a-date": "Bir tarih seç",
+        "date-time-picker-default-button-title": "Kaydet"
     }
 };
 export default tr;

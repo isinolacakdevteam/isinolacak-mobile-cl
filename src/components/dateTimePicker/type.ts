@@ -28,6 +28,8 @@ type IDateTimePickerProps = Omit<DTP, "value" | "mode" | "display"> & {
     display: DateTimePickerDisplay;
     infoIcon?: IOCoreIconType;
     mode: DateTimePickerMode;
+    buttonTitle?: string;
+    dateTitle?: string;
     initialValue: Date;
     disabled?: boolean;
     is24Hour?: boolean;
