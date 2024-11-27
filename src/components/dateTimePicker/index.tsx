@@ -246,27 +246,27 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
         }
 
         return <BottomSheet
-                ref={iOSDateTimePickerRef}
-                handlePosition="inside"
-                autoHeight={true}
+            ref={iOSDateTimePickerRef}
+            handlePosition="inside"
+            autoHeight={true}
+        >
+            <View
+                style={stylesheet.iosDateTimePicker}
             >
-                <View
-                    style={stylesheet.iosDateTimePicker}
-                >
-                    {renderPicker()}
-                    <Button
-                        spreadBehaviour='free'
-                        title={buttonTitle}
-                        variant="ghost"
-                        onPress={() => {
-                            iOSDateTimePickerRef.current?.close();
-                            if (onChangeProp && date) {
-                                onChangeProp(date, formatDate(date));
-                            }
-                        }}
-                    />
-                </View>
-            </BottomSheet>;
+                {renderPicker()}
+                <Button
+                    spreadBehaviour='free'
+                    title={buttonTitle}
+                    variant="ghost"
+                    onPress={() => {
+                        iOSDateTimePickerRef.current?.close();
+                        if (onChangeProp && date) {
+                            onChangeProp(date, formatDate(date));
+                        }
+                    }}
+                />
+            </View>
+        </BottomSheet>;
     };
 
     return <View
