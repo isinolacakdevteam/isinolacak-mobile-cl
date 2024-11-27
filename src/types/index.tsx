@@ -293,6 +293,7 @@ declare global {
             "advert-sticker-newAd": string;
             "advert-sticker-featuredAds": string;
             "select-a-date": string;
+            "date-time-picker-default-button-title": string;
         }
     }
 }

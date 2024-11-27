@@ -36,6 +36,11 @@ export const stylesheet = StyleSheet.create({
     },
     infoText: {
         flexDirection: "row"
+    },
+    iosDateTimePicker: {
+        justifyContent: "center",
+        alignItems: "center",
+        flex: 1
     }
 });
 
