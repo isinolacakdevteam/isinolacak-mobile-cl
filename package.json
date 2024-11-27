@@ -1,6 +1,6 @@
 {
   "name": "isinolacak-mobile-cl",
-  "version": "1.0.0-pre-alpha.54",
+  "version": "1.0.0-pre-alpha.55",
   "description": "İşinolacak Component Library",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
