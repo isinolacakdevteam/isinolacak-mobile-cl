@@ -119,6 +119,7 @@ const TextInput: FC<ITextInputProps> = ({
             placeholderTextColor={colors.hideBody}
             textAlignVertical="bottom"
             editable={!disabled}
+            
             onFocus={onFocus}
             multiline={false}
             onBlur={onBlur}
@@ -217,7 +218,6 @@ const TextInput: FC<ITextInputProps> = ({
             <Text
                 color={isError ? "error" : hintTextProps.color}
                 variant="body3-regular"
-                numberOfLines={1}
                 style={[
                     stylesheet.hintText,
                     hintTextProps.style
