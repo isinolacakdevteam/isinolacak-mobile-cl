@@ -18,7 +18,15 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
 
     constructor(initialState: T, config: ConfigType<LocaleContextType>) {
         super({
-            localize: (translationKey: keyof IOCore.TranslationType) => en.translations[translationKey],
+            localize: (translationKey: keyof IOCore.TranslationType) => {
+                const resp = en.translations[translationKey];
+
+                if(!resp) {
+                    return translationKey;
+                }
+
+                return resp;
+            },
             translations: en.translations,
             activeLocale: en.code,
             isRTL: en.isRTL
