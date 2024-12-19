@@ -1,7 +1,11 @@
 import React, {
+    useImperativeHandle,
+    useCallback,
+    forwardRef,
     useEffect,
     useState,
-    useRef
+    useRef,
+    Ref
 } from "react";
 import {
     TouchableOpacity,
@@ -11,6 +15,7 @@ import selectBoxStyler, {
     stylesheet
 } from "./stylesheet";
 import {
+    ISelectBoxRefProps,
     ISelectBoxProps,
     SelectedItem
 } from "./types";
@@ -59,7 +64,7 @@ const SelectBox = <T extends {}>({
     style,
     title,
     onOk
-}: ISelectBoxProps<T>) => {
+}: ISelectBoxProps<T>, ref: Ref<ISelectBoxRefProps<T>>) => {
     const selectSheetRef = useRef<BottomSheetRef>(null);
 
     const [data, setData] = useState<Array<T & SelectObjectType>>([]);
@@ -121,8 +126,31 @@ const SelectBox = <T extends {}>({
         setData(newData);
 
         if (initialSelectedItems && initialSelectedItems.length) {
-            const newSelectedItems: Array<T & SelectedItem> = initialSelectedItems.map((item, index) => {
-                let originalItem = newData.find(dataItem => {
+            const preparedDatas = prepareSelectedItems(initialSelectedItems, newData);
+            const newSelectedItems: Array<T & SelectedItem> = preparedDatas.selectedItems;
+
+            setSelectedItems(newSelectedItems);
+        } else { 
+            setSelectedItems([]);
+        }
+    }, [initialData]);
+
+    useImperativeHandle(
+        ref,
+        () => ({
+            updateSelectedItems
+        }),
+        [selectedItems, data]
+    );
+
+    // TODO: Typescript ?
+    // @ts-ignore
+    const prepareSelectedItems = (items, allData) => {
+        if (allData && allData.length) {
+            // @ts-ignore
+            const newSI = items.map((item, index) => {
+                // @ts-ignore
+                let originalItem = allData.find(dataItem => {
                     return dataItem.__key === keyExtractor(item, index);
                 });
 
@@ -131,19 +159,40 @@ const SelectBox = <T extends {}>({
                         ...item,
                         __title: titleExtractor(item, index),
                         __key: keyExtractor(item, index),
-                        __originalIndex: newData.length
+                        __originalIndex: allData.length
                     };
-                    newData.push(originalItem);
+                    allData.push(originalItem);
                 };
 
                 return originalItem;
             });
 
-            setSelectedItems(newSelectedItems);
-        } else { 
-            setSelectedItems([]);
+            return {
+                selectedItems: newSI,
+                allData
+            };
+        } else {
+            return {
+                selectedItems: [],
+                allData
+            };
         }
-    }, [initialData]);
+    };
+
+    const updateSelectedItems: ISelectBoxRefProps<T>["updateSelectedItems"] = useCallback(({
+        getCurrentSelectedItems,
+        newSelectedItems
+    }) => {
+        if (getCurrentSelectedItems) {
+            getCurrentSelectedItems(selectedItems, (processedSelectedItems) => {
+                setSelectedItems(prepareSelectedItems(processedSelectedItems, data).selectedItems);
+            });
+        }
+
+        if (newSelectedItems) {
+            setSelectedItems(prepareSelectedItems(newSelectedItems, data).selectedItems);
+        }
+    }, [selectedItems, data]);
 
     const cleanData = () => {
         let _data = JSON.parse(JSON.stringify(data));
@@ -335,4 +384,8 @@ const SelectBox = <T extends {}>({
         {renderInfoText()}
     </View>;
 };
-export default SelectBox;
+export default forwardRef(SelectBox) as <T extends {}>(
+    props: ISelectBoxProps<T> & {
+        ref?: Ref<ISelectBoxRefProps<T>>
+    }
+) => JSX.Element;
