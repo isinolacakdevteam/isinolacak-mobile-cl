@@ -11,6 +11,7 @@ import {
     View
 } from 'react-native';
 import {
+    ISelectBoxRefProps,
     DateTimePicker,
     PageContainer,
     IOCoreLocale,
@@ -78,6 +79,7 @@ const Welcome = () => {
     });
 
     const inputRef = useRef<NativeTextInput | null>(null);
+    const selectInputRef = useRef<ISelectBoxRefProps<{}> | null>(null);
 
     const onReachEnd = (data: any) => {
         console.error("data", data);
@@ -90,7 +92,7 @@ const Welcome = () => {
     useEffect(() => {
         const fetchCities = async () => {
             try {
-                const response = await fetch('https://gw-test.isinolacak.com/staticData/getCities', {
+                const response = await fetch('https://gw.isinolacak.com/staticData/getCities', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -221,7 +223,6 @@ const Welcome = () => {
             flex: 1
         }}
     >
-
         <PageContainer
             contentContainerStyle={stylesheet.contentContainer}
         >
@@ -428,7 +429,10 @@ const Welcome = () => {
                 titleColor="accent"
                 action={{
                     onPress: () => {
-                        inputRef.current?.focus();
+                        // inputRef.current?.focus();
+                        selectInputRef.current?.updateSelectedItems({
+                            newSelectedItems: []
+                        });
                     },
                     spreadBehaviour: "free",
                     title: "Hi Cnm",
@@ -454,6 +458,7 @@ const Welcome = () => {
                 //@ts-ignore
                 initialSelectedItems={registerInfo.city._id.length ? [registerInfo.city] : []}
                 isError={false}
+                ref={selectInputRef}
                 infoText="cities"
                 titleExtractor={(item) => item.localizedText}
                 inputTitle={"cities"}

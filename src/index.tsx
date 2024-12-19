@@ -48,6 +48,10 @@ export {
 } from "./components/bottomSheet/types";
 
 export {
+    ISelectBoxRefProps
+} from "./components/selectBox/types";
+
+export {
     default as IOCore,
     IOCoreContext,
     IOCoreLocale,
