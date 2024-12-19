@@ -143,9 +143,13 @@ const SelectBox = <T extends {}>({
         [selectedItems, data]
     );
 
+    // TODO: Typescript ?
+    // @ts-ignore
     const prepareSelectedItems = (items, allData) => {
         if (allData && allData.length) {
+            // @ts-ignore
             const newSI = items.map((item, index) => {
+                // @ts-ignore
                 let originalItem = allData.find(dataItem => {
                     return dataItem.__key === keyExtractor(item, index);
                 });
