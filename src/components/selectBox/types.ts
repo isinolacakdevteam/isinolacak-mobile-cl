@@ -15,6 +15,20 @@ export type SelectedItem = {
     __key: string;
 };
 
+export interface ISelectBoxRefProps<T> {
+    updateSelectedItems: (p: {
+        getCurrentSelectedItems?: (
+            selectedItems: Array<SelectedItem>,
+            update: (processedSelectedItems: Array<T & {
+                originalIndex?: number;
+            }>) => void
+        ) => void,
+        newSelectedItems?: Array<T & {
+            originalIndex?: number;
+        }>
+    }) => void;
+};
+
 export interface ISelectBoxProps<T> {
     onChange?: (selectedItems: Array<SelectedItem>, data: Array<SelectObjectType>) => void;
     onPress?: (selectedItems: Array<SelectedItem>, data: Array<SelectObjectType>) => void;
