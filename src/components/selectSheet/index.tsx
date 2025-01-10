@@ -103,9 +103,15 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
     const bottomSheetRef: RefObject<SelectSheetRef> = useRef(null);
 
     useEffect(() => {
-        if(searchText && searchText.length) {
-            let newData = JSON.parse(JSON.stringify(data));
-            newData = newData.filter((item: K) => item.__title.match(new RegExp(searchText, "gi")));
+        const normalizeText = (text: string) =>
+            text.toLocaleLowerCase("tr-TR");
+    
+        const normalizedSearchText = normalizeText(searchText);
+    
+        if (searchText && searchText.length) {
+            const newData = data.filter((item: K) =>
+                normalizeText(item.__title).includes(normalizedSearchText)
+            );
             setRenderData(newData);
         } else {
             setRenderData(data);
