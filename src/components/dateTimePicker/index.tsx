@@ -47,6 +47,10 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
     style,
     title,
     mode,
+    icon,
+    valueStyle,
+    buttonContentStyle,
+    buttonStyle,
     ...props
 }, ref) => {
     const {
@@ -114,7 +118,7 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
     };
 
     const formatDate = (originalDate: Date | null) => {
-        if (!originalDate) return ""; 
+        if (!originalDate) return "";
 
         let currentDate = moment(originalDate).format("DD/MM/YY hh:mm");
 
@@ -123,7 +127,7 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
         }
 
         if (mode === "time") {
-            currentDate = moment(originalDate).format("hh:mm");
+            currentDate = moment(originalDate).format('LT');
         }
 
         return currentDate;
@@ -174,12 +178,14 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
         return <View
             style={[
                 stylesheet.customRenderForIcon,
-                customIcon
+                customIcon,
             ]}>
-            <CalendarIcon
-                color={colors.textGrey}
-                size={24}
-            />
+            {
+                icon ? icon : <CalendarIcon
+                    color={colors.textGrey}
+                    size={24}
+                />
+            }
         </View>;
     };
 
@@ -195,11 +201,12 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
     };
 
     const renderDate = () => {
-        if(!dateTitle) {
+        if (!dateTitle) {
             return <Text
                 color={titleProps.color}
                 variant="body2-regular"
                 numberOfLines={1}
+                style={valueStyle}
             >
                 {formattedDate || localize("select-a-date")}
             </Text>;
@@ -209,6 +216,7 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
             color={titleProps.color}
             variant="body2-regular"
             numberOfLines={1}
+            style={valueStyle}
         >
             {formattedDate || dateTitle}
         </Text>;
@@ -241,7 +249,7 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
             return null;
         }
 
-        if(!buttonTitle) {
+        if (!buttonTitle) {
             buttonTitle = localize("date-time-picker-default-button-title");
         }
 
@@ -279,15 +287,17 @@ const DateTimePicker: RefForwardingComponent<DateTimePickerRef, IDateTimePickerP
             onPress={onPress}
             style={[
                 stylesheet.container,
-                container
+                container,
+                buttonStyle
             ]}
         >
             <View
-                style={
-                    stylesheet.content
-                }>
+                style={[
+                    stylesheet.content,
+                    buttonContentStyle,
+                ]}>
                 <View>
-                    {renderTitle()}
+                    {title ? renderTitle() : null}
                     {renderDate()}
                 </View>
                 {renderIcon()}
