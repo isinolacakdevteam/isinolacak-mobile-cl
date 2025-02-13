@@ -8,6 +8,7 @@ import React, {
     Ref
 } from "react";
 import {
+    Keyboard,
     TouchableOpacity,
     View
 } from "react-native";
@@ -360,7 +361,7 @@ const SelectBox = <T extends {}>({
                 if(disabled) {
                     return;
                 }
-
+                Keyboard.dismiss();
                 if(!onPress) {
                     selectSheetRef.current?.open();
                     return;
