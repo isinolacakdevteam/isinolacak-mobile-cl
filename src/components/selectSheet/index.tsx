@@ -103,12 +103,11 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
     const bottomSheetRef: RefObject<SelectSheetRef> = useRef(null);
 
     useEffect(() => {
-        const normalizeText = (text: string) =>
-            text.toLocaleLowerCase("tr-TR");
-    
-        const normalizedSearchText = normalizeText(searchText);
-    
         if (searchText && searchText.length) {
+            const normalizeText = (text: string) =>
+                text.toLocaleLowerCase("tr-TR");
+        
+            const normalizedSearchText = normalizeText(searchText);
             const newData = data.filter((item: K) =>
                 normalizeText(item.__title).includes(normalizedSearchText)
             );
