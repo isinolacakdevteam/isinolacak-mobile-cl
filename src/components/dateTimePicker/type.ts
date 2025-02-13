@@ -38,6 +38,10 @@ type IDateTimePickerProps = Omit<DTP, "value" | "mode" | "display"> & {
     isClick?: boolean; 
     isError?: boolean;
     title: string;
+    icon?: IOCoreIconType,
+    valueStyle?: ViewStyle,
+    buttonContentStyle?: ViewStyle,
+    buttonStyle?: ViewStyle,
 }
 
 export type DateTimePickerStylerParams = {
