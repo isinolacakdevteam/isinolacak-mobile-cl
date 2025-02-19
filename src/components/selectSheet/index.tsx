@@ -20,6 +20,7 @@ import {
     IOCoreTheme
 } from "../../core";
 import ISelectSheetProps, {
+    SelectedItem,
     SelectSheetRef
 } from "./types";
 import {
@@ -107,7 +108,7 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         if (searchText && searchText.length) {
             const normalizedSearchText = normalizeText(searchText);
             const newData = data.filter((item: K) =>
-                normalizeText(item.__title).includes(normalizedSearchText)
+                item.__title ? normalizeText(item.__title).includes(normalizedSearchText) : false
             );
             setRenderData(newData);
         } else {
@@ -127,8 +128,9 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         }
     }, [tempSelectedItems]);
 
-    const normalizeText = (text: string) =>
-        text.toLocaleLowerCase("tr-TR");
+    const normalizeText = (text: string) => {
+        return text.toLocaleLowerCase("tr-TR");
+    };
 
     const open = () => {
         bottomSheetRef.current?.open();
@@ -138,11 +140,16 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         bottomSheetRef.current?.close();
     };
 
+    const setModalSelectedItems = (newModalSelectedItems: Array<SelectedItem>) => {
+        setTempSelectedItems(newModalSelectedItems);
+    };
+
     useImperativeHandle(
         ref,
         () => ({
             close,
-            open
+            open,
+            setModalSelectedItems
         }),
         []
     );
@@ -163,7 +170,7 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         let _selectedItems = JSON.parse(JSON.stringify(tempSelectedItems));
 
         const isExistsInSelectedData = tempSelectedItems.findIndex(e => e.__key === item.__key);
-
+        
         if(isExistsInSelectedData !== -1) {
             if(multiSelect) {
                 if(
@@ -243,7 +250,7 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
             }}
             onPress={() => {
                 onClear && onClear();
-                setTempSelectedItems([]);
+                setTempSelectedItems([]); 
             }}
         />;
     };
@@ -307,7 +314,7 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
                     },
                     data: data
                 }) : undefined,
-                selectedItems,
+                selectedItems: tempSelectedItems,
                 isSelected,
                 index,
                 data,
