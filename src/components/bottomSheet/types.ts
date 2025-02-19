@@ -8,7 +8,8 @@ import IPageContainerProps from "../pageContainer/types";
 
 export type BottomSheetRef = {
     close: () => void,
-    open: () => void
+    open: () => void,
+    setModalSelectedItems?: (newSelectedItems: any) => void
 };
 
 export type BottomSheetStylerParams = {

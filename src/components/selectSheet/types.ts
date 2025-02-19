@@ -18,7 +18,8 @@ import {
 
 export type SelectSheetRef = {
     close: () => void,
-    open: () => void
+    open: () => void,
+    setModalSelectedItems?: (newSelectedItems: any) => void
 };
 
 export type SelectSheetStylerParams = {
