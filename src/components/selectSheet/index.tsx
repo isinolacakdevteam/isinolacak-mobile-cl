@@ -81,6 +81,7 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
         title,
         data,
         onOk,
+        onClear,
         ...props
     } = properties;
 
@@ -241,6 +242,7 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
                 flex: isNeedConfirm ? undefined : 1
             }}
             onPress={() => {
+                onClear && onClear();
                 setTempSelectedItems([]);
             }}
         />;
@@ -309,7 +311,8 @@ const SelecetSheet = <T, K extends T & SelectObjectType>(
                 isSelected,
                 index,
                 data,
-                item
+                item,
+                setModalSelectedItems: setTempSelectedItems
             });
         }
 
