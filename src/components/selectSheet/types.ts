@@ -77,6 +77,7 @@ interface ISelectSheetProps<T, K extends T & SelectObjectType> extends Omit<Moda
         index?: number;
         data: Array<K>;
         item?: K;
+        setModalSelectedItems: Dispatch<Array<SelectedItem>>;
     }) => JSX.Element;
     renderIcon?: (props: IIOCoreIconPropsType & {
         onChange?: (selectedItems: Array<SelectedItem>, data: Array<K>) => void;
@@ -119,5 +120,6 @@ interface ISelectSheetProps<T, K extends T & SelectObjectType> extends Omit<Moda
     snapPoint?: number;
     data: Array<K>;
     title: string;
+    onClear?: () => void;
 };
 export default ISelectSheetProps;
