@@ -64,7 +64,8 @@ const SelectBox = <T extends {}>({
     isError,
     style,
     title,
-    onOk
+    onOk,
+    onClear,
 }: ISelectBoxProps<T>, ref: Ref<ISelectBoxRefProps<T>>) => {
     const selectSheetRef = useRef<BottomSheetRef>(null);
 
@@ -343,6 +344,7 @@ const SelectBox = <T extends {}>({
             snapPoint={0}
             data={data}
             onOk={onOk}
+            onClear={onClear}
         />;
     };
 
