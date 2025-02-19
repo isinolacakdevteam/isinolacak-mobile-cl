@@ -94,6 +94,7 @@ export interface ISelectBoxProps<T> {
     isClick?: boolean;
     data: Array<T>;
     title: string;
+    onClear: () => void;
 };
 
 export type SelectBoxStylerParams = {
